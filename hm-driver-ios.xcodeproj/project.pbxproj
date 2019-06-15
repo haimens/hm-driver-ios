@@ -1,0 +1,585 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		557B82A722B47531002D4774 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 557B82A622B47531002D4774 /* AppDelegate.swift */; };
+		557B82A922B47531002D4774 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 557B82A822B47531002D4774 /* ViewController.swift */; };
+		557B82AC22B47531002D4774 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 557B82AA22B47531002D4774 /* Main.storyboard */; };
+		557B82AE22B47532002D4774 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 557B82AD22B47532002D4774 /* Assets.xcassets */; };
+		557B82B122B47532002D4774 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 557B82AF22B47532002D4774 /* LaunchScreen.storyboard */; };
+		557B82BC22B47532002D4774 /* hm_driver_iosTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 557B82BB22B47532002D4774 /* hm_driver_iosTests.swift */; };
+		557B82C722B47532002D4774 /* hm_driver_iosUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 557B82C622B47532002D4774 /* hm_driver_iosUITests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		557B82B822B47532002D4774 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 557B829B22B47531002D4774 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 557B82A222B47531002D4774;
+			remoteInfo = "hm-driver-ios";
+		};
+		557B82C322B47532002D4774 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 557B829B22B47531002D4774 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 557B82A222B47531002D4774;
+			remoteInfo = "hm-driver-ios";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		557B82A322B47531002D4774 /* hm-driver-ios.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "hm-driver-ios.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		557B82A622B47531002D4774 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		557B82A822B47531002D4774 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		557B82AB22B47531002D4774 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		557B82AD22B47532002D4774 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		557B82B022B47532002D4774 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		557B82B222B47532002D4774 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		557B82B722B47532002D4774 /* hm-driver-iosTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "hm-driver-iosTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		557B82BB22B47532002D4774 /* hm_driver_iosTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = hm_driver_iosTests.swift; sourceTree = "<group>"; };
+		557B82BD22B47532002D4774 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		557B82C222B47532002D4774 /* hm-driver-iosUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "hm-driver-iosUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		557B82C622B47532002D4774 /* hm_driver_iosUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = hm_driver_iosUITests.swift; sourceTree = "<group>"; };
+		557B82C822B47532002D4774 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		557B82A022B47531002D4774 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		557B82B422B47532002D4774 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		557B82BF22B47532002D4774 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		557B829A22B47531002D4774 = {
+			isa = PBXGroup;
+			children = (
+				557B82A522B47531002D4774 /* hm-driver-ios */,
+				557B82BA22B47532002D4774 /* hm-driver-iosTests */,
+				557B82C522B47532002D4774 /* hm-driver-iosUITests */,
+				557B82A422B47531002D4774 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		557B82A422B47531002D4774 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				557B82A322B47531002D4774 /* hm-driver-ios.app */,
+				557B82B722B47532002D4774 /* hm-driver-iosTests.xctest */,
+				557B82C222B47532002D4774 /* hm-driver-iosUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		557B82A522B47531002D4774 /* hm-driver-ios */ = {
+			isa = PBXGroup;
+			children = (
+				557B82A622B47531002D4774 /* AppDelegate.swift */,
+				557B82A822B47531002D4774 /* ViewController.swift */,
+				557B82AA22B47531002D4774 /* Main.storyboard */,
+				557B82AD22B47532002D4774 /* Assets.xcassets */,
+				557B82AF22B47532002D4774 /* LaunchScreen.storyboard */,
+				557B82B222B47532002D4774 /* Info.plist */,
+			);
+			path = "hm-driver-ios";
+			sourceTree = "<group>";
+		};
+		557B82BA22B47532002D4774 /* hm-driver-iosTests */ = {
+			isa = PBXGroup;
+			children = (
+				557B82BB22B47532002D4774 /* hm_driver_iosTests.swift */,
+				557B82BD22B47532002D4774 /* Info.plist */,
+			);
+			path = "hm-driver-iosTests";
+			sourceTree = "<group>";
+		};
+		557B82C522B47532002D4774 /* hm-driver-iosUITests */ = {
+			isa = PBXGroup;
+			children = (
+				557B82C622B47532002D4774 /* hm_driver_iosUITests.swift */,
+				557B82C822B47532002D4774 /* Info.plist */,
+			);
+			path = "hm-driver-iosUITests";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		557B82A222B47531002D4774 /* hm-driver-ios */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 557B82CB22B47532002D4774 /* Build configuration list for PBXNativeTarget "hm-driver-ios" */;
+			buildPhases = (
+				557B829F22B47531002D4774 /* Sources */,
+				557B82A022B47531002D4774 /* Frameworks */,
+				557B82A122B47531002D4774 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "hm-driver-ios";
+			productName = "hm-driver-ios";
+			productReference = 557B82A322B47531002D4774 /* hm-driver-ios.app */;
+			productType = "com.apple.product-type.application";
+		};
+		557B82B622B47532002D4774 /* hm-driver-iosTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 557B82CE22B47532002D4774 /* Build configuration list for PBXNativeTarget "hm-driver-iosTests" */;
+			buildPhases = (
+				557B82B322B47532002D4774 /* Sources */,
+				557B82B422B47532002D4774 /* Frameworks */,
+				557B82B522B47532002D4774 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				557B82B922B47532002D4774 /* PBXTargetDependency */,
+			);
+			name = "hm-driver-iosTests";
+			productName = "hm-driver-iosTests";
+			productReference = 557B82B722B47532002D4774 /* hm-driver-iosTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		557B82C122B47532002D4774 /* hm-driver-iosUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 557B82D122B47532002D4774 /* Build configuration list for PBXNativeTarget "hm-driver-iosUITests" */;
+			buildPhases = (
+				557B82BE22B47532002D4774 /* Sources */,
+				557B82BF22B47532002D4774 /* Frameworks */,
+				557B82C022B47532002D4774 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				557B82C422B47532002D4774 /* PBXTargetDependency */,
+			);
+			name = "hm-driver-iosUITests";
+			productName = "hm-driver-iosUITests";
+			productReference = 557B82C222B47532002D4774 /* hm-driver-iosUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		557B829B22B47531002D4774 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1020;
+				LastUpgradeCheck = 1020;
+				ORGANIZATIONNAME = haimens;
+				TargetAttributes = {
+					557B82A222B47531002D4774 = {
+						CreatedOnToolsVersion = 10.2.1;
+					};
+					557B82B622B47532002D4774 = {
+						CreatedOnToolsVersion = 10.2.1;
+						TestTargetID = 557B82A222B47531002D4774;
+					};
+					557B82C122B47532002D4774 = {
+						CreatedOnToolsVersion = 10.2.1;
+						TestTargetID = 557B82A222B47531002D4774;
+					};
+				};
+			};
+			buildConfigurationList = 557B829E22B47531002D4774 /* Build configuration list for PBXProject "hm-driver-ios" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 557B829A22B47531002D4774;
+			productRefGroup = 557B82A422B47531002D4774 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				557B82A222B47531002D4774 /* hm-driver-ios */,
+				557B82B622B47532002D4774 /* hm-driver-iosTests */,
+				557B82C122B47532002D4774 /* hm-driver-iosUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		557B82A122B47531002D4774 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				557B82B122B47532002D4774 /* LaunchScreen.storyboard in Resources */,
+				557B82AE22B47532002D4774 /* Assets.xcassets in Resources */,
+				557B82AC22B47531002D4774 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		557B82B522B47532002D4774 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		557B82C022B47532002D4774 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		557B829F22B47531002D4774 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				557B82A922B47531002D4774 /* ViewController.swift in Sources */,
+				557B82A722B47531002D4774 /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		557B82B322B47532002D4774 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				557B82BC22B47532002D4774 /* hm_driver_iosTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		557B82BE22B47532002D4774 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				557B82C722B47532002D4774 /* hm_driver_iosUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		557B82B922B47532002D4774 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 557B82A222B47531002D4774 /* hm-driver-ios */;
+			targetProxy = 557B82B822B47532002D4774 /* PBXContainerItemProxy */;
+		};
+		557B82C422B47532002D4774 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 557B82A222B47531002D4774 /* hm-driver-ios */;
+			targetProxy = 557B82C322B47532002D4774 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		557B82AA22B47531002D4774 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				557B82AB22B47531002D4774 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		557B82AF22B47532002D4774 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				557B82B022B47532002D4774 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		557B82C922B47532002D4774 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		557B82CA22B47532002D4774 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		557B82CC22B47532002D4774 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = "hm-driver-ios/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "haimens.hm-driver-ios";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		557B82CD22B47532002D4774 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = "hm-driver-ios/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "haimens.hm-driver-ios";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		557B82CF22B47532002D4774 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = "hm-driver-iosTests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "haimens.hm-driver-iosTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/hm-driver-ios.app/hm-driver-ios";
+			};
+			name = Debug;
+		};
+		557B82D022B47532002D4774 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = "hm-driver-iosTests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "haimens.hm-driver-iosTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/hm-driver-ios.app/hm-driver-ios";
+			};
+			name = Release;
+		};
+		557B82D222B47532002D4774 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = "hm-driver-iosUITests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "haimens.hm-driver-iosUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = "hm-driver-ios";
+			};
+			name = Debug;
+		};
+		557B82D322B47532002D4774 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = "hm-driver-iosUITests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "haimens.hm-driver-iosUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = "hm-driver-ios";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		557B829E22B47531002D4774 /* Build configuration list for PBXProject "hm-driver-ios" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				557B82C922B47532002D4774 /* Debug */,
+				557B82CA22B47532002D4774 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		557B82CB22B47532002D4774 /* Build configuration list for PBXNativeTarget "hm-driver-ios" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				557B82CC22B47532002D4774 /* Debug */,
+				557B82CD22B47532002D4774 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		557B82CE22B47532002D4774 /* Build configuration list for PBXNativeTarget "hm-driver-iosTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				557B82CF22B47532002D4774 /* Debug */,
+				557B82D022B47532002D4774 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		557B82D122B47532002D4774 /* Build configuration list for PBXNativeTarget "hm-driver-iosUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				557B82D222B47532002D4774 /* Debug */,
+				557B82D322B47532002D4774 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 557B829B22B47531002D4774 /* Project object */;
+}
