@@ -17,6 +17,9 @@
 		557B82DD22B4B0CA002D4774 /* ENV.swift in Sources */ = {isa = PBXBuildFile; fileRef = 557B82DC22B4B0CA002D4774 /* ENV.swift */; };
 		557B82E222B4B5DC002D4774 /* TDSwiftRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 557B82E022B4B5DC002D4774 /* TDSwiftRequest.swift */; };
 		557B82E322B4B5DC002D4774 /* TDSwiftRequestError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 557B82E122B4B5DC002D4774 /* TDSwiftRequestError.swift */; };
+		55F9A2A522B4B92F00788FC5 /* TDSwiftHavana.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55F9A2A422B4B92F00788FC5 /* TDSwiftHavana.swift */; };
+		55F9A2A822B4BC1000788FC5 /* KeychainPasswordItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55F9A2A722B4BC1000788FC5 /* KeychainPasswordItem.swift */; };
+		55F9A2AA22B5677D00788FC5 /* DriverConn.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55F9A2A922B5677D00788FC5 /* DriverConn.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +56,9 @@
 		557B82DC22B4B0CA002D4774 /* ENV.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ENV.swift; sourceTree = "<group>"; };
 		557B82E022B4B5DC002D4774 /* TDSwiftRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TDSwiftRequest.swift; sourceTree = "<group>"; };
 		557B82E122B4B5DC002D4774 /* TDSwiftRequestError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TDSwiftRequestError.swift; sourceTree = "<group>"; };
+		55F9A2A422B4B92F00788FC5 /* TDSwiftHavana.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TDSwiftHavana.swift; sourceTree = "<group>"; };
+		55F9A2A722B4BC1000788FC5 /* KeychainPasswordItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeychainPasswordItem.swift; sourceTree = "<group>"; };
+		55F9A2A922B5677D00788FC5 /* DriverConn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DriverConn.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -147,6 +153,7 @@
 		557B82D522B4AD96002D4774 /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				55F9A2A922B5677D00788FC5 /* DriverConn.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -176,6 +183,8 @@
 		557B82DE22B4B565002D4774 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				55F9A2A622B4BC0700788FC5 /* GenericKeychain */,
+				55F9A2A322B4B90900788FC5 /* TDSwiftHavana */,
 				557B82DF22B4B5BB002D4774 /* TDSwiftRequest */,
 			);
 			path = Helpers;
@@ -188,6 +197,22 @@
 				557B82E122B4B5DC002D4774 /* TDSwiftRequestError.swift */,
 			);
 			path = TDSwiftRequest;
+			sourceTree = "<group>";
+		};
+		55F9A2A322B4B90900788FC5 /* TDSwiftHavana */ = {
+			isa = PBXGroup;
+			children = (
+				55F9A2A422B4B92F00788FC5 /* TDSwiftHavana.swift */,
+			);
+			path = TDSwiftHavana;
+			sourceTree = "<group>";
+		};
+		55F9A2A622B4BC0700788FC5 /* GenericKeychain */ = {
+			isa = PBXGroup;
+			children = (
+				55F9A2A722B4BC1000788FC5 /* KeychainPasswordItem.swift */,
+			);
+			path = GenericKeychain;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -321,9 +346,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				55F9A2A522B4B92F00788FC5 /* TDSwiftHavana.swift in Sources */,
 				557B82A922B47531002D4774 /* ViewController.swift in Sources */,
 				557B82E222B4B5DC002D4774 /* TDSwiftRequest.swift in Sources */,
+				55F9A2A822B4BC1000788FC5 /* KeychainPasswordItem.swift in Sources */,
 				557B82DD22B4B0CA002D4774 /* ENV.swift in Sources */,
+				55F9A2AA22B5677D00788FC5 /* DriverConn.swift in Sources */,
 				557B82A722B47531002D4774 /* AppDelegate.swift in Sources */,
 				557B82E322B4B5DC002D4774 /* TDSwiftRequestError.swift in Sources */,
 			);
