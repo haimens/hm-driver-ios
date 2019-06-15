@@ -6,12 +6,32 @@ class HMAuthViewController: UIViewController {
         TDSwiftHavana.shared.removeAuthInfo()
         TDSwiftHavana.shared.removeUserInfo()
         
-        // Present auth vc
-//        let authVC = self.storyboard!.instantiateViewController(withIdentifier: String(describing: HMAuthViewController.self))
-//        self.present(authVC, animated: true, completion: nil)
+        // Present login vc, request user info
+        self.performSegue(withIdentifier: String(describing: HMLoginViewController.self), sender: self)
+    }
+        
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        verifyAuthInfo()
     }
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    private func verifyAuthInfo() {
+        // Check user info availability
+        if (TDSwiftHavana.shared.userInfoAvailable()) {
+            TDSwiftHavana.shared.renewAuthInfo { (result, error) in
+                if (result) {
+                    // Present main view
+                    self.performSegue(withIdentifier: String(describing: HMMainTabBarController.self), sender: self)
+                } else {
+                    // Handle login error
+                    if let error = error {
+                        TDSwiftAlert.showSingleButtonAlert(title: "Login Failed", message: TDSwiftHavana.getErrorMessage(error: error), actionBtnTitle: "Retry", presentVC: self, btnAction: { self.verifyAuthInfo() })
+                    }
+                }
+            }
+        } else {
+            // Present login vc, request user info
+            self.performSegue(withIdentifier: String(describing: HMLoginViewController.self), sender: self)
+        }
     }
 }

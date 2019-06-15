@@ -54,9 +54,61 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
+                    <connections>
+                        <segue destination="xwO-YJ-Hg4" kind="presentation" identifier="HMLoginViewController" id="lgY-2A-iRK"/>
+                        <segue destination="i7n-uR-xlQ" kind="presentation" identifier="HMMainTabBarController" customClass="HMMainTabBarController" customModule="hm_driver_ios" customModuleProvider="target" id="a0r-L2-v76"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+        </scene>
+        <!--Login View Controller-->
+        <scene sceneID="bML-uN-7Mw">
+            <objects>
+                <viewController storyboardIdentifier="HMLoginViewController" id="xwO-YJ-Hg4" customClass="HMLoginViewController" customModule="hm_driver_ios" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="S5a-Wi-1LO">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="yMX-Ey-JMY"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="OOS-lt-aYB" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="986" y="-253"/>
+        </scene>
+        <!--Item-->
+        <scene sceneID="GA3-Ul-cpn">
+            <objects>
+                <viewController id="6Km-F4-fb5" customClass="HMTripListViewController" customModule="hm_driver_ios" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="i1T-kJ-rez">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" red="0.57874745130000005" green="0.32151988149999999" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <viewLayoutGuide key="safeArea" id="nVl-u2-waa"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Item" id="ygS-6B-u5p"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="A8M-ko-NoI" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1927.2" y="488.42364532019707"/>
+        </scene>
+        <!--Tab Bar Controller-->
+        <scene sceneID="oKN-17-3tm">
+            <objects>
+                <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="i7n-uR-xlQ" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="jcl-Qg-ele">
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="6Km-F4-fb5" kind="relationship" relationship="viewControllers" id="cce-ZQ-Z39"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="oQo-2B-fyN" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="984.79999999999995" y="488.42364532019707"/>
         </scene>
     </scenes>
     <resources>

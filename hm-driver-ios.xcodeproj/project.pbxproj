@@ -21,6 +21,9 @@
 		55F9A2A822B4BC1000788FC5 /* KeychainPasswordItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55F9A2A722B4BC1000788FC5 /* KeychainPasswordItem.swift */; };
 		55F9A2AA22B5677D00788FC5 /* DriverConn.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55F9A2A922B5677D00788FC5 /* DriverConn.swift */; };
 		55F9A2AE22B58FAE00788FC5 /* TDSwiftAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55F9A2AD22B58FAE00788FC5 /* TDSwiftAlert.swift */; };
+		55F9A2B122B5926400788FC5 /* HMLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55F9A2B022B5926400788FC5 /* HMLoginViewController.swift */; };
+		55F9A2B422B5929600788FC5 /* HMTripListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55F9A2B322B5929600788FC5 /* HMTripListViewController.swift */; };
+		55F9A2B722B5939800788FC5 /* HMMainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55F9A2B622B5939800788FC5 /* HMMainTabBarController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -61,6 +64,9 @@
 		55F9A2A722B4BC1000788FC5 /* KeychainPasswordItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeychainPasswordItem.swift; sourceTree = "<group>"; };
 		55F9A2A922B5677D00788FC5 /* DriverConn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DriverConn.swift; sourceTree = "<group>"; };
 		55F9A2AD22B58FAE00788FC5 /* TDSwiftAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TDSwiftAlert.swift; sourceTree = "<group>"; };
+		55F9A2B022B5926400788FC5 /* HMLoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HMLoginViewController.swift; sourceTree = "<group>"; };
+		55F9A2B322B5929600788FC5 /* HMTripListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HMTripListViewController.swift; sourceTree = "<group>"; };
+		55F9A2B622B5939800788FC5 /* HMMainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HMMainTabBarController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -163,6 +169,9 @@
 		557B82D622B4ADA0002D4774 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				55F9A2B522B5936800788FC5 /* HMMainTabBar */,
+				55F9A2B222B5927E00788FC5 /* HMTripList */,
+				55F9A2AF22B5924700788FC5 /* HMLogin */,
 				55F9A2AB22B5825D00788FC5 /* HMAuth */,
 			);
 			path = Controllers;
@@ -232,6 +241,30 @@
 				55F9A2AD22B58FAE00788FC5 /* TDSwiftAlert.swift */,
 			);
 			path = TDSwiftAlert;
+			sourceTree = "<group>";
+		};
+		55F9A2AF22B5924700788FC5 /* HMLogin */ = {
+			isa = PBXGroup;
+			children = (
+				55F9A2B022B5926400788FC5 /* HMLoginViewController.swift */,
+			);
+			path = HMLogin;
+			sourceTree = "<group>";
+		};
+		55F9A2B222B5927E00788FC5 /* HMTripList */ = {
+			isa = PBXGroup;
+			children = (
+				55F9A2B322B5929600788FC5 /* HMTripListViewController.swift */,
+			);
+			path = HMTripList;
+			sourceTree = "<group>";
+		};
+		55F9A2B522B5936800788FC5 /* HMMainTabBar */ = {
+			isa = PBXGroup;
+			children = (
+				55F9A2B622B5939800788FC5 /* HMMainTabBarController.swift */,
+			);
+			path = HMMainTabBar;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -366,6 +399,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				55F9A2A522B4B92F00788FC5 /* TDSwiftHavana.swift in Sources */,
+				55F9A2B722B5939800788FC5 /* HMMainTabBarController.swift in Sources */,
 				557B82A922B47531002D4774 /* HMAuthViewController.swift in Sources */,
 				557B82E222B4B5DC002D4774 /* TDSwiftRequest.swift in Sources */,
 				55F9A2A822B4BC1000788FC5 /* KeychainPasswordItem.swift in Sources */,
@@ -374,6 +408,8 @@
 				55F9A2AA22B5677D00788FC5 /* DriverConn.swift in Sources */,
 				557B82A722B47531002D4774 /* AppDelegate.swift in Sources */,
 				557B82E322B4B5DC002D4774 /* TDSwiftRequestError.swift in Sources */,
+				55F9A2B122B5926400788FC5 /* HMLoginViewController.swift in Sources */,
+				55F9A2B422B5929600788FC5 /* HMTripListViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -479,7 +515,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -534,7 +570,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -557,7 +593,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "haimens.hm-driver-ios";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -574,7 +610,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "haimens.hm-driver-ios";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
