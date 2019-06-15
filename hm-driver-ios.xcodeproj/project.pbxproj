@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		557B82A722B47531002D4774 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 557B82A622B47531002D4774 /* AppDelegate.swift */; };
-		557B82A922B47531002D4774 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 557B82A822B47531002D4774 /* ViewController.swift */; };
+		557B82A922B47531002D4774 /* HMAuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 557B82A822B47531002D4774 /* HMAuthViewController.swift */; };
 		557B82AC22B47531002D4774 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 557B82AA22B47531002D4774 /* Main.storyboard */; };
 		557B82AE22B47532002D4774 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 557B82AD22B47532002D4774 /* Assets.xcassets */; };
 		557B82B122B47532002D4774 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 557B82AF22B47532002D4774 /* LaunchScreen.storyboard */; };
@@ -42,7 +42,7 @@
 /* Begin PBXFileReference section */
 		557B82A322B47531002D4774 /* hm-driver-ios.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "hm-driver-ios.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		557B82A622B47531002D4774 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		557B82A822B47531002D4774 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		557B82A822B47531002D4774 /* HMAuthViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HMAuthViewController.swift; sourceTree = "<group>"; };
 		557B82AB22B47531002D4774 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		557B82AD22B47532002D4774 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		557B82B022B47532002D4774 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -161,7 +161,7 @@
 		557B82D622B4ADA0002D4774 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				557B82A822B47531002D4774 /* ViewController.swift */,
+				55F9A2AB22B5825D00788FC5 /* HMAuth */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -213,6 +213,14 @@
 				55F9A2A722B4BC1000788FC5 /* KeychainPasswordItem.swift */,
 			);
 			path = GenericKeychain;
+			sourceTree = "<group>";
+		};
+		55F9A2AB22B5825D00788FC5 /* HMAuth */ = {
+			isa = PBXGroup;
+			children = (
+				557B82A822B47531002D4774 /* HMAuthViewController.swift */,
+			);
+			path = HMAuth;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -347,7 +355,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				55F9A2A522B4B92F00788FC5 /* TDSwiftHavana.swift in Sources */,
-				557B82A922B47531002D4774 /* ViewController.swift in Sources */,
+				557B82A922B47531002D4774 /* HMAuthViewController.swift in Sources */,
 				557B82E222B4B5DC002D4774 /* TDSwiftRequest.swift in Sources */,
 				55F9A2A822B4BC1000788FC5 /* KeychainPasswordItem.swift in Sources */,
 				557B82DD22B4B0CA002D4774 /* ENV.swift in Sources */,
