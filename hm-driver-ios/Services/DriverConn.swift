@@ -40,7 +40,7 @@ class DriverConn {
         }
         
         // Make request
-        TDSwiftRequest.request(urlString: "\(ENV.DRIVER.URL)\(endpoint)\(queryToUse)", method: method, body: body, headers: headers, timeOut: ENV.APP.REQUEST_TIME_OUT) { (json, response, error) in
+        TDSwiftRequest.request(urlString: "\(ENV.DRIVER.URL)\(endpoint)\(queryToUse)", method: method, body: body, headers: headers, timeOut: CONST.REQUEST.REQUEST_TIME_OUT) { (json, response, error) in
             // Handle 403 relogin
             if let requestError = error as? TDSwiftRequestError, let statusCode = requestError.getStatusCode(), statusCode == 403, let errorMessage = json?["message"] as? String, errorMessage == "!!!!!!!!!!!REPLACE THIS!!!!!!!!!!" {
                 TDSwiftHavana.shared.renewAuthInfo(completion: { (result, error) in

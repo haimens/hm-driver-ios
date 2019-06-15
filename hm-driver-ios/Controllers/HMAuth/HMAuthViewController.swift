@@ -9,7 +9,7 @@ class HMAuthViewController: UIViewController {
         // Present login vc, request user info
         self.performSegue(withIdentifier: String(describing: HMLoginViewController.self), sender: self)
     }
-        
+    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         verifyAuthInfo()
