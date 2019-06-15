@@ -97,12 +97,11 @@
 		557B82A522B47531002D4774 /* hm-driver-ios */ = {
 			isa = PBXGroup;
 			children = (
-				557B82A622B47531002D4774 /* AppDelegate.swift */,
-				557B82A822B47531002D4774 /* ViewController.swift */,
-				557B82AA22B47531002D4774 /* Main.storyboard */,
-				557B82AD22B47532002D4774 /* Assets.xcassets */,
-				557B82AF22B47532002D4774 /* LaunchScreen.storyboard */,
-				557B82B222B47532002D4774 /* Info.plist */,
+				557B82D922B4ADBC002D4774 /* UI */,
+				557B82D722B4ADA9002D4774 /* Models */,
+				557B82D622B4ADA0002D4774 /* Controllers */,
+				557B82D522B4AD96002D4774 /* Services */,
+				557B82D422B4AD7C002D4774 /* SupportFiles */,
 			);
 			path = "hm-driver-ios";
 			sourceTree = "<group>";
@@ -123,6 +122,47 @@
 				557B82C822B47532002D4774 /* Info.plist */,
 			);
 			path = "hm-driver-iosUITests";
+			sourceTree = "<group>";
+		};
+		557B82D422B4AD7C002D4774 /* SupportFiles */ = {
+			isa = PBXGroup;
+			children = (
+				557B82A622B47531002D4774 /* AppDelegate.swift */,
+				557B82AA22B47531002D4774 /* Main.storyboard */,
+				557B82AF22B47532002D4774 /* LaunchScreen.storyboard */,
+				557B82B222B47532002D4774 /* Info.plist */,
+				557B82AD22B47532002D4774 /* Assets.xcassets */,
+			);
+			path = SupportFiles;
+			sourceTree = "<group>";
+		};
+		557B82D522B4AD96002D4774 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		557B82D622B4ADA0002D4774 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				557B82A822B47531002D4774 /* ViewController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		557B82D722B4ADA9002D4774 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		557B82D922B4ADBC002D4774 /* UI */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = UI;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -433,7 +473,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = "hm-driver-ios/Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/hm-driver-ios/SupportFiles/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -450,7 +490,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = "hm-driver-ios/Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/hm-driver-ios/SupportFiles/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
