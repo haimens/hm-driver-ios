@@ -6,12 +6,19 @@ class HMTripListViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // Setup
-        setupUI()
         setupDelegates()
     }
     
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        
+        setupUI()
+    }
+    
     private func setupUI() {
+        // Navigation appearance
+        navigationController?.navigationBar.prefersLargeTitles = true
+        
         // Segmented control
         mainSegmentedControl.itemTitles = ["UPCOMING", "HISTORY"]
     }

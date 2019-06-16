@@ -174,7 +174,7 @@
             </objects>
             <point key="canvasLocation" x="1925.5999999999999" y="-316.25615763546801"/>
         </scene>
-        <!--Trip List View Controller-->
+        <!--Trip List-->
         <scene sceneID="GA3-Ul-cpn">
             <objects>
                 <viewController id="6Km-F4-fb5" customClass="HMTripListViewController" customModule="hm_driver_ios" customModuleProvider="target" sceneMemberID="viewController">
@@ -182,21 +182,15 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Trip List" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mmb-Cw-JHb">
-                                <rect key="frame" x="24" y="91" width="327" height="41"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="34"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="j1C-uZ-xLu" customClass="TDSwiftSegmentedControl" customModule="hm_driver_ios" customModuleProvider="target">
-                                <rect key="frame" x="24" y="148" width="327" height="40"/>
+                                <rect key="frame" x="24" y="104" width="327" height="40"/>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="HRS-42-hyZ"/>
                                 </constraints>
                             </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="X8x-XG-jNE">
-                                <rect key="frame" x="0.0" y="232" width="375" height="497"/>
+                                <rect key="frame" x="0.0" y="188" width="375" height="541"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="172" id="q7b-K2-6rD">
@@ -215,24 +209,21 @@
                             <constraint firstItem="j1C-uZ-xLu" firstAttribute="leading" secondItem="nVl-u2-waa" secondAttribute="leading" constant="24" id="0PX-Jf-H3R"/>
                             <constraint firstItem="X8x-XG-jNE" firstAttribute="trailing" secondItem="nVl-u2-waa" secondAttribute="trailing" id="2Yz-zb-xmm"/>
                             <constraint firstItem="nVl-u2-waa" firstAttribute="trailing" secondItem="j1C-uZ-xLu" secondAttribute="trailing" constant="24" id="2nb-jj-p0d"/>
-                            <constraint firstItem="nVl-u2-waa" firstAttribute="trailing" secondItem="mmb-Cw-JHb" secondAttribute="trailing" constant="24" id="KfH-ar-02Z"/>
                             <constraint firstItem="X8x-XG-jNE" firstAttribute="leading" secondItem="nVl-u2-waa" secondAttribute="leading" id="Od4-Ms-UMs"/>
-                            <constraint firstItem="mmb-Cw-JHb" firstAttribute="top" secondItem="nVl-u2-waa" secondAttribute="top" constant="47" id="WzF-ev-MiX"/>
                             <constraint firstItem="X8x-XG-jNE" firstAttribute="top" secondItem="j1C-uZ-xLu" secondAttribute="bottom" constant="44" id="bIk-sU-Mu6"/>
-                            <constraint firstItem="mmb-Cw-JHb" firstAttribute="leading" secondItem="nVl-u2-waa" secondAttribute="leading" constant="24" id="em5-aJ-Uvb"/>
                             <constraint firstItem="X8x-XG-jNE" firstAttribute="bottom" secondItem="nVl-u2-waa" secondAttribute="bottom" id="iOV-Zs-b2v"/>
-                            <constraint firstItem="j1C-uZ-xLu" firstAttribute="top" secondItem="mmb-Cw-JHb" secondAttribute="bottom" constant="16" id="oMp-Hc-6fq"/>
+                            <constraint firstItem="j1C-uZ-xLu" firstAttribute="top" secondItem="nVl-u2-waa" secondAttribute="top" constant="16" id="lNP-4h-Ege"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="nVl-u2-waa"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="" image="route-icon" id="ygS-6B-u5p"/>
+                    <navigationItem key="navigationItem" title="Trip List" largeTitleDisplayMode="always" id="CWv-r6-nd0"/>
                     <connections>
                         <outlet property="mainSegmentedControl" destination="j1C-uZ-xLu" id="2ca-ib-SVY"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="A8M-ko-NoI" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3189.5999999999999" y="487.6847290640394"/>
+            <point key="canvasLocation" x="4132" y="487.6847290640394"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="oKN-17-3tm">
@@ -248,12 +239,34 @@
                         <color key="selectedImageTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </tabBar>
                     <connections>
-                        <segue destination="6Km-F4-fb5" kind="relationship" relationship="viewControllers" id="cce-ZQ-Z39"/>
+                        <segue destination="KV6-5h-Oay" kind="relationship" relationship="viewControllers" id="cce-ZQ-Z39"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oQo-2B-fyN" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1926" y="488"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="2WF-Qv-bkw">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="KV6-5h-Oay" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="" image="route-icon" id="ygS-6B-u5p"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="tgy-th-oe7">
+                        <rect key="frame" x="0.0" y="44" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <textAttributes key="largeTitleTextAttributes">
+                            <fontDescription key="fontDescription" type="boldSystem" pointSize="34"/>
+                        </textAttributes>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="6Km-F4-fb5" kind="relationship" relationship="rootViewController" id="5kz-M7-uZW"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="SVg-pZ-GYj" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3189.5999999999999" y="487.6847290640394"/>
         </scene>
     </scenes>
     <resources>

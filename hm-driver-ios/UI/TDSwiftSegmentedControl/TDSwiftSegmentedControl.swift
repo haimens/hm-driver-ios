@@ -42,7 +42,6 @@ public class TDSwiftSegmentedControl: UIView {
     public var itemTitles: [String]! {
         didSet {
             if itemTitles != nil {
-                self.baseLabels = []
                 setup()
                 configControlProperties(config: TDSwiftSegmentedControl.defaultConfig)
             }
