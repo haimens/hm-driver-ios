@@ -27,6 +27,8 @@
 		55EA8D4A22B6EEF500A57BF1 /* HMRouteDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55EA8D4922B6EEF500A57BF1 /* HMRouteDetailView.swift */; };
 		55EA8D4D22B6F38100A57BF1 /* HMTripDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55EA8D4C22B6F38100A57BF1 /* HMTripDetailViewController.swift */; };
 		55EA8D5022B6F77400A57BF1 /* TDSwiftMapTools.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55EA8D4F22B6F77400A57BF1 /* TDSwiftMapTools.swift */; };
+		55EA8D5322B705D100A57BF1 /* HMEarningViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55EA8D5222B705D100A57BF1 /* HMEarningViewController.swift */; };
+		55EA8D5622B7062D00A57BF1 /* HMAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55EA8D5522B7062D00A57BF1 /* HMAccountViewController.swift */; };
 		55F9A2A522B4B92F00788FC5 /* TDSwiftHavana.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55F9A2A422B4B92F00788FC5 /* TDSwiftHavana.swift */; };
 		55F9A2A822B4BC1000788FC5 /* KeychainPasswordItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55F9A2A722B4BC1000788FC5 /* KeychainPasswordItem.swift */; };
 		55F9A2AA22B5677D00788FC5 /* DriverConn.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55F9A2A922B5677D00788FC5 /* DriverConn.swift */; };
@@ -83,6 +85,8 @@
 		55EA8D4922B6EEF500A57BF1 /* HMRouteDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HMRouteDetailView.swift; sourceTree = "<group>"; };
 		55EA8D4C22B6F38100A57BF1 /* HMTripDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HMTripDetailViewController.swift; sourceTree = "<group>"; };
 		55EA8D4F22B6F77400A57BF1 /* TDSwiftMapTools.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TDSwiftMapTools.swift; sourceTree = "<group>"; };
+		55EA8D5222B705D100A57BF1 /* HMEarningViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HMEarningViewController.swift; sourceTree = "<group>"; };
+		55EA8D5522B7062D00A57BF1 /* HMAccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HMAccountViewController.swift; sourceTree = "<group>"; };
 		55F9A2A422B4B92F00788FC5 /* TDSwiftHavana.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TDSwiftHavana.swift; sourceTree = "<group>"; };
 		55F9A2A722B4BC1000788FC5 /* KeychainPasswordItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeychainPasswordItem.swift; sourceTree = "<group>"; };
 		55F9A2A922B5677D00788FC5 /* DriverConn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DriverConn.swift; sourceTree = "<group>"; };
@@ -212,6 +216,8 @@
 		557B82D622B4ADA0002D4774 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				55EA8D5422B705E200A57BF1 /* HMAccount */,
+				55EA8D5122B705A400A57BF1 /* HMEarning */,
 				55EA8D4B22B6F36800A57BF1 /* HMTripDetail */,
 				55F9A2B522B5936800788FC5 /* HMMainTabBar */,
 				55F9A2B222B5927E00788FC5 /* HMTripList */,
@@ -310,6 +316,22 @@
 				55EA8D4F22B6F77400A57BF1 /* TDSwiftMapTools.swift */,
 			);
 			path = TDSwiftMapTools;
+			sourceTree = "<group>";
+		};
+		55EA8D5122B705A400A57BF1 /* HMEarning */ = {
+			isa = PBXGroup;
+			children = (
+				55EA8D5222B705D100A57BF1 /* HMEarningViewController.swift */,
+			);
+			path = HMEarning;
+			sourceTree = "<group>";
+		};
+		55EA8D5422B705E200A57BF1 /* HMAccount */ = {
+			isa = PBXGroup;
+			children = (
+				55EA8D5522B7062D00A57BF1 /* HMAccountViewController.swift */,
+			);
+			path = HMAccount;
 			sourceTree = "<group>";
 		};
 		55F9A2A322B4B90900788FC5 /* TDSwiftHavana */ = {
@@ -527,12 +549,14 @@
 				557B82A922B47531002D4774 /* HMAuthViewController.swift in Sources */,
 				55F9A2B922B59F3300788FC5 /* CONST.swift in Sources */,
 				55ABB63322B629E500F569AF /* TDSwiftSegmentedControl.swift in Sources */,
+				55EA8D5322B705D100A57BF1 /* HMEarningViewController.swift in Sources */,
 				557B82E222B4B5DC002D4774 /* TDSwiftRequest.swift in Sources */,
 				55061A2322B6C040003CDEAB /* TDSwiftShape.swift in Sources */,
 				55F9A2A822B4BC1000788FC5 /* KeychainPasswordItem.swift in Sources */,
 				55F9A2AE22B58FAE00788FC5 /* TDSwiftAlert.swift in Sources */,
 				55ABB63522B629F900F569AF /* TDSwiftSegmentedControlConfig.swift in Sources */,
 				55061A2022B6BD54003CDEAB /* HMTripListTableViewCell.swift in Sources */,
+				55EA8D5622B7062D00A57BF1 /* HMAccountViewController.swift in Sources */,
 				557B82DD22B4B0CA002D4774 /* ENV.swift in Sources */,
 				55F9A2AA22B5677D00788FC5 /* DriverConn.swift in Sources */,
 				557B82A722B47531002D4774 /* AppDelegate.swift in Sources */,

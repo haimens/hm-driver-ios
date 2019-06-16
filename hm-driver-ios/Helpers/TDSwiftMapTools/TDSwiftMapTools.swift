@@ -8,7 +8,11 @@ public class TDSwiftMapTools {
         optionMenu.view.tintColor = .black
         
         // Menu actions
-        let copyAction = UIAlertAction(title: "Copy", style: .default) { (action) in }
+        let copyAction = UIAlertAction(title: "Copy", style: .default) { (action) in
+            // Copy address to clip board
+            let pasteboard = UIPasteboard.general
+            pasteboard.string = address
+        }
         let navigateAction = UIAlertAction(title: "Navigation", style: .default) { (action) in }
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
         optionMenu.addAction(copyAction)

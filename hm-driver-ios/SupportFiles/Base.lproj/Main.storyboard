@@ -179,7 +179,7 @@
             <objects>
                 <viewController id="6Km-F4-fb5" customClass="HMTripListViewController" customModule="hm_driver_ios" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="i1T-kJ-rez">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="729"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="j1C-uZ-xLu" customClass="TDSwiftSegmentedControl" customModule="hm_driver_ios" customModuleProvider="target">
@@ -272,16 +272,23 @@
             <objects>
                 <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="i7n-uR-xlQ" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="jcl-Qg-ele">
+                    <tabBar key="tabBar" contentMode="scaleAspectFit" insetsLayoutMarginsFromSafeArea="NO" translucent="NO" id="jcl-Qg-ele">
                         <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <color key="barTintColor" red="0.062745098040000002" green="0.031372549020000001" blue="0.41960784309999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <color key="selectedImageTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="selectedImageTintColor" red="0.6588235294117647" green="0.88235294117647056" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="color" keyPath="unselectedItemTintColor">
+                                <color key="value" red="0.80000000000000004" green="0.80000000000000004" blue="0.80000000000000004" alpha="1" colorSpace="calibratedRGB"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
                     </tabBar>
                     <connections>
                         <segue destination="KV6-5h-Oay" kind="relationship" relationship="viewControllers" id="cce-ZQ-Z39"/>
+                        <segue destination="FxY-DW-eHO" kind="relationship" relationship="viewControllers" id="3UW-S4-UT2"/>
+                        <segue destination="OSz-cd-IOX" kind="relationship" relationship="viewControllers" id="9tj-Fy-lMr"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oQo-2B-fyN" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -311,9 +318,87 @@
             </objects>
             <point key="canvasLocation" x="3189.5999999999999" y="487.6847290640394"/>
         </scene>
+        <!--Earning-->
+        <scene sceneID="MqO-Yw-487">
+            <objects>
+                <viewController id="XMY-c1-Qni" customClass="HMEarningViewController" customModule="hm_driver_ios" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="yMs-LN-YE1">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="729"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="D2f-nu-QXd"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Earning" largeTitleDisplayMode="always" id="oIq-q1-gzf"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Mdi-yO-UAx" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4132" y="1148.2758620689656"/>
+        </scene>
+        <!--My Account-->
+        <scene sceneID="pNy-fX-6mV">
+            <objects>
+                <viewController storyboardIdentifier="HMAccountViewController" id="liT-le-Urf" customClass="HMAccountViewController" customModule="hm_driver_ios" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="9vW-td-ALO">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="729"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="Klt-un-v9Y"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="My Account" largeTitleDisplayMode="always" id="7eR-t0-YST"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="tbn-v8-XTm" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4132" y="1815.5172413793105"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="W6a-BP-3fN">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="FxY-DW-eHO" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="" image="money-icon" id="A5Z-ex-hUe"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="FSJ-fo-NZ8">
+                        <rect key="frame" x="0.0" y="44" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <textAttributes key="largeTitleTextAttributes">
+                            <fontDescription key="fontDescription" type="boldSystem" pointSize="34"/>
+                        </textAttributes>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="XMY-c1-Qni" kind="relationship" relationship="rootViewController" id="YWg-cT-2vH"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="wer-5V-0bs" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3189.5999999999999" y="1147.536945812808"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="S9N-wz-nBj">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="OSz-cd-IOX" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="" image="my-icon" id="hP0-c6-QpB"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="aqH-5s-xp3">
+                        <rect key="frame" x="0.0" y="44" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <textAttributes key="largeTitleTextAttributes">
+                            <fontDescription key="fontDescription" type="boldSystem" pointSize="34"/>
+                        </textAttributes>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="liT-le-Urf" kind="relationship" relationship="rootViewController" id="NP8-Rf-KsA"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Uy5-gV-MYv" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3189.5999999999999" y="1815.5172413793105"/>
+        </scene>
     </scenes>
     <resources>
         <image name="haimens-logo" width="101" height="120"/>
+        <image name="money-icon" width="26" height="30"/>
+        <image name="my-icon" width="25" height="29"/>
         <image name="route-icon" width="27" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
