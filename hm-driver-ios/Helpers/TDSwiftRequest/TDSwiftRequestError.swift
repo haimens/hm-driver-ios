@@ -3,7 +3,7 @@ enum TDSwiftRequestError: Error {
     case bodyInvalid
     case statusCodeInvalid(statusCode: Int)
     case responseInvalid
-    case parsingResponseFailed
+    case parseResponseFailed
     
     func getStatusCode() -> Int? {
         switch self {

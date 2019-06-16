@@ -52,7 +52,7 @@ class TDSwiftRequest {
                 completion?(json, response, nil)
                 return
             } catch {
-                completion?(nil, response, TDSwiftRequestError.parsingResponseFailed)
+                completion?(nil, response, TDSwiftRequestError.parseResponseFailed)
                 return
             }
             }.resume()
@@ -67,11 +67,11 @@ class TDSwiftRequest {
             case .bodyInvalid:
                 return "Request body invalid"
             case .statusCodeInvalid:
-                return "Response code invalid: \(error.getStatusCode() ?? -1))"
+                return "Response code invalid: \(error.getStatusCode() ?? -1)"
             case .responseInvalid:
                 return "Response invalid"
-            case .parsingResponseFailed:
-                return "Parsing response failed"
+            case .parseResponseFailed:
+                return "Parse response failed"
             }
         }
         

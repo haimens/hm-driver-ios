@@ -25,7 +25,7 @@ class HMAuthViewController: UIViewController {
                 } else {
                     // Handle login error
                     if let error = error {
-                        TDSwiftAlert.showSingleButtonAlert(title: "Login Failed", message: TDSwiftHavana.getErrorMessage(error: error), actionBtnTitle: "Retry", presentVC: self, btnAction: { self.verifyAuthInfo() })
+                        TDSwiftAlert.showSingleButtonAlertWithCancel(title: "Login Failed", message: TDSwiftHavana.getErrorMessage(error: error), actionBtnTitle: "Retry", cancelBtnTitle: "Cancel", presentVC: self, btnAction: { self.verifyAuthInfo() })
                     }
                 }
             }
