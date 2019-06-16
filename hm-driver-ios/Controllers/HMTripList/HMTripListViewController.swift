@@ -2,6 +2,7 @@ import UIKit
 
 class HMTripListViewController: UIViewController {
     @IBOutlet weak var mainSegmentedControl: TDSwiftSegmentedControl!
+    @IBOutlet weak var mainTableView: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,13 +25,25 @@ class HMTripListViewController: UIViewController {
     }
     
     private func setupDelegates() {
-        // Segmented control delegate
         mainSegmentedControl.delegate = self
+        mainTableView.delegate = self
+        mainTableView.dataSource = self
     }
 }
 
 extension HMTripListViewController: TDSwiftSegmentedControlDelegate {
     func itemSelected(atIndex index: Int) {
         print("Item selected: \(index)")
+    }
+}
+
+extension HMTripListViewController: UITableViewDataSource, UITableViewDelegate {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 5
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = mainTableView.dequeueReusableCell(withIdentifier: String(describing: HMTripListTableViewCell.self)) as! HMTripListTableViewCell
+        return cell
     }
 }

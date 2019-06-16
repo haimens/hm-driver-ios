@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		55061A2022B6BD54003CDEAB /* HMTripListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55061A1F22B6BD54003CDEAB /* HMTripListTableViewCell.swift */; };
+		55061A2322B6C040003CDEAB /* TDSwiftShape.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55061A2222B6C040003CDEAB /* TDSwiftShape.swift */; };
+		55061A2622B6C067003CDEAB /* TDSwiftRouteDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55061A2522B6C067003CDEAB /* TDSwiftRouteDetailView.swift */; };
 		557B82A722B47531002D4774 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 557B82A622B47531002D4774 /* AppDelegate.swift */; };
 		557B82A922B47531002D4774 /* HMAuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 557B82A822B47531002D4774 /* HMAuthViewController.swift */; };
 		557B82AC22B47531002D4774 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 557B82AA22B47531002D4774 /* Main.storyboard */; };
@@ -51,6 +54,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		55061A1F22B6BD54003CDEAB /* HMTripListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HMTripListTableViewCell.swift; sourceTree = "<group>"; };
+		55061A2222B6C040003CDEAB /* TDSwiftShape.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TDSwiftShape.swift; sourceTree = "<group>"; };
+		55061A2522B6C067003CDEAB /* TDSwiftRouteDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TDSwiftRouteDetailView.swift; sourceTree = "<group>"; };
 		557B82A322B47531002D4774 /* hm-driver-ios.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "hm-driver-ios.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		557B82A622B47531002D4774 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		557B82A822B47531002D4774 /* HMAuthViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HMAuthViewController.swift; sourceTree = "<group>"; };
@@ -108,6 +114,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		55061A2122B6C034003CDEAB /* TDSwiftShape */ = {
+			isa = PBXGroup;
+			children = (
+				55061A2222B6C040003CDEAB /* TDSwiftShape.swift */,
+			);
+			path = TDSwiftShape;
+			sourceTree = "<group>";
+		};
+		55061A2422B6C05C003CDEAB /* TDSwiftRouteDetailView */ = {
+			isa = PBXGroup;
+			children = (
+				55061A2522B6C067003CDEAB /* TDSwiftRouteDetailView.swift */,
+			);
+			path = TDSwiftRouteDetailView;
+			sourceTree = "<group>";
+		};
 		557B829A22B47531002D4774 = {
 			isa = PBXGroup;
 			children = (
@@ -202,6 +224,8 @@
 		557B82D922B4ADBC002D4774 /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				55061A2422B6C05C003CDEAB /* TDSwiftRouteDetailView */,
+				55061A2122B6C034003CDEAB /* TDSwiftShape */,
 				55ABB63122B629CE00F569AF /* TDSwiftSegmentedControl */,
 				55ABB62E22B6224800F569AF /* TDSwiftSpinner */,
 				55F9A2BD22B5A07500788FC5 /* HMBasicButton */,
@@ -299,6 +323,7 @@
 			isa = PBXGroup;
 			children = (
 				55F9A2B322B5929600788FC5 /* HMTripListViewController.swift */,
+				55061A1F22B6BD54003CDEAB /* HMTripListTableViewCell.swift */,
 			);
 			path = HMTripList;
 			sourceTree = "<group>";
@@ -467,15 +492,18 @@
 				55F9A2B922B59F3300788FC5 /* CONST.swift in Sources */,
 				55ABB63322B629E500F569AF /* TDSwiftSegmentedControl.swift in Sources */,
 				557B82E222B4B5DC002D4774 /* TDSwiftRequest.swift in Sources */,
+				55061A2322B6C040003CDEAB /* TDSwiftShape.swift in Sources */,
 				55F9A2A822B4BC1000788FC5 /* KeychainPasswordItem.swift in Sources */,
 				55F9A2AE22B58FAE00788FC5 /* TDSwiftAlert.swift in Sources */,
 				55ABB63522B629F900F569AF /* TDSwiftSegmentedControlConfig.swift in Sources */,
+				55061A2022B6BD54003CDEAB /* HMTripListTableViewCell.swift in Sources */,
 				557B82DD22B4B0CA002D4774 /* ENV.swift in Sources */,
 				55F9A2AA22B5677D00788FC5 /* DriverConn.swift in Sources */,
 				557B82A722B47531002D4774 /* AppDelegate.swift in Sources */,
 				557B82E322B4B5DC002D4774 /* TDSwiftRequestError.swift in Sources */,
 				55F9A2B122B5926400788FC5 /* HMLoginViewController.swift in Sources */,
 				55F9A2BC22B5A04400788FC5 /* TDSwiftBasicButton.swift in Sources */,
+				55061A2622B6C067003CDEAB /* TDSwiftRouteDetailView.swift in Sources */,
 				55F9A2B422B5929600788FC5 /* HMTripListViewController.swift in Sources */,
 				55ABB63022B6225800F569AF /* TDSwiftSpinner.swift in Sources */,
 			);

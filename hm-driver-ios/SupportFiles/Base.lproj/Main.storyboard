@@ -189,16 +189,36 @@
                                     <constraint firstAttribute="height" constant="40" id="HRS-42-hyZ"/>
                                 </constraints>
                             </view>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="X8x-XG-jNE">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="singleLineEtched" rowHeight="172" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="X8x-XG-jNE">
                                 <rect key="frame" x="0.0" y="188" width="375" height="541"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="172" id="q7b-K2-6rD">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="HMTripListTableViewCell" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="HMTripListTableViewCell" rowHeight="172" id="q7b-K2-6rD" customClass="HMTripListTableViewCell" customModule="hm_driver_ios" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="375" height="172"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="q7b-K2-6rD" id="RhM-gL-Gyi">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="171.66666666666666"/>
                                             <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Cbs-sz-J8D">
+                                                    <rect key="frame" x="24" y="29.999999999999996" width="31" height="14.333333333333332"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                    <color key="textColor" red="0.83921568627450982" green="0.65490196078431373" blue="0.28235294117647058" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TGL-Sk-7AW" customClass="TDSwiftRouteDetailView" customModule="hm_driver_ios" customModuleProvider="target">
+                                                    <rect key="frame" x="0.0" y="56.333333333333336" width="375" height="85.333333333333314"/>
+                                                    <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </view>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="TGL-Sk-7AW" firstAttribute="leading" secondItem="RhM-gL-Gyi" secondAttribute="leading" id="0DQ-fD-Z1G"/>
+                                                <constraint firstItem="Cbs-sz-J8D" firstAttribute="leading" secondItem="RhM-gL-Gyi" secondAttribute="leading" constant="24" id="90h-uV-ldS"/>
+                                                <constraint firstItem="Cbs-sz-J8D" firstAttribute="top" secondItem="RhM-gL-Gyi" secondAttribute="top" constant="30" id="C1A-ap-Go5"/>
+                                                <constraint firstItem="TGL-Sk-7AW" firstAttribute="top" secondItem="Cbs-sz-J8D" secondAttribute="bottom" constant="12" id="gDH-QA-R28"/>
+                                                <constraint firstAttribute="trailing" secondItem="TGL-Sk-7AW" secondAttribute="trailing" id="s5m-Tw-S3z"/>
+                                                <constraint firstAttribute="bottom" secondItem="TGL-Sk-7AW" secondAttribute="bottom" constant="30" id="yiy-VM-unB"/>
+                                            </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                 </prototypes>
@@ -219,6 +239,7 @@
                     <navigationItem key="navigationItem" title="Trip List" largeTitleDisplayMode="always" id="CWv-r6-nd0"/>
                     <connections>
                         <outlet property="mainSegmentedControl" destination="j1C-uZ-xLu" id="2ca-ib-SVY"/>
+                        <outlet property="mainTableView" destination="X8x-XG-jNE" id="HQP-aE-Ll2"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="A8M-ko-NoI" userLabel="First Responder" sceneMemberID="firstResponder"/>
