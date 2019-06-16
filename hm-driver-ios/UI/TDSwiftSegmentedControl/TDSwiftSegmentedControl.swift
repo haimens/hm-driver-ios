@@ -41,7 +41,7 @@ public class TDSwiftSegmentedControl: UIView {
     private var controlButton: UIButton!
     public var itemTitles: [String]! {
         didSet {
-            if itemTitles != nil {
+            if itemTitles != nil && itemTitles != oldValue {
                 setup()
                 configControlProperties(config: TDSwiftSegmentedControl.defaultConfig)
             }

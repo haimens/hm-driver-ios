@@ -65,5 +65,8 @@ extension HMTripListViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
+    
+        // Show trip detail
+        performSegue(withIdentifier: String(describing: HMTripDetailViewController.self), sender: self)
     }
 }

@@ -25,6 +25,7 @@
 		55ABB63522B629F900F569AF /* TDSwiftSegmentedControlConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55ABB63422B629F900F569AF /* TDSwiftSegmentedControlConfig.swift */; };
 		55DF25BD22B5E457003AED00 /* TDSwiftGesture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55DF25BC22B5E457003AED00 /* TDSwiftGesture.swift */; };
 		55EA8D4A22B6EEF500A57BF1 /* HMRouteDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55EA8D4922B6EEF500A57BF1 /* HMRouteDetailView.swift */; };
+		55EA8D4D22B6F38100A57BF1 /* HMTripDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55EA8D4C22B6F38100A57BF1 /* HMTripDetailViewController.swift */; };
 		55F9A2A522B4B92F00788FC5 /* TDSwiftHavana.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55F9A2A422B4B92F00788FC5 /* TDSwiftHavana.swift */; };
 		55F9A2A822B4BC1000788FC5 /* KeychainPasswordItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55F9A2A722B4BC1000788FC5 /* KeychainPasswordItem.swift */; };
 		55F9A2AA22B5677D00788FC5 /* DriverConn.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55F9A2A922B5677D00788FC5 /* DriverConn.swift */; };
@@ -79,6 +80,7 @@
 		55ABB63422B629F900F569AF /* TDSwiftSegmentedControlConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TDSwiftSegmentedControlConfig.swift; sourceTree = "<group>"; };
 		55DF25BC22B5E457003AED00 /* TDSwiftGesture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TDSwiftGesture.swift; sourceTree = "<group>"; };
 		55EA8D4922B6EEF500A57BF1 /* HMRouteDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HMRouteDetailView.swift; sourceTree = "<group>"; };
+		55EA8D4C22B6F38100A57BF1 /* HMTripDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HMTripDetailViewController.swift; sourceTree = "<group>"; };
 		55F9A2A422B4B92F00788FC5 /* TDSwiftHavana.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TDSwiftHavana.swift; sourceTree = "<group>"; };
 		55F9A2A722B4BC1000788FC5 /* KeychainPasswordItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeychainPasswordItem.swift; sourceTree = "<group>"; };
 		55F9A2A922B5677D00788FC5 /* DriverConn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DriverConn.swift; sourceTree = "<group>"; };
@@ -208,6 +210,7 @@
 		557B82D622B4ADA0002D4774 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				55EA8D4B22B6F36800A57BF1 /* HMTripDetail */,
 				55F9A2B522B5936800788FC5 /* HMMainTabBar */,
 				55F9A2B222B5927E00788FC5 /* HMTripList */,
 				55F9A2AF22B5924700788FC5 /* HMLogin */,
@@ -288,6 +291,14 @@
 				55EA8D4922B6EEF500A57BF1 /* HMRouteDetailView.swift */,
 			);
 			path = HMRouteDetailView;
+			sourceTree = "<group>";
+		};
+		55EA8D4B22B6F36800A57BF1 /* HMTripDetail */ = {
+			isa = PBXGroup;
+			children = (
+				55EA8D4C22B6F38100A57BF1 /* HMTripDetailViewController.swift */,
+			);
+			path = HMTripDetail;
 			sourceTree = "<group>";
 		};
 		55F9A2A322B4B90900788FC5 /* TDSwiftHavana */ = {
@@ -497,6 +508,7 @@
 			files = (
 				55F9A2A522B4B92F00788FC5 /* TDSwiftHavana.swift in Sources */,
 				55F9A2BF22B5A09300788FC5 /* HMBasicButton.swift in Sources */,
+				55EA8D4D22B6F38100A57BF1 /* HMTripDetailViewController.swift in Sources */,
 				55F9A2B722B5939800788FC5 /* HMMainTabBarController.swift in Sources */,
 				55DF25BD22B5E457003AED00 /* TDSwiftGesture.swift in Sources */,
 				55EA8D4A22B6EEF500A57BF1 /* HMRouteDetailView.swift in Sources */,
@@ -693,6 +705,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = E727FEDX2F;
 				INFOPLIST_FILE = "$(SRCROOT)/hm-driver-ios/SupportFiles/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -710,6 +723,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = E727FEDX2F;
 				INFOPLIST_FILE = "$(SRCROOT)/hm-driver-ios/SupportFiles/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
