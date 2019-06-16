@@ -189,7 +189,7 @@
                                     <constraint firstAttribute="height" constant="40" id="HRS-42-hyZ"/>
                                 </constraints>
                             </view>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="singleLineEtched" rowHeight="172" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="X8x-XG-jNE">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="172" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="X8x-XG-jNE">
                                 <rect key="frame" x="0.0" y="160" width="375" height="569"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
@@ -201,7 +201,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Cbs-sz-J8D">
-                                                    <rect key="frame" x="24" y="29.999999999999996" width="31" height="14.333333333333332"/>
+                                                    <rect key="frame" x="24" y="29.999999999999996" width="312" height="14.333333333333332"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                     <color key="textColor" red="0.83921568627450982" green="0.65490196078431373" blue="0.28235294117647058" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -216,6 +216,7 @@
                                                 <constraint firstItem="Cbs-sz-J8D" firstAttribute="leading" secondItem="RhM-gL-Gyi" secondAttribute="leading" constant="24" id="90h-uV-ldS"/>
                                                 <constraint firstItem="Cbs-sz-J8D" firstAttribute="top" secondItem="RhM-gL-Gyi" secondAttribute="top" constant="30" id="C1A-ap-Go5"/>
                                                 <constraint firstItem="TGL-Sk-7AW" firstAttribute="top" secondItem="Cbs-sz-J8D" secondAttribute="bottom" constant="12" id="gDH-QA-R28"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="Cbs-sz-J8D" secondAttribute="trailing" constant="24" id="iAI-Hz-3c0"/>
                                                 <constraint firstAttribute="trailing" secondItem="TGL-Sk-7AW" secondAttribute="trailing" id="s5m-Tw-S3z"/>
                                                 <constraint firstAttribute="bottom" secondItem="TGL-Sk-7AW" secondAttribute="bottom" constant="30" id="yiy-VM-unB"/>
                                             </constraints>
@@ -296,6 +297,7 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="tgy-th-oe7">
                         <rect key="frame" x="0.0" y="44" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="tintColor" cocoaTouchSystemColor="darkTextColor"/>
                         <textAttributes key="largeTitleTextAttributes">
                             <fontDescription key="fontDescription" type="boldSystem" pointSize="34"/>
                         </textAttributes>

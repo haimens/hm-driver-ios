@@ -59,6 +59,7 @@ extension HMTripListViewController: UITableViewDataSource, UITableViewDelegate {
         cell.dateLabel.text = testTripList[indexPath.row]["date"]
         cell.routeDetailView.upperAddressBtn.setTitle(testTripList[indexPath.row]["pickup"], for: .normal)
         cell.routeDetailView.lowerAddressBtn.setTitle(testTripList[indexPath.row]["dropoff"], for: .normal)
+        cell.routeDetailView.delegate = self
         
         return cell
     }
@@ -68,5 +69,11 @@ extension HMTripListViewController: UITableViewDataSource, UITableViewDelegate {
     
         // Show trip detail
         performSegue(withIdentifier: String(describing: HMTripDetailViewController.self), sender: self)
+    }
+}
+
+extension HMTripListViewController: TDSwiftRouteDetailViewDelegate {
+    func didSelectAddressBtn(atLocation location: TDSwiftRouteDetailViewAddressButtonLocation, button: UIButton) {
+        TDSwiftMapTools.showAddressOptions(onViewController: self, withAddress: button.titleLabel?.text ?? "")
     }
 }
