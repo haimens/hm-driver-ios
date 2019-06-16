@@ -4,7 +4,11 @@ class HMLoginViewController: UIViewController {
     @IBOutlet weak var usernameTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     
-    @IBAction func loginBtnClicked(_ sender: HMBasicButton) { makeLoginRequest() }
+    @IBAction func loginBtnClicked(_ sender: HMBasicButton) {
+        // !!!!!!!!!!!!!!!!!TO CHANGE!!!!!!!!!!!!!!!!!!!
+        self.performSegue(withIdentifier: String(describing: HMMainTabBarController.self), sender: self)
+//        makeLoginRequest()
+    }
     
     // UIElements
     var spinner: TDSwiftSpinner!

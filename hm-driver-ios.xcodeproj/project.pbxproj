@@ -18,6 +18,8 @@
 		557B82E222B4B5DC002D4774 /* TDSwiftRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 557B82E022B4B5DC002D4774 /* TDSwiftRequest.swift */; };
 		557B82E322B4B5DC002D4774 /* TDSwiftRequestError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 557B82E122B4B5DC002D4774 /* TDSwiftRequestError.swift */; };
 		55ABB63022B6225800F569AF /* TDSwiftSpinner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55ABB62F22B6225800F569AF /* TDSwiftSpinner.swift */; };
+		55ABB63322B629E500F569AF /* TDSwiftSegmentedControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55ABB63222B629E500F569AF /* TDSwiftSegmentedControl.swift */; };
+		55ABB63522B629F900F569AF /* TDSwiftSegmentedControlConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55ABB63422B629F900F569AF /* TDSwiftSegmentedControlConfig.swift */; };
 		55DF25BD22B5E457003AED00 /* TDSwiftGesture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55DF25BC22B5E457003AED00 /* TDSwiftGesture.swift */; };
 		55F9A2A522B4B92F00788FC5 /* TDSwiftHavana.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55F9A2A422B4B92F00788FC5 /* TDSwiftHavana.swift */; };
 		55F9A2A822B4BC1000788FC5 /* KeychainPasswordItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55F9A2A722B4BC1000788FC5 /* KeychainPasswordItem.swift */; };
@@ -66,6 +68,8 @@
 		557B82E022B4B5DC002D4774 /* TDSwiftRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TDSwiftRequest.swift; sourceTree = "<group>"; };
 		557B82E122B4B5DC002D4774 /* TDSwiftRequestError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TDSwiftRequestError.swift; sourceTree = "<group>"; };
 		55ABB62F22B6225800F569AF /* TDSwiftSpinner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TDSwiftSpinner.swift; sourceTree = "<group>"; };
+		55ABB63222B629E500F569AF /* TDSwiftSegmentedControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TDSwiftSegmentedControl.swift; sourceTree = "<group>"; };
+		55ABB63422B629F900F569AF /* TDSwiftSegmentedControlConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TDSwiftSegmentedControlConfig.swift; sourceTree = "<group>"; };
 		55DF25BC22B5E457003AED00 /* TDSwiftGesture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TDSwiftGesture.swift; sourceTree = "<group>"; };
 		55F9A2A422B4B92F00788FC5 /* TDSwiftHavana.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TDSwiftHavana.swift; sourceTree = "<group>"; };
 		55F9A2A722B4BC1000788FC5 /* KeychainPasswordItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeychainPasswordItem.swift; sourceTree = "<group>"; };
@@ -198,6 +202,7 @@
 		557B82D922B4ADBC002D4774 /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				55ABB63122B629CE00F569AF /* TDSwiftSegmentedControl */,
 				55ABB62E22B6224800F569AF /* TDSwiftSpinner */,
 				55F9A2BD22B5A07500788FC5 /* HMBasicButton */,
 			);
@@ -231,6 +236,15 @@
 				55ABB62F22B6225800F569AF /* TDSwiftSpinner.swift */,
 			);
 			path = TDSwiftSpinner;
+			sourceTree = "<group>";
+		};
+		55ABB63122B629CE00F569AF /* TDSwiftSegmentedControl */ = {
+			isa = PBXGroup;
+			children = (
+				55ABB63222B629E500F569AF /* TDSwiftSegmentedControl.swift */,
+				55ABB63422B629F900F569AF /* TDSwiftSegmentedControlConfig.swift */,
+			);
+			path = TDSwiftSegmentedControl;
 			sourceTree = "<group>";
 		};
 		55DF25BB22B5E444003AED00 /* TDSwiftGesture */ = {
@@ -451,9 +465,11 @@
 				55DF25BD22B5E457003AED00 /* TDSwiftGesture.swift in Sources */,
 				557B82A922B47531002D4774 /* HMAuthViewController.swift in Sources */,
 				55F9A2B922B59F3300788FC5 /* CONST.swift in Sources */,
+				55ABB63322B629E500F569AF /* TDSwiftSegmentedControl.swift in Sources */,
 				557B82E222B4B5DC002D4774 /* TDSwiftRequest.swift in Sources */,
 				55F9A2A822B4BC1000788FC5 /* KeychainPasswordItem.swift in Sources */,
 				55F9A2AE22B58FAE00788FC5 /* TDSwiftAlert.swift in Sources */,
+				55ABB63522B629F900F569AF /* TDSwiftSegmentedControlConfig.swift in Sources */,
 				557B82DD22B4B0CA002D4774 /* ENV.swift in Sources */,
 				55F9A2AA22B5677D00788FC5 /* DriverConn.swift in Sources */,
 				557B82A722B47531002D4774 /* AppDelegate.swift in Sources */,
