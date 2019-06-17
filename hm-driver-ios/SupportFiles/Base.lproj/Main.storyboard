@@ -56,7 +56,7 @@
                     </view>
                     <connections>
                         <segue destination="xwO-YJ-Hg4" kind="presentation" identifier="HMLoginViewController" id="lgY-2A-iRK"/>
-                        <segue destination="i7n-uR-xlQ" kind="presentation" identifier="HMMainTabBarController" customClass="HMMainTabBarController" customModule="hm_driver_ios" customModuleProvider="target" id="a0r-L2-v76"/>
+                        <segue destination="i7n-uR-xlQ" kind="presentation" identifier="HMMainTabBarController" id="a0r-L2-v76"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

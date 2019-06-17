@@ -74,6 +74,6 @@ extension HMTripListViewController: UITableViewDataSource, UITableViewDelegate {
 
 extension HMTripListViewController: TDSwiftRouteDetailViewDelegate {
     func didSelectAddressBtn(atLocation location: TDSwiftRouteDetailViewAddressButtonLocation, button: UIButton) {
-        TDSwiftMapTools.showAddressOptions(onViewController: self, withAddress: button.titleLabel?.text ?? "")
+        TDSwiftMapTools.showAddressOptions(onViewController: self, withAddress: button.titleLabel?.text ?? "", completion: nil)
     }
 }

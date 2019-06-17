@@ -20,8 +20,10 @@ class HMAuthViewController: UIViewController {
         if (TDSwiftHavana.shared.userInfoAvailable()) {
             TDSwiftHavana.shared.renewAuthInfo { (result, error) in
                 if (result) {
-                    // Present main view
-                    self.performSegue(withIdentifier: String(describing: HMMainTabBarController.self), sender: self)
+                    DispatchQueue.main.async {
+                        // Present main view
+                        self.performSegue(withIdentifier: String(describing: HMMainTabBarController.self), sender: self)
+                    }
                 } else {
                     // Handle login error
                     if let error = error {

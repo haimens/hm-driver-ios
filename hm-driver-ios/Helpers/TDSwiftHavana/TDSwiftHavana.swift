@@ -70,7 +70,7 @@ class TDSwiftHavana {
             
             // Unwrap loginResponse
             guard let response = response else { completion?(false, TDSwiftHavanaError.loginResponseInvalid); return }
-            
+                        
             // Parse response
             guard
                 let user_token = response["user_token"] as? String,

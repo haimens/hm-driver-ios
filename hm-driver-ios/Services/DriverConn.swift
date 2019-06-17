@@ -41,6 +41,7 @@ class DriverConn {
         
         // Make request
         TDSwiftRequest.request(urlString: "\(ENV.DRIVER.URL)\(endpoint)\(queryToUse)", method: method, body: body, headers: headers, timeOut: CONST.REQUEST.REQUEST_TIME_OUT) { (json, response, error) in
+            
             // Handle 403 relogin
             if let requestError = error as? TDSwiftRequestError, let statusCode = requestError.getStatusCode(), statusCode == 403, let errorMessage = json?["message"] as? String, errorMessage == "!!!!!!!!!!!REPLACE THIS!!!!!!!!!!" {
                 TDSwiftHavana.shared.renewAuthInfo(completion: { (result, error) in
@@ -70,8 +71,13 @@ class DriverConn {
             }
             
             // Payload
-            guard let payload = json["payload"] as? [String: Any] else { completion?(nil, DriverConnError.responseFormatInvalid); return }
+            guard var payload = json["payload"] as? [String: Any] else { completion?(nil, DriverConnError.responseFormatInvalid); return }
             
+            // Verify info
+            if let verifyInfo = json["verify_info"] as? [String: Any] {
+                payload = payload.merging(verifyInfo, uniquingKeysWith: { (first, _) in first })
+            }
+                        
             // Result
             completion?(payload, nil); return
         }
