@@ -20,6 +20,11 @@ class HMEarningViewController: UIViewController {
     
         // Segmented control
         segmentedControl.itemTitles = ["WAGE", "SALARY"]
+        
+        // Refresh control
+        tableView.refreshControl = UIRefreshControl()
+        tableView.refreshControl?.attributedTitle = NSAttributedString.init(string: "Pull to refresh")
+        tableView.refreshControl?.addTarget(self, action: #selector(handleRefreshRequest), for: .valueChanged)
     }
 
     private func setupDelegates() {
@@ -27,6 +32,16 @@ class HMEarningViewController: UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
     }
+    
+    @objc func handleRefreshRequest() {
+        // Update your content…
+        
+        // Dismiss the refresh control.
+        DispatchQueue.main.async {
+            self.tableView.refreshControl?.endRefreshing()
+        }
+    }
+
 }
 
 extension HMEarningViewController: TDSwiftSegmentedControlDelegate {

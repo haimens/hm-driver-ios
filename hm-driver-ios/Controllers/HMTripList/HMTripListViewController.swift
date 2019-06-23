@@ -34,12 +34,26 @@ class HMTripListViewController: UIViewController {
         
         // Segmented control
         segmentedControl.itemTitles = ["UPCOMING", "HISTORY"]
+        
+        // Refresh control
+        tableView.refreshControl = UIRefreshControl()
+        tableView.refreshControl?.attributedTitle = NSAttributedString.init(string: "Pull to refresh")
+        tableView.refreshControl?.addTarget(self, action: #selector(handleRefreshRequest), for: .valueChanged)
     }
     
     private func setupDelegates() {
         segmentedControl.delegate = self
         tableView.delegate = self
         tableView.dataSource = self
+    }
+    
+    @objc func handleRefreshRequest() {
+        // Update your content…
+        
+        // Dismiss the refresh control.
+        DispatchQueue.main.async {
+            self.tableView.refreshControl?.endRefreshing()
+        }
     }
 }
 
