@@ -1,8 +1,9 @@
 import UIKit
 
 class HMTripListViewController: UIViewController {
-    @IBOutlet weak var mainSegmentedControl: TDSwiftSegmentedControl!
-    @IBOutlet weak var mainTableView: UITableView!
+    
+    @IBOutlet weak var segmentedControl: TDSwiftSegmentedControl!
+    @IBOutlet weak var tableView: UITableView!
     
     // Data
     let testTripList: [[String:String]] = [
@@ -32,13 +33,13 @@ class HMTripListViewController: UIViewController {
         navigationController?.navigationBar.prefersLargeTitles = true
         
         // Segmented control
-        mainSegmentedControl.itemTitles = ["UPCOMING", "HISTORY"]
+        segmentedControl.itemTitles = ["UPCOMING", "HISTORY"]
     }
     
     private func setupDelegates() {
-        mainSegmentedControl.delegate = self
-        mainTableView.delegate = self
-        mainTableView.dataSource = self
+        segmentedControl.delegate = self
+        tableView.delegate = self
+        tableView.dataSource = self
     }
 }
 
@@ -54,7 +55,7 @@ extension HMTripListViewController: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = mainTableView.dequeueReusableCell(withIdentifier: String(describing: HMTripListTableViewCell.self)) as! HMTripListTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: HMTripListTableViewCell.self)) as! HMTripListTableViewCell
         
         cell.dateLabel.text = testTripList[indexPath.row]["date"]
         cell.routeDetailView.upperAddressBtn.setTitle(testTripList[indexPath.row]["pickup"], for: .normal)
