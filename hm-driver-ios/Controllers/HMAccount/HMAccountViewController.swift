@@ -1,6 +1,6 @@
 import UIKit
 
-class HMAccountViewController: UIViewController {
+class HMAccountViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
