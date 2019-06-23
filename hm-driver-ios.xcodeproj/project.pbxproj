@@ -168,6 +168,7 @@
 				557B82D922B4ADBC002D4774 /* UI */,
 				557B82DE22B4B565002D4774 /* Helpers */,
 				557B82D522B4AD96002D4774 /* Services */,
+				5589A97022BF6836003353C9 /* Storyboards */,
 				557B82D422B4AD7C002D4774 /* SupportFiles */,
 			);
 			path = "hm-driver-ios";
@@ -195,8 +196,6 @@
 			isa = PBXGroup;
 			children = (
 				557B82A622B47531002D4774 /* AppDelegate.swift */,
-				557B82AA22B47531002D4774 /* Main.storyboard */,
-				557B82AF22B47532002D4774 /* LaunchScreen.storyboard */,
 				557B82B222B47532002D4774 /* Info.plist */,
 				557B82AD22B47532002D4774 /* Assets.xcassets */,
 				557B82DC22B4B0CA002D4774 /* ENV.swift */,
@@ -267,6 +266,15 @@
 				557B82E122B4B5DC002D4774 /* TDSwiftRequestError.swift */,
 			);
 			path = TDSwiftRequest;
+			sourceTree = "<group>";
+		};
+		5589A97022BF6836003353C9 /* Storyboards */ = {
+			isa = PBXGroup;
+			children = (
+				557B82AA22B47531002D4774 /* Main.storyboard */,
+				557B82AF22B47532002D4774 /* LaunchScreen.storyboard */,
+			);
+			path = Storyboards;
 			sourceTree = "<group>";
 		};
 		55ABB62E22B6224800F569AF /* TDSwiftSpinner */ = {

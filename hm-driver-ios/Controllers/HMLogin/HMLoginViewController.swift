@@ -6,8 +6,8 @@ class HMLoginViewController: UIViewController {
     
     @IBAction func loginBtnClicked(_ sender: HMBasicButton) {
         // !!!!!!!!!!!!!!!!!TO CHANGE!!!!!!!!!!!!!!!!!!!
-//        self.performSegue(withIdentifier: String(describing: HMMainTabBarController.self), sender: self)
-        makeLoginRequest()
+        self.performSegue(withIdentifier: String(describing: HMMainTabBarController.self), sender: self)
+//        makeLoginRequest()
     }
     
     // UIElements
