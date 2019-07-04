@@ -61,6 +61,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="462" y="488"/>
         </scene>
         <!--Login View Controller-->
         <scene sceneID="bML-uN-7Mw">
@@ -460,7 +461,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Mdi-yO-UAx" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4853.6000000000004" y="1301.9704433497539"/>
+            <point key="canvasLocation" x="4180" y="1360"/>
         </scene>
         <!--My Account-->
         <scene sceneID="BJU-yu-pEX">
@@ -670,7 +671,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XK2-f9-wVU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4560.8000000000002" y="1979.5566502463055"/>
+            <point key="canvasLocation" x="4180" y="2180"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="W6a-BP-3fN">
@@ -692,7 +693,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wer-5V-0bs" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3189.5999999999999" y="1147.536945812808"/>
+            <point key="canvasLocation" x="3190" y="1360"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="S9N-wz-nBj">
@@ -714,7 +715,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Uy5-gV-MYv" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3190" y="1980"/>
+            <point key="canvasLocation" x="3190" y="2180"/>
         </scene>
     </scenes>
     <resources>
@@ -730,6 +731,6 @@
         <image name="support-icon" width="23" height="23"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="XkE-lh-rPd"/>
+        <segue reference="a0r-L2-v76"/>
     </inferredMetricsTieBreakers>
 </document>
