@@ -3,7 +3,12 @@ import UIKit
 class HMTripDetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        
+        setupUI()
+    }
+    
+    private func setupUI() {
+        // Navigation appearance
+        navigationController?.navigationBar.prefersLargeTitles = false
     }
 }

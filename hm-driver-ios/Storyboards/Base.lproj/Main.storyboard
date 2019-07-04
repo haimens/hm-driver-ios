@@ -259,7 +259,28 @@
                     <view key="view" contentMode="scaleToFill" id="p47-fF-unP">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="AMI-Ex-N2p">
+                                <rect key="frame" x="0.0" y="88" width="375" height="455"/>
+                            </mapView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6Yw-7K-UDh" customClass="HMTripDetailBGView" customModule="hm_driver_ios" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="536" width="375" height="276"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="276" id="ICv-qR-hFz"/>
+                                </constraints>
+                            </view>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="6Yw-7K-UDh" firstAttribute="leading" secondItem="FRm-jH-Nhg" secondAttribute="leading" id="63W-SQ-GJg"/>
+                            <constraint firstItem="6Yw-7K-UDh" firstAttribute="top" secondItem="AMI-Ex-N2p" secondAttribute="bottom" constant="-7" id="8jq-5i-RCC"/>
+                            <constraint firstItem="AMI-Ex-N2p" firstAttribute="leading" secondItem="FRm-jH-Nhg" secondAttribute="leading" id="AeB-zF-1HG"/>
+                            <constraint firstAttribute="trailing" secondItem="AMI-Ex-N2p" secondAttribute="trailing" id="WTX-3Y-evH"/>
+                            <constraint firstAttribute="bottom" secondItem="6Yw-7K-UDh" secondAttribute="bottom" id="bRF-Hn-Yvs"/>
+                            <constraint firstItem="6Yw-7K-UDh" firstAttribute="trailing" secondItem="FRm-jH-Nhg" secondAttribute="trailing" id="if1-Zu-NZk"/>
+                            <constraint firstItem="AMI-Ex-N2p" firstAttribute="top" secondItem="FRm-jH-Nhg" secondAttribute="top" id="uMR-Ed-LJK"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="FRm-jH-Nhg"/>
                     </view>
                 </viewController>

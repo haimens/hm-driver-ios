@@ -48,11 +48,16 @@ class HMTripListViewController: UIViewController {
     }
     
     @objc func handleRefreshRequest() {
+        DispatchQueue.main.async {
+            self.tableView.setContentOffset(CGPoint(x: 0, y: -self.tableView.refreshControl!.frame.height), animated: true)
+        }
+        
         // Update your content…
         
         // Dismiss the refresh control.
         DispatchQueue.main.async {
             self.tableView.refreshControl?.endRefreshing()
+            self.tableView.setContentOffset(CGPoint(x: 0, y: 0), animated: true)
         }
     }
 }

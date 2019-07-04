@@ -17,8 +17,7 @@ class TDSwiftHavana {
     private static let keychainService = ENV.AUTH.KEY_CHAIN_SERVICE
     
     // Instance properties
-    var userToken: String?
-    var instanceToken: String?
+    var auth: HMAuth?
     
     // Login account, stored in UserDefaults
     var account: String? {
@@ -48,8 +47,7 @@ class TDSwiftHavana {
     
     // Delete current auth info
     func removeAuthInfo() {
-        userToken = nil
-        instanceToken = nil
+        self.auth = nil
     }
     
     // Whether login account and password are available
@@ -59,7 +57,7 @@ class TDSwiftHavana {
     
     // Whether auth info are available
     func authInfoAvailable() -> Bool {
-        return userToken != nil && instanceToken != nil
+        return auth != nil
     }
     
     // Perform login action
@@ -70,17 +68,12 @@ class TDSwiftHavana {
             
             // Unwrap loginResponse
             guard let response = response else { completion?(false, TDSwiftHavanaError.loginResponseInvalid); return }
-                        
+            
             // Parse response
-            guard
-                let user_token = response["user_token"] as? String,
-                let instance_token = response["instance_token"] as? String else {
-                    completion?(false, TDSwiftHavanaError.loginResponseInvalid); return
-            }
+            guard let auth = HMAuth(data: response) else { completion?(false, TDSwiftHavanaError.loginResponseInvalid); return }
             
             // Save auth info to local
-            self.userToken = user_token
-            self.instanceToken = instance_token
+            self.auth = auth
             
             // Save user info to local
             self.account = account

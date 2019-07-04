@@ -21,11 +21,11 @@ class DriverConn {
         var authedHeaders = headers
         if TDSwiftHavana.shared.authInfoAvailable() {
             if (authedHeaders != nil) {
-                authedHeaders!["user_token"] = TDSwiftHavana.shared.userToken!
-                authedHeaders!["instance_token"] = TDSwiftHavana.shared.instanceToken!
+                authedHeaders!["user_token"] = TDSwiftHavana.shared.auth!.user_token
+                authedHeaders!["instance_token"] = TDSwiftHavana.shared.auth!.instance_token
             } else {
-                authedHeaders = ["user_token": TDSwiftHavana.shared.userToken!,
-                                 "instance_token": TDSwiftHavana.shared.instanceToken!]
+                authedHeaders = ["user_token": TDSwiftHavana.shared.auth!.user_token,
+                                 "instance_token": TDSwiftHavana.shared.auth!.instance_token]
             }
         }
         

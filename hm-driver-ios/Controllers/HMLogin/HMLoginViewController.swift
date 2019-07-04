@@ -5,9 +5,7 @@ class HMLoginViewController: UIViewController {
     @IBOutlet weak var passwordTextField: UITextField!
     
     @IBAction func loginBtnClicked(_ sender: HMBasicButton) {
-        // !!!!!!!!!!!!!!!!!TO CHANGE!!!!!!!!!!!!!!!!!!!
-        self.performSegue(withIdentifier: String(describing: HMMainTabBarController.self), sender: self)
-//        makeLoginRequest()
+        makeLoginRequest()
     }
     
     // UIElements
