@@ -20,7 +20,7 @@
         layer.backgroundColor = UIColor.clear.cgColor
         
         // Apply
-        self.layer.addSublayer(shape)
+        self.layer.insertSublayer(shape, at: 0)
     }
     
     public override init(frame: CGRect) {

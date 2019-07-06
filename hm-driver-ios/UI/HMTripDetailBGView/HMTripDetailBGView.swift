@@ -2,8 +2,8 @@ import Foundation
 import UIKit
 
 class HMTripDetailBGView: TDSwiftRoundedCornerView {
-    override func awakeFromNib() {
-        super.awakeFromNib()
+    override func layoutSubviews() {
+        super.layoutSubviews()
         
         setupAppearance()
     }

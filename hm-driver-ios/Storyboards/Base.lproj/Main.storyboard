@@ -266,9 +266,30 @@
                             </mapView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6Yw-7K-UDh" customClass="HMTripDetailBGView" customModule="hm_driver_ios" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="536" width="375" height="276"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hello There!!!!!!!!!!!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ac0-Vj-7Zn">
+                                        <rect key="frame" x="25" y="10" width="325" height="15"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                        <color key="textColor" red="0.062745098040000002" green="0.031372549020000001" blue="0.41960784309999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Cg3-aq-a6j">
+                                        <rect key="frame" x="0.0" y="35" width="375" height="86"/>
+                                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="86" id="7oL-vV-lOS"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="276" id="ICv-qR-hFz"/>
+                                    <constraint firstAttribute="trailing" secondItem="Cg3-aq-a6j" secondAttribute="trailing" id="Q1t-Cu-t0U"/>
+                                    <constraint firstItem="Cg3-aq-a6j" firstAttribute="leading" secondItem="6Yw-7K-UDh" secondAttribute="leading" id="XAu-KK-PpL"/>
+                                    <constraint firstAttribute="trailing" secondItem="ac0-Vj-7Zn" secondAttribute="trailing" constant="25" id="b2Z-PD-kNb"/>
+                                    <constraint firstItem="ac0-Vj-7Zn" firstAttribute="leading" secondItem="6Yw-7K-UDh" secondAttribute="leading" constant="25" id="c7f-6C-QWE"/>
+                                    <constraint firstItem="Cg3-aq-a6j" firstAttribute="top" secondItem="ac0-Vj-7Zn" secondAttribute="bottom" constant="10" id="ggP-O0-DhD"/>
+                                    <constraint firstItem="ac0-Vj-7Zn" firstAttribute="top" secondItem="6Yw-7K-UDh" secondAttribute="top" constant="10" id="iAC-5c-6wq"/>
                                 </constraints>
                             </view>
                         </subviews>
