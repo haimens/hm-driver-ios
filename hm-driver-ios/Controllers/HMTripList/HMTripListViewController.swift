@@ -76,10 +76,15 @@ extension HMTripListViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: HMTripListTableViewCell.self)) as! HMTripListTableViewCell
         
+        // Cell data
         cell.dateLabel.text = testTripList[indexPath.row]["date"]
         cell.routeDetailView.upperAddressBtn.setTitle(testTripList[indexPath.row]["pickup"], for: .normal)
         cell.routeDetailView.lowerAddressBtn.setTitle(testTripList[indexPath.row]["dropoff"], for: .normal)
         cell.routeDetailView.delegate = self
+        
+        // Disable cell address buttons
+        cell.routeDetailView.upperAddressBtn.isEnabled = false
+        cell.routeDetailView.lowerAddressBtn.isEnabled = false
         
         return cell
     }
