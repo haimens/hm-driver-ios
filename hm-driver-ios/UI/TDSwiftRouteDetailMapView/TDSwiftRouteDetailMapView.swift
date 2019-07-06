@@ -20,7 +20,6 @@ public class TDSwiftRouteDetailMapView: MKMapView, MKMapViewDelegate {
                                                                       routeDashPhase: 2.0,
                                                                       routeDashPattern: [12, 8])
     
-    
     // Default map info
     public static let defaultInfo = TDSwiftRouteDetailMapViewInfo(sourceTitle: "Location A",
                                                                   destinationTitle: "Location B",
