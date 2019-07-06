@@ -14,12 +14,9 @@ class HMTripDetailBGView: TDSwiftRoundedCornerView {
         self.roundedCorners = [.topLeft, .topRight]
     
         // Shadow
-//        self.layer.shadowRadius = 5
-        
-        self.layer.shadowColor = UIColor.red.cgColor
-        self.layer.shadowOpacity = 1.0
-        self.layer.shadowOffset = .init(width: 0, height: -10)
-        self.layer.shadowRadius = 1.0
-        self.clipsToBounds = false
+        self.layer.shadowColor = UIColor.lightGray.cgColor
+        self.layer.shadowOpacity = 0.5
+        self.layer.shadowOffset = .zero
+        self.layer.shadowRadius = 10
     }
 }

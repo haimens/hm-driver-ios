@@ -14,8 +14,13 @@
         let shape = CAShapeLayer()
         shape.path = roundedCornerMaskPath.cgPath
         
+        // Shape and layer properties
+        shape.fillColor = UIColor.white.cgColor
+        shape.frame = layer.bounds
+        layer.backgroundColor = UIColor.clear.cgColor
+        
         // Apply
-        self.layer.mask = shape
+        self.layer.addSublayer(shape)
     }
     
     public override init(frame: CGRect) {
