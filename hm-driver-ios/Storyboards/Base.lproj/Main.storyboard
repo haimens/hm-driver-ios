@@ -667,7 +667,7 @@
                             <outlet property="delegate" destination="85X-oh-sW1" id="ycx-bm-TqA"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="My Account" id="tcq-zU-Jfh"/>
+                    <navigationItem key="navigationItem" title="My Account" largeTitleDisplayMode="always" id="tcq-zU-Jfh"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XK2-f9-wVU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -701,8 +701,8 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="OSz-cd-IOX" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="" image="my-icon" id="hP0-c6-QpB"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="aqH-5s-xp3">
-                        <rect key="frame" x="0.0" y="44" width="375" height="44"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" largeTitles="YES" id="aqH-5s-xp3">
+                        <rect key="frame" x="0.0" y="44" width="375" height="96"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <textAttributes key="largeTitleTextAttributes">
                             <fontDescription key="fontDescription" type="boldSystem" pointSize="34"/>
