@@ -16,6 +16,7 @@
 		5504A79E22D194AF00081C10 /* TDSwiftPopover+UITableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5504A79A22D194AF00081C10 /* TDSwiftPopover+UITableView.swift */; };
 		5504A79F22D194AF00081C10 /* TDSwiftPopover+UIGestureRecognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5504A79B22D194AF00081C10 /* TDSwiftPopover+UIGestureRecognizer.swift */; };
 		5504A7A022D194AF00081C10 /* TDSwiftPopover.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5504A79C22D194AF00081C10 /* TDSwiftPopover.swift */; };
+		5504A7A522D1DA4500081C10 /* HMThreeDotsBarButtonItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5504A7A422D1DA4500081C10 /* HMThreeDotsBarButtonItem.swift */; };
 		55061A2022B6BD54003CDEAB /* HMTripListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55061A1F22B6BD54003CDEAB /* HMTripListTableViewCell.swift */; };
 		55061A2322B6C040003CDEAB /* TDSwiftShape.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55061A2222B6C040003CDEAB /* TDSwiftShape.swift */; };
 		55061A2622B6C067003CDEAB /* TDSwiftRouteDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55061A2522B6C067003CDEAB /* TDSwiftRouteDetailView.swift */; };
@@ -82,6 +83,7 @@
 		5504A79A22D194AF00081C10 /* TDSwiftPopover+UITableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "TDSwiftPopover+UITableView.swift"; sourceTree = "<group>"; };
 		5504A79B22D194AF00081C10 /* TDSwiftPopover+UIGestureRecognizer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "TDSwiftPopover+UIGestureRecognizer.swift"; sourceTree = "<group>"; };
 		5504A79C22D194AF00081C10 /* TDSwiftPopover.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TDSwiftPopover.swift; sourceTree = "<group>"; };
+		5504A7A422D1DA4500081C10 /* HMThreeDotsBarButtonItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HMThreeDotsBarButtonItem.swift; sourceTree = "<group>"; };
 		55061A1F22B6BD54003CDEAB /* HMTripListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HMTripListTableViewCell.swift; sourceTree = "<group>"; };
 		55061A2222B6C040003CDEAB /* TDSwiftShape.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TDSwiftShape.swift; sourceTree = "<group>"; };
 		55061A2522B6C067003CDEAB /* TDSwiftRouteDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TDSwiftRouteDetailView.swift; sourceTree = "<group>"; };
@@ -178,6 +180,7 @@
 		5504A7A122D1D2D800081C10 /* Haimens */ = {
 			isa = PBXGroup;
 			children = (
+				5504A7A322D1D9FB00081C10 /* HMThreeDotsBarButtonItem */,
 				55F9A2BD22B5A07500788FC5 /* HMBasicButton */,
 				5589A97622C03E13003353C9 /* HMTripDetailBGView */,
 				55EA8D4822B6EEDF00A57BF1 /* HMRouteDetailView */,
@@ -197,6 +200,14 @@
 				5589A97922C03FB9003353C9 /* TDSwiftRoundedCornerView */,
 			);
 			path = TDSwift;
+			sourceTree = "<group>";
+		};
+		5504A7A322D1D9FB00081C10 /* HMThreeDotsBarButtonItem */ = {
+			isa = PBXGroup;
+			children = (
+				5504A7A422D1DA4500081C10 /* HMThreeDotsBarButtonItem.swift */,
+			);
+			path = HMThreeDotsBarButtonItem;
 			sourceTree = "<group>";
 		};
 		55061A2122B6C034003CDEAB /* TDSwiftShape */ = {
@@ -649,6 +660,7 @@
 				5504A79422D02AC900081C10 /* TDSwiftRouteDetailMapViewInfo.swift in Sources */,
 				55EA8D4A22B6EEF500A57BF1 /* HMRouteDetailView.swift in Sources */,
 				557B82A922B47531002D4774 /* HMAuthViewController.swift in Sources */,
+				5504A7A522D1DA4500081C10 /* HMThreeDotsBarButtonItem.swift in Sources */,
 				55F9A2B922B59F3300788FC5 /* CONST.swift in Sources */,
 				55ABB63322B629E500F569AF /* TDSwiftSegmentedControl.swift in Sources */,
 				5504A79E22D194AF00081C10 /* TDSwiftPopover+UITableView.swift in Sources */,

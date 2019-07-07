@@ -21,10 +21,10 @@ class HMTripDetailViewController: UIViewController {
         configNavigationAppearance()
         
         // Menu bar button
-        let menuBarButtonItem = UIBarButtonItem(title: "● ● ● ", style: .plain, target: self, action: #selector(self.showOptionsMenu(_:)))
-        menuBarButtonItem.setTitleTextAttributes([NSAttributedString.Key.font : UIFont.systemFont(ofSize: 7.0)], for: .normal)
-        menuBarButtonItem.setTitleTextAttributes([NSAttributedString.Key.font : UIFont.systemFont(ofSize: 7.0)], for: .selected)
-        navigationItem.rightBarButtonItem = menuBarButtonItem
+//        let menuBarButtonItem = UIBarButtonItem(title: "● ● ● ", style: .plain, target: self, action: #selector(self.showOptionsMenu(_:)))
+//        menuBarButtonItem.setTitleTextAttributes([NSAttributedString.Key.font : UIFont.systemFont(ofSize: 7.0)], for: .normal)
+//        menuBarButtonItem.setTitleTextAttributes([NSAttributedString.Key.font : UIFont.systemFont(ofSize: 7.0)], for: .selected)
+        navigationItem.rightBarButtonItem = HMThreeDotsBarButtonItem(target: self, selector: #selector(self.showOptionsMenu(_:)))
         
         // Popover menu
         let popoverItems = [
