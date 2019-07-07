@@ -17,6 +17,10 @@
 		5504A79F22D194AF00081C10 /* TDSwiftPopover+UIGestureRecognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5504A79B22D194AF00081C10 /* TDSwiftPopover+UIGestureRecognizer.swift */; };
 		5504A7A022D194AF00081C10 /* TDSwiftPopover.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5504A79C22D194AF00081C10 /* TDSwiftPopover.swift */; };
 		5504A7A522D1DA4500081C10 /* HMThreeDotsBarButtonItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5504A7A422D1DA4500081C10 /* HMThreeDotsBarButtonItem.swift */; };
+		5504A7A822D1DD3B00081C10 /* HMTripDetailPopover.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5504A7A722D1DD3B00081C10 /* HMTripDetailPopover.swift */; };
+		5504A7D622D21D9300081C10 /* TDSwiftHeartBeatConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5504A7D422D21D9300081C10 /* TDSwiftHeartBeatConfig.swift */; };
+		5504A7D722D21D9300081C10 /* TDSwiftHeartBeat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5504A7D522D21D9300081C10 /* TDSwiftHeartBeat.swift */; };
+		5504A7DD22D223B000081C10 /* HMHeartBeat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5504A7DC22D223B000081C10 /* HMHeartBeat.swift */; };
 		55061A2022B6BD54003CDEAB /* HMTripListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55061A1F22B6BD54003CDEAB /* HMTripListTableViewCell.swift */; };
 		55061A2322B6C040003CDEAB /* TDSwiftShape.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55061A2222B6C040003CDEAB /* TDSwiftShape.swift */; };
 		55061A2622B6C067003CDEAB /* TDSwiftRouteDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55061A2522B6C067003CDEAB /* TDSwiftRouteDetailView.swift */; };
@@ -84,6 +88,10 @@
 		5504A79B22D194AF00081C10 /* TDSwiftPopover+UIGestureRecognizer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "TDSwiftPopover+UIGestureRecognizer.swift"; sourceTree = "<group>"; };
 		5504A79C22D194AF00081C10 /* TDSwiftPopover.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TDSwiftPopover.swift; sourceTree = "<group>"; };
 		5504A7A422D1DA4500081C10 /* HMThreeDotsBarButtonItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HMThreeDotsBarButtonItem.swift; sourceTree = "<group>"; };
+		5504A7A722D1DD3B00081C10 /* HMTripDetailPopover.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HMTripDetailPopover.swift; sourceTree = "<group>"; };
+		5504A7D422D21D9300081C10 /* TDSwiftHeartBeatConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TDSwiftHeartBeatConfig.swift; sourceTree = "<group>"; };
+		5504A7D522D21D9300081C10 /* TDSwiftHeartBeat.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TDSwiftHeartBeat.swift; sourceTree = "<group>"; };
+		5504A7DC22D223B000081C10 /* HMHeartBeat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HMHeartBeat.swift; sourceTree = "<group>"; };
 		55061A1F22B6BD54003CDEAB /* HMTripListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HMTripListTableViewCell.swift; sourceTree = "<group>"; };
 		55061A2222B6C040003CDEAB /* TDSwiftShape.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TDSwiftShape.swift; sourceTree = "<group>"; };
 		55061A2522B6C067003CDEAB /* TDSwiftRouteDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TDSwiftRouteDetailView.swift; sourceTree = "<group>"; };
@@ -180,6 +188,7 @@
 		5504A7A122D1D2D800081C10 /* Haimens */ = {
 			isa = PBXGroup;
 			children = (
+				5504A7A622D1DD2300081C10 /* HMTripDetailPopover */,
 				5504A7A322D1D9FB00081C10 /* HMThreeDotsBarButtonItem */,
 				55F9A2BD22B5A07500788FC5 /* HMBasicButton */,
 				5589A97622C03E13003353C9 /* HMTripDetailBGView */,
@@ -208,6 +217,31 @@
 				5504A7A422D1DA4500081C10 /* HMThreeDotsBarButtonItem.swift */,
 			);
 			path = HMThreeDotsBarButtonItem;
+			sourceTree = "<group>";
+		};
+		5504A7A622D1DD2300081C10 /* HMTripDetailPopover */ = {
+			isa = PBXGroup;
+			children = (
+				5504A7A722D1DD3B00081C10 /* HMTripDetailPopover.swift */,
+			);
+			path = HMTripDetailPopover;
+			sourceTree = "<group>";
+		};
+		5504A7D322D21CBC00081C10 /* TDSwiftHeartBeat */ = {
+			isa = PBXGroup;
+			children = (
+				5504A7D522D21D9300081C10 /* TDSwiftHeartBeat.swift */,
+				5504A7D422D21D9300081C10 /* TDSwiftHeartBeatConfig.swift */,
+			);
+			path = TDSwiftHeartBeat;
+			sourceTree = "<group>";
+		};
+		5504A7DB22D2238D00081C10 /* HMHeartBeat */ = {
+			isa = PBXGroup;
+			children = (
+				5504A7DC22D223B000081C10 /* HMHeartBeat.swift */,
+			);
+			path = HMHeartBeat;
 			sourceTree = "<group>";
 		};
 		55061A2122B6C034003CDEAB /* TDSwiftShape */ = {
@@ -332,6 +366,8 @@
 		557B82DE22B4B565002D4774 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				5504A7DB22D2238D00081C10 /* HMHeartBeat */,
+				5504A7D322D21CBC00081C10 /* TDSwiftHeartBeat */,
 				55EA8D4E22B6F70E00A57BF1 /* TDSwiftMapTools */,
 				55DF25BB22B5E444003AED00 /* TDSwiftGesture */,
 				55F9A2AC22B58F9B00788FC5 /* TDSwiftAlert */,
@@ -654,6 +690,7 @@
 				5504A79F22D194AF00081C10 /* TDSwiftPopover+UIGestureRecognizer.swift in Sources */,
 				55EA8D4D22B6F38100A57BF1 /* HMTripDetailViewController.swift in Sources */,
 				5504A79522D02AC900081C10 /* TDSwiftRouteDetailMapViewConfig.swift in Sources */,
+				5504A7D622D21D9300081C10 /* TDSwiftHeartBeatConfig.swift in Sources */,
 				55F9A2B722B5939800788FC5 /* HMMainTabBarController.swift in Sources */,
 				5504A7A022D194AF00081C10 /* TDSwiftPopover.swift in Sources */,
 				55DF25BD22B5E457003AED00 /* TDSwiftGesture.swift in Sources */,
@@ -674,6 +711,7 @@
 				55ABB63522B629F900F569AF /* TDSwiftSegmentedControlConfig.swift in Sources */,
 				55061A2022B6BD54003CDEAB /* HMTripListTableViewCell.swift in Sources */,
 				55EA8D5622B7062D00A57BF1 /* HMAccountViewController.swift in Sources */,
+				5504A7A822D1DD3B00081C10 /* HMTripDetailPopover.swift in Sources */,
 				557B82DD22B4B0CA002D4774 /* ENV.swift in Sources */,
 				55F9A2AA22B5677D00788FC5 /* DriverConn.swift in Sources */,
 				5589A97822C03E23003353C9 /* HMTripDetailBGView.swift in Sources */,
@@ -681,11 +719,13 @@
 				5504A79D22D194AF00081C10 /* TDSwiftPopoverItem.swift in Sources */,
 				5589A97522BF6B35003353C9 /* HMEarningSalaryTableViewCell.swift in Sources */,
 				557B82A722B47531002D4774 /* AppDelegate.swift in Sources */,
+				5504A7DD22D223B000081C10 /* HMHeartBeat.swift in Sources */,
 				557B82E322B4B5DC002D4774 /* TDSwiftRequestError.swift in Sources */,
 				55F9A2B122B5926400788FC5 /* HMLoginViewController.swift in Sources */,
 				5504A79322D02AC900081C10 /* TDSwiftRouteDetailMapViewResult.swift in Sources */,
 				55F9A2BC22B5A04400788FC5 /* TDSwiftBasicButton.swift in Sources */,
 				5504A79622D02AC900081C10 /* TDSwiftRouteDetailMapViewAnnotation.swift in Sources */,
+				5504A7D722D21D9300081C10 /* TDSwiftHeartBeat.swift in Sources */,
 				55061A2622B6C067003CDEAB /* TDSwiftRouteDetailView.swift in Sources */,
 				55F9A2B422B5929600788FC5 /* HMTripListViewController.swift in Sources */,
 				5589A97322BF6B08003353C9 /* HMEarningWageTableViewCell.swift in Sources */,

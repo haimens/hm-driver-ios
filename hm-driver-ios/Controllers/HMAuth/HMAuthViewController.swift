@@ -36,4 +36,8 @@ class HMAuthViewController: UIViewController {
             self.performSegue(withIdentifier: String(describing: HMLoginViewController.self), sender: self)
         }
     }
+    
+    private func configHeartBeat() {
+        
+    }
 }
