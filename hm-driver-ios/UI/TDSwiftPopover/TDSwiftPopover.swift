@@ -62,7 +62,7 @@ public class TDSwiftPopover: NSObject {
     // Popover state
     var isPresenting: Bool {
         get {
-            return bgView.superview != nil
+            return bgView != nil && bgView.superview != nil
         }
     }
     

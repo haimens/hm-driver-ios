@@ -10,13 +10,15 @@ class HMTripDetailViewController: UIViewController {
         setupUI()
     }
     
+    override func viewWillAppear(_ animated: Bool) { configNavigationAppearance() }
+    
     override func viewWillDisappear(_ animated: Bool) {
         popover.dismiss()
     }
     
     private func setupUI() {
         // Navigation appearance
-        navigationController?.navigationBar.prefersLargeTitles = false
+        configNavigationAppearance()
         
         // Menu bar button
         let menuBarButtonItem = UIBarButtonItem(title: "● ● ● ", style: .plain, target: self, action: #selector(self.showOptionsMenu(_:)))
@@ -48,6 +50,10 @@ class HMTripDetailViewController: UIViewController {
         let popoverOrigin = CGPoint(x: buttonItemViewCenter.x - 5, y: buttonItemViewCenter.y + 10)
         
         popover.present(onView: self.navigationController!.view, atPoint: popoverOrigin)
+    }
+    
+    private func configNavigationAppearance() {
+        navigationController?.navigationBar.prefersLargeTitles = false
     }
 }
 
