@@ -175,6 +175,30 @@
 			path = TDSwiftPopover;
 			sourceTree = "<group>";
 		};
+		5504A7A122D1D2D800081C10 /* Haimens */ = {
+			isa = PBXGroup;
+			children = (
+				55F9A2BD22B5A07500788FC5 /* HMBasicButton */,
+				5589A97622C03E13003353C9 /* HMTripDetailBGView */,
+				55EA8D4822B6EEDF00A57BF1 /* HMRouteDetailView */,
+			);
+			path = Haimens;
+			sourceTree = "<group>";
+		};
+		5504A7A222D1D2DF00081C10 /* TDSwift */ = {
+			isa = PBXGroup;
+			children = (
+				55061A2422B6C05C003CDEAB /* TDSwiftRouteDetailView */,
+				55061A2122B6C034003CDEAB /* TDSwiftShape */,
+				55ABB63122B629CE00F569AF /* TDSwiftSegmentedControl */,
+				55ABB62E22B6224800F569AF /* TDSwiftSpinner */,
+				5504A79822D1949C00081C10 /* TDSwiftPopover */,
+				5504A78D22D02AAF00081C10 /* TDSwiftRouteDetailMapView */,
+				5589A97922C03FB9003353C9 /* TDSwiftRoundedCornerView */,
+			);
+			path = TDSwift;
+			sourceTree = "<group>";
+		};
 		55061A2122B6C034003CDEAB /* TDSwiftShape */ = {
 			isa = PBXGroup;
 			children = (
@@ -288,16 +312,8 @@
 		557B82D922B4ADBC002D4774 /* UI */ = {
 			isa = PBXGroup;
 			children = (
-				5504A79822D1949C00081C10 /* TDSwiftPopover */,
-				5504A78D22D02AAF00081C10 /* TDSwiftRouteDetailMapView */,
-				5589A97922C03FB9003353C9 /* TDSwiftRoundedCornerView */,
-				5589A97622C03E13003353C9 /* HMTripDetailBGView */,
-				55EA8D4822B6EEDF00A57BF1 /* HMRouteDetailView */,
-				55061A2422B6C05C003CDEAB /* TDSwiftRouteDetailView */,
-				55061A2122B6C034003CDEAB /* TDSwiftShape */,
-				55ABB63122B629CE00F569AF /* TDSwiftSegmentedControl */,
-				55ABB62E22B6224800F569AF /* TDSwiftSpinner */,
-				55F9A2BD22B5A07500788FC5 /* HMBasicButton */,
+				5504A7A222D1D2DF00081C10 /* TDSwift */,
+				5504A7A122D1D2D800081C10 /* Haimens */,
 			);
 			path = UI;
 			sourceTree = "<group>";
