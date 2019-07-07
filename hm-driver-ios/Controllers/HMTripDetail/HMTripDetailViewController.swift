@@ -45,6 +45,15 @@ class HMTripDetailViewController: UIViewController {
 
 extension HMTripDetailViewController: TDSwiftPopoverDelegate {
     func didSelect(item: TDSwiftPopoverItem, atIndex index: Int) {
-        print("index \(index)")
+        switch index {
+        case 3: // Sharing Location
+            HMHeartBeat.shared.start()
+            TDSwiftAlert.showSingleButtonAlert(title: "Location Sharing", message: "Service Started", actionBtnTitle: "OK", presentVC: self, btnAction: nil)
+        case 4: // Stop Sharing Location
+            HMHeartBeat.shared.stop()
+            TDSwiftAlert.showSingleButtonAlert(title: "Location Sharing", message: "Service Terminated", actionBtnTitle: "OK", presentVC: self, btnAction: nil)
+        default:
+            fatalError("TRIP DETAIL POPOVER INDEX INVALID")
+        }
     }
 }
