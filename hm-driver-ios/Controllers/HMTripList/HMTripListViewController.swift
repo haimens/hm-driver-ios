@@ -20,6 +20,7 @@ class HMTripListViewController: UIViewController {
         super.viewDidLoad()
         
         setupDelegates()
+        loadData()
     }
     
     override func viewDidLayoutSubviews() {
@@ -59,6 +60,24 @@ class HMTripListViewController: UIViewController {
             self.tableView.refreshControl?.endRefreshing()
             self.tableView.setContentOffset(CGPoint(x: 0, y: 0), animated: true)
         }
+    }
+    
+    private func loadData() {
+        HMTrip.getAllActiveTrips { (result, error) in
+            DispatchQueue.main.async {
+                // Hand request error
+                if let error = error { TDSwiftAlert.showSingleButtonAlert(title: "Request Failed", message: DriverConn.getErrorMessage(error: error), actionBtnTitle: "OK", presentVC: self, btnAction: nil) }
+                
+                // Parse request response
+                if let result = result { self.parseData(data: result) }
+            }
+        }
+    }
+    
+    private func parseData(data: [String : Any]) {
+        print("------------------------------------------------------------------")
+        print("\(data)")
+        print("------------------------------------------------------------------")
     }
 }
 
