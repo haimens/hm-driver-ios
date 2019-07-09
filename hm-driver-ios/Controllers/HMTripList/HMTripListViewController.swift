@@ -113,8 +113,10 @@ extension HMTripListViewController: UITableViewDataSource, UITableViewDelegate {
         }
         
         // From and to address
-        cell.routeDetailView.upperAddressBtn.setTitle(CONST.UI.NOT_AVAILABLE_PLACEHOLDER, for: .normal)
-        cell.routeDetailView.lowerAddressBtn.setTitle(CONST.UI.NOT_AVAILABLE_PLACEHOLDER, for: .normal)
+        let fromAddressString = activeTripList?[indexPath.row]["from_addr_str"] as? String ?? CONST.UI.NOT_AVAILABLE_PLACEHOLDER
+        let toAddressString = activeTripList?[indexPath.row]["to_addr_str"] as? String ?? CONST.UI.NOT_AVAILABLE_PLACEHOLDER
+        cell.routeDetailView.upperAddressBtn.setTitle(fromAddressString, for: .normal)
+        cell.routeDetailView.lowerAddressBtn.setTitle(toAddressString, for: .normal)
         cell.routeDetailView.delegate = self
         
         // Disable cell address buttons
