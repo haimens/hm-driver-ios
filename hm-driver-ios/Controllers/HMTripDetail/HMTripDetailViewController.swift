@@ -1,8 +1,9 @@
 import UIKit
 
 class HMTripDetailViewController: UIViewController {
-    // Popover menu
+    // UI Components
     var popover: TDSwiftPopover!
+    var spinner: TDSwiftSpinner!
     
     // Data
     var tripToken: String?
@@ -11,6 +12,7 @@ class HMTripDetailViewController: UIViewController {
         super.viewDidLoad()
                 
         setupUI()
+        loadData()
     }
     
     override func viewWillAppear(_ animated: Bool) { configNavigationAppearance() }
@@ -27,6 +29,9 @@ class HMTripDetailViewController: UIViewController {
         // Popover menu
         popover = HMTripDetailPopover()
         popover.delegate = self
+        
+        // Spinner
+        spinner = TDSwiftSpinner(viewController: self)
     }
     
     @objc private func showOptionsMenu(_ sender: UIBarButtonItem) {
@@ -41,6 +46,39 @@ class HMTripDetailViewController: UIViewController {
     
     private func configNavigationAppearance() {
         navigationController?.navigationBar.prefersLargeTitles = false
+    }
+}
+
+extension HMTripDetailViewController: TDSwiftData {
+    func loadData() {
+        // Verify trip token
+        guard let tripToken = self.tripToken else { TDSwiftAlert.showSingleButtonAlert(title: "Request Failed", message: "Trip detail missing", actionBtnTitle: "OK", presentVC: self, btnAction: nil); return }
+        
+        // Show spinner
+        spinner.show()
+        
+        // Make request
+        HMTrip.getTripDetail(withTripToken: tripToken) { (result, error) in
+            DispatchQueue.main.async {
+                // Hide spinner
+                self.spinner.hide()
+                
+                // Hand request error
+                if let error = error { TDSwiftAlert.showSingleButtonAlert(title: "Request Failed", message: DriverConn.getErrorMessage(error: error), actionBtnTitle: "OK", presentVC: self, btnAction: nil) }
+                
+                // Parse request response
+                if let result = result { self.parseData(data: result) }
+            }
+        }
+    }
+    
+    func parseData(data: [String : Any]) {
+        // !!!!!!!!!TODO!!!!!!!!!!!!!!!!!!
+        print("Data \(data)")
+    }
+    
+    func alertParseDataFailed() {
+        TDSwiftAlert.showSingleButtonAlert(title: "Request Failed", message: "Server response invalid", actionBtnTitle: "OK", presentVC: self, btnAction: nil)
     }
 }
 
