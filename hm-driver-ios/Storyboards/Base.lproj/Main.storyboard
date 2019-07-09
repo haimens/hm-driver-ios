@@ -341,6 +341,10 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="FRm-jH-Nhg"/>
                     </view>
+                    <connections>
+                        <outlet property="mapView" destination="AMI-Ex-N2p" id="vV2-JD-69A"/>
+                        <outlet property="routeDetailView" destination="Cg3-aq-a6j" id="46O-sj-ttP"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wjB-A1-odf" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

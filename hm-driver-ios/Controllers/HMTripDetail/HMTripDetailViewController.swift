@@ -1,16 +1,20 @@
 import UIKit
+import MapKit
 
 class HMTripDetailViewController: UIViewController {
     // UI Components
     var popover: TDSwiftPopover!
     var spinner: TDSwiftSpinner!
     
+    @IBOutlet weak var mapView: TDSwiftRouteDetailMapView!
+    @IBOutlet weak var routeDetailView: HMRouteDetailView!
+    
     // Data
     var tripToken: String?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-                
+        
         setupUI()
         loadData()
     }
@@ -73,8 +77,25 @@ extension HMTripDetailViewController: TDSwiftData {
     }
     
     func parseData(data: [String : Any]) {
-        // !!!!!!!!!TODO!!!!!!!!!!!!!!!!!!
-        print("Data \(data)")
+        // VC title date
+        if let pickupTimeString = (data["basic_info"] as? [String : Any])?["pickup_time"] as? String {
+            self.title = TDSwiftDate.utcTimeStringToLocalTimeString(timeString: pickupTimeString, withFormat: "yyyy-MM-dd'T'HH:mm:ss.SSSZ", outputFormat: "MMM d") ?? CONST.UI.NOT_AVAILABLE_PLACEHOLDER
+        } else {
+            self.title = CONST.UI.NOT_AVAILABLE_PLACEHOLDER
+        }
+        
+        // Coordinate
+        if let fromLat = (data["from_address_info"] as? [String : Any])?["lat"] as? Double,
+            let fromLng = (data["from_address_info"] as? [String : Any])?["lng"] as? Double,
+            let toLat = (data["to_address_info"] as? [String : Any])?["lat"] as? Double,
+            let toLng = (data["to_address_info"] as? [String : Any])?["lng"] as? Double {
+            mapView.config(config: TDSwiftRouteDetailMapView.defaultConfig,
+                           info: TDSwiftRouteDetailMapViewInfo(sourceTitle: "Driver Location",
+                                                               destinationTitle: "Pickup",
+                                                               sourceLocation: CLLocation(latitude: fromLat, longitude: fromLng),
+                                                               destinationLocation: CLLocation(latitude: toLat, longitude: toLng)))
+            mapView.drawRoute(removeOldRoute: true, completion: nil)
+        }
     }
     
     func alertParseDataFailed() {
