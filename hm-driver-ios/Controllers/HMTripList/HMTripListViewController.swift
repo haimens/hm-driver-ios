@@ -6,15 +6,7 @@ class HMTripListViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     
     // Data
-    let testTripList: [[String:String]] = [
-        ["date": "June 10th - 12:30 PM", "pickup": "123 One Punch Blvd, Los Angeles, CA 91000", "dropoff": "100 World Way, Los Angeles, CA 91100"],
-        ["date": "June 10th - 12:30 PM", "pickup": "123 One Punch Blvd, Los Angeles, CA 91000", "dropoff": "100 World Way, Los Angeles, CA 91100"],
-        ["date": "June 10th - 12:30 PM", "pickup": "123 One Punch Blvd, Los Angeles, CA 91000", "dropoff": "100 World Way, Los Angeles, CA 91100"],
-        ["date": "June 10th - 12:30 PM", "pickup": "123 One Punch Blvd, Los Angeles, CA 91000", "dropoff": "100 World Way, Los Angeles, CA 91100"],
-        ["date": "June 10th - 12:30 PM", "pickup": "123 One Punch Blvd, Los Angeles, CA 91000", "dropoff": "100 World Way, Los Angeles, CA 91100"],
-        ["date": "June 10th - 12:30 PM", "pickup": "123 One Punch Blvd, Los Angeles, CA 91000", "dropoff": "100 World Way, Los Angeles, CA 91100"],
-        ["date": "June 10th - 12:30 PM", "pickup": "123 One Punch Blvd, Los Angeles, CA 91000", "dropoff": "100 World Way, Los Angeles, CA 91100"]
-    ]
+    var activeTripList: [[String : Any]]?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -75,9 +67,13 @@ class HMTripListViewController: UIViewController {
     }
     
     private func parseData(data: [String : Any]) {
-        print("------------------------------------------------------------------")
-        print("\(data)")
-        print("------------------------------------------------------------------")
+        // Record list
+        guard let activeTripList = data["record_list"] as? [[String : Any]] else { alertParseDataFailed(); return }
+        self.activeTripList = activeTripList
+    }
+    
+    private func alertParseDataFailed() {
+        TDSwiftAlert.showSingleButtonAlert(title: "Request Failed", message: "Server response invalid", actionBtnTitle: "OK", presentVC: self, btnAction: nil)
     }
 }
 
@@ -89,22 +85,22 @@ extension HMTripListViewController: TDSwiftSegmentedControlDelegate {
 
 extension HMTripListViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return testTripList.count
+        return activeTripList?.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         // Reusable cell instance
         let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: HMTripListTableViewCell.self)) as! HMTripListTableViewCell
         
-        // Cell data
-        cell.dateLabel.text = testTripList[indexPath.row]["date"]
-        cell.routeDetailView.upperAddressBtn.setTitle(testTripList[indexPath.row]["pickup"], for: .normal)
-        cell.routeDetailView.lowerAddressBtn.setTitle(testTripList[indexPath.row]["dropoff"], for: .normal)
-        cell.routeDetailView.delegate = self
-        
-        // Disable cell address buttons
-        cell.routeDetailView.upperAddressBtn.isEnabled = false
-        cell.routeDetailView.lowerAddressBtn.isEnabled = false
+//        // Cell data
+//        cell.dateLabel.text = testTripList[indexPath.row]["date"]
+//        cell.routeDetailView.upperAddressBtn.setTitle(testTripList[indexPath.row]["pickup"], for: .normal)
+//        cell.routeDetailView.lowerAddressBtn.setTitle(testTripList[indexPath.row]["dropoff"], for: .normal)
+//        cell.routeDetailView.delegate = self
+//        
+//        // Disable cell address buttons
+//        cell.routeDetailView.upperAddressBtn.isEnabled = false
+//        cell.routeDetailView.lowerAddressBtn.isEnabled = false
         
         return cell
     }
