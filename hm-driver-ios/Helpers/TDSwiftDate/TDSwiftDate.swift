@@ -25,9 +25,7 @@ class TDSwiftDate {
     static func utcTimeStringToLocalTimeString(timeString: String, withFormat format: String, outputFormat: String) -> String? {
         // UTC time string to date object
         guard let date = utcTimeStringToDate(timeString: timeString, withFormat: format) else { return nil }
-        
-        print("date \(date)")
-        
+                
         // Date to output time string
         return dateToLocalTimeString(date: date, withFormat: outputFormat)
     }

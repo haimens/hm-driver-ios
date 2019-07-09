@@ -1,9 +1,11 @@
 import UIKit
 
 class HMTripListViewController: UIViewController {
-    
     @IBOutlet weak var segmentedControl: TDSwiftSegmentedControl!
     @IBOutlet weak var tableView: UITableView!
+    
+    // UI Components
+    var spinner: TDSwiftSpinner!
     
     // Data
     var activeTripList: [[String : Any]]?
@@ -11,6 +13,7 @@ class HMTripListViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        setupUI()
         setupDelegates()
         loadData()
     }
@@ -18,20 +21,25 @@ class HMTripListViewController: UIViewController {
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         
-        setupUI()
+        setupSegmentedControl()
+    }
+    
+    private func setupSegmentedControl() {
+        // Segmented control
+        segmentedControl.itemTitles = ["UPCOMING", "HISTORY"]
     }
     
     private func setupUI() {
         // Navigation appearance
         navigationController?.navigationBar.prefersLargeTitles = true
         
-        // Segmented control
-        segmentedControl.itemTitles = ["UPCOMING", "HISTORY"]
-        
         // Refresh control
         tableView.refreshControl = UIRefreshControl()
         tableView.refreshControl?.attributedTitle = NSAttributedString.init(string: "Pull to refresh")
         tableView.refreshControl?.addTarget(self, action: #selector(handleRefreshRequest), for: .valueChanged)
+        
+        // Spinner
+        spinner = TDSwiftSpinner(viewController: self)
     }
     
     private func setupDelegates() {
@@ -55,8 +63,15 @@ class HMTripListViewController: UIViewController {
     }
     
     private func loadData() {
+        // Show spinner
+        spinner.show()
+        
+        // Make request
         HMTrip.getAllActiveTrips { (result, error) in
             DispatchQueue.main.async {
+                // Hide spinner
+                self.spinner.hide()
+                
                 // Hand request error
                 if let error = error { TDSwiftAlert.showSingleButtonAlert(title: "Request Failed", message: DriverConn.getErrorMessage(error: error), actionBtnTitle: "OK", presentVC: self, btnAction: nil) }
                 
@@ -70,6 +85,9 @@ class HMTripListViewController: UIViewController {
         // Record list
         guard let activeTripList = data["record_list"] as? [[String : Any]] else { alertParseDataFailed(); return }
         self.activeTripList = activeTripList
+        
+        // Reload UI
+        tableView.reloadData()
     }
     
     private func alertParseDataFailed() {
@@ -92,15 +110,21 @@ extension HMTripListViewController: UITableViewDataSource, UITableViewDelegate {
         // Reusable cell instance
         let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: HMTripListTableViewCell.self)) as! HMTripListTableViewCell
         
-//        // Cell data
-//        cell.dateLabel.text = testTripList[indexPath.row]["date"]
-//        cell.routeDetailView.upperAddressBtn.setTitle(testTripList[indexPath.row]["pickup"], for: .normal)
-//        cell.routeDetailView.lowerAddressBtn.setTitle(testTripList[indexPath.row]["dropoff"], for: .normal)
-//        cell.routeDetailView.delegate = self
-//        
-//        // Disable cell address buttons
-//        cell.routeDetailView.upperAddressBtn.isEnabled = false
-//        cell.routeDetailView.lowerAddressBtn.isEnabled = false
+        // Pickup time
+        if let pickupTimeString = activeTripList?[indexPath.row]["pickup_time"] as? String {
+            cell.dateLabel.text = TDSwiftDate.utcTimeStringToLocalTimeString(timeString: pickupTimeString, withFormat: "yyyy-MM-dd'T'HH:mm:ss.SSSZ", outputFormat: "MMM d' - 'h:mm a") ?? CONST.UI.NOT_AVAILABLE_PLACEHOLDER
+        } else {
+            cell.dateLabel.text = CONST.UI.NOT_AVAILABLE_PLACEHOLDER
+        }
+        
+        // From and to address
+        cell.routeDetailView.upperAddressBtn.setTitle(CONST.UI.NOT_AVAILABLE_PLACEHOLDER, for: .normal)
+        cell.routeDetailView.lowerAddressBtn.setTitle(CONST.UI.NOT_AVAILABLE_PLACEHOLDER, for: .normal)
+        cell.routeDetailView.delegate = self
+        
+        // Disable cell address buttons
+        cell.routeDetailView.upperAddressBtn.isEnabled = false
+        cell.routeDetailView.lowerAddressBtn.isEnabled = false
         
         return cell
     }
