@@ -25,7 +25,6 @@ class HMTripListViewController: UIViewController {
     }
     
     private func setupSegmentedControl() {
-        // Segmented control
         segmentedControl.itemTitles = ["UPCOMING", "HISTORY"]
     }
     
@@ -48,21 +47,12 @@ class HMTripListViewController: UIViewController {
         tableView.dataSource = self
     }
     
-    @objc func handleRefreshRequest() {
-        DispatchQueue.main.async {
-            self.tableView.setContentOffset(CGPoint(x: 0, y: -self.tableView.refreshControl!.frame.height), animated: true)
-        }
-        
-        // Update your content…
-        
-        // Dismiss the refresh control.
-        DispatchQueue.main.async {
-            self.tableView.refreshControl?.endRefreshing()
-            self.tableView.setContentOffset(CGPoint(x: 0, y: 0), animated: true)
-        }
-    }
-    
-    private func loadData() {
+    @objc func handleRefreshRequest() { loadData() }
+}
+
+// Data
+extension HMTripListViewController: TDSwiftData {
+    func loadData() {
         // Show spinner
         spinner.show()
         
@@ -71,6 +61,11 @@ class HMTripListViewController: UIViewController {
             DispatchQueue.main.async {
                 // Hide spinner
                 self.spinner.hide()
+                
+                // Dismiss refresh control if is refreshing
+                if self.tableView.refreshControl!.isRefreshing {
+                    self.tableView.refreshControl!.endRefreshing()
+                }
                 
                 // Hand request error
                 if let error = error { TDSwiftAlert.showSingleButtonAlert(title: "Request Failed", message: DriverConn.getErrorMessage(error: error), actionBtnTitle: "OK", presentVC: self, btnAction: nil) }
@@ -81,7 +76,7 @@ class HMTripListViewController: UIViewController {
         }
     }
     
-    private func parseData(data: [String : Any]) {
+    func parseData(data: [String : Any]) {
         // Record list
         guard let activeTripList = data["record_list"] as? [[String : Any]] else { alertParseDataFailed(); return }
         self.activeTripList = activeTripList
@@ -90,7 +85,7 @@ class HMTripListViewController: UIViewController {
         tableView.reloadData()
     }
     
-    private func alertParseDataFailed() {
+    func alertParseDataFailed() {
         TDSwiftAlert.showSingleButtonAlert(title: "Request Failed", message: "Server response invalid", actionBtnTitle: "OK", presentVC: self, btnAction: nil)
     }
 }
@@ -132,8 +127,10 @@ extension HMTripListViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         
-        // Show trip detail
-        performSegue(withIdentifier: String(describing: HMTripDetailViewController.self), sender: self)
+        // Present trip detail VC
+        let tripDetailVC = storyboard?.instantiateViewController(withIdentifier: String(describing: HMTripDetailViewController.self)) as! HMTripDetailViewController
+        tripDetailVC.tripToken = activeTripList?[indexPath.row]["trip_token"] as? String
+        self.navigationController?.pushViewController(tripDetailVC, animated: true)
     }
 }
 

@@ -4,17 +4,18 @@ class HMTripDetailViewController: UIViewController {
     // Popover menu
     var popover: TDSwiftPopover!
     
+    // Data
+    var tripToken: String?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+                
         setupUI()
     }
     
     override func viewWillAppear(_ animated: Bool) { configNavigationAppearance() }
     
-    override func viewWillDisappear(_ animated: Bool) {
-        popover.dismiss()
-    }
+    override func viewWillDisappear(_ animated: Bool) { popover.dismiss() }
     
     private func setupUI() {
         // Navigation appearance
