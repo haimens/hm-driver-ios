@@ -151,4 +151,3 @@ extension HMTripDetailViewController: TDSwiftRouteDetailViewDelegate {
         TDSwiftMapTools.showAddressOptions(onViewController: self, withAddress: button.titleLabel?.text ?? "", completion: nil)
     }
 }
-

@@ -389,7 +389,9 @@
         <scene sceneID="2WF-Qv-bkw">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="KV6-5h-Oay" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="" image="route-icon" id="ygS-6B-u5p"/>
+                    <tabBarItem key="tabBarItem" title="" image="route-icon" id="ygS-6B-u5p">
+                        <inset key="imageInsets" minX="0.0" minY="6" maxX="0.0" maxY="-6"/>
+                    </tabBarItem>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="tgy-th-oe7">
                         <rect key="frame" x="0.0" y="44" width="375" height="44"/>
@@ -539,7 +541,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="729"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <view key="tableFooterView" contentMode="scaleToFill" id="bQr-KT-lBk">
+                        <view key="tableFooterView" contentMode="scaleToFill" misplaced="YES" id="bQr-KT-lBk">
                             <rect key="frame" x="0.0" y="378" width="375" height="44"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -870,7 +872,9 @@
         <scene sceneID="W6a-BP-3fN">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="FxY-DW-eHO" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="" image="money-icon" id="A5Z-ex-hUe"/>
+                    <tabBarItem key="tabBarItem" title="" image="money-icon" id="A5Z-ex-hUe">
+                        <inset key="imageInsets" minX="0.0" minY="6" maxX="0.0" maxY="-6"/>
+                    </tabBarItem>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="FSJ-fo-NZ8">
                         <rect key="frame" x="0.0" y="44" width="375" height="44"/>
@@ -892,7 +896,9 @@
         <scene sceneID="S9N-wz-nBj">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="OSz-cd-IOX" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="" image="my-icon" id="hP0-c6-QpB"/>
+                    <tabBarItem key="tabBarItem" title="" image="my-icon" id="hP0-c6-QpB">
+                        <inset key="imageInsets" minX="0.0" minY="6" maxX="0.0" maxY="-6"/>
+                    </tabBarItem>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" largeTitles="YES" id="aqH-5s-xp3">
                         <rect key="frame" x="0.0" y="44" width="375" height="96"/>
