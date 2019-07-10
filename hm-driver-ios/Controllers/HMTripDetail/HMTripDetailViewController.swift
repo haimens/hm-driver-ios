@@ -25,6 +25,7 @@ class HMTripDetailViewController: UIViewController {
         super.viewDidLoad()
         
         setupUI()
+        setupDelegate()
         loadData()
     }
     
@@ -45,6 +46,10 @@ class HMTripDetailViewController: UIViewController {
         
         // Spinner
         spinner = TDSwiftSpinner(viewController: self)
+    }
+    
+    private func setupDelegate() {
+        routeDetailView.delegate = self
     }
     
     @objc private func showOptionsMenu(_ sender: UIBarButtonItem) {
@@ -140,3 +145,10 @@ extension HMTripDetailViewController: TDSwiftPopoverDelegate {
         }
     }
 }
+
+extension HMTripDetailViewController: TDSwiftRouteDetailViewDelegate {
+    func didSelectAddressBtn(atLocation location: TDSwiftRouteDetailViewAddressButtonLocation, button: UIButton) {
+        TDSwiftMapTools.showAddressOptions(onViewController: self, withAddress: button.titleLabel?.text ?? "", completion: nil)
+    }
+}
+

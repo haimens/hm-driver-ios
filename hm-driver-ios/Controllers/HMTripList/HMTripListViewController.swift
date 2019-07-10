@@ -251,7 +251,6 @@ extension HMTripListViewController: UITableViewDataSource, UITableViewDelegate {
         let toAddressString = currentTripList?[indexPath.row]["to_addr_str"] as? String ?? CONST.UI.NOT_AVAILABLE_PLACEHOLDER
         cell.routeDetailView.upperAddressBtn.setTitle(fromAddressString, for: .normal)
         cell.routeDetailView.lowerAddressBtn.setTitle(toAddressString, for: .normal)
-        cell.routeDetailView.delegate = self
         
         // Disable cell address buttons
         cell.routeDetailView.upperAddressBtn.isEnabled = false
@@ -278,12 +277,5 @@ extension HMTripListViewController: UITableViewDataSource, UITableViewDelegate {
                 loadData()
             }
         }
-    }
-    
-}
-
-extension HMTripListViewController: TDSwiftRouteDetailViewDelegate {
-    func didSelectAddressBtn(atLocation location: TDSwiftRouteDetailViewAddressButtonLocation, button: UIButton) {
-        TDSwiftMapTools.showAddressOptions(onViewController: self, withAddress: button.titleLabel?.text ?? "", completion: nil)
     }
 }
