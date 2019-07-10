@@ -10,6 +10,7 @@ class HMPersonalInfoViewController: UIViewController {
         super.viewDidLoad()
     
         configNavigationAppearance()
+        setupGesture()
         loadData()
     }
     
@@ -20,6 +21,11 @@ class HMPersonalInfoViewController: UIViewController {
     }
     
     private func configNavigationAppearance() { navigationController?.navigationBar.prefersLargeTitles = false }
+    
+    private func setupGesture() {
+        // Tap to end editing
+        TDSwiftGesture.addTapToEndEditingGesture(onView: self.view)
+    }
     
     private func loadData() {
         // App auth instance
