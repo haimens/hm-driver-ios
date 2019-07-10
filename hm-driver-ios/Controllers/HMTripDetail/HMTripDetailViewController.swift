@@ -8,9 +8,18 @@ class HMTripDetailViewController: UIViewController {
     
     @IBOutlet weak var mapView: TDSwiftRouteDetailMapView!
     @IBOutlet weak var routeDetailView: HMRouteDetailView!
+    @IBOutlet weak var specialInstructionBtn: UIButton!
+    
+    @IBAction func specialInstructionBtnClicked(_ sender: UIButton) {
+        // Show note if available
+        if let note = specialInstructionString {
+            TDSwiftAlert.showSingleButtonAlert(title: "Special Instruction", message: note, actionBtnTitle: "OK", presentVC: self, btnAction: nil)
+        }
+    }
     
     // Data
     var tripToken: String?
+    var specialInstructionString: String?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -48,9 +57,7 @@ class HMTripDetailViewController: UIViewController {
         popover.present(onView: self.navigationController!.view, atPoint: popoverOrigin)
     }
     
-    private func configNavigationAppearance() {
-        navigationController?.navigationBar.prefersLargeTitles = false
-    }
+    private func configNavigationAppearance() { navigationController?.navigationBar.prefersLargeTitles = false }
 }
 
 extension HMTripDetailViewController: TDSwiftData {
@@ -64,9 +71,6 @@ extension HMTripDetailViewController: TDSwiftData {
         // Make request
         HMTrip.getTripDetail(withTripToken: tripToken) { (result, error) in
             DispatchQueue.main.async {
-                // Hide spinner
-                self.spinner.hide()
-                
                 // Hand request error
                 if let error = error { TDSwiftAlert.showSingleButtonAlert(title: "Request Failed", message: DriverConn.getErrorMessage(error: error), actionBtnTitle: "OK", presentVC: self, btnAction: nil) }
                 
@@ -96,6 +100,25 @@ extension HMTripDetailViewController: TDSwiftData {
                                                                destinationLocation: CLLocation(latitude: toLat, longitude: toLng)))
             mapView.drawRoute(removeOldRoute: true, completion: nil)
         }
+        
+        // From, to address
+        if let fromAddressString = (data["from_address_info"] as? [String : Any])?["addr_str"] as? String {
+            routeDetailView.upperAddressBtn.setTitle(fromAddressString, for: .normal)
+        }
+        if let toAddressString = (data["to_address_info"] as? [String : Any])?["addr_str"] as? String {
+            routeDetailView.lowerAddressBtn.setTitle(toAddressString, for: .normal)
+        }
+
+        // Special instruction
+        if let note = (data["basic_info"] as? [String : Any])?["note"] as? String {
+            specialInstructionBtn.isEnabled = true
+            specialInstructionString = note
+        } else {
+            specialInstructionBtn.isEnabled = false
+        }
+        
+        // Hide spinner
+        self.spinner.hide()
     }
     
     func alertParseDataFailed() {
