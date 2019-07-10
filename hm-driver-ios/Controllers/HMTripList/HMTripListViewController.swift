@@ -122,16 +122,35 @@ class HMTripListViewController: UIViewController {
     }
     
     @objc func handleRefreshRequest() { purgeData(); loadData() }
+    
+    func animateTableView(toState state: TDSwiftInfiniteTableViewState) {
+        switch state {
+        case .loading:
+            // Footer spinner
+            tableView.isLoadingNewContent = true
+            
+            // Show spinner
+            spinner.show()
+        case .standBy:
+            // Disable footer spinner
+            self.tableView.isLoadingNewContent = false
+            
+            // Hide spinner
+            self.spinner.hide()
+            
+            // Dismiss refresh control if is refreshing
+            if let refreshControl = self.tableView.refreshControl, refreshControl.isRefreshing {
+                self.tableView.refreshControl!.endRefreshing()
+            }
+        }
+    }
 }
 
 // Data
 extension HMTripListViewController: TDSwiftData {
     func loadData() {
-        // Footer spinner
-        tableView.isLoadingNewContent = true
-        
-        // Show spinner
-        spinner.show()
+        // Animate table view
+        animateTableView(toState: .loading)
         
         // Make request
         switch currentTripListType {
@@ -139,7 +158,10 @@ extension HMTripListViewController: TDSwiftData {
             HMTrip.getAllActiveTrips(query: ["start": String(describing: activeTripListEnd ?? 0), "order_key": "udate", "order_direction": "ASC"]) { (result, error) in
                 DispatchQueue.main.async {
                     // Hand request error
-                    if let error = error { TDSwiftAlert.showSingleButtonAlert(title: "Request Failed", message: DriverConn.getErrorMessage(error: error), actionBtnTitle: "OK", presentVC: self, btnAction: nil) }
+                    if let error = error {
+                        TDSwiftAlert.showSingleButtonAlert(title: "Request Failed", message: DriverConn.getErrorMessage(error: error), actionBtnTitle: "OK", presentVC: self, btnAction: nil)
+                        self.animateTableView(toState: .standBy)
+                    }
                     
                     // Parse request response
                     if let result = result { self.parseData(data: result) }
@@ -169,16 +191,8 @@ extension HMTripListViewController: TDSwiftData {
         self.currentTripListEnd = end
         self.currentTripListCount = count
         
-        // Disable footer spinner
-        self.tableView.isLoadingNewContent = false
-        
-        // Hide spinner
-        self.spinner.hide()
-        
-        // Dismiss refresh control if is refreshing
-        if self.tableView.refreshControl!.isRefreshing {
-            self.tableView.refreshControl!.endRefreshing()
-        }
+        // Animate table view
+        animateTableView(toState: .standBy)
         
         // Reload UI
         tableView.reloadData()

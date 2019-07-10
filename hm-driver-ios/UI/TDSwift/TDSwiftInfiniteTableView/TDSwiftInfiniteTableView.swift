@@ -1,5 +1,10 @@
 import UIKit
 
+enum TDSwiftInfiniteTableViewState {
+    case loading
+    case standBy
+}
+
 class TDSwiftInfiniteTableView: UITableView {
     var rowsToLoadNextPage: Int = 3
     
