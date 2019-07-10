@@ -16,7 +16,7 @@ enum DriverConnError: Error {
 }
 
 class DriverConn {
-    static func request(method: String, endpoint: String, query: [String: String]?, body: [String: Any]?, headers: [String: String]?, completion: (([String: Any]?, Error?) -> Void)?) {
+    static func request(method: String, endpoint: String, query: [String: Any]?, body: [String: Any]?, headers: [String: String]?, completion: (([String: Any]?, Error?) -> Void)?) {
         // Auth info
         var authedHeaders = headers
         if TDSwiftHavana.shared.authInfoAvailable() {

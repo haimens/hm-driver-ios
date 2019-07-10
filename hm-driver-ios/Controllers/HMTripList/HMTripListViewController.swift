@@ -1,5 +1,10 @@
 import UIKit
 
+enum HMTripListType {
+    case upcoming
+    case history
+}
+
 class HMTripListViewController: UIViewController {
     @IBOutlet weak var segmentedControl: TDSwiftSegmentedControl!
     @IBOutlet weak var tableView: TDSwiftInfiniteTableView!
@@ -7,10 +12,76 @@ class HMTripListViewController: UIViewController {
     // UI Components
     var spinner: TDSwiftSpinner!
     
-    // Data
+    // Segmented control data
+    var tripListItemPosition: [HMTripListType]!
+    var currentTripListType: HMTripListType = .upcoming
+    
+    // Active trip list data
     var activeTripList: [[String : Any]]?
     var activeTripListEnd: Int?
     var activeTripListCount: Int?
+    
+    // History trip list data
+    var historyTripList: [[String : Any]]?
+    var historyTripListEnd: Int?
+    var historyTripListCount: Int?
+    
+    // Current trip list data
+    var currentTripList: [[String : Any]]? {
+        get {
+            switch currentTripListType {
+            case .upcoming:
+                return activeTripList
+            case .history:
+                return historyTripList
+            }
+        }
+        set {
+            switch currentTripListType {
+            case .upcoming:
+                activeTripList = newValue
+            case .history:
+                historyTripList = newValue
+            }
+        }
+    }
+    var currentTripListEnd: Int? {
+        get {
+            switch currentTripListType {
+            case .upcoming:
+                return activeTripListEnd
+            case .history:
+                return historyTripListEnd
+            }
+        }
+        set {
+            switch currentTripListType {
+            case .upcoming:
+                activeTripListEnd = newValue
+            case .history:
+                historyTripListEnd = newValue
+            }
+            
+        }
+    }
+    var currentTripListCount: Int? {
+        get {
+            switch currentTripListType {
+            case .upcoming:
+                return activeTripListCount
+            case .history:
+                return historyTripListCount
+            }
+        }
+        set {
+            switch currentTripListType {
+            case .upcoming:
+                activeTripListCount = newValue
+            case .history:
+                historyTripListCount = newValue
+            }
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,6 +99,7 @@ class HMTripListViewController: UIViewController {
     
     private func setupSegmentedControl() {
         segmentedControl.itemTitles = ["UPCOMING", "HISTORY"]
+        tripListItemPosition = [.upcoming, .history]
     }
     
     private func setupUI() {
@@ -62,47 +134,60 @@ extension HMTripListViewController: TDSwiftData {
         spinner.show()
         
         // Make request
-        HMTrip.getAllActiveTrips(query: ["start": String(describing: activeTripListEnd ?? 0), "order_key": "udate", "order_direction": "ASC"]) { (result, error) in
-            DispatchQueue.main.async {
-                // Disable footer spinner
-                self.tableView.isLoadingNewContent = false
-                
-                // Hide spinner
-                self.spinner.hide()
-                
-                // Dismiss refresh control if is refreshing
-                if self.tableView.refreshControl!.isRefreshing {
-                    self.tableView.refreshControl!.endRefreshing()
+        switch currentTripListType {
+        case .upcoming:
+            HMTrip.getAllActiveTrips(query: ["start": String(describing: activeTripListEnd ?? 0), "order_key": "udate", "order_direction": "ASC"]) { (result, error) in
+                DispatchQueue.main.async {
+                    // Hand request error
+                    if let error = error { TDSwiftAlert.showSingleButtonAlert(title: "Request Failed", message: DriverConn.getErrorMessage(error: error), actionBtnTitle: "OK", presentVC: self, btnAction: nil) }
+                    
+                    // Parse request response
+                    if let result = result { self.parseData(data: result) }
                 }
-                
-                // Hand request error
-                if let error = error { TDSwiftAlert.showSingleButtonAlert(title: "Request Failed", message: DriverConn.getErrorMessage(error: error), actionBtnTitle: "OK", presentVC: self, btnAction: nil) }
-                
-                // Parse request response
-                if let result = result { self.parseData(data: result) }
+            }
+        case .history:
+            HMTrip.getAllTrips(query: ["status": 8, "start": String(describing: historyTripListEnd ?? 0), "order_key": "udate", "order_direction": "DESC"]) { (result, error) in
+                DispatchQueue.main.async {
+                    // Hand request error
+                    if let error = error { TDSwiftAlert.showSingleButtonAlert(title: "Request Failed", message: DriverConn.getErrorMessage(error: error), actionBtnTitle: "OK", presentVC: self, btnAction: nil) }
+                    
+                    // Parse request response
+                    if let result = result { self.parseData(data: result) }
+                }
             }
         }
     }
     
     func parseData(data: [String : Any]) {
         // Record list
-        guard let activeTripListEnd = data["end"] as? Int,
-            let activeTripListCount = data["count"] as? Int,
-            let activeTripList = data["record_list"] as? [[String : Any]] else { alertParseDataFailed(); return }
+        guard let end = data["end"] as? Int,
+            let count = data["count"] as? Int,
+            let tripList = data["record_list"] as? [[String : Any]] else { alertParseDataFailed(); return }
         
         // Assign parsed data to variable
-        self.activeTripList == nil ? self.activeTripList = activeTripList : self.activeTripList?.append(contentsOf: activeTripList)
-        self.activeTripListEnd = activeTripListEnd
-        self.activeTripListCount = activeTripListCount
+        self.currentTripList == nil ? self.currentTripList = tripList : self.currentTripList?.append(contentsOf: tripList)
+        self.currentTripListEnd = end
+        self.currentTripListCount = count
+        
+        // Disable footer spinner
+        self.tableView.isLoadingNewContent = false
+        
+        // Hide spinner
+        self.spinner.hide()
+        
+        // Dismiss refresh control if is refreshing
+        if self.tableView.refreshControl!.isRefreshing {
+            self.tableView.refreshControl!.endRefreshing()
+        }
         
         // Reload UI
         tableView.reloadData()
     }
     
     func purgeData() {
-        self.activeTripList = nil
-        self.activeTripListEnd = nil
-        self.activeTripListCount = nil
+        self.currentTripList = nil
+        self.currentTripListEnd = nil
+        self.currentTripListCount = nil
     }
     
     func alertParseDataFailed() {
@@ -112,13 +197,21 @@ extension HMTripListViewController: TDSwiftData {
 
 extension HMTripListViewController: TDSwiftSegmentedControlDelegate {
     func itemSelected(atIndex index: Int) {
-        print("Item selected: \(index)")
+        // Update currentTripListType
+        currentTripListType = tripListItemPosition[index]
+        
+        // Load data if not found, otherwise reload UI
+        if currentTripList == nil {
+            loadData()
+        } else {
+            self.tableView.reloadData()
+        }
     }
 }
 
 extension HMTripListViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return activeTripList?.count ?? 0
+        return currentTripList?.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -126,15 +219,15 @@ extension HMTripListViewController: UITableViewDataSource, UITableViewDelegate {
         let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: HMTripListTableViewCell.self)) as! HMTripListTableViewCell
         
         // Pickup time
-        if let pickupTimeString = activeTripList?[indexPath.row]["pickup_time"] as? String {
+        if let pickupTimeString = currentTripList?[indexPath.row]["pickup_time"] as? String {
             cell.dateLabel.text = TDSwiftDate.utcTimeStringToLocalTimeString(timeString: pickupTimeString, withFormat: "yyyy-MM-dd'T'HH:mm:ss.SSSZ", outputFormat: "MMM d' - 'h:mm a") ?? CONST.UI.NOT_AVAILABLE_PLACEHOLDER
         } else {
             cell.dateLabel.text = CONST.UI.NOT_AVAILABLE_PLACEHOLDER
         }
         
         // From and to address
-        let fromAddressString = activeTripList?[indexPath.row]["from_addr_str"] as? String ?? CONST.UI.NOT_AVAILABLE_PLACEHOLDER
-        let toAddressString = activeTripList?[indexPath.row]["to_addr_str"] as? String ?? CONST.UI.NOT_AVAILABLE_PLACEHOLDER
+        let fromAddressString = currentTripList?[indexPath.row]["from_addr_str"] as? String ?? CONST.UI.NOT_AVAILABLE_PLACEHOLDER
+        let toAddressString = currentTripList?[indexPath.row]["to_addr_str"] as? String ?? CONST.UI.NOT_AVAILABLE_PLACEHOLDER
         cell.routeDetailView.upperAddressBtn.setTitle(fromAddressString, for: .normal)
         cell.routeDetailView.lowerAddressBtn.setTitle(toAddressString, for: .normal)
         cell.routeDetailView.delegate = self
@@ -149,21 +242,23 @@ extension HMTripListViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         
-        // Present trip detail VC
-        let tripDetailVC = storyboard?.instantiateViewController(withIdentifier: String(describing: HMTripDetailViewController.self)) as! HMTripDetailViewController
-        tripDetailVC.tripToken = activeTripList?[indexPath.row]["trip_token"] as? String
-        self.navigationController?.pushViewController(tripDetailVC, animated: true)
+        // Present trip detail VC if showing active trip list
+        if currentTripListType == .upcoming {
+            let tripDetailVC = storyboard?.instantiateViewController(withIdentifier: String(describing: HMTripDetailViewController.self)) as! HMTripDetailViewController
+            tripDetailVC.tripToken = activeTripList?[indexPath.row]["trip_token"] as? String
+            self.navigationController?.pushViewController(tripDetailVC, animated: true)
+        }
     }
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        let currentListLength = self.activeTripList?.count ?? 0
-        if let activeTripListCount = activeTripListCount, indexPath.row == (currentListLength - 1) {
-            if activeTripListCount > currentListLength {
+        let currentListLength = self.currentTripList?.count ?? 0
+        if let currentTripListCount = currentTripListCount, indexPath.row == (currentListLength - 1) {
+            if currentTripListCount > currentListLength {
                 loadData()
             }
         }
     }
-
+    
 }
 
 extension HMTripListViewController: TDSwiftRouteDetailViewDelegate {
