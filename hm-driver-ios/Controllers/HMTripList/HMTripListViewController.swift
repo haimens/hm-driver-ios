@@ -91,6 +91,13 @@ class HMTripListViewController: UIViewController {
         loadData()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        // Navigation bar appearance
+        navigationController?.navigationBar.prefersLargeTitles = true
+    }
+    
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         

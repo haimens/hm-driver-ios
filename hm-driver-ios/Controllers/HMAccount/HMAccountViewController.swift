@@ -4,13 +4,16 @@ class HMAccountViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        setupUI()
+        configNavigationAppearance()
     }
     
-    private func setupUI() {
-        // Navigation appearance
-        navigationController?.navigationBar.prefersLargeTitles = true
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        configNavigationAppearance()
     }
+    
+    private func configNavigationAppearance() { navigationController?.navigationBar.prefersLargeTitles = true }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         // Deselect tableview cell
@@ -32,7 +35,7 @@ class HMAccountViewController: UITableViewController {
             let authVC = self.storyboard!.instantiateViewController(withIdentifier: String(describing: HMAuthViewController.self))
             self.present(authVC, animated: true, completion: nil)
         default:
-            fatalError("ACCOUNT VC TABLEVIEW INDEX INVALID")
+            performSegue(withIdentifier: String(describing: HMPersonalInfoViewController.self), sender: self)
         }
     }
 }
