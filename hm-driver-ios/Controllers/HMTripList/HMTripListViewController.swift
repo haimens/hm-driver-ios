@@ -2,13 +2,15 @@ import UIKit
 
 class HMTripListViewController: UIViewController {
     @IBOutlet weak var segmentedControl: TDSwiftSegmentedControl!
-    @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var tableView: TDSwiftInfiniteTableView!
     
     // UI Components
     var spinner: TDSwiftSpinner!
     
     // Data
     var activeTripList: [[String : Any]]?
+    var activeTripListEnd: Int?
+    var activeTripListCount: Int?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -53,12 +55,18 @@ class HMTripListViewController: UIViewController {
 // Data
 extension HMTripListViewController: TDSwiftData {
     func loadData() {
+        // Footer spinner
+        tableView.isLoadingNewContent = true
+        
         // Show spinner
         spinner.show()
         
         // Make request
         HMTrip.getAllActiveTrips { (result, error) in
             DispatchQueue.main.async {
+                // Disable footer spinner
+                self.tableView.isLoadingNewContent = false
+                
                 // Hide spinner
                 self.spinner.hide()
                 
@@ -78,8 +86,14 @@ extension HMTripListViewController: TDSwiftData {
     
     func parseData(data: [String : Any]) {
         // Record list
-        guard let activeTripList = data["record_list"] as? [[String : Any]] else { alertParseDataFailed(); return }
+        guard let activeTripListEnd = data["end"] as? Int,
+            let activeTripListCount = data["count"] as? Int,
+            let activeTripList = data["record_list"] as? [[String : Any]] else { alertParseDataFailed(); return }
+        
+        // Assign parsed data to variable
         self.activeTripList = activeTripList
+        self.activeTripListEnd = activeTripListEnd
+        self.activeTripListCount = activeTripListCount
         
         // Reload UI
         tableView.reloadData()

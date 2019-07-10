@@ -51,6 +51,7 @@
 		55EA8D5622B7062D00A57BF1 /* HMAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55EA8D5522B7062D00A57BF1 /* HMAccountViewController.swift */; };
 		55F73ADA22D4CB8A00880212 /* TDSwiftDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55F73AD922D4CB8A00880212 /* TDSwiftDate.swift */; };
 		55F73ADE22D4FD3D00880212 /* TDSwiftData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55F73ADD22D4FD3D00880212 /* TDSwiftData.swift */; };
+		55F73AE122D5A87D00880212 /* TDSwiftInfiniteTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55F73AE022D5A87D00880212 /* TDSwiftInfiniteTableView.swift */; };
 		55F9A2A522B4B92F00788FC5 /* TDSwiftHavana.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55F9A2A422B4B92F00788FC5 /* TDSwiftHavana.swift */; };
 		55F9A2A822B4BC1000788FC5 /* KeychainPasswordItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55F9A2A722B4BC1000788FC5 /* KeychainPasswordItem.swift */; };
 		55F9A2AA22B5677D00788FC5 /* DriverConn.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55F9A2A922B5677D00788FC5 /* DriverConn.swift */; };
@@ -131,6 +132,7 @@
 		55EA8D5522B7062D00A57BF1 /* HMAccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HMAccountViewController.swift; sourceTree = "<group>"; };
 		55F73AD922D4CB8A00880212 /* TDSwiftDate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TDSwiftDate.swift; sourceTree = "<group>"; };
 		55F73ADD22D4FD3D00880212 /* TDSwiftData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TDSwiftData.swift; sourceTree = "<group>"; };
+		55F73AE022D5A87D00880212 /* TDSwiftInfiniteTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TDSwiftInfiniteTableView.swift; sourceTree = "<group>"; };
 		55F9A2A422B4B92F00788FC5 /* TDSwiftHavana.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TDSwiftHavana.swift; sourceTree = "<group>"; };
 		55F9A2A722B4BC1000788FC5 /* KeychainPasswordItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeychainPasswordItem.swift; sourceTree = "<group>"; };
 		55F9A2A922B5677D00788FC5 /* DriverConn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DriverConn.swift; sourceTree = "<group>"; };
@@ -206,6 +208,7 @@
 		5504A7A222D1D2DF00081C10 /* TDSwift */ = {
 			isa = PBXGroup;
 			children = (
+				55F73ADF22D5A86C00880212 /* TDSwiftInfiniteTableView */,
 				55061A2422B6C05C003CDEAB /* TDSwiftRouteDetailView */,
 				55061A2122B6C034003CDEAB /* TDSwiftShape */,
 				55ABB63122B629CE00F569AF /* TDSwiftSegmentedControl */,
@@ -504,6 +507,14 @@
 			path = TDSwiftData;
 			sourceTree = "<group>";
 		};
+		55F73ADF22D5A86C00880212 /* TDSwiftInfiniteTableView */ = {
+			isa = PBXGroup;
+			children = (
+				55F73AE022D5A87D00880212 /* TDSwiftInfiniteTableView.swift */,
+			);
+			path = TDSwiftInfiniteTableView;
+			sourceTree = "<group>";
+		};
 		55F9A2A322B4B90900788FC5 /* TDSwiftHavana */ = {
 			isa = PBXGroup;
 			children = (
@@ -714,6 +725,7 @@
 				55F9A2BF22B5A09300788FC5 /* HMBasicButton.swift in Sources */,
 				5504A79F22D194AF00081C10 /* TDSwiftPopover+UIGestureRecognizer.swift in Sources */,
 				55EA8D4D22B6F38100A57BF1 /* HMTripDetailViewController.swift in Sources */,
+				55F73AE122D5A87D00880212 /* TDSwiftInfiniteTableView.swift in Sources */,
 				5504A79522D02AC900081C10 /* TDSwiftRouteDetailMapViewConfig.swift in Sources */,
 				5504A7D622D21D9300081C10 /* TDSwiftHeartBeatConfig.swift in Sources */,
 				55F9A2B722B5939800788FC5 /* HMMainTabBarController.swift in Sources */,
