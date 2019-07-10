@@ -62,7 +62,7 @@ extension HMTripListViewController: TDSwiftData {
         spinner.show()
         
         // Make request
-        HMTrip.getAllActiveTrips(query: ["start": String(describing: activeTripListEnd ?? 0)]) { (result, error) in
+        HMTrip.getAllActiveTrips(query: ["start": String(describing: activeTripListEnd ?? 0), "order_key": "udate", "order_direction": "ASC"]) { (result, error) in
             DispatchQueue.main.async {
                 // Disable footer spinner
                 self.tableView.isLoadingNewContent = false
