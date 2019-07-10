@@ -49,7 +49,7 @@ class HMTripListViewController: UIViewController {
         tableView.dataSource = self
     }
     
-    @objc func handleRefreshRequest() { loadData() }
+    @objc func handleRefreshRequest() { purgeData(); loadData() }
 }
 
 // Data
@@ -62,7 +62,7 @@ extension HMTripListViewController: TDSwiftData {
         spinner.show()
         
         // Make request
-        HMTrip.getAllActiveTrips { (result, error) in
+        HMTrip.getAllActiveTrips(query: ["start": String(describing: activeTripListEnd ?? 0)]) { (result, error) in
             DispatchQueue.main.async {
                 // Disable footer spinner
                 self.tableView.isLoadingNewContent = false
@@ -91,12 +91,18 @@ extension HMTripListViewController: TDSwiftData {
             let activeTripList = data["record_list"] as? [[String : Any]] else { alertParseDataFailed(); return }
         
         // Assign parsed data to variable
-        self.activeTripList = activeTripList
+        self.activeTripList == nil ? self.activeTripList = activeTripList : self.activeTripList?.append(contentsOf: activeTripList)
         self.activeTripListEnd = activeTripListEnd
         self.activeTripListCount = activeTripListCount
         
         // Reload UI
         tableView.reloadData()
+    }
+    
+    func purgeData() {
+        self.activeTripList = nil
+        self.activeTripListEnd = nil
+        self.activeTripListCount = nil
     }
     
     func alertParseDataFailed() {
@@ -148,6 +154,16 @@ extension HMTripListViewController: UITableViewDataSource, UITableViewDelegate {
         tripDetailVC.tripToken = activeTripList?[indexPath.row]["trip_token"] as? String
         self.navigationController?.pushViewController(tripDetailVC, animated: true)
     }
+    
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        let currentListLength = self.activeTripList?.count ?? 0
+        if let activeTripListCount = activeTripListCount, indexPath.row == (currentListLength - 1) {
+            if activeTripListCount > currentListLength {
+                loadData()
+            }
+        }
+    }
+
 }
 
 extension HMTripListViewController: TDSwiftRouteDetailViewDelegate {
