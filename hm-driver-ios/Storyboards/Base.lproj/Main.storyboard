@@ -852,6 +852,12 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="lG5-zP-a3k"/>
                     </view>
+                    <connections>
+                        <outlet property="emailTextField" destination="ynJ-zx-oFQ" id="sx1-lr-Yp4"/>
+                        <outlet property="nameTextField" destination="D1f-iS-RuU" id="hfP-bm-x2d"/>
+                        <outlet property="phoneTextField" destination="zuH-EZ-P2Z" id="m86-pl-Z3N"/>
+                        <outlet property="profileImageView" destination="HfK-tP-Gy1" id="rpL-7Y-IPM"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1Rh-jy-9lQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
