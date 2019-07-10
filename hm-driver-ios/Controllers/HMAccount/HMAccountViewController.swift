@@ -20,6 +20,8 @@ class HMAccountViewController: UITableViewController {
         tableView.deselectRow(at: indexPath, animated: true)
         
         switch indexPath.row {
+        case 0: // Personal Information
+            performSegue(withIdentifier: String(describing: HMPersonalInfoViewController.self), sender: self)
         case 3: // Sharing Location
             HMHeartBeat.shared.start()
             TDSwiftAlert.showSingleButtonAlert(title: "Location Sharing", message: "Service Started", actionBtnTitle: "OK", presentVC: self, btnAction: nil)
@@ -35,7 +37,7 @@ class HMAccountViewController: UITableViewController {
             let authVC = self.storyboard!.instantiateViewController(withIdentifier: String(describing: HMAuthViewController.self))
             self.present(authVC, animated: true, completion: nil)
         default:
-            performSegue(withIdentifier: String(describing: HMPersonalInfoViewController.self), sender: self)
+            fatalError("Account VC index not implemented")
         }
     }
 }
