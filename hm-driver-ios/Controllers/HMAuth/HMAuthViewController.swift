@@ -15,7 +15,7 @@ class HMAuthViewController: UIViewController {
         verifyAuthInfo()
     }
     
-    private func verifyAuthInfo() {        
+    private func verifyAuthInfo() {
         // Check user info availability
         if (TDSwiftHavana.shared.userInfoAvailable()) {
             TDSwiftHavana.shared.renewAuthInfo { (result, error) in
