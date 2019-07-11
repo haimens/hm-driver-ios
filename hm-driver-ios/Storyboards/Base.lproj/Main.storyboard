@@ -795,6 +795,7 @@
                     </tableView>
                     <navigationItem key="navigationItem" title="My Account" largeTitleDisplayMode="always" id="tcq-zU-Jfh"/>
                     <connections>
+                        <outlet property="sharingLocationLabel" destination="5bz-vl-rda" id="dpN-hi-Myu"/>
                         <segue destination="gGs-75-20R" kind="show" identifier="HMPersonalInfoViewController" id="KiG-al-gvs"/>
                     </connections>
                 </tableViewController>

@@ -1,6 +1,8 @@
 import UIKit
 
 class HMAccountViewController: UITableViewController {
+    @IBOutlet weak var sharingLocationLabel: UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -11,7 +13,7 @@ class HMAccountViewController: UITableViewController {
         super.viewWillAppear(animated)
         
         configNavigationAppearance()
-    }
+        sharingLocationLabel.text = HMHeartBeat.shared.getSharingButtonTitle()    }
     
     private func configNavigationAppearance() { navigationController?.navigationBar.prefersLargeTitles = true }
     
@@ -25,17 +27,17 @@ class HMAccountViewController: UITableViewController {
         case 3: // Sharing Location
             HMHeartBeat.shared.start()
             TDSwiftAlert.showSingleButtonAlert(title: "Location Sharing", message: "Service Started", actionBtnTitle: "OK", presentVC: self, btnAction: nil)
-        case 4: // Stop Sharing Location
-            HMHeartBeat.shared.stop()
-            TDSwiftAlert.showSingleButtonAlert(title: "Location Sharing", message: "Service Terminated", actionBtnTitle: "OK", presentVC: self, btnAction: nil)
-        case 5: // Logout
-            // Remove current auth and user info
-            TDSwiftHavana.shared.removeAuthInfo()
-            TDSwiftHavana.shared.removeUserInfo()
-            
-            // Present auth vc
-            let authVC = self.storyboard!.instantiateViewController(withIdentifier: String(describing: HMAuthViewController.self))
-            self.present(authVC, animated: true, completion: nil)
+            sharingLocationLabel.text = HMHeartBeat.shared.getSharingButtonTitle()        case 4: // Stop Sharing Location
+                HMHeartBeat.shared.stop()
+                TDSwiftAlert.showSingleButtonAlert(title: "Location Sharing", message: "Service Terminated", actionBtnTitle: "OK", presentVC: self, btnAction: nil)
+                sharingLocationLabel.text = HMHeartBeat.shared.getSharingButtonTitle()        case 5: // Logout
+                    // Remove current auth and user info
+                    TDSwiftHavana.shared.removeAuthInfo()
+                    TDSwiftHavana.shared.removeUserInfo()
+                    
+                    // Present auth vc
+                    let authVC = self.storyboard!.instantiateViewController(withIdentifier: String(describing: HMAuthViewController.self))
+                    self.present(authVC, animated: true, completion: nil)
         default:
             fatalError("Account VC index not implemented")
         }

@@ -12,9 +12,7 @@ class HMAuthViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        
-        print("View did appear")
-        
+                
         // If current location service permission is not desired, popup location permission vc
         if HMLocationManager.shared.getServiceAuthorizationStatus() == .authorizedAlways {
             verifyAuthInfo()
