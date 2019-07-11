@@ -19,4 +19,13 @@ public class HMHeartBeat {
     public func stop() {
         TDSwiftHeartBeat.shared.stop()
     }
+    
+    public func getSharingButtonTitle() -> String {
+        switch TDSwiftHeartBeat.shared.getHeartBeatStatus() {
+        case .activated:
+            return "Sharing Location(Activated)"
+        case .terminated:
+            return "Sharing Location"
+        }
+    }
 }
