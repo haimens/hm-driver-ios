@@ -58,6 +58,16 @@ class HMTripDetailViewController: UIViewController {
         let buttonItemViewCenter = buttonItemView.convert(buttonItemView.center, to: self.view)
         let popoverOrigin = CGPoint(x: buttonItemViewCenter.x - 5, y: buttonItemViewCenter.y + 10)
         
+        // Current sharing location button title
+        var sharingLocationButtonTitle = ""
+        switch TDSwiftHeartBeat.shared.getHeartBeatStatus() {
+        case .activated:
+            sharingLocationButtonTitle = "Sharing Location (ON)"
+        case .terminated:
+            sharingLocationButtonTitle = "Sharing Location"
+        }
+        popover.items[3] = TDSwiftPopoverItem(iconImage: popover.items[3].iconImage, titleText: sharingLocationButtonTitle)
+        
         // Present popover
         popover.present(onView: self.navigationController!.view, atPoint: popoverOrigin)
     }

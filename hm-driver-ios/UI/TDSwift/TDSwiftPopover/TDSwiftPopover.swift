@@ -50,7 +50,7 @@ public class TDSwiftPopover: NSObject {
     // Popover properties
     let backgroundColor: UIColor
     let size: CGSize
-    let items: [TDSwiftPopoverItem]
+    var items: [TDSwiftPopoverItem]
     let itemTitleColor: UIColor
     let itemTitleFont: UIFont
     
@@ -168,7 +168,6 @@ public class TDSwiftPopover: NSObject {
             }
         })
     }
-    
     
     // Calculate popover frame
     private func getPopoverFrame(baseView view: UIView, presentingPoint point: CGPoint) -> CGRect {
