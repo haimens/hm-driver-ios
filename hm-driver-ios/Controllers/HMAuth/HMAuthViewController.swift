@@ -12,7 +12,15 @@ class HMAuthViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        verifyAuthInfo()
+        
+        print("View did appear")
+        
+        // If current location service permission is not desired, popup location permission vc
+        if HMLocationManager.shared.getServiceAuthorizationStatus() == .authorizedAlways {
+            verifyAuthInfo()
+        } else {
+            self.present(storyboard!.instantiateViewController(withIdentifier: String(describing: HMLocationServicePermissionViewController.self)), animated: true, completion: nil)
+        }
     }
     
     private func verifyAuthInfo() {
@@ -37,7 +45,7 @@ class HMAuthViewController: UIViewController {
         }
     }
     
-    private func configHeartBeat() {
-        
-    }
+//    private func configHeartBeat() {
+//
+//    }
 }

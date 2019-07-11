@@ -26,6 +26,7 @@
 		55061A2322B6C040003CDEAB /* TDSwiftShape.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55061A2222B6C040003CDEAB /* TDSwiftShape.swift */; };
 		55061A2622B6C067003CDEAB /* TDSwiftRouteDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55061A2522B6C067003CDEAB /* TDSwiftRouteDetailView.swift */; };
 		551B13C022D6C6570079C696 /* HMLocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 551B13BF22D6C6570079C696 /* HMLocationManager.swift */; };
+		551B13C322D6C9ED0079C696 /* HMLocationServicePermissionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 551B13C222D6C9ED0079C696 /* HMLocationServicePermissionViewController.swift */; };
 		557B82A722B47531002D4774 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 557B82A622B47531002D4774 /* AppDelegate.swift */; };
 		557B82A922B47531002D4774 /* HMAuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 557B82A822B47531002D4774 /* HMAuthViewController.swift */; };
 		557B82AC22B47531002D4774 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 557B82AA22B47531002D4774 /* Main.storyboard */; };
@@ -104,6 +105,7 @@
 		55061A2222B6C040003CDEAB /* TDSwiftShape.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TDSwiftShape.swift; sourceTree = "<group>"; };
 		55061A2522B6C067003CDEAB /* TDSwiftRouteDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TDSwiftRouteDetailView.swift; sourceTree = "<group>"; };
 		551B13BF22D6C6570079C696 /* HMLocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HMLocationManager.swift; sourceTree = "<group>"; };
+		551B13C222D6C9ED0079C696 /* HMLocationServicePermissionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HMLocationServicePermissionViewController.swift; sourceTree = "<group>"; };
 		557B82A322B47531002D4774 /* hm-driver-ios.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "hm-driver-ios.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		557B82A622B47531002D4774 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		557B82A822B47531002D4774 /* HMAuthViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HMAuthViewController.swift; sourceTree = "<group>"; };
@@ -283,6 +285,14 @@
 			path = HMLocationManager;
 			sourceTree = "<group>";
 		};
+		551B13C122D6C9C60079C696 /* HMLocationServicePermission */ = {
+			isa = PBXGroup;
+			children = (
+				551B13C222D6C9ED0079C696 /* HMLocationServicePermissionViewController.swift */,
+			);
+			path = HMLocationServicePermission;
+			sourceTree = "<group>";
+		};
 		557B829A22B47531002D4774 = {
 			isa = PBXGroup;
 			children = (
@@ -358,6 +368,7 @@
 		557B82D622B4ADA0002D4774 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				551B13C122D6C9C60079C696 /* HMLocationServicePermission */,
 				55F73AE222D5F57700880212 /* HMPersonalInfo */,
 				55EA8D5422B705E200A57BF1 /* HMAccount */,
 				55EA8D5122B705A400A57BF1 /* HMEarning */,
@@ -762,6 +773,7 @@
 				5504A7A522D1DA4500081C10 /* HMThreeDotsBarButtonItem.swift in Sources */,
 				55F9A2B922B59F3300788FC5 /* CONST.swift in Sources */,
 				55F73ADA22D4CB8A00880212 /* TDSwiftDate.swift in Sources */,
+				551B13C322D6C9ED0079C696 /* HMLocationServicePermissionViewController.swift in Sources */,
 				55ABB63322B629E500F569AF /* TDSwiftSegmentedControl.swift in Sources */,
 				5504A79E22D194AF00081C10 /* TDSwiftPopover+UITableView.swift in Sources */,
 				55EA8D5322B705D100A57BF1 /* HMEarningViewController.swift in Sources */,
