@@ -1,5 +1,10 @@
 import Foundation
 
+public enum TDSwiftHeartBeatStatus {
+    case activated
+    case terminated
+}
+
 public class TDSwiftHeartBeat {
     // Hide initializer
     private init() {}
@@ -10,6 +15,10 @@ public class TDSwiftHeartBeat {
     // Config and timer reference
     private var config: TDSwiftHeartBeatConfig?
     private var timer: Timer?
+    
+    public func getHeartBeatStatus() -> TDSwiftHeartBeatStatus {
+        return timer == nil ? TDSwiftHeartBeatStatus.terminated : TDSwiftHeartBeatStatus.activated
+    }
     
     public func config(config: TDSwiftHeartBeatConfig) {
         self.config = config
@@ -32,7 +41,10 @@ public class TDSwiftHeartBeat {
     
     public func stop() {
         // Invalidate timer if exists
-        if let timer = timer { timer.invalidate() }
+        if let timer = self.timer {
+            timer.invalidate()
+            self.timer = nil
+        }
     }
     
     @objc private func sendRequest() {
