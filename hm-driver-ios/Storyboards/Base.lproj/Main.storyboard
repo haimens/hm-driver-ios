@@ -797,6 +797,7 @@
                     <connections>
                         <outlet property="sharingLocationLabel" destination="5bz-vl-rda" id="dpN-hi-Myu"/>
                         <segue destination="gGs-75-20R" kind="show" identifier="HMPersonalInfoViewController" id="KiG-al-gvs"/>
+                        <segue destination="c6N-zx-eyC" kind="presentation" identifier="HMResetPasswordViewController" id="J3e-hl-JFT"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XK2-f9-wVU" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -974,9 +975,86 @@
             </objects>
             <point key="canvasLocation" x="3190" y="2180"/>
         </scene>
+        <!--Reset Password View Controller-->
+        <scene sceneID="rSA-aX-ZU8">
+            <objects>
+                <viewController storyboardIdentifier="ANResetPasswordViewController" modalPresentationStyle="overFullScreen" id="c6N-zx-eyC" customClass="HMResetPasswordViewController" customModule="hm_driver_ios" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="h7N-4B-sRG">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aRc-Jv-xRS" customClass="TDSwiftRoundedCornerView" customModule="hm_driver_ios" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="81" width="375" height="731"/>
+                                <subviews>
+                                    <wkWebView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WbK-iI-pMB">
+                                        <rect key="frame" x="0.0" y="77" width="375" height="654"/>
+                                        <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <wkWebViewConfiguration key="configuration">
+                                            <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" none="YES"/>
+                                            <wkPreferences key="preferences"/>
+                                        </wkWebViewConfiguration>
+                                    </wkWebView>
+                                    <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Vb6-79-92Z">
+                                        <rect key="frame" x="327" y="32" width="22" height="22"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="22" id="JwK-qv-Hqu"/>
+                                            <constraint firstAttribute="width" constant="22" id="TTF-yf-dmg"/>
+                                        </constraints>
+                                        <state key="normal" title="X" image="card_dismiss_btn"/>
+                                        <connections>
+                                            <action selector="dismissBtnClicked:" destination="c6N-zx-eyC" eventType="touchUpInside" id="fyI-KC-WcZ"/>
+                                        </connections>
+                                    </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Reset Password" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7jn-Ir-YNI">
+                                        <rect key="frame" x="25" y="25" width="205" height="36"/>
+                                        <fontDescription key="fontDescription" style="UICTFontTextStyleTitle0"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="RqV-S0-Usx">
+                                        <rect key="frame" x="169" y="347" width="37" height="37"/>
+                                        <color key="color" red="0.062745098040000002" green="0.031372549020000001" blue="0.41960784309999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </activityIndicatorView>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="RqV-S0-Usx" firstAttribute="centerX" secondItem="aRc-Jv-xRS" secondAttribute="centerX" id="0Ms-Cm-1jd"/>
+                                    <constraint firstItem="WbK-iI-pMB" firstAttribute="leading" secondItem="aRc-Jv-xRS" secondAttribute="leading" id="2r7-Nb-tJb"/>
+                                    <constraint firstAttribute="trailing" secondItem="WbK-iI-pMB" secondAttribute="trailing" id="3JN-sr-f9d"/>
+                                    <constraint firstItem="Vb6-79-92Z" firstAttribute="top" secondItem="aRc-Jv-xRS" secondAttribute="top" constant="32" id="5hw-FZ-Dv2"/>
+                                    <constraint firstAttribute="bottom" secondItem="WbK-iI-pMB" secondAttribute="bottom" id="9xo-Dk-m2d"/>
+                                    <constraint firstItem="WbK-iI-pMB" firstAttribute="top" secondItem="aRc-Jv-xRS" secondAttribute="top" constant="77" id="Bxs-PK-BQg"/>
+                                    <constraint firstAttribute="trailing" secondItem="Vb6-79-92Z" secondAttribute="trailing" constant="26" id="IRJ-mE-jAW"/>
+                                    <constraint firstItem="Vb6-79-92Z" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="7jn-Ir-YNI" secondAttribute="trailing" id="JBd-zb-Pbl"/>
+                                    <constraint firstItem="RqV-S0-Usx" firstAttribute="centerY" secondItem="aRc-Jv-xRS" secondAttribute="centerY" id="M7T-kX-1cu"/>
+                                    <constraint firstItem="7jn-Ir-YNI" firstAttribute="top" secondItem="aRc-Jv-xRS" secondAttribute="top" constant="25" id="YgB-Vm-JpW"/>
+                                    <constraint firstItem="7jn-Ir-YNI" firstAttribute="leading" secondItem="aRc-Jv-xRS" secondAttribute="leading" constant="25" id="m1e-KZ-v4z"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="aRc-Jv-xRS" firstAttribute="trailing" secondItem="4gT-a1-PB8" secondAttribute="trailing" id="BBZ-9n-r9f"/>
+                            <constraint firstItem="aRc-Jv-xRS" firstAttribute="leading" secondItem="4gT-a1-PB8" secondAttribute="leading" id="Vxm-sk-XgN"/>
+                            <constraint firstItem="aRc-Jv-xRS" firstAttribute="top" secondItem="4gT-a1-PB8" secondAttribute="top" constant="37" id="iBp-i9-FKK"/>
+                            <constraint firstAttribute="bottom" secondItem="aRc-Jv-xRS" secondAttribute="bottom" id="xW9-dQ-6vz"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="4gT-a1-PB8"/>
+                    </view>
+                    <connections>
+                        <outlet property="bgView" destination="aRc-Jv-xRS" id="utn-EU-O0G"/>
+                        <outlet property="loadingIndicator" destination="RqV-S0-Usx" id="Y33-x6-cp8"/>
+                        <outlet property="webView" destination="WbK-iI-pMB" id="cv0-61-hLc"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="z7n-Lz-Ifo" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="5156" y="2523"/>
+        </scene>
     </scenes>
     <resources>
         <image name="card-icon" width="24" height="16"/>
+        <image name="card_dismiss_btn" width="22" height="22"/>
         <image name="exit-icon" width="22" height="23"/>
         <image name="haimens-logo" width="101" height="120"/>
         <image name="money-icon" width="26" height="30"/>

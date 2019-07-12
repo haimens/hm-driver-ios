@@ -24,6 +24,8 @@ class HMAccountViewController: UITableViewController {
         switch indexPath.row {
         case 0: // Personal Information
             performSegue(withIdentifier: String(describing: HMPersonalInfoViewController.self), sender: self)
+        case 1: // Reset password
+            performSegue(withIdentifier: String(describing: HMResetPasswordViewController.self), sender: self)
         case 3: // Sharing Location
             HMHeartBeat.shared.start()
             TDSwiftAlert.showSingleButtonAlert(title: "Location Sharing", message: "Service Started", actionBtnTitle: "OK", presentVC: self, btnAction: nil)
