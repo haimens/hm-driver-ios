@@ -1,11 +1,20 @@
 import Foundation
+import MapKit
 
 public class HMHeartBeat {
     // Config heart beat
     private init() {
         TDSwiftHeartBeat.shared.config(config: TDSwiftHeartBeatConfig(timeInterval: 5.0, action: {
-            // TODO!!!!!!!!!!!!!!!!!!!!!!!! CONFIG HEART BEAT
-            print("砰砰！")
+            // Latest location
+            guard let latestCoordinate = HMLocationManager.shared.loadLocation() else {
+                print("Location temporarily unavailable")
+                return
+            }
+            
+            // Register location
+            HMDriver.registerLocation(body: ["lat": latestCoordinate.latitude, "lng": latestCoordinate.longitude], completion: { (result, error) in
+                if error != nil { print("Register location failed") }
+            })
         }))
     }
     
