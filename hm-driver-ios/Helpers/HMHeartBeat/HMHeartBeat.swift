@@ -13,7 +13,7 @@ public class HMHeartBeat {
             
             // Register location
             HMDriver.registerLocation(body: ["lat": latestCoordinate.latitude, "lng": latestCoordinate.longitude], completion: { (result, error) in
-                if error != nil { print("Register location failed") }
+                if error != nil { print("Register location error: \(String(describing: error))") }
             })
         }))
     }

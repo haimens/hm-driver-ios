@@ -67,6 +67,7 @@ public class TDSwiftHeartBeat: NSObject {
         HMLocationManager.shared.locationManager.distanceFilter = 10.0  // In meters.
         HMLocationManager.shared.locationManager.delegate = self
         HMLocationManager.shared.locationManager.startUpdatingLocation()
+        HMLocationManager.shared.locationManager.startMonitoringSignificantLocationChanges()
         
         // Enabled location service successfully
         return true
@@ -74,6 +75,7 @@ public class TDSwiftHeartBeat: NSObject {
     
     private func stopReceivingLocationChanges() {
         HMLocationManager.shared.locationManager.stopUpdatingLocation()
+        HMLocationManager.shared.locationManager.stopMonitoringSignificantLocationChanges()
     }
     
     @objc private func sendRequest() {
