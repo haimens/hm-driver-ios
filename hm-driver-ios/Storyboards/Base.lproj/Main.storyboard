@@ -452,7 +452,7 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="tgy-th-oe7">
                         <rect key="frame" x="0.0" y="44" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <color key="tintColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <color key="tintColor" red="0.062745098040000002" green="0.031372549020000001" blue="0.41960784309999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <textAttributes key="largeTitleTextAttributes">
                             <fontDescription key="fontDescription" type="boldSystem" pointSize="34"/>
                         </textAttributes>
@@ -501,13 +501,13 @@
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="June 11 - 11:58 AM" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="niD-DD-GZX">
                                                                     <rect key="frame" x="0.0" y="0.0" width="202" height="14.333333333333334"/>
                                                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
-                                                                    <nil key="textColor"/>
+                                                                    <color key="textColor" red="0.19607843137254902" green="0.19607843137254902" blue="0.36470588235294116" alpha="1" colorSpace="calibratedRGB"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$129.50" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DhQ-mM-lk2">
                                                                     <rect key="frame" x="212" y="0.0" width="67.333333333333314" height="14.333333333333334"/>
                                                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
-                                                                    <color key="textColor" red="0.25490196078431371" green="0.45882352941176469" blue="0.019607843137254902" alpha="1" colorSpace="calibratedRGB"/>
+                                                                    <color key="textColor" red="0.1803921568627451" green="0.80784313725490198" blue="0.53725490196078429" alpha="1" colorSpace="calibratedRGB"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
                                                             </subviews>
@@ -518,7 +518,7 @@
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Customer paid cash" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="O7I-9c-8Bo">
                                                             <rect key="frame" x="0.0" y="14.333333333333332" width="279.33333333333331" height="12"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="10"/>
-                                                            <color key="textColor" red="0.58823529411764708" green="0.58823529411764708" blue="0.58823529411764708" alpha="1" colorSpace="calibratedRGB"/>
+                                                            <color key="textColor" red="0.32156862745098036" green="0.37254901960784315" blue="0.49803921568627452" alpha="1" colorSpace="calibratedRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                     </subviews>
@@ -562,6 +562,63 @@
                                             <outlet property="iconBGView" destination="fAk-XI-z6U" id="gZC-2a-3MR"/>
                                             <outlet property="iconLabel" destination="dgb-YQ-QgS" id="4ti-n9-p5Y"/>
                                             <outlet property="subtitleLabel" destination="O7I-9c-8Bo" id="wfa-Da-XMF"/>
+                                        </connections>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="HMEarningSalaryTableViewCell" rowHeight="89" id="aUu-Jb-f6w" customClass="HMEarningSalaryTableViewCell" customModule="hm_driver_ios" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="117" width="375" height="89"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="aUu-Jb-f6w" id="45T-TU-wqk">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="88.666666666666671"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="hAm-2n-rdr">
+                                                    <rect key="frame" x="24" y="31.333333333333336" width="327" height="26.333333333333336"/>
+                                                    <subviews>
+                                                        <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="jBJ-yl-Nke">
+                                                            <rect key="frame" x="0.0" y="0.0" width="327" height="14.333333333333334"/>
+                                                            <subviews>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="June 11 - 11:58 AM" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EaN-47-OHa">
+                                                                    <rect key="frame" x="0.0" y="0.0" width="237.66666666666666" height="14.333333333333334"/>
+                                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
+                                                                    <color key="textColor" red="0.1960784314" green="0.1960784314" blue="0.36470588240000001" alpha="1" colorSpace="calibratedRGB"/>
+                                                                    <nil key="highlightedColor"/>
+                                                                </label>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$129.50" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wrn-wp-3Yx">
+                                                                    <rect key="frame" x="247.66666666666671" y="0.0" width="79.333333333333343" height="14.333333333333334"/>
+                                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
+                                                                    <color key="textColor" red="0.1803921568627451" green="0.80784313725490198" blue="0.53725490196078429" alpha="1" colorSpace="calibratedRGB"/>
+                                                                    <nil key="highlightedColor"/>
+                                                                </label>
+                                                            </subviews>
+                                                            <constraints>
+                                                                <constraint firstItem="EaN-47-OHa" firstAttribute="width" secondItem="wrn-wp-3Yx" secondAttribute="width" multiplier="3" id="0Da-Rz-OeX"/>
+                                                            </constraints>
+                                                        </stackView>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Customer paid cash" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KIy-b1-gW5">
+                                                            <rect key="frame" x="0.0" y="14.333333333333332" width="327" height="12"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                                                            <color key="textColor" red="0.32156862749999998" green="0.37254901959999998" blue="0.49803921569999998" alpha="1" colorSpace="calibratedRGB"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
+                                                    <constraints>
+                                                        <constraint firstItem="jBJ-yl-Nke" firstAttribute="leading" secondItem="hAm-2n-rdr" secondAttribute="leading" id="0T3-49-3dz"/>
+                                                        <constraint firstAttribute="trailing" secondItem="KIy-b1-gW5" secondAttribute="trailing" id="Q4b-3B-KtF"/>
+                                                        <constraint firstAttribute="trailing" secondItem="jBJ-yl-Nke" secondAttribute="trailing" id="gAx-Dx-cXP"/>
+                                                        <constraint firstItem="KIy-b1-gW5" firstAttribute="leading" secondItem="hAm-2n-rdr" secondAttribute="leading" id="ybd-2A-5ba"/>
+                                                    </constraints>
+                                                </stackView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="trailing" secondItem="hAm-2n-rdr" secondAttribute="trailing" constant="24" id="cKx-Hr-pdf"/>
+                                                <constraint firstItem="hAm-2n-rdr" firstAttribute="centerY" secondItem="45T-TU-wqk" secondAttribute="centerY" id="xJ3-8o-8qq"/>
+                                                <constraint firstItem="hAm-2n-rdr" firstAttribute="leading" secondItem="45T-TU-wqk" secondAttribute="leading" constant="24" id="yj2-Z4-Sjm"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="amountLabel" destination="wrn-wp-3Yx" id="lae-ev-aSY"/>
+                                            <outlet property="dateTimeLabel" destination="EaN-47-OHa" id="9Ax-NI-G82"/>
+                                            <outlet property="subtitleLabel" destination="KIy-b1-gW5" id="cdL-eS-6lw"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -937,6 +994,7 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="FSJ-fo-NZ8">
                         <rect key="frame" x="0.0" y="44" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="tintColor" red="0.062745098040000002" green="0.031372549020000001" blue="0.41960784309999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <textAttributes key="largeTitleTextAttributes">
                             <fontDescription key="fontDescription" type="boldSystem" pointSize="34"/>
                         </textAttributes>
@@ -961,7 +1019,7 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" largeTitles="YES" id="aqH-5s-xp3">
                         <rect key="frame" x="0.0" y="44" width="375" height="96"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <color key="tintColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <color key="tintColor" red="0.062745098040000002" green="0.031372549020000001" blue="0.41960784309999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <textAttributes key="largeTitleTextAttributes">
                             <fontDescription key="fontDescription" type="boldSystem" pointSize="34"/>
                         </textAttributes>
