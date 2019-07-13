@@ -44,6 +44,8 @@
 		5589A97522BF6B35003353C9 /* HMEarningSalaryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5589A97422BF6B35003353C9 /* HMEarningSalaryTableViewCell.swift */; };
 		5589A97822C03E23003353C9 /* HMTripDetailBGView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5589A97722C03E23003353C9 /* HMTripDetailBGView.swift */; };
 		5589A97B22C03FC1003353C9 /* TDSwiftRoundedCornerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5589A97A22C03FC1003353C9 /* TDSwiftRoundedCornerView.swift */; };
+		5599D6BA22D9945A008E5381 /* HMWage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5599D6B922D9945A008E5381 /* HMWage.swift */; };
+		5599D6BC22D99478008E5381 /* HMSalary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5599D6BB22D99478008E5381 /* HMSalary.swift */; };
 		55ABB63022B6225800F569AF /* TDSwiftSpinner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55ABB62F22B6225800F569AF /* TDSwiftSpinner.swift */; };
 		55ABB63322B629E500F569AF /* TDSwiftSegmentedControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55ABB63222B629E500F569AF /* TDSwiftSegmentedControl.swift */; };
 		55ABB63522B629F900F569AF /* TDSwiftSegmentedControlConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55ABB63422B629F900F569AF /* TDSwiftSegmentedControlConfig.swift */; };
@@ -132,6 +134,8 @@
 		5589A97422BF6B35003353C9 /* HMEarningSalaryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HMEarningSalaryTableViewCell.swift; sourceTree = "<group>"; };
 		5589A97722C03E23003353C9 /* HMTripDetailBGView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HMTripDetailBGView.swift; sourceTree = "<group>"; };
 		5589A97A22C03FC1003353C9 /* TDSwiftRoundedCornerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TDSwiftRoundedCornerView.swift; sourceTree = "<group>"; };
+		5599D6B922D9945A008E5381 /* HMWage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HMWage.swift; sourceTree = "<group>"; };
+		5599D6BB22D99478008E5381 /* HMSalary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HMSalary.swift; sourceTree = "<group>"; };
 		55ABB62F22B6225800F569AF /* TDSwiftSpinner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TDSwiftSpinner.swift; sourceTree = "<group>"; };
 		55ABB63222B629E500F569AF /* TDSwiftSegmentedControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TDSwiftSegmentedControl.swift; sourceTree = "<group>"; };
 		55ABB63422B629F900F569AF /* TDSwiftSegmentedControlConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TDSwiftSegmentedControlConfig.swift; sourceTree = "<group>"; };
@@ -421,6 +425,8 @@
 				55BCFB6222CCE8F30080C39E /* HMAuth.swift */,
 				5504A7DE22D3947A00081C10 /* HMTrip.swift */,
 				55F73AE522D5FDAB00880212 /* HMDriver.swift */,
+				5599D6B922D9945A008E5381 /* HMWage.swift */,
+				5599D6BB22D99478008E5381 /* HMSalary.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -804,6 +810,7 @@
 				55DF25BD22B5E457003AED00 /* TDSwiftGesture.swift in Sources */,
 				5504A79422D02AC900081C10 /* TDSwiftRouteDetailMapViewInfo.swift in Sources */,
 				55EA8D4A22B6EEF500A57BF1 /* HMRouteDetailView.swift in Sources */,
+				5599D6BC22D99478008E5381 /* HMSalary.swift in Sources */,
 				557B82A922B47531002D4774 /* HMAuthViewController.swift in Sources */,
 				5504A7A522D1DA4500081C10 /* HMThreeDotsBarButtonItem.swift in Sources */,
 				55F9A2B922B59F3300788FC5 /* CONST.swift in Sources */,
@@ -824,6 +831,7 @@
 				55EA8D5622B7062D00A57BF1 /* HMAccountViewController.swift in Sources */,
 				5504A7A822D1DD3B00081C10 /* HMTripDetailPopover.swift in Sources */,
 				557B82DD22B4B0CA002D4774 /* ENV.swift in Sources */,
+				5599D6BA22D9945A008E5381 /* HMWage.swift in Sources */,
 				55F9A2AA22B5677D00788FC5 /* DriverConn.swift in Sources */,
 				5589A97822C03E23003353C9 /* HMTripDetailBGView.swift in Sources */,
 				5504A79722D02AC900081C10 /* TDSwiftRouteDetailMapView.swift in Sources */,
