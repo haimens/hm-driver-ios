@@ -347,6 +347,9 @@
                                             <constraint firstAttribute="height" constant="46" id="D95-Tt-7wy"/>
                                         </constraints>
                                         <state key="normal" title="-"/>
+                                        <connections>
+                                            <action selector="actionBtnClicked:" destination="hPU-Qa-Oif" eventType="touchUpInside" id="srO-oS-dUD"/>
+                                        </connections>
                                     </button>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="uTs-i6-10s">
                                         <rect key="frame" x="25" y="140.33333333333337" width="325" height="27"/>
@@ -404,6 +407,7 @@
                         <viewLayoutGuide key="safeArea" id="FRm-jH-Nhg"/>
                     </view>
                     <connections>
+                        <outlet property="actionBtn" destination="hYc-oy-hCc" id="MCs-fd-fjL"/>
                         <outlet property="mapView" destination="AMI-Ex-N2p" id="vV2-JD-69A"/>
                         <outlet property="routeDetailView" destination="Cg3-aq-a6j" id="46O-sj-ttP"/>
                         <outlet property="routeInfoLabel" destination="ac0-Vj-7Zn" id="AVV-mS-7k7"/>

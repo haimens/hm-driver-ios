@@ -35,12 +35,16 @@ class HMTripDetailViewController: UIViewController {
     @IBOutlet weak var routeDetailView: HMRouteDetailView!
     @IBOutlet weak var specialInstructionBtn: UIButton!
     @IBOutlet weak var routeInfoLabel: UILabel!
+    @IBOutlet weak var actionBtn: HMBasicButton!
     
     @IBAction func specialInstructionBtnClicked(_ sender: UIButton) {
         // Show note if available
         if let note = specialInstructionString {
             TDSwiftAlert.showSingleButtonAlert(title: "Special Instruction", message: note, actionBtnTitle: "OK", presentVC: self, btnAction: nil)
         }
+    }
+    
+    @IBAction func actionBtnClicked(_ sender: HMBasicButton) {
     }
     
     // Data
@@ -217,6 +221,20 @@ extension HMTripDetailViewController: TDSwiftData {
             }
         } else {
             TDSwiftAlert.showSingleButtonAlert(title: "Map Error", message: "Location info unavailable", actionBtnTitle: "OK", presentVC: self, btnAction: nil)
+        }
+        
+        // Action button title
+        switch currentTripDetailType {
+        case .dispatched:
+            actionBtn.setTitle("Go To Pickup Location", for: .normal)
+        case .onTheWay:
+            actionBtn.setTitle("Send Arrival", for: .normal)
+        case .arrived:
+            actionBtn.setTitle("Customer On Board", for: .normal)
+        case .cob:
+            actionBtn.setTitle("Customer Arrival Destination", for: .normal)
+        case .cad:
+            actionBtn.setTitle("Pay", for: .normal)
         }
         
         // From, to address
