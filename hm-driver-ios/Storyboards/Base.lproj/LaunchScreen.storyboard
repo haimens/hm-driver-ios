@@ -18,24 +18,32 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="auth-background" translatesAutoresizingMaskIntoConstraints="NO" id="cMz-32-0IE">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                            </imageView>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="haimens-logo" translatesAutoresizingMaskIntoConstraints="NO" id="CBK-Ru-jWv">
                                 <rect key="frame" x="156.5" y="388" width="101" height="120"/>
                             </imageView>
                         </subviews>
-                        <color key="backgroundColor" red="0.062745098040000002" green="0.031372549020000001" blue="0.41960784309999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="cMz-32-0IE" firstAttribute="top" secondItem="Ze5-6b-2t3" secondAttribute="top" id="2q0-mg-GVj"/>
+                            <constraint firstItem="cMz-32-0IE" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="RKZ-T2-I8t"/>
                             <constraint firstItem="CBK-Ru-jWv" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="Y9V-aN-IGt"/>
                             <constraint firstItem="CBK-Ru-jWv" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="hxD-Qj-4c7"/>
+                            <constraint firstItem="cMz-32-0IE" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="j5w-v1-vGO"/>
+                            <constraint firstAttribute="bottom" secondItem="cMz-32-0IE" secondAttribute="bottom" id="lAl-YS-ZDz"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iYj-Kq-Ea1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="53" y="375"/>
+            <point key="canvasLocation" x="52.173913043478265" y="375"/>
         </scene>
     </scenes>
     <resources>
+        <image name="auth-background" width="375" height="812"/>
         <image name="haimens-logo" width="101" height="120"/>
     </resources>
 </document>
