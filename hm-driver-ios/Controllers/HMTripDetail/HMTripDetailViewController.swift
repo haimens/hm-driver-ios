@@ -1,6 +1,31 @@
 import UIKit
 import MapKit
 
+enum HMTripDetailType: Int {
+    case dispatched = 3
+    case onTheWay = 4
+    case arrived = 5
+    case cob = 6
+    case cad = 7
+    
+    static func getType(withStatus status: Int) -> HMTripDetailType? {
+        switch status {
+        case 3:
+            return .dispatched
+        case 4:
+            return .onTheWay
+        case 5:
+            return .arrived
+        case 6:
+            return .cob
+        case 7:
+            return .cad
+        default:
+            return nil
+        }
+    }
+}
+
 class HMTripDetailViewController: UIViewController {
     // UI Components
     var popover: TDSwiftPopover!
@@ -20,6 +45,7 @@ class HMTripDetailViewController: UIViewController {
     // Data
     var tripToken: String?
     var specialInstructionString: String?
+    var currentTripDetailType: HMTripDetailType?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -96,6 +122,23 @@ extension HMTripDetailViewController: TDSwiftData {
     }
     
     func parseData(data: [String : Any]) {
+        // Trip detail type
+        if let status = (data["basic_info"] as? [String : Any])?["status"] as? Int {
+            // Parse status
+            currentTripDetailType = HMTripDetailType.getType(withStatus: status)
+        }
+        
+        // Verify trip detail type
+        guard let currentTripDetailType = currentTripDetailType else {
+            TDSwiftAlert.showSingleButtonAlert(title: "Request Failed", message: "Invalid trip status", actionBtnTitle: "OK", presentVC: self) {
+                // Diamiss current vc, trip status invalid
+                self.navigationController?.popViewController(animated: true)
+                return
+            }
+            return
+        }
+        
+        
         // VC title date
         if let pickupTimeString = (data["basic_info"] as? [String : Any])?["pickup_time"] as? String {
             self.title = TDSwiftDate.utcTimeStringToLocalTimeString(timeString: pickupTimeString, withFormat: "yyyy-MM-dd'T'HH:mm:ss.SSSZ", outputFormat: "MMM d") ?? CONST.UI.NOT_AVAILABLE_PLACEHOLDER
@@ -104,16 +147,64 @@ extension HMTripDetailViewController: TDSwiftData {
         }
         
         // Coordinate
-        if let fromLat = (data["from_address_info"] as? [String : Any])?["lat"] as? Double,
-            let fromLng = (data["from_address_info"] as? [String : Any])?["lng"] as? Double,
-            let toLat = (data["to_address_info"] as? [String : Any])?["lat"] as? Double,
-            let toLng = (data["to_address_info"] as? [String : Any])?["lng"] as? Double {
-            mapView.config(config: TDSwiftRouteDetailMapView.defaultConfig,
-                           info: TDSwiftRouteDetailMapViewInfo(sourceTitle: "Driver Location",
-                                                               destinationTitle: "Pickup",
-                                                               sourceLocation: CLLocation(latitude: fromLat, longitude: fromLng),
-                                                               destinationLocation: CLLocation(latitude: toLat, longitude: toLng)))
-            mapView.drawRoute(removeOldRoute: true, completion: nil)
+        // Pickup, dropoff location and pickup time
+        if let pickupLat = (data["from_address_info"] as? [String : Any])?["lat"] as? Double,
+            let pickupLng = (data["from_address_info"] as? [String : Any])?["lng"] as? Double,
+            let dropoffLat = (data["to_address_info"] as? [String : Any])?["lat"] as? Double,
+            let dropoffLng = (data["to_address_info"] as? [String : Any])?["lng"] as? Double,
+            let utcPickupTimeString = (data["basic_info"] as? [String : Any])?["pickup_time"] as? String,
+            let pickupTimeString = TDSwiftDate.utcTimeStringToLocalTimeString(timeString: utcPickupTimeString, withFormat: "yyyy-MM-dd'T'HH:mm:ss.SSSZ", outputFormat: "h:mm a") {
+            switch currentTripDetailType {
+            case .dispatched, .onTheWay:
+                // Current location
+                let currentCoordinate = HMLocationManager.shared.locationManager.location?.coordinate
+                if currentCoordinate == nil { TDSwiftAlert.showSingleButtonAlert(title: "Map Error", message: "Your location is temporarily unavailable", actionBtnTitle: "OK", presentVC: self, btnAction: nil) }
+                let currentLocation = CLLocation(latitude: currentCoordinate!.latitude, longitude: currentCoordinate!.longitude)
+                
+                // Config mapview
+                mapView.showsUserLocation = true
+                mapView.config(config: TDSwiftRouteDetailMapView.defaultConfig,
+                               info: TDSwiftRouteDetailMapViewInfo(sourceTitle: "Driver Location",
+                                                                   destinationTitle: "Pickup \(pickupTimeString)",
+                                sourceLocation: currentLocation,
+                                destinationLocation: CLLocation(latitude: pickupLat, longitude: pickupLng)))
+                mapView.drawRoute(removeOldRoute: true, completion: nil)
+            case .arrived:
+                // ConfigM mapview
+                mapView.showsUserLocation = false
+                mapView.config(config: TDSwiftRouteDetailMapView.defaultConfig,
+                               info: TDSwiftRouteDetailMapViewInfo(sourceTitle: "Pickup \(pickupTimeString)",
+                                destinationTitle: "Dropoff",
+                                sourceLocation: CLLocation(latitude: pickupLat, longitude: pickupLng),
+                                destinationLocation: CLLocation(latitude: dropoffLat, longitude: dropoffLng)))
+                mapView.drawRoute(removeOldRoute: true, completion: nil)
+            case .cob:
+                // ConfigM mapview
+                mapView.showsUserLocation = false
+                mapView.config(config: TDSwiftRouteDetailMapView.defaultConfig,
+                               info: TDSwiftRouteDetailMapViewInfo(sourceTitle: "Customer On Board",
+                                                                   destinationTitle: "Dropoff",
+                                                                   sourceLocation: CLLocation(latitude: pickupLat, longitude: pickupLng),
+                                                                   destinationLocation: CLLocation(latitude: dropoffLat, longitude: dropoffLng)))
+                mapView.drawRoute(removeOldRoute: true, completion: nil)
+            case .cad:
+                // Cad time
+                if let utcCadTimeString = (data["basic_info"] as? [String : Any])?["cad_time"] as? String,
+                    let cadTimeString = TDSwiftDate.utcTimeStringToLocalTimeString(timeString: utcCadTimeString, withFormat: "yyyy-MM-dd'T'HH:mm:ss.SSSZ", outputFormat: "h:mm a"){
+                    // ConfigM mapview
+                    mapView.showsUserLocation = false
+                    mapView.config(config: TDSwiftRouteDetailMapView.defaultConfig,
+                                   info: TDSwiftRouteDetailMapViewInfo(sourceTitle: "Pickup \(pickupTimeString)",
+                                                                       destinationTitle: "Dropoff \(cadTimeString)",
+                                                                       sourceLocation: CLLocation(latitude: pickupLat, longitude: pickupLng),
+                                                                       destinationLocation: CLLocation(latitude: dropoffLat, longitude: dropoffLng)))
+                    mapView.drawRoute(removeOldRoute: true, completion: nil)
+                } else {
+                    TDSwiftAlert.showSingleButtonAlert(title: "Map Error", message: "CAD time not found", actionBtnTitle: "OK", presentVC: self, btnAction: nil)
+                }
+            }
+        } else {
+            TDSwiftAlert.showSingleButtonAlert(title: "Map Error", message: "Location info unavailable", actionBtnTitle: "OK", presentVC: self, btnAction: nil)
         }
         
         // From, to address
@@ -123,7 +214,7 @@ extension HMTripDetailViewController: TDSwiftData {
         if let toAddressString = (data["to_address_info"] as? [String : Any])?["addr_str"] as? String {
             routeDetailView.lowerAddressBtn.setTitle(toAddressString, for: .normal)
         }
-
+        
         // Special instruction
         if let note = (data["basic_info"] as? [String : Any])?["note"] as? String {
             specialInstructionBtn.isEnabled = true

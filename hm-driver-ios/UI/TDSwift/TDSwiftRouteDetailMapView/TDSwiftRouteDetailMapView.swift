@@ -133,7 +133,7 @@ public class TDSwiftRouteDetailMapView: MKMapView, MKMapViewDelegate {
         let annotationId = "TDSwiftRouteDetailMapViewAnnotationView"
         
         // Convert annotation to custom type
-        guard let annotationWithType = annotation as? TDSwiftRouteDetailMapViewAnnotation else { fatalError("INVALID MAP ANNOTATION FOUND") }
+        guard let annotationWithType = annotation as? TDSwiftRouteDetailMapViewAnnotation else { return nil }
 
         // Reuse or create annotation view
         var annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: annotationId) as? MKMarkerAnnotationView
