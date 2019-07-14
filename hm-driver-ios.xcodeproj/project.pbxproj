@@ -40,6 +40,7 @@
 		557B82DD22B4B0CA002D4774 /* ENV.swift in Sources */ = {isa = PBXBuildFile; fileRef = 557B82DC22B4B0CA002D4774 /* ENV.swift */; };
 		557B82E222B4B5DC002D4774 /* TDSwiftRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 557B82E022B4B5DC002D4774 /* TDSwiftRequest.swift */; };
 		557B82E322B4B5DC002D4774 /* TDSwiftRequestError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 557B82E122B4B5DC002D4774 /* TDSwiftRequestError.swift */; };
+		5582606E22DAD2D4003EDCCA /* HMSms.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5582606D22DAD2D4003EDCCA /* HMSms.swift */; };
 		5589A97322BF6B08003353C9 /* HMEarningWageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5589A97222BF6B08003353C9 /* HMEarningWageTableViewCell.swift */; };
 		5589A97522BF6B35003353C9 /* HMEarningSalaryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5589A97422BF6B35003353C9 /* HMEarningSalaryTableViewCell.swift */; };
 		5589A97822C03E23003353C9 /* HMTripDetailBGView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5589A97722C03E23003353C9 /* HMTripDetailBGView.swift */; };
@@ -131,6 +132,7 @@
 		557B82DC22B4B0CA002D4774 /* ENV.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ENV.swift; sourceTree = "<group>"; };
 		557B82E022B4B5DC002D4774 /* TDSwiftRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TDSwiftRequest.swift; sourceTree = "<group>"; };
 		557B82E122B4B5DC002D4774 /* TDSwiftRequestError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TDSwiftRequestError.swift; sourceTree = "<group>"; };
+		5582606D22DAD2D4003EDCCA /* HMSms.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HMSms.swift; sourceTree = "<group>"; };
 		5589A97222BF6B08003353C9 /* HMEarningWageTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HMEarningWageTableViewCell.swift; sourceTree = "<group>"; };
 		5589A97422BF6B35003353C9 /* HMEarningSalaryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HMEarningSalaryTableViewCell.swift; sourceTree = "<group>"; };
 		5589A97722C03E23003353C9 /* HMTripDetailBGView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HMTripDetailBGView.swift; sourceTree = "<group>"; };
@@ -429,6 +431,7 @@
 				55F73AE522D5FDAB00880212 /* HMDriver.swift */,
 				5599D6B922D9945A008E5381 /* HMWage.swift */,
 				5599D6BB22D99478008E5381 /* HMSalary.swift */,
+				5582606D22DAD2D4003EDCCA /* HMSms.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -833,6 +836,7 @@
 				557B82A922B47531002D4774 /* HMAuthViewController.swift in Sources */,
 				5504A7A522D1DA4500081C10 /* HMThreeDotsBarButtonItem.swift in Sources */,
 				55F9A2B922B59F3300788FC5 /* CONST.swift in Sources */,
+				5582606E22DAD2D4003EDCCA /* HMSms.swift in Sources */,
 				55F73ADA22D4CB8A00880212 /* TDSwiftDate.swift in Sources */,
 				551B13C322D6C9ED0079C696 /* HMLocationServicePermissionViewController.swift in Sources */,
 				55ABB63322B629E500F569AF /* TDSwiftSegmentedControl.swift in Sources */,
