@@ -45,18 +45,32 @@ class HMTripDetailViewController: UIViewController {
     }
     
     @IBAction func actionBtnClicked(_ sender: HMBasicButton) {
+        TDSwiftAlert.showSingleButtonAlertWithCancel(title: actionTitle!, message: actionDescription!, actionBtnTitle: "Confirm", cancelBtnTitle: "Cancel", presentVC: self) {
+            self.actions?[self.currentTripDetailType!]?()
+        }
     }
     
     // Data
     var tripToken: String?
+    var customerToken: String?
     var specialInstructionString: String?
     var currentTripDetailType: HMTripDetailType?
+    var routeInfo: TDSwiftRouteDetailMapViewResult?
+    var driverInfo: [String:Any]?
+    var customerInfo: [String:Any]?
+    var basicInfo: [String:Any]?
+    
+    // Action
+    var actions: [HMTripDetailType: () -> Void]?
+    var actionTitle: String?
+    var actionDescription: String?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         setupUI()
         setupDelegate()
+        setupActions()
         loadData()
     }
     
@@ -81,6 +95,60 @@ class HMTripDetailViewController: UIViewController {
     
     private func setupDelegate() {
         routeDetailView.delegate = self
+    }
+    
+    private func setupActions() {
+        // Init actions
+        actions = [:]
+        
+        // Dispatched
+        actionTitle = "Go To Pickup Location"
+        actionDescription = "You will\nstart sharing location\n&\nnavigate to pickup location"
+        actions![HMTripDetailType.dispatched] = {
+            // Trip token, customer token
+            guard let tripToken = self.tripToken, let customerToken = self.customerToken else {
+                TDSwiftAlert.showSingleButtonAlert(title: "Update Trip Failed", message: "Trip info incomplete", actionBtnTitle: "OK", presentVC: self, btnAction: nil)
+                return
+            }
+            
+            print("tripToken \(tripToken)")
+            print("customerToken \(customerToken)")
+            
+            // Start location sharing
+            HMHeartBeat.shared.start()
+            
+            // Start time, eta time
+            let startTime = TDSwiftDate.getCurrentLocalTimeString(withFormat: "yyyy-MM-dd'T'HH:mm:ss.SSSZ")
+            var etaTime: String? = nil
+            if let routeInfo = self.routeInfo {
+                var currentDate = TDSwiftDate.getCurrentLocalDate()
+                currentDate.addTimeInterval(routeInfo.expectedTravelTime)
+                etaTime = TDSwiftDate.formatDateToDateString(forDate: currentDate, withFormat: "yyyy-MM-dd'T'HH:mm:ss.SSSZ")
+            }
+            
+            // Modify trip
+            var body: [String:Any] = ["status": 4]
+            body["start_time"] = startTime
+            if let etaTime = etaTime { body["eta_time"] = etaTime }
+            HMTrip.modifyTripDetail(withTripToken: tripToken, body: body, completion: { (result, error) in
+                if let error = error { TDSwiftAlert.showSingleButtonAlert(title: "Update Trip Failed", message: "\(DriverConn.getErrorMessage(error: error))", actionBtnTitle: "OK", presentVC: self, btnAction: nil) }
+            })
+            
+            // Send customer SMS
+            var localizedEtaTime = "N/A"
+            if let etaTime = etaTime {
+                localizedEtaTime = TDSwiftDate.utcTimeStringToLocalTimeString(timeString: etaTime, withFormat: "yyyy-MM-dd'T'HH:mm:ss.SSSZ", outputFormat: "MMM d, h:mm a") ?? "N/A"
+            }
+            let plateNum = self.driverInfo?["license_num"] as? String
+            let smsTitle = "\(TDSwiftHavana.shared.auth?.company_name ?? "N/A") ETA Notice"
+            let smsMessage = "Your driver is on the way. ETA: \(localizedEtaTime),\nVehicle Plate#: \(plateNum ?? "N/A").\nThank you!"
+            HMSms.sendSMS(withCustomerToken: customerToken, body: ["title": smsTitle, "message": smsMessage], completion: { (result, error) in
+                if let error = error { TDSwiftAlert.showSingleButtonAlert(title: "Send SMS Failed", message: "\(DriverConn.getErrorMessage(error: error))", actionBtnTitle: "OK", presentVC: self, btnAction: nil) }
+            })
+            
+            // Reload trip detail
+            self.loadData()
+        }
     }
     
     @objc private func showOptionsMenu(_ sender: UIBarButtonItem) {
@@ -133,6 +201,12 @@ extension HMTripDetailViewController: TDSwiftData {
             currentTripDetailType = HMTripDetailType.getType(withStatus: status)
         }
         
+        // Data
+        self.customerToken = (data["customer_info"] as? [String : Any])?["customer_token"] as? String
+        self.driverInfo = data["driver_info"] as? [String : Any]
+        self.customerInfo = data["customer_info"] as? [String : Any]
+        self.basicInfo = data["basic_info"] as? [String : Any]
+        
         // Verify trip detail type
         guard let currentTripDetailType = currentTripDetailType else {
             TDSwiftAlert.showSingleButtonAlert(title: "Request Failed", message: "Invalid trip status", actionBtnTitle: "OK", presentVC: self) {
@@ -163,7 +237,10 @@ extension HMTripDetailViewController: TDSwiftData {
             case .dispatched, .onTheWay:
                 // Current location
                 let currentCoordinate = HMLocationManager.shared.locationManager.location?.coordinate
-                if currentCoordinate == nil { TDSwiftAlert.showSingleButtonAlert(title: "Map Error", message: "Your location is temporarily unavailable", actionBtnTitle: "OK", presentVC: self, btnAction: nil) }
+                if currentCoordinate == nil {
+                    TDSwiftAlert.showSingleButtonAlert(title: "Map Error", message: "Your location is temporarily unavailable", actionBtnTitle: "OK", presentVC: self, btnAction: nil)
+                    return
+                }
                 let currentLocation = CLLocation(latitude: currentCoordinate!.latitude, longitude: currentCoordinate!.longitude)
                 
                 // Config mapview
@@ -175,7 +252,10 @@ extension HMTripDetailViewController: TDSwiftData {
                                 destinationLocation: CLLocation(latitude: pickupLat, longitude: pickupLng)))
                 mapView.drawRoute(removeOldRoute: true) { (info, error) in
                     if let error = error { TDSwiftAlert.showSingleButtonAlert(title: "Map Error", message: "Render map with error: \(error)", actionBtnTitle: "OK", presentVC: self, btnAction: nil) }
-                    if let info = info { self.displayRouteInfo(withInfo: info) }
+                    if let info = info {
+                        self.routeInfo = info
+                        self.displayRouteInfo(withInfo: info)
+                    }
                 }
             case .arrived:
                 // ConfigM mapview
@@ -187,7 +267,10 @@ extension HMTripDetailViewController: TDSwiftData {
                                 destinationLocation: CLLocation(latitude: dropoffLat, longitude: dropoffLng)))
                 mapView.drawRoute(removeOldRoute: true) { (info, error) in
                     if let error = error { TDSwiftAlert.showSingleButtonAlert(title: "Map Error", message: "Render map with error: \(error)", actionBtnTitle: "OK", presentVC: self, btnAction: nil) }
-                    if let info = info { self.displayRouteInfo(withInfo: info) }
+                    if let info = info {
+                        self.routeInfo = info
+                        self.displayRouteInfo(withInfo: info)
+                    }
                 }
             case .cob:
                 // ConfigM mapview
@@ -199,7 +282,10 @@ extension HMTripDetailViewController: TDSwiftData {
                                                                    destinationLocation: CLLocation(latitude: dropoffLat, longitude: dropoffLng)))
                 mapView.drawRoute(removeOldRoute: true) { (info, error) in
                     if let error = error { TDSwiftAlert.showSingleButtonAlert(title: "Map Error", message: "Render map with error: \(error)", actionBtnTitle: "OK", presentVC: self, btnAction: nil) }
-                    if let info = info { self.displayRouteInfo(withInfo: info) }
+                    if let info = info {
+                        self.routeInfo = info
+                        self.displayRouteInfo(withInfo: info)
+                    }
                 }
             case .cad:
                 // Cad time
@@ -214,7 +300,10 @@ extension HMTripDetailViewController: TDSwiftData {
                                     destinationLocation: CLLocation(latitude: dropoffLat, longitude: dropoffLng)))
                     mapView.drawRoute(removeOldRoute: true) { (info, error) in
                         if let error = error { TDSwiftAlert.showSingleButtonAlert(title: "Map Error", message: "Render map with error: \(error)", actionBtnTitle: "OK", presentVC: self, btnAction: nil) }
-                        if let info = info { self.displayRouteInfo(withInfo: info) }
+                        if let info = info {
+                            self.routeInfo = info
+                            self.displayRouteInfo(withInfo: info)
+                        }
                     }                } else {
                     TDSwiftAlert.showSingleButtonAlert(title: "Map Error", message: "CAD time not found", actionBtnTitle: "OK", presentVC: self, btnAction: nil)
                 }

@@ -14,6 +14,7 @@ struct HMAuth: Decodable {
     let icon_path: String
     let driver_token: String
     let cell: String
+    let company_name: String
     
     init?(data: [String: Any]) {
         if let user_token = data["user_token"] as? String { self.user_token = user_token } else { return nil }
@@ -29,5 +30,6 @@ struct HMAuth: Decodable {
         if let icon_path = data["icon_path"] as? String { self.icon_path = icon_path } else { return nil }
         if let driver_token = data["driver_token"] as? String { self.driver_token = driver_token } else { return nil }
         if let cell = data["cell"] as? String { self.cell = cell } else { return nil }
+        if let company_name = data["company_name"] as? String { self.company_name = company_name } else { return nil }
     }
 }

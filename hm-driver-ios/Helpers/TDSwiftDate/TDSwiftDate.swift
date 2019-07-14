@@ -29,4 +29,39 @@ class TDSwiftDate {
         // Date to output time string
         return dateToLocalTimeString(date: date, withFormat: outputFormat)
     }
+    
+    static func getCurrentLocalTimeString(withFormat format: String) -> String {
+        // Date formatter instance
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = format
+        
+        // Current date
+        let date = Date()
+        
+        // Time string
+        return dateFormatter.string(from: date)
+    }
+    
+    static func getCurrentLocalDate() -> Date {
+        return Date()
+    }
+    
+    static func formatDateToDateString(forDate date: Date, withFormat format: String) -> String {
+        // Date formatter instance
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = format
+        
+        // Format date
+        return dateFormatter.string(from: date)
+    }
+    
+    static func getCurrentUTCTimeString(withFormat format: String) -> String {
+        // UTC Formatter
+        let formatter = DateFormatter()
+        formatter.timeZone = TimeZone(secondsFromGMT: 0)
+        formatter.dateFormat = format
+        
+        // Formatted string
+        return formatter.string(from: Date())
+    }
 }
