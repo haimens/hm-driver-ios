@@ -19,8 +19,8 @@ class HMTrip {
         }
     }
     
-    static func modifyTripDetail(body: [String:Any]?, completion: (([String: Any]?, Error?)->Void)?) {
-        DriverConn.request(method: "POST", endpoint: "/api/v0/driver/location", query: nil, body: body, headers: nil) { (result, error) in
+    static func modifyTripDetail(withTripToken tripToken: String, body: [String:Any]?, completion: (([String: Any]?, Error?)->Void)?) {
+        DriverConn.request(method: "PATCH", endpoint: "/api/v0/trip/detail/\(tripToken)", query: nil, body: body, headers: nil) { (result, error) in
             completion?(result, error)
         }
     }
