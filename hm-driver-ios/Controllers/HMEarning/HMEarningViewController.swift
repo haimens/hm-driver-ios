@@ -16,6 +16,23 @@ class HMEarningViewController: UIViewController {
     var earningListItemPosition: [HMEarningListType]!
     var currentEarningListType: HMEarningListType = .wage
     
+    // Balance data
+    var wageInSum: Int?
+    var wageOutSum: Int?
+    var salarySum: Int?
+    var balance: Int? {
+        get {
+            if
+                let wageInSum = wageInSum,
+                let wageOutSum = wageOutSum,
+                let salarySum = salarySum {
+                return wageInSum - wageOutSum - salarySum
+            } else {
+                return nil
+            }
+        }
+    }
+    
     // Wage list data
     var wageList: [[String : Any]]?
     var wageListEnd: Int?
@@ -89,6 +106,7 @@ class HMEarningViewController: UIViewController {
         setupUI()
         setupDelegates()
         loadData()
+        loadBalance()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -128,7 +146,7 @@ class HMEarningViewController: UIViewController {
         tableView.dataSource = self
     }
     
-    @objc func handleRefreshRequest() { purgeData(); loadData() }
+    @objc func handleRefreshRequest() { purgeData(); loadData(); loadBalance() }
     
     func animateTableView(toState state: TDSwiftInfiniteTableViewState) {
         switch state {
@@ -205,10 +223,79 @@ extension HMEarningViewController: TDSwiftData {
         tableView.reloadData()
     }
     
+    func loadBalance() {
+        // Dispatch group instance
+        let dispatchGroup = DispatchGroup()
+        
+        // In wage sum
+        dispatchGroup.enter()
+        HMWage.getWageSum(query: ["type": 1]) { (result, error) in
+            DispatchQueue.main.async {
+                // Hand request error
+                if let error = error {
+                    TDSwiftAlert.showSingleButtonAlert(title: "Request Balance Failed", message: DriverConn.getErrorMessage(error: error), actionBtnTitle: "OK", presentVC: self, btnAction: nil)
+                }
+                
+                // Parse result
+                self.wageInSum = result?["sum"] as? Int
+                
+                // Leave dispatch group
+                dispatchGroup.leave()
+            }
+        }
+        
+        // Out wage sum
+        dispatchGroup.enter()
+        HMWage.getWageSum(query: ["type": 2]) { (result, error) in
+            DispatchQueue.main.async {
+                // Hand request error
+                if let error = error {
+                    TDSwiftAlert.showSingleButtonAlert(title: "Request Balance Failed", message: DriverConn.getErrorMessage(error: error), actionBtnTitle: "OK", presentVC: self, btnAction: nil)
+                }
+                
+                // Parse result
+                self.wageOutSum = result?["sum"] as? Int
+                
+                // Leave dispatch group
+                dispatchGroup.leave()
+            }
+        }
+        
+        // Salary sum
+        dispatchGroup.enter()
+        HMSalary.getSalarySum { (result, error) in
+            DispatchQueue.main.async {
+                // Handle request error
+                if let error = error {
+                    TDSwiftAlert.showSingleButtonAlert(title: "Request Balance Failed", message: DriverConn.getErrorMessage(error: error), actionBtnTitle: "OK", presentVC: self, btnAction: nil)
+                }
+
+                // Parse result
+                self.salarySum = result?["sum"] as? Int
+                
+                // Leave dispatch group
+                dispatchGroup.leave()
+            }
+        }
+        
+        // All requests returned
+        dispatchGroup.notify(queue: .main) {
+            if self.balance != nil {
+                self.tableView.reloadData()
+            }
+        }
+    }
+    
     func purgeData() {
+        // Wage, salary
         self.currentEarningList = nil
         self.currentEarningListEnd = nil
         self.currentEarningListCount = nil
+        
+        // Balance
+        self.wageInSum = nil
+        self.wageOutSum = nil
+        self.salarySum = nil
     }
     
     func alertParseDataFailed() {
@@ -324,5 +411,25 @@ extension HMEarningViewController: UITableViewDataSource, UITableViewDelegate {
                 loadData()
             }
         }
+    }
+    
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        // Balance header cell instance
+        let balanceHeaderCell = tableView.dequeueReusableCell(withIdentifier: String(describing: HMEarningBalanceTableViewCell.self)) as! HMEarningBalanceTableViewCell
+        
+        // If balance info avaliable
+        if let balance = balance {
+            let balanceInDollarString = TDSwiftUnitConverter.centToDollar(amountInCent: balance)
+            balanceHeaderCell.balanceLabel.text = "$" + balanceInDollarString
+        } else {
+            balanceHeaderCell.balanceLabel.text = CONST.UI.NOT_AVAILABLE_PLACEHOLDER
+        }
+        
+        // Header view instance
+        return balanceHeaderCell
+    }
+    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 70.0
     }
 }

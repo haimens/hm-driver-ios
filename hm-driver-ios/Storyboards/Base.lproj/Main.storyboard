@@ -626,6 +626,42 @@
                                             <outlet property="subtitleLabel" destination="KIy-b1-gW5" id="cdL-eS-6lw"/>
                                         </connections>
                                     </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="HMEarningBalanceTableViewCell" rowHeight="89" id="PvC-kR-SEz" customClass="HMEarningBalanceTableViewCell" customModule="hm_driver_ios" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="206" width="375" height="89"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="PvC-kR-SEz" id="UN8-tf-Tug">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="88.666666666666671"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="wKK-VH-XCg">
+                                                    <rect key="frame" x="24" y="33.666666666666664" width="327" height="21.666666666666664"/>
+                                                    <subviews>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Current Balance" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DKd-gg-7cj">
+                                                            <rect key="frame" x="0.0" y="0.0" width="158.66666666666666" height="21.666666666666668"/>
+                                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="-" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tJL-b9-GFV">
+                                                            <rect key="frame" x="168.66666666666663" y="0.0" width="158.33333333333337" height="21.666666666666668"/>
+                                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                                                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
+                                                </stackView>
+                                            </subviews>
+                                            <color key="backgroundColor" red="0.1803921568627451" green="0.80784313725490198" blue="0.53725490196078429" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                            <constraints>
+                                                <constraint firstItem="wKK-VH-XCg" firstAttribute="leading" secondItem="UN8-tf-Tug" secondAttribute="leading" constant="24" id="Zlb-W1-WDb"/>
+                                                <constraint firstAttribute="trailing" secondItem="wKK-VH-XCg" secondAttribute="trailing" constant="24" id="h9a-qT-sCs"/>
+                                                <constraint firstItem="wKK-VH-XCg" firstAttribute="centerY" secondItem="UN8-tf-Tug" secondAttribute="centerY" id="zGM-8c-Ypf"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="balanceLabel" destination="tJL-b9-GFV" id="Jnv-Hv-uCS"/>
+                                        </connections>
+                                    </tableViewCell>
                                 </prototypes>
                             </tableView>
                         </subviews>
