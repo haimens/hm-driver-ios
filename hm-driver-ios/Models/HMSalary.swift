@@ -6,4 +6,11 @@ class HMSalary {
             completion?(result, error)
         }
     }
+    
+    static func getSalarySum(completion: (([String: Any]?, Error?)->Void)?) {
+        DriverConn.request(method: "GET", endpoint: "/api/v0/salary/sum/driver", query: nil, body: nil, headers: nil) { (result, error) in
+            completion?(result, error)
+        }
+    }
+
 }

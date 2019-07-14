@@ -6,4 +6,10 @@ class HMWage {
             completion?(result, error)
         }
     }
+    
+    static func getWageSum(query: [String:Any]?, completion: (([String: Any]?, Error?)->Void)?) {
+        DriverConn.request(method: "GET", endpoint: "/api/v0/wage/sum/driver", query: query, body: nil, headers: nil) { (result, error) in
+            completion?(result, error)
+        }
+    }
 }
