@@ -53,6 +53,26 @@
                             <constraint firstItem="0n7-Qw-SQM" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="oyx-2k-zBn"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="color" keyPath="fromColor">
+                                <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="color" keyPath="toColor">
+                                <color key="value" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="number" keyPath="fromX">
+                                <real key="value" value="0.5"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="number" keyPath="fromY">
+                                <real key="value" value="0.0"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="number" keyPath="toX">
+                                <real key="value" value="0.5"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="number" keyPath="toY">
+                                <real key="value" value="1"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
                     </view>
                     <connections>
                         <segue destination="xwO-YJ-Hg4" kind="presentation" identifier="HMLoginViewController" id="lgY-2A-iRK"/>
@@ -1165,6 +1185,6 @@
         <image name="support-icon" width="23" height="23"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="XkE-lh-rPd"/>
+        <segue reference="a0r-L2-v76"/>
     </inferredMetricsTieBreakers>
 </document>
