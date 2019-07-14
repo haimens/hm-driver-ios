@@ -43,6 +43,7 @@
 		5582606E22DAD2D4003EDCCA /* HMSms.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5582606D22DAD2D4003EDCCA /* HMSms.swift */; };
 		5582607122DADB19003EDCCA /* TDSwiftFileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5582607022DADB19003EDCCA /* TDSwiftFileManager.swift */; };
 		5582607422DADBBF003EDCCA /* TDSwiftHash.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5582607322DADBBF003EDCCA /* TDSwiftHash.swift */; };
+		5582607722DADDBD003EDCCA /* TDSwiftImageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5582607622DADDBD003EDCCA /* TDSwiftImageManager.swift */; };
 		5589A97322BF6B08003353C9 /* HMEarningWageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5589A97222BF6B08003353C9 /* HMEarningWageTableViewCell.swift */; };
 		5589A97522BF6B35003353C9 /* HMEarningSalaryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5589A97422BF6B35003353C9 /* HMEarningSalaryTableViewCell.swift */; };
 		5589A97822C03E23003353C9 /* HMTripDetailBGView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5589A97722C03E23003353C9 /* HMTripDetailBGView.swift */; };
@@ -137,6 +138,7 @@
 		5582606D22DAD2D4003EDCCA /* HMSms.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HMSms.swift; sourceTree = "<group>"; };
 		5582607022DADB19003EDCCA /* TDSwiftFileManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TDSwiftFileManager.swift; sourceTree = "<group>"; };
 		5582607322DADBBF003EDCCA /* TDSwiftHash.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TDSwiftHash.swift; sourceTree = "<group>"; };
+		5582607622DADDBD003EDCCA /* TDSwiftImageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TDSwiftImageManager.swift; sourceTree = "<group>"; };
 		5589A97222BF6B08003353C9 /* HMEarningWageTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HMEarningWageTableViewCell.swift; sourceTree = "<group>"; };
 		5589A97422BF6B35003353C9 /* HMEarningSalaryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HMEarningSalaryTableViewCell.swift; sourceTree = "<group>"; };
 		5589A97722C03E23003353C9 /* HMTripDetailBGView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HMTripDetailBGView.swift; sourceTree = "<group>"; };
@@ -452,6 +454,7 @@
 		557B82DE22B4B565002D4774 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				5582607522DADDB3003EDCCA /* TDSwiftImageManager */,
 				5582607222DADB98003EDCCA /* TDSwiftHash */,
 				5582606F22DADB0A003EDCCA /* TDSwiftFileManager */,
 				5599D6C022DAC414008E5381 /* TDSwiftUnitConverter */,
@@ -494,6 +497,14 @@
 				5582607322DADBBF003EDCCA /* TDSwiftHash.swift */,
 			);
 			path = TDSwiftHash;
+			sourceTree = "<group>";
+		};
+		5582607522DADDB3003EDCCA /* TDSwiftImageManager */ = {
+			isa = PBXGroup;
+			children = (
+				5582607622DADDBD003EDCCA /* TDSwiftImageManager.swift */,
+			);
+			path = TDSwiftImageManager;
 			sourceTree = "<group>";
 		};
 		5589A97022BF6836003353C9 /* Storyboards */ = {
@@ -888,6 +899,7 @@
 				55F73AE622D5FDAB00880212 /* HMDriver.swift in Sources */,
 				557B82A722B47531002D4774 /* AppDelegate.swift in Sources */,
 				551B13C022D6C6570079C696 /* HMLocationManager.swift in Sources */,
+				5582607722DADDBD003EDCCA /* TDSwiftImageManager.swift in Sources */,
 				5504A7DD22D223B000081C10 /* HMHeartBeat.swift in Sources */,
 				5504A7DF22D3947A00081C10 /* HMTrip.swift in Sources */,
 				551B13C622D82E5B0079C696 /* HMResetPasswordViewController.swift in Sources */,
