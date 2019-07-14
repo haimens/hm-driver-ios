@@ -99,5 +99,6 @@ class HMPersonalInfoViewController: UIViewController {
         nameTextField.text = auth.name
         phoneTextField.text = auth.cell
         emailTextField.text = auth.email
+        
     }
 }
