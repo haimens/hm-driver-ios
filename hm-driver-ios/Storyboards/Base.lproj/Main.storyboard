@@ -406,6 +406,7 @@
                     <connections>
                         <outlet property="mapView" destination="AMI-Ex-N2p" id="vV2-JD-69A"/>
                         <outlet property="routeDetailView" destination="Cg3-aq-a6j" id="46O-sj-ttP"/>
+                        <outlet property="routeInfoLabel" destination="ac0-Vj-7Zn" id="AVV-mS-7k7"/>
                         <outlet property="specialInstructionBtn" destination="2bO-fW-goc" id="Rxf-uv-n6a"/>
                     </connections>
                 </viewController>

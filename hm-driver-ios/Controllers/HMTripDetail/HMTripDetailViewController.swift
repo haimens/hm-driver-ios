@@ -34,6 +34,7 @@ class HMTripDetailViewController: UIViewController {
     @IBOutlet weak var mapView: TDSwiftRouteDetailMapView!
     @IBOutlet weak var routeDetailView: HMRouteDetailView!
     @IBOutlet weak var specialInstructionBtn: UIButton!
+    @IBOutlet weak var routeInfoLabel: UILabel!
     
     @IBAction func specialInstructionBtnClicked(_ sender: UIButton) {
         // Show note if available
@@ -168,7 +169,10 @@ extension HMTripDetailViewController: TDSwiftData {
                                                                    destinationTitle: "Pickup \(pickupTimeString)",
                                 sourceLocation: currentLocation,
                                 destinationLocation: CLLocation(latitude: pickupLat, longitude: pickupLng)))
-                mapView.drawRoute(removeOldRoute: true, completion: nil)
+                mapView.drawRoute(removeOldRoute: true) { (info, error) in
+                    if let error = error { TDSwiftAlert.showSingleButtonAlert(title: "Map Error", message: "Render map with error: \(error)", actionBtnTitle: "OK", presentVC: self, btnAction: nil) }
+                    if let info = info { self.displayRouteInfo(withInfo: info) }
+                }
             case .arrived:
                 // ConfigM mapview
                 mapView.showsUserLocation = false
@@ -177,7 +181,10 @@ extension HMTripDetailViewController: TDSwiftData {
                                 destinationTitle: "Dropoff",
                                 sourceLocation: CLLocation(latitude: pickupLat, longitude: pickupLng),
                                 destinationLocation: CLLocation(latitude: dropoffLat, longitude: dropoffLng)))
-                mapView.drawRoute(removeOldRoute: true, completion: nil)
+                mapView.drawRoute(removeOldRoute: true) { (info, error) in
+                    if let error = error { TDSwiftAlert.showSingleButtonAlert(title: "Map Error", message: "Render map with error: \(error)", actionBtnTitle: "OK", presentVC: self, btnAction: nil) }
+                    if let info = info { self.displayRouteInfo(withInfo: info) }
+                }
             case .cob:
                 // ConfigM mapview
                 mapView.showsUserLocation = false
@@ -186,7 +193,10 @@ extension HMTripDetailViewController: TDSwiftData {
                                                                    destinationTitle: "Dropoff",
                                                                    sourceLocation: CLLocation(latitude: pickupLat, longitude: pickupLng),
                                                                    destinationLocation: CLLocation(latitude: dropoffLat, longitude: dropoffLng)))
-                mapView.drawRoute(removeOldRoute: true, completion: nil)
+                mapView.drawRoute(removeOldRoute: true) { (info, error) in
+                    if let error = error { TDSwiftAlert.showSingleButtonAlert(title: "Map Error", message: "Render map with error: \(error)", actionBtnTitle: "OK", presentVC: self, btnAction: nil) }
+                    if let info = info { self.displayRouteInfo(withInfo: info) }
+                }
             case .cad:
                 // Cad time
                 if let utcCadTimeString = (data["basic_info"] as? [String : Any])?["cad_time"] as? String,
@@ -195,11 +205,13 @@ extension HMTripDetailViewController: TDSwiftData {
                     mapView.showsUserLocation = false
                     mapView.config(config: TDSwiftRouteDetailMapView.defaultConfig,
                                    info: TDSwiftRouteDetailMapViewInfo(sourceTitle: "Pickup \(pickupTimeString)",
-                                                                       destinationTitle: "Dropoff \(cadTimeString)",
-                                                                       sourceLocation: CLLocation(latitude: pickupLat, longitude: pickupLng),
-                                                                       destinationLocation: CLLocation(latitude: dropoffLat, longitude: dropoffLng)))
-                    mapView.drawRoute(removeOldRoute: true, completion: nil)
-                } else {
+                                    destinationTitle: "Dropoff \(cadTimeString)",
+                                    sourceLocation: CLLocation(latitude: pickupLat, longitude: pickupLng),
+                                    destinationLocation: CLLocation(latitude: dropoffLat, longitude: dropoffLng)))
+                    mapView.drawRoute(removeOldRoute: true) { (info, error) in
+                        if let error = error { TDSwiftAlert.showSingleButtonAlert(title: "Map Error", message: "Render map with error: \(error)", actionBtnTitle: "OK", presentVC: self, btnAction: nil) }
+                        if let info = info { self.displayRouteInfo(withInfo: info) }
+                    }                } else {
                     TDSwiftAlert.showSingleButtonAlert(title: "Map Error", message: "CAD time not found", actionBtnTitle: "OK", presentVC: self, btnAction: nil)
                 }
             }
@@ -225,6 +237,13 @@ extension HMTripDetailViewController: TDSwiftData {
         
         // Hide spinner
         self.spinner.hide()
+    }
+    
+    private func displayRouteInfo(withInfo info: TDSwiftRouteDetailMapViewResult) {
+        let distanceInMile = TDSwiftUnitConverter.meterToMile(distanceInMeter: info.distance)
+        let intervalInMin = TDSwiftUnitConverter.secondToMinute(intervalInSecond: Int(info.expectedTravelTime))
+        
+        routeInfoLabel.text = "\(String(format: "%.1f", distanceInMile))mi/\(String(format: "%.0f", intervalInMin))min"
     }
     
     func alertParseDataFailed() {

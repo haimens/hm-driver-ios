@@ -277,7 +277,7 @@ extension HMEarningViewController: UITableViewDataSource, UITableViewDelegate {
             // Amount
             var amountInDollarString = CONST.UI.NOT_AVAILABLE_PLACEHOLDER
             if let amountInCent = currentEarningList?[indexPath.row]["amount"] as? Int {
-                amountInDollarString = "$\(HMMoneyUnitConverter.centToDollar(amountInCent: amountInCent))"
+                amountInDollarString = "$\(TDSwiftUnitConverter.centToDollar(amountInCent: amountInCent))"
             }
             
             // Update cell UI
@@ -303,7 +303,7 @@ extension HMEarningViewController: UITableViewDataSource, UITableViewDelegate {
             // Amount
             var amountInDollarString = CONST.UI.NOT_AVAILABLE_PLACEHOLDER
             if let amountInCent = currentEarningList?[indexPath.row]["amount"] as? Int {
-                amountInDollarString = "$\(HMMoneyUnitConverter.centToDollar(amountInCent: amountInCent))"
+                amountInDollarString = "$\(TDSwiftUnitConverter.centToDollar(amountInCent: amountInCent))"
             }
             
             // Update cell UI
