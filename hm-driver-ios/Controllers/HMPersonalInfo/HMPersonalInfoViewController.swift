@@ -69,6 +69,10 @@ class HMPersonalInfoViewController: UIViewController {
         // Navigation bar
         configNavigationAppearance()
         
+        // Profile image appearance
+        profileImageView.clipsToBounds = true
+        profileImageView.layer.cornerRadius = profileImageView.frame.width / 2
+        
         // Spinner
         spinner = TDSwiftSpinner(viewController: self)
     }
@@ -100,5 +104,12 @@ class HMPersonalInfoViewController: UIViewController {
         phoneTextField.text = auth.cell
         emailTextField.text = auth.email
         
+        // Profile image
+        TDSwiftImageManager.getImage(imageURLString: auth.img_path, imageType: .TDSwiftCacheImage) { (data, error) in
+            DispatchQueue.main.async {
+                if let error = error { TDSwiftAlert.showSingleButtonAlert(title: "Load Image Failed", message: TDSwiftRequest.getErrorMessage(error: error, response: nil), actionBtnTitle: "OK", presentVC: self, btnAction: nil) }
+                if let data = data { self.profileImageView.image = UIImage(data: data) }
+            }
+        }
     }
 }
