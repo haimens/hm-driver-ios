@@ -14,5 +14,6 @@ class HMBasicButton: TDSwiftBasicButton {
 
     private func setupHMBasicAppearance() {
         self.backgroundColor = CONST.UI.THEME_COLOR
+        self.titleLabel?.font = UIFont.systemFont(ofSize: 14.0, weight: .bold)
     }
 }
