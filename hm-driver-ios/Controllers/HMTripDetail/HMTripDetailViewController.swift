@@ -59,6 +59,7 @@ class HMTripDetailViewController: UIViewController {
     var driverInfo: [String:Any]?
     var customerInfo: [String:Any]?
     var basicInfo: [String:Any]?
+    var fromAddressInfo: [String:Any]?
     
     // Action
     var actions: [HMTripDetailType: () -> Void]?
@@ -103,22 +104,27 @@ class HMTripDetailViewController: UIViewController {
         
         // Dispatched
         actionTitle = "Go To Pickup Location"
-        actionDescription = "You will\nstart sharing location\n&\nnavigate to pickup location"
+        actionDescription = "You will\nstart sharing location\n&\nnavigate to pickup location\n&\ntext customer ETA"
         actions![HMTripDetailType.dispatched] = {
+            // Dispatch group
+            let dispatchGroup = DispatchGroup()
+            
             // Trip token, customer token
             guard let tripToken = self.tripToken, let customerToken = self.customerToken else {
                 TDSwiftAlert.showSingleButtonAlert(title: "Update Trip Failed", message: "Trip info incomplete", actionBtnTitle: "OK", presentVC: self, btnAction: nil)
                 return
             }
             
+            print("------------------------------------------------------------")
             print("tripToken \(tripToken)")
             print("customerToken \(customerToken)")
-            
+            print("------------------------------------------------------------")
+
             // Start location sharing
             HMHeartBeat.shared.start()
             
-            // Start time, eta time
-            let startTime = TDSwiftDate.getCurrentLocalTimeString(withFormat: "yyyy-MM-dd'T'HH:mm:ss.SSSZ")
+            // Start time, eta time string
+            let startTime = TDSwiftDate.getCurrentUTCTimeString(withFormat: "yyyy-MM-dd'T'HH:mm:ss.SSSZ")
             var etaTime: String? = nil
             if let routeInfo = self.routeInfo {
                 var currentDate = TDSwiftDate.getCurrentLocalDate()
@@ -127,14 +133,17 @@ class HMTripDetailViewController: UIViewController {
             }
             
             // Modify trip
+            dispatchGroup.enter()
             var body: [String:Any] = ["status": 4]
             body["start_time"] = startTime
             if let etaTime = etaTime { body["eta_time"] = etaTime }
             HMTrip.modifyTripDetail(withTripToken: tripToken, body: body, completion: { (result, error) in
                 if let error = error { TDSwiftAlert.showSingleButtonAlert(title: "Update Trip Failed", message: "\(DriverConn.getErrorMessage(error: error))", actionBtnTitle: "OK", presentVC: self, btnAction: nil) }
+                dispatchGroup.leave()
             })
             
             // Send customer SMS
+            dispatchGroup.enter()
             var localizedEtaTime = "N/A"
             if let etaTime = etaTime {
                 localizedEtaTime = TDSwiftDate.utcTimeStringToLocalTimeString(timeString: etaTime, withFormat: "yyyy-MM-dd'T'HH:mm:ss.SSSZ", outputFormat: "MMM d, h:mm a") ?? "N/A"
@@ -144,10 +153,18 @@ class HMTripDetailViewController: UIViewController {
             let smsMessage = "Your driver is on the way. ETA: \(localizedEtaTime),\nVehicle Plate#: \(plateNum ?? "N/A").\nThank you!"
             HMSms.sendSMS(withCustomerToken: customerToken, body: ["title": smsTitle, "message": smsMessage], completion: { (result, error) in
                 if let error = error { TDSwiftAlert.showSingleButtonAlert(title: "Send SMS Failed", message: "\(DriverConn.getErrorMessage(error: error))", actionBtnTitle: "OK", presentVC: self, btnAction: nil) }
+                dispatchGroup.leave()
             })
             
+            // Present address options
+            if let fromAddressInfo = self.fromAddressInfo, let pickupAddressString = fromAddressInfo["addr_str"] as? String {
+                TDSwiftMapTools.showAddressOptions(onViewController: self, withAddress: pickupAddressString, completion: nil)
+            }
+            
             // Reload trip detail
-            self.loadData()
+            dispatchGroup.notify(queue: .main) {
+                self.loadData()
+            }
         }
     }
     
@@ -197,8 +214,10 @@ extension HMTripDetailViewController: TDSwiftData {
     func parseData(data: [String : Any]) {
         // Trip detail type
         if let status = (data["basic_info"] as? [String : Any])?["status"] as? Int {
+            print("status \(status)")
             // Parse status
             currentTripDetailType = HMTripDetailType.getType(withStatus: status)
+            print("currentTripDetailType \(currentTripDetailType)")
         }
         
         // Data
@@ -206,6 +225,7 @@ extension HMTripDetailViewController: TDSwiftData {
         self.driverInfo = data["driver_info"] as? [String : Any]
         self.customerInfo = data["customer_info"] as? [String : Any]
         self.basicInfo = data["basic_info"] as? [String : Any]
+        self.fromAddressInfo = data["from_address_info"] as? [String : Any]
         
         // Verify trip detail type
         guard let currentTripDetailType = currentTripDetailType else {
