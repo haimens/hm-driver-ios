@@ -26,6 +26,12 @@ class HMAccountViewController: UITableViewController {
             performSegue(withIdentifier: String(describing: HMPersonalInfoViewController.self), sender: self)
         case 1: // Reset password
             performSegue(withIdentifier: String(describing: HMResetPasswordViewController.self), sender: self)
+        case 2: // Contact dispatch center
+            if (HMGlobal.shared.isDispatchCellAvailable()) {
+                HMGlobal.shared.callDispatchCenter()
+            } else {
+                TDSwiftAlert.showSingleButtonAlert(title: "Failed", message: "Dispatch center info missing", actionBtnTitle: "OK", presentVC: self, btnAction: nil)
+            }
         case 3: // Sharing Location
             HMHeartBeat.shared.start()
             TDSwiftAlert.showSingleButtonAlert(title: "Location Sharing", message: "Service Started", actionBtnTitle: "OK", presentVC: self, btnAction: nil)

@@ -381,6 +381,12 @@ extension HMTripDetailViewController: TDSwiftData {
 extension HMTripDetailViewController: TDSwiftPopoverDelegate {
     func didSelect(item: TDSwiftPopoverItem, atIndex index: Int) {
         switch index {
+        case 2: // Call Dispatch Center
+            if (HMGlobal.shared.isDispatchCellAvailable()) {
+                HMGlobal.shared.callDispatchCenter()
+            } else {
+                TDSwiftAlert.showSingleButtonAlert(title: "Failed", message: "Dispatch center info missing", actionBtnTitle: "OK", presentVC: self, btnAction: nil)
+            }
         case 3: // Sharing Location
             HMHeartBeat.shared.start()
             TDSwiftAlert.showSingleButtonAlert(title: "Location Sharing", message: "Service Started", actionBtnTitle: "OK", presentVC: self, btnAction: nil)

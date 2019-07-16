@@ -10,13 +10,6 @@ class HMAuthViewController: UIViewController {
         self.performSegue(withIdentifier: String(describing: HMLoginViewController.self), sender: self)
     }
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        // Update global data
-        HMGlobal.shared.makeGlobalRequest()
-    }
-    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
                 
@@ -34,6 +27,9 @@ class HMAuthViewController: UIViewController {
             TDSwiftHavana.shared.renewAuthInfo { (result, error) in
                 if (result) {
                     DispatchQueue.main.async {
+                        // Update global data
+                        HMGlobal.shared.makeGlobalRequest()
+                        
                         // Present main view
                         self.performSegue(withIdentifier: String(describing: HMMainTabBarController.self), sender: self)
                     }
@@ -49,8 +45,4 @@ class HMAuthViewController: UIViewController {
             self.performSegue(withIdentifier: String(describing: HMLoginViewController.self), sender: self)
         }
     }
-    
-//    private func configHeartBeat() {
-//
-//    }
 }
