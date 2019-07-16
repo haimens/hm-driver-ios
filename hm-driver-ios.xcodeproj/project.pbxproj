@@ -63,6 +63,8 @@
 		55EA8D5022B6F77400A57BF1 /* TDSwiftMapTools.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55EA8D4F22B6F77400A57BF1 /* TDSwiftMapTools.swift */; };
 		55EA8D5322B705D100A57BF1 /* HMEarningViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55EA8D5222B705D100A57BF1 /* HMEarningViewController.swift */; };
 		55EA8D5622B7062D00A57BF1 /* HMAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55EA8D5522B7062D00A57BF1 /* HMAccountViewController.swift */; };
+		55F2318722DD6E550005DEA4 /* HMGlobal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55F2318622DD6E550005DEA4 /* HMGlobal.swift */; };
+		55F2318922DD6F080005DEA4 /* HMSetting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55F2318822DD6F080005DEA4 /* HMSetting.swift */; };
 		55F73ADA22D4CB8A00880212 /* TDSwiftDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55F73AD922D4CB8A00880212 /* TDSwiftDate.swift */; };
 		55F73ADE22D4FD3D00880212 /* TDSwiftData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55F73ADD22D4FD3D00880212 /* TDSwiftData.swift */; };
 		55F73AE122D5A87D00880212 /* TDSwiftInfiniteTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55F73AE022D5A87D00880212 /* TDSwiftInfiniteTableView.swift */; };
@@ -160,6 +162,8 @@
 		55EA8D4F22B6F77400A57BF1 /* TDSwiftMapTools.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TDSwiftMapTools.swift; sourceTree = "<group>"; };
 		55EA8D5222B705D100A57BF1 /* HMEarningViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HMEarningViewController.swift; sourceTree = "<group>"; };
 		55EA8D5522B7062D00A57BF1 /* HMAccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HMAccountViewController.swift; sourceTree = "<group>"; };
+		55F2318622DD6E550005DEA4 /* HMGlobal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HMGlobal.swift; sourceTree = "<group>"; };
+		55F2318822DD6F080005DEA4 /* HMSetting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HMSetting.swift; sourceTree = "<group>"; };
 		55F73AD922D4CB8A00880212 /* TDSwiftDate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TDSwiftDate.swift; sourceTree = "<group>"; };
 		55F73ADD22D4FD3D00880212 /* TDSwiftData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TDSwiftData.swift; sourceTree = "<group>"; };
 		55F73AE022D5A87D00880212 /* TDSwiftInfiniteTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TDSwiftInfiniteTableView.swift; sourceTree = "<group>"; };
@@ -443,6 +447,7 @@
 				5599D6B922D9945A008E5381 /* HMWage.swift */,
 				5599D6BB22D99478008E5381 /* HMSalary.swift */,
 				5582606D22DAD2D4003EDCCA /* HMSms.swift */,
+				55F2318822DD6F080005DEA4 /* HMSetting.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -459,6 +464,7 @@
 		557B82DE22B4B565002D4774 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				55F2318522DD6E330005DEA4 /* HMGlobal */,
 				5582607522DADDB3003EDCCA /* TDSwiftImageManager */,
 				5582607222DADB98003EDCCA /* TDSwiftHash */,
 				5582606F22DADB0A003EDCCA /* TDSwiftFileManager */,
@@ -626,6 +632,14 @@
 				55EA8D5522B7062D00A57BF1 /* HMAccountViewController.swift */,
 			);
 			path = HMAccount;
+			sourceTree = "<group>";
+		};
+		55F2318522DD6E330005DEA4 /* HMGlobal */ = {
+			isa = PBXGroup;
+			children = (
+				55F2318622DD6E550005DEA4 /* HMGlobal.swift */,
+			);
+			path = HMGlobal;
 			sourceTree = "<group>";
 		};
 		55F73ADB22D4CB8F00880212 /* TDSwiftDate */ = {
@@ -866,6 +880,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5582607922DB6A4B003EDCCA /* HMEarningBalanceTableViewCell.swift in Sources */,
+				55F2318722DD6E550005DEA4 /* HMGlobal.swift in Sources */,
 				55EA8D5022B6F77400A57BF1 /* TDSwiftMapTools.swift in Sources */,
 				55F9A2A522B4B92F00788FC5 /* TDSwiftHavana.swift in Sources */,
 				55F9A2BF22B5A09300788FC5 /* HMBasicButton.swift in Sources */,
@@ -896,6 +911,7 @@
 				55061A2322B6C040003CDEAB /* TDSwiftShape.swift in Sources */,
 				55F9A2A822B4BC1000788FC5 /* KeychainPasswordItem.swift in Sources */,
 				55BCFB6322CCE8F30080C39E /* HMAuth.swift in Sources */,
+				55F2318922DD6F080005DEA4 /* HMSetting.swift in Sources */,
 				55F9A2AE22B58FAE00788FC5 /* TDSwiftAlert.swift in Sources */,
 				5589A97B22C03FC1003353C9 /* TDSwiftRoundedCornerView.swift in Sources */,
 				55ABB63522B629F900F569AF /* TDSwiftSegmentedControlConfig.swift in Sources */,
