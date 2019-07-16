@@ -39,21 +39,28 @@ class HMTripDetailViewController: UIViewController {
     
     @IBAction func specialInstructionBtnClicked(_ sender: UIButton) {
         // Show note if available
-        if let note = specialInstructionString {
+        if let note = self.basicInfo?["note"] as? String {
             TDSwiftAlert.showSingleButtonAlert(title: "Special Instruction", message: note, actionBtnTitle: "OK", presentVC: self, btnAction: nil)
         }
     }
     
     @IBAction func actionBtnClicked(_ sender: HMBasicButton) {
-        TDSwiftAlert.showSingleButtonAlertWithCancel(title: actionTitle!, message: actionDescription!, actionBtnTitle: "Confirm", cancelBtnTitle: "Cancel", presentVC: self) {
-            self.actions?[self.currentTripDetailType!]?()
+        if let actionTitle = actionTitle,
+            let actionDescription = actionDescription,
+            let actions = actions,
+            let currentTripDetailType = currentTripDetailType,
+            let action = actions[currentTripDetailType] {
+            TDSwiftAlert.showSingleButtonAlertWithCancel(title: actionTitle, message: actionDescription, actionBtnTitle: "Confirm", cancelBtnTitle: "Cancel", presentVC: self) {
+                action()
+            }
+        } else {
+            TDSwiftAlert.showSingleButtonAlert(title: "Update Trip Failed", message: "Modify action missing", actionBtnTitle: "OK", presentVC: self, btnAction: nil)
         }
     }
     
     // Data
     var tripToken: String?
     var customerToken: String?
-    var specialInstructionString: String?
     var currentTripDetailType: HMTripDetailType?
     var routeInfo: TDSwiftRouteDetailMapViewResult?
     var driverInfo: [String:Any]?
@@ -355,9 +362,8 @@ extension HMTripDetailViewController: TDSwiftData {
         }
         
         // Special instruction
-        if let note = (data["basic_info"] as? [String : Any])?["note"] as? String {
+        if (data["basic_info"] as? [String : Any])?["note"] as? String != nil {
             specialInstructionBtn.isEnabled = true
-            specialInstructionString = note
         } else {
             specialInstructionBtn.isEnabled = false
         }
