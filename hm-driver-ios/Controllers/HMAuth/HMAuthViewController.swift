@@ -10,6 +10,13 @@ class HMAuthViewController: UIViewController {
         self.performSegue(withIdentifier: String(describing: HMLoginViewController.self), sender: self)
     }
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        // Update global data
+        HMGlobal.shared.makeGlobalRequest()
+    }
+    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
                 
