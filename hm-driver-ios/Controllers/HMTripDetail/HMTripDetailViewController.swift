@@ -255,6 +255,7 @@ class HMTripDetailViewController: UIViewController {
                 if let error = error { TDSwiftAlert.showSingleButtonAlert(title: "Update Trip Failed", message: "\(DriverConn.getErrorMessage(error: error))", actionBtnTitle: "OK", presentVC: self, btnAction: nil) }
                 dispatchGroup.leave()
             })
+            
             // SMS Message
             let toAddressString = self.toAddressInfo?["addr_str"] as? String ?? "N/A"
             var durationString = "N/A"
@@ -278,6 +279,57 @@ class HMTripDetailViewController: UIViewController {
                 TDSwiftMapTools.showAddressOptions(onViewController: self, withAddress: dropoffAddressString, completion: nil)
             }
             
+            // Reload trip detail
+            dispatchGroup.notify(queue: .main) {
+                self.loadData()
+            }
+        }
+        
+        // COB
+        actionTitle = "Send Customer Arrive Destination"
+        actionDescription = "You will\nconfirm customer arrived at destination\n&\nstop sharing location\n&\ntext customer CAD notice"
+        actions![HMTripDetailType.cob] = {
+            // Dispatch group
+            let dispatchGroup = DispatchGroup()
+            
+            // Trip token, customer token
+            guard let tripToken = self.tripToken, let customerToken = self.customerToken else {
+                TDSwiftAlert.showSingleButtonAlert(title: "Update Trip Failed", message: "Trip info incomplete", actionBtnTitle: "OK", presentVC: self, btnAction: nil)
+                return
+            }
+            
+            print("------------------------------------------------------------")
+            print("tripToken \(tripToken)")
+            print("customerToken \(customerToken)")
+            print("------------------------------------------------------------")
+            
+            // Stop location sharing
+            HMHeartBeat.shared.stop()
+            
+            // CAD time
+            let cadTime = TDSwiftDate.getCurrentUTCTimeString(withFormat: "yyyy-MM-dd'T'HH:mm:ss.SSSZ")
+
+            // Modify trip
+            dispatchGroup.enter()
+            var body: [String:Any] = [:]
+            body["status"] = 7
+            body["cad_time"] = cadTime
+            HMTrip.modifyTripDetail(withTripToken: tripToken, body: body, completion: { (result, error) in
+                if let error = error { TDSwiftAlert.showSingleButtonAlert(title: "Update Trip Failed", message: "\(DriverConn.getErrorMessage(error: error))", actionBtnTitle: "OK", presentVC: self, btnAction: nil) }
+                dispatchGroup.leave()
+            })
+            
+            // SMS Message
+            let smsTitle = "\(TDSwiftHavana.shared.auth?.company_name ?? "N/A") CAD Notice"
+            let smsMessage = "Thank your so much for using our service. See you next time."
+
+            // Send customer SMS
+            dispatchGroup.enter()
+            HMSms.sendSMS(withCustomerToken: customerToken, body: ["title": smsTitle, "message": smsMessage], completion: { (result, error) in
+                if let error = error { TDSwiftAlert.showSingleButtonAlert(title: "Send SMS Failed", message: "\(DriverConn.getErrorMessage(error: error))", actionBtnTitle: "OK", presentVC: self, btnAction: nil) }
+                dispatchGroup.leave()
+            })
+
             // Reload trip detail
             dispatchGroup.notify(queue: .main) {
                 self.loadData()
