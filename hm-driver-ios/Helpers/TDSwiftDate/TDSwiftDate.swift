@@ -64,4 +64,25 @@ class TDSwiftDate {
         // Formatted string
         return formatter.string(from: Date())
     }
+    
+    static func getCurrentUTCDate() -> Date? {
+        // Date format
+        let dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
+        
+        // UTC Formatter
+        let formatter = DateFormatter()
+        formatter.timeZone = TimeZone(secondsFromGMT: 0)
+        formatter.dateFormat = dateFormat
+        
+        // Formatted string
+        let dateString = formatter.string(from: Date())
+        
+        // UTC date formatter
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = dateFormat
+        dateFormatter.timeZone = TimeZone(abbreviation: "UTC")
+        
+        // Date object
+        return dateFormatter.date(from: dateString) ?? nil
+    }
 }

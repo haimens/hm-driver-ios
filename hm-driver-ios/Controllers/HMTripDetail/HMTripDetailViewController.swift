@@ -47,14 +47,11 @@ class HMTripDetailViewController: UIViewController {
     @IBAction func actionBtnClicked(_ sender: HMBasicButton) {
         if let actionTitle = actionTitle,
             let actionDescription = actionDescription,
-            let actions = actions,
             let currentTripDetailType = currentTripDetailType,
-            let action = actions[currentTripDetailType] {
-            TDSwiftAlert.showSingleButtonAlertWithCancel(title: actionTitle, message: actionDescription, actionBtnTitle: "Confirm", cancelBtnTitle: "Cancel", presentVC: self) {
-                action()
-            }
+            let action = actions?[currentTripDetailType] {
+            TDSwiftAlert.showSingleButtonAlertWithCancel(title: actionTitle, message: actionDescription, actionBtnTitle: "Confirm", cancelBtnTitle: "Cancel", presentVC: self) { action() }
         } else {
-            TDSwiftAlert.showSingleButtonAlert(title: "Update Trip Failed", message: "Modify action missing", actionBtnTitle: "OK", presentVC: self, btnAction: nil)
+            TDSwiftAlert.showSingleButtonAlert(title: "Update Trip Failed", message: "Action missing", actionBtnTitle: "OK", presentVC: self, btnAction: nil)
         }
     }
     
@@ -67,6 +64,7 @@ class HMTripDetailViewController: UIViewController {
     var customerInfo: [String:Any]?
     var basicInfo: [String:Any]?
     var fromAddressInfo: [String:Any]?
+    var flightInfo: [String:Any]?
     
     // Action
     var actions: [HMTripDetailType: () -> Void]?
@@ -133,15 +131,15 @@ class HMTripDetailViewController: UIViewController {
             // Start time, eta time string
             let startTime = TDSwiftDate.getCurrentUTCTimeString(withFormat: "yyyy-MM-dd'T'HH:mm:ss.SSSZ")
             var etaTime: String? = nil
-            if let routeInfo = self.routeInfo {
-                var currentDate = TDSwiftDate.getCurrentLocalDate()
+            if let routeInfo = self.routeInfo, var currentDate = TDSwiftDate.getCurrentUTCDate() {
                 currentDate.addTimeInterval(routeInfo.expectedTravelTime)
                 etaTime = TDSwiftDate.formatDateToDateString(forDate: currentDate, withFormat: "yyyy-MM-dd'T'HH:mm:ss.SSSZ")
             }
             
             // Modify trip
             dispatchGroup.enter()
-            var body: [String:Any] = ["status": 4]
+            var body: [String:Any] = [:]
+            body["status"] = 4
             body["start_time"] = startTime
             if let etaTime = etaTime { body["eta_time"] = etaTime }
             HMTrip.modifyTripDetail(withTripToken: tripToken, body: body, completion: { (result, error) in
@@ -149,15 +147,17 @@ class HMTripDetailViewController: UIViewController {
                 dispatchGroup.leave()
             })
             
-            // Send customer SMS
+            // SMS Message
             dispatchGroup.enter()
             var localizedEtaTime = "N/A"
             if let etaTime = etaTime {
                 localizedEtaTime = TDSwiftDate.utcTimeStringToLocalTimeString(timeString: etaTime, withFormat: "yyyy-MM-dd'T'HH:mm:ss.SSSZ", outputFormat: "MMM d, h:mm a") ?? "N/A"
             }
-            let plateNum = self.driverInfo?["license_num"] as? String
+            let plateNum = self.driverInfo?["license_num"] as? String ?? "N/A"
             let smsTitle = "\(TDSwiftHavana.shared.auth?.company_name ?? "N/A") ETA Notice"
-            let smsMessage = "Your driver is on the way. ETA: \(localizedEtaTime),\nVehicle Plate#: \(plateNum ?? "N/A").\nThank you!"
+            let smsMessage = "Your driver is on the way. ETA: \(localizedEtaTime),\nVehicle Plate#: \(plateNum).\nThank you!"
+            
+            // Send customer SMS
             HMSms.sendSMS(withCustomerToken: customerToken, body: ["title": smsTitle, "message": smsMessage], completion: { (result, error) in
                 if let error = error { TDSwiftAlert.showSingleButtonAlert(title: "Send SMS Failed", message: "\(DriverConn.getErrorMessage(error: error))", actionBtnTitle: "OK", presentVC: self, btnAction: nil) }
                 dispatchGroup.leave()
@@ -219,20 +219,19 @@ extension HMTripDetailViewController: TDSwiftData {
     }
     
     func parseData(data: [String : Any]) {
-        // Trip detail type
-        if let status = (data["basic_info"] as? [String : Any])?["status"] as? Int {
-            print("status \(status)")
-            // Parse status
-            currentTripDetailType = HMTripDetailType.getType(withStatus: status)
-            print("currentTripDetailType \(currentTripDetailType)")
-        }
-        
         // Data
         self.customerToken = (data["customer_info"] as? [String : Any])?["customer_token"] as? String
         self.driverInfo = data["driver_info"] as? [String : Any]
         self.customerInfo = data["customer_info"] as? [String : Any]
         self.basicInfo = data["basic_info"] as? [String : Any]
         self.fromAddressInfo = data["from_address_info"] as? [String : Any]
+        self.flightInfo = data["flight_info"] as? [String : Any]
+        
+        // Trip detail type
+        if let status = self.basicInfo?["status"] as? Int {
+            // Parse status
+            currentTripDetailType = HMTripDetailType.getType(withStatus: status)
+        }
         
         // Verify trip detail type
         guard let currentTripDetailType = currentTripDetailType else {
@@ -246,7 +245,7 @@ extension HMTripDetailViewController: TDSwiftData {
         
         
         // VC title date
-        if let pickupTimeString = (data["basic_info"] as? [String : Any])?["pickup_time"] as? String {
+        if let pickupTimeString = self.basicInfo?["pickup_time"] as? String {
             self.title = TDSwiftDate.utcTimeStringToLocalTimeString(timeString: pickupTimeString, withFormat: "yyyy-MM-dd'T'HH:mm:ss.SSSZ", outputFormat: "MMM d") ?? CONST.UI.NOT_AVAILABLE_PLACEHOLDER
         } else {
             self.title = CONST.UI.NOT_AVAILABLE_PLACEHOLDER
@@ -300,7 +299,7 @@ extension HMTripDetailViewController: TDSwiftData {
                     }
                 }
             case .cob:
-                // ConfigM mapview
+                // Config mapview
                 mapView.showsUserLocation = false
                 mapView.config(config: TDSwiftRouteDetailMapView.defaultConfig,
                                info: TDSwiftRouteDetailMapViewInfo(sourceTitle: "Customer On Board",
@@ -316,7 +315,7 @@ extension HMTripDetailViewController: TDSwiftData {
                 }
             case .cad:
                 // Cad time
-                if let utcCadTimeString = (data["basic_info"] as? [String : Any])?["cad_time"] as? String,
+                if let utcCadTimeString = self.basicInfo?["cad_time"] as? String,
                     let cadTimeString = TDSwiftDate.utcTimeStringToLocalTimeString(timeString: utcCadTimeString, withFormat: "yyyy-MM-dd'T'HH:mm:ss.SSSZ", outputFormat: "h:mm a"){
                     // ConfigM mapview
                     mapView.showsUserLocation = false
