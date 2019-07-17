@@ -64,6 +64,7 @@ class HMTripDetailViewController: UIViewController {
     var customerInfo: [String:Any]?
     var basicInfo: [String:Any]?
     var fromAddressInfo: [String:Any]?
+    var toAddressInfo: [String:Any]?
     var flightInfo: [String:Any]?
     
     // Action
@@ -109,7 +110,7 @@ class HMTripDetailViewController: UIViewController {
         
         // Dispatched
         actionTitle = "Go To Pickup Location"
-        actionDescription = "You will\nstart sharing location\n&\nnavigate to pickup location\n&\ntext customer ETA"
+        actionDescription = "You will\nstart sharing location\n&\nnavigate to pickup location\n&\ntext customer ETA notice"
         actions![HMTripDetailType.dispatched] = {
             // Dispatch group
             let dispatchGroup = DispatchGroup()
@@ -177,7 +178,7 @@ class HMTripDetailViewController: UIViewController {
         
         // On the way
         actionTitle = "Send Arrival"
-        actionDescription = "You will\nconfirm arrival for pickup\n&\ntext customer your arrival"
+        actionDescription = "You will\nconfirm arrival for pickup\n&\ntext customer arrival notice"
         actions![HMTripDetailType.onTheWay] = {
             // Dispatch group
             let dispatchGroup = DispatchGroup()
@@ -218,6 +219,65 @@ class HMTripDetailViewController: UIViewController {
                 dispatchGroup.leave()
             })
 
+            // Reload trip detail
+            dispatchGroup.notify(queue: .main) {
+                self.loadData()
+            }
+        }
+        
+        // Arrived
+        actionTitle = "Send Customer On Board"
+        actionDescription = "You will\nconfirm customer on board\n&\nnavigate to customer dropoff location\n&\ntext customer COB notice"
+        actions![HMTripDetailType.arrived] = {
+            // Dispatch group
+            let dispatchGroup = DispatchGroup()
+            
+            // Trip token, customer token
+            guard let tripToken = self.tripToken, let customerToken = self.customerToken else {
+                TDSwiftAlert.showSingleButtonAlert(title: "Update Trip Failed", message: "Trip info incomplete", actionBtnTitle: "OK", presentVC: self, btnAction: nil)
+                return
+            }
+            
+            print("------------------------------------------------------------")
+            print("tripToken \(tripToken)")
+            print("customerToken \(customerToken)")
+            print("------------------------------------------------------------")
+            
+            // COB time
+            let cobTime = TDSwiftDate.getCurrentUTCTimeString(withFormat: "yyyy-MM-dd'T'HH:mm:ss.SSSZ")
+            
+            // Modify trip
+            dispatchGroup.enter()
+            var body: [String:Any] = [:]
+            body["status"] = 6
+            body["cob_time"] = cobTime
+            HMTrip.modifyTripDetail(withTripToken: tripToken, body: body, completion: { (result, error) in
+                if let error = error { TDSwiftAlert.showSingleButtonAlert(title: "Update Trip Failed", message: "\(DriverConn.getErrorMessage(error: error))", actionBtnTitle: "OK", presentVC: self, btnAction: nil) }
+                dispatchGroup.leave()
+            })
+            // SMS Message
+            let toAddressString = self.toAddressInfo?["addr_str"] as? String ?? "N/A"
+            var durationString = "N/A"
+            if let routeInfo = self.routeInfo {
+                let intervalInMin = TDSwiftUnitConverter.secondToMinute(intervalInSecond: Int(routeInfo.expectedTravelTime))
+                durationString = "\(String(format: "%.0f", intervalInMin))min"
+            }
+            let smsTitle = "\(TDSwiftHavana.shared.auth?.company_name ?? "N/A") COB Notice"
+            let smsMessage = "Welcome on broad! The destination of your trip is: \(toAddressString). It would take about \(durationString) to get your destination.\nEnjoy your trip.\nThank you!"
+            
+            // Send customer SMS
+            dispatchGroup.enter()
+            HMSms.sendSMS(withCustomerToken: customerToken, body: ["title": smsTitle, "message": smsMessage], completion: { (result, error) in
+                if let error = error { TDSwiftAlert.showSingleButtonAlert(title: "Send SMS Failed", message: "\(DriverConn.getErrorMessage(error: error))", actionBtnTitle: "OK", presentVC: self, btnAction: nil) }
+                dispatchGroup.leave()
+            })
+            
+            
+            // Present address options
+            if let toAddressInfo = self.toAddressInfo, let dropoffAddressString = toAddressInfo["addr_str"] as? String {
+                TDSwiftMapTools.showAddressOptions(onViewController: self, withAddress: dropoffAddressString, completion: nil)
+            }
+            
             // Reload trip detail
             dispatchGroup.notify(queue: .main) {
                 self.loadData()
@@ -275,6 +335,7 @@ extension HMTripDetailViewController: TDSwiftData {
         self.customerInfo = data["customer_info"] as? [String : Any]
         self.basicInfo = data["basic_info"] as? [String : Any]
         self.fromAddressInfo = data["from_address_info"] as? [String : Any]
+        self.toAddressInfo = data["to_address_info"] as? [String : Any]
         self.flightInfo = data["flight_info"] as? [String : Any]
         
         // Trip detail type
