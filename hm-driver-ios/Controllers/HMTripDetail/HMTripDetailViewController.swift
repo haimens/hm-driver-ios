@@ -386,6 +386,12 @@ extension HMTripDetailViewController: TDSwiftData {
 extension HMTripDetailViewController: TDSwiftPopoverDelegate {
     func didSelect(item: TDSwiftPopoverItem, atIndex index: Int) {
         switch index {
+        case 1: // Call customer
+            if let customerCell = self.customerInfo?["cell"] as? String, let callURL = URL(string: "telprompt://\(customerCell)"), UIApplication.shared.canOpenURL(callURL) {
+                UIApplication.shared.open(callURL, options: [:], completionHandler: nil)
+            } else {
+                TDSwiftAlert.showSingleButtonAlert(title: "Failed", message: "Customer contact info not provided", actionBtnTitle: "OK", presentVC: self, btnAction: nil)
+            }
         case 2: // Call Dispatch Center
             if (HMGlobal.shared.isDispatchCellAvailable()) {
                 HMGlobal.shared.callDispatchCenter()
