@@ -131,9 +131,10 @@ class HMTripDetailViewController: UIViewController {
             // Start time, eta time string
             let startTime = TDSwiftDate.getCurrentUTCTimeString(withFormat: "yyyy-MM-dd'T'HH:mm:ss.SSSZ")
             var etaTime: String? = nil
-            if let routeInfo = self.routeInfo, var currentDate = TDSwiftDate.getCurrentUTCDate() {
+            if let routeInfo = self.routeInfo {
+                var currentDate = TDSwiftDate.getCurrentDate()
                 currentDate.addTimeInterval(routeInfo.expectedTravelTime)
-                etaTime = TDSwiftDate.formatDateToDateString(forDate: currentDate, withFormat: "yyyy-MM-dd'T'HH:mm:ss.SSSZ")
+                etaTime = TDSwiftDate.formatDateToDateString(forDate: currentDate, withFormat: "yyyy-MM-dd'T'HH:mm:ss.SSSZ", withTimeZone: TimeZone(identifier: "UTC")!)
             }
             
             // Modify trip
