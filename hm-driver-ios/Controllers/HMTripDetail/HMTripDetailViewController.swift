@@ -149,7 +149,6 @@ class HMTripDetailViewController: UIViewController {
             })
             
             // SMS Message
-            dispatchGroup.enter()
             var localizedEtaTime = "N/A"
             if let etaTime = etaTime {
                 localizedEtaTime = TDSwiftDate.utcTimeStringToLocalTimeString(timeString: etaTime, withFormat: "yyyy-MM-dd'T'HH:mm:ss.SSSZ", outputFormat: "MMM d, h:mm a") ?? "N/A"
@@ -159,6 +158,7 @@ class HMTripDetailViewController: UIViewController {
             let smsMessage = "Your driver is on the way. ETA: \(localizedEtaTime),\nVehicle Plate#: \(plateNum).\nThank you!"
             
             // Send customer SMS
+            dispatchGroup.enter()
             HMSms.sendSMS(withCustomerToken: customerToken, body: ["title": smsTitle, "message": smsMessage], completion: { (result, error) in
                 if let error = error { TDSwiftAlert.showSingleButtonAlert(title: "Send SMS Failed", message: "\(DriverConn.getErrorMessage(error: error))", actionBtnTitle: "OK", presentVC: self, btnAction: nil) }
                 dispatchGroup.leave()
@@ -169,6 +169,55 @@ class HMTripDetailViewController: UIViewController {
                 TDSwiftMapTools.showAddressOptions(onViewController: self, withAddress: pickupAddressString, completion: nil)
             }
             
+            // Reload trip detail
+            dispatchGroup.notify(queue: .main) {
+                self.loadData()
+            }
+        }
+        
+        // On the way
+        actionTitle = "Send Arrival"
+        actionDescription = "You will\nconfirm arrival for pickup\n&\ntext customer your arrival"
+        actions![HMTripDetailType.onTheWay] = {
+            // Dispatch group
+            let dispatchGroup = DispatchGroup()
+            
+            // Trip token, customer token
+            guard let tripToken = self.tripToken, let customerToken = self.customerToken else {
+                TDSwiftAlert.showSingleButtonAlert(title: "Update Trip Failed", message: "Trip info incomplete", actionBtnTitle: "OK", presentVC: self, btnAction: nil)
+                return
+            }
+
+            print("------------------------------------------------------------")
+            print("tripToken \(tripToken)")
+            print("customerToken \(customerToken)")
+            print("------------------------------------------------------------")
+
+            // Arrive time
+            let arriveTime = TDSwiftDate.getCurrentUTCTimeString(withFormat: "yyyy-MM-dd'T'HH:mm:ss.SSSZ")
+            
+            // Modify trip
+            dispatchGroup.enter()
+            var body: [String:Any] = [:]
+            body["status"] = 5
+            body["arrive_time"] = arriveTime
+            HMTrip.modifyTripDetail(withTripToken: tripToken, body: body, completion: { (result, error) in
+                if let error = error { TDSwiftAlert.showSingleButtonAlert(title: "Update Trip Failed", message: "\(DriverConn.getErrorMessage(error: error))", actionBtnTitle: "OK", presentVC: self, btnAction: nil) }
+                dispatchGroup.leave()
+            })
+            
+            // SMS Message
+            let fromAddressString = self.fromAddressInfo?["addr_str"] as? String ?? "N/A"
+            let smsTitle = "\(TDSwiftHavana.shared.auth?.company_name ?? "N/A") Arrival Notice"
+            let smsMessage = "Your driver just arrived pickup location: \(fromAddressString). Please get ready for your trip.\nThank you!"
+
+            // Send customer SMS
+            dispatchGroup.enter()
+            HMSms.sendSMS(withCustomerToken: customerToken, body: ["title": smsTitle, "message": smsMessage], completion: { (result, error) in
+                if let error = error { TDSwiftAlert.showSingleButtonAlert(title: "Send SMS Failed", message: "\(DriverConn.getErrorMessage(error: error))", actionBtnTitle: "OK", presentVC: self, btnAction: nil) }
+                dispatchGroup.leave()
+            })
+
             // Reload trip detail
             dispatchGroup.notify(queue: .main) {
                 self.loadData()
