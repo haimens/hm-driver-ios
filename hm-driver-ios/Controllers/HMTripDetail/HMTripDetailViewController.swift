@@ -625,6 +625,10 @@ extension HMTripDetailViewController: TDSwiftData {
 extension HMTripDetailViewController: TDSwiftPopoverDelegate {
     func didSelect(item: TDSwiftPopoverItem, atIndex index: Int) {
         switch index {
+        case 0: // Text customer
+            let messagingVC = storyboard?.instantiateViewController(withIdentifier: String(describing: HMCustomerMessagingViewController.self)) as! HMCustomerMessagingViewController
+            messagingVC.customerToken = self.customerInfo?["customer_token"] as? String
+            self.present(messagingVC, animated: true, completion: nil)
         case 1: // Call customer
             if let customerCell = self.customerInfo?["cell"] as? String, let callURL = URL(string: "telprompt://\(customerCell)"), UIApplication.shared.canOpenURL(callURL) {
                 UIApplication.shared.open(callURL, options: [:], completionHandler: nil)
