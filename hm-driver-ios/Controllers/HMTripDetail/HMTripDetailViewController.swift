@@ -361,7 +361,7 @@ class HMTripDetailViewController: UIViewController {
                 let dispatchGroup = DispatchGroup()
                 
                 // Trip token, customer token
-                guard let tripToken = self.tripToken, let customerToken = self.customerToken else {
+                guard let tripToken = self.tripToken else {
                     TDSwiftAlert.showSingleButtonAlert(title: "Update Trip Failed", message: "Trip info incomplete", actionBtnTitle: "OK", presentVC: self, btnAction: nil)
                     return
                 }
