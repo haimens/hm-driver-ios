@@ -1,37 +1,55 @@
 import UIKit
 import MessageKit
 
-struct HMCustomerMessagingMember {
-    let id: Int
-    let name: String
-    let imagePath: String
+struct HMCustomerMessagingMember: SenderType {
+    var senderId: String
+    var imagePath: String
+    var displayName: String {
+        return HMCustomerMessagingMember.getNameWithId(id: senderId)
+    }
+    var tintColor: UIColor {
+        return HMCustomerMessagingMember.getTintWithId(id: senderId)
+    }
     
-    static func getNameWithType(type: Int) -> String? {
-        switch type {
-        case 1:
+    static func getNameWithId(id: String) -> String {
+        switch id {
+        case "1":
             return "Admin"
-        case 2:
+        case "2":
             return "Driver"
-        case 3:
+        case "3":
             return "System"
-        case 4:
+        case "4":
             return "Customer"
         default:
-            return nil
+            return "-"
         }
     }
+    
+    static func getTintWithId(id: String) -> UIColor {
+        switch id {
+        case "1":
+            return UIColor(red:0.37, green:0.45, blue:0.89, alpha:1.0)
+        case "2":
+            return UIColor(red:0.18, green:0.81, blue:0.54, alpha:1.0)
+        case "3":
+            return UIColor(red:0.10, green:0.11, blue:0.30, alpha:1.0)
+        case "4":
+            return UIColor(red:0.90, green:0.91, blue:0.93, alpha:1.0)
+        default:
+            return UIColor.lightGray
+        }
+    }
+
 }
 
 struct HMCustomerMessagingMessage: MessageType {
-    var sender: SenderType {
-        return Sender(id: "\(member.id)", displayName: member.name)
-    }
+    var sender: SenderType
     var kind: MessageKind {
         return .text(text)
     }
     var sentDate: Date
     let messageId: String
-    let member: HMCustomerMessagingMember
     let text: String
 }
 
@@ -65,7 +83,7 @@ class HMCustomerMessagingViewController: MessagesViewController {
     
     private func configConversationData() {
         messages = []
-        member = HMCustomerMessagingMember(id: 2, name: HMCustomerMessagingMember.getNameWithType(type: 2) ?? CONST.UI.NOT_AVAILABLE_PLACEHOLDER    , imagePath: TDSwiftHavana.shared.auth?.img_path ?? "")
+        member = HMCustomerMessagingMember(senderId: "2", imagePath: TDSwiftHavana.shared.auth?.img_path ?? "")
     }
     
     private func configMessageUI() {
@@ -102,9 +120,8 @@ extension HMCustomerMessagingViewController: TDSwiftData {
                 let date = TDSwiftDate.utcTimeStringToDate(timeString: dateString, withFormat: "yyyy-MM-dd'T'HH:mm:ss.SSSZ"),
                 let message = record["message"] as? String,
                 let type = record["type"] as? Int,
-                let name = HMCustomerMessagingMember.getNameWithType(type: type),
                 let imagePath = record["img_path"] as? String {
-                messages.append(.init(sentDate: date, messageId: smsToken, member: .init(id: type, name: name, imagePath: imagePath), text: message))
+                messages.append(.init(sender: HMCustomerMessagingMember(senderId: "\(type)", imagePath: imagePath), sentDate: date, messageId: smsToken, text: message))
             }
         }
         
@@ -116,7 +133,7 @@ extension HMCustomerMessagingViewController: TDSwiftData {
 
 extension HMCustomerMessagingViewController: MessagesDataSource, MessagesLayoutDelegate, MessagesDisplayDelegate {
     func currentSender() -> SenderType {
-        return Sender(id: "\(member.id)", displayName: member.name)
+        return member
     }
     
     func messageForItem(at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> MessageType {
@@ -125,5 +142,34 @@ extension HMCustomerMessagingViewController: MessagesDataSource, MessagesLayoutD
     
     func numberOfSections(in messagesCollectionView: MessagesCollectionView) -> Int {
         return messages.count
+    }
+    
+    func configureAvatarView(_ avatarView: AvatarView, for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) {
+        // Reset avatar view image
+        avatarView.image = nil
+        
+        // HMCustomerMessagingMember
+        let member = message.sender as! HMCustomerMessagingMember
+        
+        // Avatar view bg and image
+        avatarView.backgroundColor = member.tintColor
+        TDSwiftImageManager.getImage(imageURLString: member.imagePath, imageType: .TDSwiftCacheImage, completion: { (data, error) in
+            DispatchQueue.main.async {
+                if let data = data { avatarView.image = UIImage(data: data) }
+            }
+        })
+    }
+    
+    func messageStyle(for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> MessageStyle {
+        // Member instance
+        let message = message as! HMCustomerMessagingMessage
+        let member = message.sender as! HMCustomerMessagingMember
+        
+        // Return bubble style
+        if member.senderId == self.member.senderId {
+            return .bubbleTail(.bottomRight, .pointedEdge)
+        } else {
+            return .bubbleTail(.bottomLeft, .pointedEdge)
+        }
     }
 }
