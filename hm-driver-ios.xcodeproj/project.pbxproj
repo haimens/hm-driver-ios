@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		01BF216CECE8C80FB39AA68F /* Pods_hm_driver_ios.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6BEB7107D3F564C36D11E300 /* Pods_hm_driver_ios.framework */; };
+		0766753410A8ECB68A09EED2 /* Pods_hm_driver_iosUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 944433BD704B14DE511D6B24 /* Pods_hm_driver_iosUITests.framework */; };
 		55005C2222E012AA00C66DA9 /* HMCustomerMessagingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55005C2122E012AA00C66DA9 /* HMCustomerMessagingViewController.swift */; };
 		5504A79322D02AC900081C10 /* TDSwiftRouteDetailMapViewResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5504A78E22D02AC800081C10 /* TDSwiftRouteDetailMapViewResult.swift */; };
 		5504A79422D02AC900081C10 /* TDSwiftRouteDetailMapViewInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5504A78F22D02AC800081C10 /* TDSwiftRouteDetailMapViewInfo.swift */; };
@@ -81,6 +83,7 @@
 		55F9A2B922B59F3300788FC5 /* CONST.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55F9A2B822B59F3300788FC5 /* CONST.swift */; };
 		55F9A2BC22B5A04400788FC5 /* TDSwiftBasicButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55F9A2BB22B5A04400788FC5 /* TDSwiftBasicButton.swift */; };
 		55F9A2BF22B5A09300788FC5 /* HMBasicButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55F9A2BE22B5A09300788FC5 /* HMBasicButton.swift */; };
+		D9D7B8D17787DEAE3B5C7AF8 /* Pods_hm_driver_iosTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DFB5D9BDDE84910D8BF5B78 /* Pods_hm_driver_iosTests.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -101,6 +104,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2CEBF42A5BE5B86A3272ED97 /* Pods-hm-driver-iosTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-hm-driver-iosTests.release.xcconfig"; path = "Target Support Files/Pods-hm-driver-iosTests/Pods-hm-driver-iosTests.release.xcconfig"; sourceTree = "<group>"; };
+		3C48B6931DC8C2FC366E493B /* Pods-hm-driver-iosUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-hm-driver-iosUITests.debug.xcconfig"; path = "Target Support Files/Pods-hm-driver-iosUITests/Pods-hm-driver-iosUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		55005C2122E012AA00C66DA9 /* HMCustomerMessagingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HMCustomerMessagingViewController.swift; sourceTree = "<group>"; };
 		5504A78E22D02AC800081C10 /* TDSwiftRouteDetailMapViewResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TDSwiftRouteDetailMapViewResult.swift; sourceTree = "<group>"; };
 		5504A78F22D02AC800081C10 /* TDSwiftRouteDetailMapViewInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TDSwiftRouteDetailMapViewInfo.swift; sourceTree = "<group>"; };
@@ -181,6 +186,13 @@
 		55F9A2B822B59F3300788FC5 /* CONST.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CONST.swift; sourceTree = "<group>"; };
 		55F9A2BB22B5A04400788FC5 /* TDSwiftBasicButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TDSwiftBasicButton.swift; sourceTree = "<group>"; };
 		55F9A2BE22B5A09300788FC5 /* HMBasicButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HMBasicButton.swift; sourceTree = "<group>"; };
+		5A9BE3494D813F9298D4233A /* Pods-hm-driver-iosTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-hm-driver-iosTests.debug.xcconfig"; path = "Target Support Files/Pods-hm-driver-iosTests/Pods-hm-driver-iosTests.debug.xcconfig"; sourceTree = "<group>"; };
+		6BEB7107D3F564C36D11E300 /* Pods_hm_driver_ios.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_hm_driver_ios.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		7E0B281FA37A382C40C47F71 /* Pods-hm-driver-ios.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-hm-driver-ios.debug.xcconfig"; path = "Target Support Files/Pods-hm-driver-ios/Pods-hm-driver-ios.debug.xcconfig"; sourceTree = "<group>"; };
+		8DFB5D9BDDE84910D8BF5B78 /* Pods_hm_driver_iosTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_hm_driver_iosTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		944433BD704B14DE511D6B24 /* Pods_hm_driver_iosUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_hm_driver_iosUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B218927035FC340ECB410272 /* Pods-hm-driver-iosUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-hm-driver-iosUITests.release.xcconfig"; path = "Target Support Files/Pods-hm-driver-iosUITests/Pods-hm-driver-iosUITests.release.xcconfig"; sourceTree = "<group>"; };
+		CE7ED5008D8E87A7666425D4 /* Pods-hm-driver-ios.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-hm-driver-ios.release.xcconfig"; path = "Target Support Files/Pods-hm-driver-ios/Pods-hm-driver-ios.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -189,6 +201,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				551B13CC22D832050079C696 /* WebKit.framework in Frameworks */,
+				01BF216CECE8C80FB39AA68F /* Pods_hm_driver_ios.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -196,6 +209,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D9D7B8D17787DEAE3B5C7AF8 /* Pods_hm_driver_iosTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -203,6 +217,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0766753410A8ECB68A09EED2 /* Pods_hm_driver_iosUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -354,6 +369,9 @@
 			isa = PBXGroup;
 			children = (
 				551B13CB22D832050079C696 /* WebKit.framework */,
+				6BEB7107D3F564C36D11E300 /* Pods_hm_driver_ios.framework */,
+				8DFB5D9BDDE84910D8BF5B78 /* Pods_hm_driver_iosTests.framework */,
+				944433BD704B14DE511D6B24 /* Pods_hm_driver_iosUITests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -366,6 +384,7 @@
 				557B82C522B47532002D4774 /* hm-driver-iosUITests */,
 				557B82A422B47531002D4774 /* Products */,
 				551B13CA22D832050079C696 /* Frameworks */,
+				724916B2440F45EF5037D170 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -759,6 +778,20 @@
 			path = HMBasicButton;
 			sourceTree = "<group>";
 		};
+		724916B2440F45EF5037D170 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				7E0B281FA37A382C40C47F71 /* Pods-hm-driver-ios.debug.xcconfig */,
+				CE7ED5008D8E87A7666425D4 /* Pods-hm-driver-ios.release.xcconfig */,
+				5A9BE3494D813F9298D4233A /* Pods-hm-driver-iosTests.debug.xcconfig */,
+				2CEBF42A5BE5B86A3272ED97 /* Pods-hm-driver-iosTests.release.xcconfig */,
+				3C48B6931DC8C2FC366E493B /* Pods-hm-driver-iosUITests.debug.xcconfig */,
+				B218927035FC340ECB410272 /* Pods-hm-driver-iosUITests.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -766,9 +799,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 557B82CB22B47532002D4774 /* Build configuration list for PBXNativeTarget "hm-driver-ios" */;
 			buildPhases = (
+				AAB6B6FF9ECF380F4D74BE6C /* [CP] Check Pods Manifest.lock */,
 				557B829F22B47531002D4774 /* Sources */,
 				557B82A022B47531002D4774 /* Frameworks */,
 				557B82A122B47531002D4774 /* Resources */,
+				A63381DA7F49953EA32AC491 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -783,6 +818,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 557B82CE22B47532002D4774 /* Build configuration list for PBXNativeTarget "hm-driver-iosTests" */;
 			buildPhases = (
+				3AEDC8EBC5D304EC87FD2B26 /* [CP] Check Pods Manifest.lock */,
 				557B82B322B47532002D4774 /* Sources */,
 				557B82B422B47532002D4774 /* Frameworks */,
 				557B82B522B47532002D4774 /* Resources */,
@@ -801,6 +837,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 557B82D122B47532002D4774 /* Build configuration list for PBXNativeTarget "hm-driver-iosUITests" */;
 			buildPhases = (
+				B0150AEBB975B845510E1AED /* [CP] Check Pods Manifest.lock */,
 				557B82BE22B47532002D4774 /* Sources */,
 				557B82BF22B47532002D4774 /* Frameworks */,
 				557B82C022B47532002D4774 /* Resources */,
@@ -884,6 +921,92 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		3AEDC8EBC5D304EC87FD2B26 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-hm-driver-iosTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		A63381DA7F49953EA32AC491 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-hm-driver-ios/Pods-hm-driver-ios-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-hm-driver-ios/Pods-hm-driver-ios-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-hm-driver-ios/Pods-hm-driver-ios-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		AAB6B6FF9ECF380F4D74BE6C /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-hm-driver-ios-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		B0150AEBB975B845510E1AED /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-hm-driver-iosUITests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		557B829F22B47531002D4774 /* Sources */ = {
@@ -1130,6 +1253,7 @@
 		};
 		557B82CC22B47532002D4774 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7E0B281FA37A382C40C47F71 /* Pods-hm-driver-ios.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -1148,6 +1272,7 @@
 		};
 		557B82CD22B47532002D4774 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = CE7ED5008D8E87A7666425D4 /* Pods-hm-driver-ios.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -1166,6 +1291,7 @@
 		};
 		557B82CF22B47532002D4774 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5A9BE3494D813F9298D4233A /* Pods-hm-driver-iosTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -1186,6 +1312,7 @@
 		};
 		557B82D022B47532002D4774 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2CEBF42A5BE5B86A3272ED97 /* Pods-hm-driver-iosTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -1206,6 +1333,7 @@
 		};
 		557B82D222B47532002D4774 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3C48B6931DC8C2FC366E493B /* Pods-hm-driver-iosUITests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -1225,6 +1353,7 @@
 		};
 		557B82D322B47532002D4774 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B218927035FC340ECB410272 /* Pods-hm-driver-iosUITests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
