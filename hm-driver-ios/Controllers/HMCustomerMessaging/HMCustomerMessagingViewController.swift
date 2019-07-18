@@ -165,11 +165,33 @@ extension HMCustomerMessagingViewController: MessagesDataSource, MessagesLayoutD
         let message = message as! HMCustomerMessagingMessage
         let member = message.sender as! HMCustomerMessagingMember
         
-        // Return bubble style
+        // Bubble style according to member type
         if member.senderId == self.member.senderId {
             return .bubbleTail(.bottomRight, .pointedEdge)
         } else {
             return .bubbleTail(.bottomLeft, .pointedEdge)
+        }
+    }
+    
+    func backgroundColor(for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> UIColor {
+        // Member instance
+        let message = message as! HMCustomerMessagingMessage
+        let member = message.sender as! HMCustomerMessagingMember
+        
+        // Member tint color
+        return member.tintColor
+    }
+    
+    func textColor(for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> UIColor {
+        // Member instance
+        let message = message as! HMCustomerMessagingMessage
+        let member = message.sender as! HMCustomerMessagingMember
+        
+        // Bubble text color according to member type
+        if member.senderId == "4" {
+            return .gray
+        } else {
+            return .white
         }
     }
 }
