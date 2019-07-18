@@ -1,6 +1,11 @@
 import UIKit
 import MapKit
 
+struct HMActionInfo {
+    let title: String
+    let description: String
+}
+
 enum HMTripDetailType: Int {
     case dispatched = 3
     case onTheWay = 4
@@ -45,9 +50,9 @@ class HMTripDetailViewController: UIViewController {
     }
     
     @IBAction func actionBtnClicked(_ sender: HMBasicButton) {
-        if let actionTitle = actionTitle,
-            let actionDescription = actionDescription,
-            let currentTripDetailType = currentTripDetailType,
+        if let currentTripDetailType = currentTripDetailType,
+            let actionTitle = actionInfo?[currentTripDetailType]?.title,
+            let actionDescription = actionInfo?[currentTripDetailType]?.description,
             let action = actions?[currentTripDetailType] {
             TDSwiftAlert.showSingleButtonAlertWithCancel(title: actionTitle, message: actionDescription, actionBtnTitle: "Confirm", cancelBtnTitle: "Cancel", presentVC: self) { action() }
         } else {
@@ -69,8 +74,7 @@ class HMTripDetailViewController: UIViewController {
     
     // Action
     var actions: [HMTripDetailType: () -> Void]?
-    var actionTitle: String?
-    var actionDescription: String?
+    var actionInfo: [HMTripDetailType: HMActionInfo]?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -107,10 +111,11 @@ class HMTripDetailViewController: UIViewController {
     private func setupActions() {
         // Init actions
         actions = [:]
+        actionInfo = [:]
         
         // Dispatched
-        actionTitle = "Go To Pickup Location"
-        actionDescription = "You will\nstart sharing location\n&\nnavigate to pickup location\n&\ntext customer ETA notice"
+        actionInfo![HMTripDetailType.dispatched] = HMActionInfo(title: "Go To Pickup Location",
+                                                                description: "You will\nstart sharing location\n&\nnavigate to pickup location\n&\ntext customer ETA notice")
         actions![HMTripDetailType.dispatched] = {
             // Start spinner
             self.spinner.show()
@@ -123,11 +128,6 @@ class HMTripDetailViewController: UIViewController {
                 TDSwiftAlert.showSingleButtonAlert(title: "Update Trip Failed", message: "Trip info incomplete", actionBtnTitle: "OK", presentVC: self, btnAction: nil)
                 return
             }
-            
-            print("------------------------------------------------------------")
-            print("tripToken \(tripToken)")
-            print("customerToken \(customerToken)")
-            print("------------------------------------------------------------")
             
             // Start location sharing
             HMHeartBeat.shared.start()
@@ -168,15 +168,15 @@ class HMTripDetailViewController: UIViewController {
                 dispatchGroup.leave()
             })
             
-            // Present address options
-            if let fromAddressInfo = self.fromAddressInfo, let pickupAddressString = fromAddressInfo["addr_str"] as? String {
-                TDSwiftMapTools.showAddressOptions(onViewController: self, withAddress: pickupAddressString, completion: nil)
-            }
-            
             // Tasks all returned
             dispatchGroup.notify(queue: .main) {
                 // Stop spinner
                 self.spinner.hide()
+                
+                // Present address options
+                if let fromAddressInfo = self.fromAddressInfo, let pickupAddressString = fromAddressInfo["addr_str"] as? String {
+                    TDSwiftMapTools.showAddressOptions(onViewController: self, withAddress: pickupAddressString, completion: nil)
+                }
                 
                 // Reload trip detail
                 self.loadData()
@@ -184,8 +184,8 @@ class HMTripDetailViewController: UIViewController {
         }
         
         // On the way
-        actionTitle = "Send Arrival"
-        actionDescription = "You will\nconfirm arrival for pickup\n&\ntext customer arrival notice"
+        actionInfo![HMTripDetailType.onTheWay] = HMActionInfo(title: "Send Arrival",
+                                                                description: "You will\nconfirm arrival for pickup\n&\ntext customer arrival notice")
         actions![HMTripDetailType.onTheWay] = {
             // Start spinner
             self.spinner.show()
@@ -198,11 +198,6 @@ class HMTripDetailViewController: UIViewController {
                 TDSwiftAlert.showSingleButtonAlert(title: "Update Trip Failed", message: "Trip info incomplete", actionBtnTitle: "OK", presentVC: self, btnAction: nil)
                 return
             }
-            
-            print("------------------------------------------------------------")
-            print("tripToken \(tripToken)")
-            print("customerToken \(customerToken)")
-            print("------------------------------------------------------------")
             
             // Arrive time
             let arriveTime = TDSwiftDate.getCurrentUTCTimeString(withFormat: "yyyy-MM-dd'T'HH:mm:ss.SSSZ")
@@ -240,8 +235,8 @@ class HMTripDetailViewController: UIViewController {
         }
         
         // Arrived
-        actionTitle = "Send Customer On Board"
-        actionDescription = "You will\nconfirm customer on board\n&\nnavigate to customer dropoff location\n&\ntext customer COB notice"
+        actionInfo![HMTripDetailType.arrived] = HMActionInfo(title: "Send Customer On Board",
+                                                                description: "You will\nconfirm customer on board\n&\nnavigate to customer dropoff location\n&\ntext customer COB notice")
         actions![HMTripDetailType.arrived] = {
             // Start spinner
             self.spinner.show()
@@ -254,12 +249,7 @@ class HMTripDetailViewController: UIViewController {
                 TDSwiftAlert.showSingleButtonAlert(title: "Update Trip Failed", message: "Trip info incomplete", actionBtnTitle: "OK", presentVC: self, btnAction: nil)
                 return
             }
-            
-            print("------------------------------------------------------------")
-            print("tripToken \(tripToken)")
-            print("customerToken \(customerToken)")
-            print("------------------------------------------------------------")
-            
+
             // COB time
             let cobTime = TDSwiftDate.getCurrentUTCTimeString(withFormat: "yyyy-MM-dd'T'HH:mm:ss.SSSZ")
             
@@ -278,10 +268,10 @@ class HMTripDetailViewController: UIViewController {
             var durationString = "N/A"
             if let routeInfo = self.routeInfo {
                 let intervalInMin = TDSwiftUnitConverter.secondToMinute(intervalInSecond: Int(routeInfo.expectedTravelTime))
-                durationString = "\(String(format: "%.0f", intervalInMin))min"
+                durationString = "\(String(format: "%.0f", intervalInMin)) min"
             }
             let smsTitle = "\(TDSwiftHavana.shared.auth?.company_name ?? "N/A") COB Notice"
-            let smsMessage = "Welcome on broad! The destination of your trip is: \(toAddressString). It would take about \(durationString) to get your destination.\nEnjoy your trip.\nThank you!"
+            let smsMessage = "Welcome on board! The destination of your trip is: \(toAddressString). It would take about \(durationString) to get your destination.\nEnjoy your trip.\nThank you!"
             
             // Send customer SMS
             dispatchGroup.enter()
@@ -290,16 +280,15 @@ class HMTripDetailViewController: UIViewController {
                 dispatchGroup.leave()
             })
             
-            
-            // Present address options
-            if let toAddressInfo = self.toAddressInfo, let dropoffAddressString = toAddressInfo["addr_str"] as? String {
-                TDSwiftMapTools.showAddressOptions(onViewController: self, withAddress: dropoffAddressString, completion: nil)
-            }
-            
             // Tasks all returned
             dispatchGroup.notify(queue: .main) {
                 // Stop spinner
                 self.spinner.hide()
+                
+                // Present address options
+                if let toAddressInfo = self.toAddressInfo, let dropoffAddressString = toAddressInfo["addr_str"] as? String {
+                    TDSwiftMapTools.showAddressOptions(onViewController: self, withAddress: dropoffAddressString, completion: nil)
+                }
                 
                 // Reload trip detail
                 self.loadData()
@@ -307,8 +296,8 @@ class HMTripDetailViewController: UIViewController {
         }
         
         // COB
-        actionTitle = "Send Customer Arrive Destination"
-        actionDescription = "You will\nconfirm customer arrived at destination\n&\nstop sharing location\n&\ntext customer CAD notice"
+        actionInfo![HMTripDetailType.cob] = HMActionInfo(title: "Send Customer Arrive Destination",
+                                                                description: "You will\nconfirm customer arrived at destination\n&\nstop sharing location\n&\ntext customer CAD notice")
         actions![HMTripDetailType.cob] = {
             // Start spinner
             self.spinner.show()
@@ -321,11 +310,6 @@ class HMTripDetailViewController: UIViewController {
                 TDSwiftAlert.showSingleButtonAlert(title: "Update Trip Failed", message: "Trip info incomplete", actionBtnTitle: "OK", presentVC: self, btnAction: nil)
                 return
             }
-            
-            print("------------------------------------------------------------")
-            print("tripToken \(tripToken)")
-            print("customerToken \(customerToken)")
-            print("------------------------------------------------------------")
             
             // Stop location sharing
             HMHeartBeat.shared.stop()
@@ -367,8 +351,8 @@ class HMTripDetailViewController: UIViewController {
         // CAD
         if let amount = self.basicInfo?["amount"] as? Int {
             let amountString = TDSwiftUnitConverter.centToDollar(amountInCent: amount)
-            actionTitle = "Collect Cash Payment"
-            actionDescription = "Confirm cash payment of $\(amountString)"
+            actionInfo![HMTripDetailType.cad] = HMActionInfo(title: "Collect Cash Payment",
+                                                                    description: "Confirm cash payment of $\(amountString)")
             actions![HMTripDetailType.cad] = {
                 // Start spinner
                 self.spinner.show()
@@ -381,11 +365,6 @@ class HMTripDetailViewController: UIViewController {
                     TDSwiftAlert.showSingleButtonAlert(title: "Update Trip Failed", message: "Trip info incomplete", actionBtnTitle: "OK", presentVC: self, btnAction: nil)
                     return
                 }
-                
-                print("------------------------------------------------------------")
-                print("tripToken \(tripToken)")
-                print("customerToken \(customerToken)")
-                print("------------------------------------------------------------")
                 
                 // Modify trip
                 dispatchGroup.enter()
@@ -406,8 +385,8 @@ class HMTripDetailViewController: UIViewController {
                 }
             }
         } else {
-            actionTitle = "Unable to process payment"
-            actionDescription = "Trip total not provided"
+            actionInfo![HMTripDetailType.cad] = HMActionInfo(title: "Unable to process payment",
+                                                                    description: "Trip total not provided")
             actions![HMTripDetailType.cad] = {}
         }
     }

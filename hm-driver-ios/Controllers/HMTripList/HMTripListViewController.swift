@@ -175,7 +175,7 @@ extension HMTripListViewController: TDSwiftData {
                 }
             }
         case .history:
-            HMTrip.getAllTrips(query: ["status": 8, "start": String(describing: historyTripListEnd ?? 0), "order_key": "udate", "order_direction": "DESC"]) { (result, error) in
+            HMTrip.getAllTrips(query: ["status": 7, "start": String(describing: historyTripListEnd ?? 0), "order_key": "udate", "order_direction": "DESC"]) { (result, error) in
                 DispatchQueue.main.async {
                     // Hand request error
                     if let error = error { TDSwiftAlert.showSingleButtonAlert(title: "Request Failed", message: DriverConn.getErrorMessage(error: error), actionBtnTitle: "OK", presentVC: self, btnAction: nil) }
@@ -262,12 +262,10 @@ extension HMTripListViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         
-        // Present trip detail VC if showing active trip list
-        if currentTripListType == .upcoming {
-            let tripDetailVC = storyboard?.instantiateViewController(withIdentifier: String(describing: HMTripDetailViewController.self)) as! HMTripDetailViewController
-            tripDetailVC.tripToken = activeTripList?[indexPath.row]["trip_token"] as? String
-            self.navigationController?.pushViewController(tripDetailVC, animated: true)
-        }
+        // Show trip detail
+        let tripDetailVC = storyboard?.instantiateViewController(withIdentifier: String(describing: HMTripDetailViewController.self)) as! HMTripDetailViewController
+        tripDetailVC.tripToken = currentTripList?[indexPath.row]["trip_token"] as? String
+        self.navigationController?.pushViewController(tripDetailVC, animated: true)
     }
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
