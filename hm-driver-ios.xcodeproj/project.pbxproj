@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		55005C2222E012AA00C66DA9 /* HMCustomerMessagingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55005C2122E012AA00C66DA9 /* HMCustomerMessagingViewController.swift */; };
 		5504A79322D02AC900081C10 /* TDSwiftRouteDetailMapViewResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5504A78E22D02AC800081C10 /* TDSwiftRouteDetailMapViewResult.swift */; };
 		5504A79422D02AC900081C10 /* TDSwiftRouteDetailMapViewInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5504A78F22D02AC800081C10 /* TDSwiftRouteDetailMapViewInfo.swift */; };
 		5504A79522D02AC900081C10 /* TDSwiftRouteDetailMapViewConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5504A79022D02AC800081C10 /* TDSwiftRouteDetailMapViewConfig.swift */; };
@@ -100,6 +101,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		55005C2122E012AA00C66DA9 /* HMCustomerMessagingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HMCustomerMessagingViewController.swift; sourceTree = "<group>"; };
 		5504A78E22D02AC800081C10 /* TDSwiftRouteDetailMapViewResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TDSwiftRouteDetailMapViewResult.swift; sourceTree = "<group>"; };
 		5504A78F22D02AC800081C10 /* TDSwiftRouteDetailMapViewInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TDSwiftRouteDetailMapViewInfo.swift; sourceTree = "<group>"; };
 		5504A79022D02AC800081C10 /* TDSwiftRouteDetailMapViewConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TDSwiftRouteDetailMapViewConfig.swift; sourceTree = "<group>"; };
@@ -207,6 +209,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		55005C2022E0124300C66DA9 /* HMCustomerMessaging */ = {
+			isa = PBXGroup;
+			children = (
+				55005C2122E012AA00C66DA9 /* HMCustomerMessagingViewController.swift */,
+			);
+			path = HMCustomerMessaging;
+			sourceTree = "<group>";
+		};
 		5504A78D22D02AAF00081C10 /* TDSwiftRouteDetailMapView */ = {
 			isa = PBXGroup;
 			children = (
@@ -424,6 +434,7 @@
 		557B82D622B4ADA0002D4774 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				55005C2022E0124300C66DA9 /* HMCustomerMessaging */,
 				551B13C422D82E280079C696 /* HMResetPassword */,
 				551B13C122D6C9C60079C696 /* HMLocationServicePermission */,
 				55F73AE222D5F57700880212 /* HMPersonalInfo */,
@@ -885,6 +896,7 @@
 				55F9A2A522B4B92F00788FC5 /* TDSwiftHavana.swift in Sources */,
 				55F9A2BF22B5A09300788FC5 /* HMBasicButton.swift in Sources */,
 				5504A79F22D194AF00081C10 /* TDSwiftPopover+UIGestureRecognizer.swift in Sources */,
+				55005C2222E012AA00C66DA9 /* HMCustomerMessagingViewController.swift in Sources */,
 				55EA8D4D22B6F38100A57BF1 /* HMTripDetailViewController.swift in Sources */,
 				55F73AE122D5A87D00880212 /* TDSwiftInfiniteTableView.swift in Sources */,
 				5504A79522D02AC900081C10 /* TDSwiftRouteDetailMapViewConfig.swift in Sources */,

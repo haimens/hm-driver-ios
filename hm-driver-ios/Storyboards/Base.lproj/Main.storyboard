@@ -341,6 +341,21 @@
             </objects>
             <point key="canvasLocation" x="4132" y="487.6847290640394"/>
         </scene>
+        <!--Customer Messaging View Controller-->
+        <scene sceneID="qhW-xZ-k0r">
+            <objects>
+                <viewController id="pJh-eZ-WfW" customClass="HMCustomerMessagingViewController" customModule="hm_driver_ios" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="sRs-lM-lZM">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="mKD-NO-1GS"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="q7o-Be-VaX" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="5033" y="-205"/>
+        </scene>
         <!--Trip Detail View Controller-->
         <scene sceneID="Wye-1r-vSQ">
             <objects>
