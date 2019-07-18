@@ -1,5 +1,6 @@
 import UIKit
 import MessageKit
+import InputBarAccessoryView
 
 struct HMCustomerMessagingMember: SenderType {
     var senderId: String
@@ -40,7 +41,7 @@ struct HMCustomerMessagingMember: SenderType {
             return UIColor.lightGray
         }
     }
-
+    
 }
 
 struct HMCustomerMessagingMessage: MessageType {
@@ -56,13 +57,20 @@ struct HMCustomerMessagingMessage: MessageType {
 class HMCustomerMessagingViewController: MessagesViewController {
     var customerToken: String!
     
+    // UI elements
+    var spinner: TDSwiftSpinner!
+    var refreshControl: UIRefreshControl!
+    
     // Conversation data
     var messages: [HMCustomerMessagingMessage]!
+    var messagesEnd: Int!
+    var messagesCount: Int!
     var member: HMCustomerMessagingMember!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        configUI()
         configConversationData()
         configMessageUI()
     }
@@ -81,8 +89,17 @@ class HMCustomerMessagingViewController: MessagesViewController {
         loadData()
     }
     
+    private func configUI() {
+        // Spinner
+        spinner = TDSwiftSpinner(viewController: self)
+        
+        // refreshControl
+        refreshControl =  UIRefreshControl()
+        self.messagesCollectionView.addSubview(refreshControl)
+        refreshControl.addTarget(self, action: #selector(loadData), for: .valueChanged)
+    }
+    
     private func configConversationData() {
-        messages = []
         member = HMCustomerMessagingMember(senderId: "2", imagePath: TDSwiftHavana.shared.auth?.img_path ?? "")
     }
     
@@ -90,12 +107,29 @@ class HMCustomerMessagingViewController: MessagesViewController {
         self.messagesCollectionView.messagesDataSource = self
         self.messagesCollectionView.messagesLayoutDelegate = self
         self.messagesCollectionView.messagesDisplayDelegate = self
+        self.messageInputBar.delegate = self
+        
+        self.messageInputBar.tintColor = CONST.UI.THEME_COLOR
+        self.messageInputBar.sendButton.setTitleColor(CONST.UI.THEME_COLOR, for: .normal)
+        self.scrollsToBottomOnKeyboardBeginsEditing = true
     }
 }
 
 extension HMCustomerMessagingViewController: TDSwiftData {
     func loadData() {
-        HMSms.getAllSMS(withCustomerToken: self.customerToken, query: nil) { (result, error) in
+        // Data list reached end, return
+        if let messagesCount = messagesCount, let messagesEnd = messagesEnd {
+            if messagesCount <= messagesEnd {
+                self.refreshControl.endRefreshing()
+                return
+            }
+        }
+        
+        // Show spinner
+        spinner.show()
+        
+        // All message request
+        HMSms.getAllSMS(withCustomerToken: self.customerToken, query: ["order_key": "udate", "order_direction": "DESC", "start": messagesEnd ?? 0]) { (result, error) in
             DispatchQueue.main.async {
                 // Hand request error
                 if let error = error { TDSwiftAlert.showSingleButtonAlert(title: "Request Failed", message: DriverConn.getErrorMessage(error: error), actionBtnTitle: "OK", presentVC: self, btnAction: nil) }
@@ -108,12 +142,20 @@ extension HMCustomerMessagingViewController: TDSwiftData {
     
     func parseData(data: [String : Any]) {
         // Record list
-        guard let recordList = data["record_list"] as? [[String : Any]] else {
-            TDSwiftAlert.showSingleButtonAlert(title: "Request Failed", message: "Conversation records invalid", actionBtnTitle: "OK", presentVC: self, btnAction: nil)
-            return
+        guard let recordList = data["record_list"] as? [[String : Any]],
+            let end = data["end"] as? Int,
+            let count = data["count"] as? Int
+            else {
+                TDSwiftAlert.showSingleButtonAlert(title: "Request Failed", message: "Conversation records invalid", actionBtnTitle: "OK", presentVC: self, btnAction: nil)
+                return
         }
         
+        // Update list info
+        self.messagesEnd = end
+        self.messagesCount = count
+        
         // Parse each record
+        if messages == nil { messages = [] }
         recordList.forEach { (record) in
             if let smsToken = record["sms_token"] as? String,
                 let dateString = record["udate"] as? String,
@@ -121,14 +163,27 @@ extension HMCustomerMessagingViewController: TDSwiftData {
                 let message = record["message"] as? String,
                 let type = record["type"] as? Int,
                 let imagePath = record["img_path"] as? String {
-                messages.append(.init(sender: HMCustomerMessagingMember(senderId: "\(type)", imagePath: imagePath), sentDate: date, messageId: smsToken, text: message))
+                messages.insert(.init(sender: HMCustomerMessagingMember(senderId: "\(type)", imagePath: imagePath), sentDate: date, messageId: smsToken, text: message), at: 0)
             }
         }
         
         // Reload collection view
-        self.messagesCollectionView.reloadData()
-        self.messagesCollectionView.scrollToBottom(animated: true)
+        self.messagesCollectionView.reloadDataAndKeepOffset()
+        
+        // Scroll to bottom if loading first page
+        if !self.refreshControl.isRefreshing {
+            self.messagesCollectionView.scrollToBottom(animated: true)
+        }
+        
+        // Hide spinner, end refresh control
+        spinner.hide()
+        self.refreshControl.endRefreshing()
     }
+    
+    func purgeData() {
+        messages = nil
+        messagesEnd = nil
+        messagesCount = nil    }
 }
 
 extension HMCustomerMessagingViewController: MessagesDataSource, MessagesLayoutDelegate, MessagesDisplayDelegate {
@@ -141,7 +196,7 @@ extension HMCustomerMessagingViewController: MessagesDataSource, MessagesLayoutD
     }
     
     func numberOfSections(in messagesCollectionView: MessagesCollectionView) -> Int {
-        return messages.count
+        return messages == nil ? 0 : messages.count
     }
     
     func configureAvatarView(_ avatarView: AvatarView, for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) {
@@ -192,6 +247,58 @@ extension HMCustomerMessagingViewController: MessagesDataSource, MessagesLayoutD
             return .gray
         } else {
             return .white
+        }
+    }
+    
+    func messageTopLabelAttributedText(for message: MessageType, at indexPath: IndexPath) -> NSAttributedString? {
+        // Member instance
+        let message = message as! HMCustomerMessagingMessage
+        let member = message.sender as! HMCustomerMessagingMember
+        
+        // No label for current mamber
+        if member.senderId == self.member.senderId { return nil }
+        
+        // Member display name
+        return NSAttributedString(
+            string: member.displayName,
+            attributes: [.font: UIFont.systemFont(ofSize: 12), .foregroundColor: UIColor.gray])
+    }
+    
+    func messageTopLabelHeight(for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> CGFloat {
+        // Member instance
+        let message = message as! HMCustomerMessagingMessage
+        let member = message.sender as! HMCustomerMessagingMember
+        
+        // No label height for current mamber
+        if member.senderId == self.member.senderId {
+            return 0.0
+        } else {
+            return 12.0
+        }
+    }
+}
+
+extension HMCustomerMessagingViewController: MessageInputBarDelegate {
+    func inputBar(_ inputBar: InputBarAccessoryView, didPressSendButtonWith text: String) {
+        // Show spinner
+        spinner.show()
+        
+        // Send SMS
+        HMSms.sendSMS(withCustomerToken: customerToken, body: ["title": "From Driver - \(TDSwiftHavana.shared.auth?.name ?? CONST.UI.NOT_AVAILABLE_PLACEHOLDER)", "message": text]) { (result, error) in
+            DispatchQueue.main.async {
+                // Clear input
+                inputBar.inputTextView.text = ""
+                
+                // Hide spinner
+                self.spinner.show()
+                
+                // Handle error
+                if let error = error { TDSwiftAlert.showSingleButtonAlert(title: "Send SMS Failed", message: "\(DriverConn.getErrorMessage(error: error))", actionBtnTitle: "OK", presentVC: self, btnAction: nil); return }
+                
+                // Reload messaging view
+                self.purgeData()
+                self.loadData()
+            }
         }
     }
 }
