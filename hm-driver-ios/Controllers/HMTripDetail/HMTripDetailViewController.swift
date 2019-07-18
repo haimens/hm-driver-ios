@@ -112,6 +112,9 @@ class HMTripDetailViewController: UIViewController {
         actionTitle = "Go To Pickup Location"
         actionDescription = "You will\nstart sharing location\n&\nnavigate to pickup location\n&\ntext customer ETA notice"
         actions![HMTripDetailType.dispatched] = {
+            // Start spinner
+            self.spinner.show()
+            
             // Dispatch group
             let dispatchGroup = DispatchGroup()
             
@@ -170,8 +173,12 @@ class HMTripDetailViewController: UIViewController {
                 TDSwiftMapTools.showAddressOptions(onViewController: self, withAddress: pickupAddressString, completion: nil)
             }
             
-            // Reload trip detail
+            // Tasks all returned
             dispatchGroup.notify(queue: .main) {
+                // Stop spinner
+                self.spinner.hide()
+                
+                // Reload trip detail
                 self.loadData()
             }
         }
@@ -180,6 +187,9 @@ class HMTripDetailViewController: UIViewController {
         actionTitle = "Send Arrival"
         actionDescription = "You will\nconfirm arrival for pickup\n&\ntext customer arrival notice"
         actions![HMTripDetailType.onTheWay] = {
+            // Start spinner
+            self.spinner.show()
+            
             // Dispatch group
             let dispatchGroup = DispatchGroup()
             
@@ -219,8 +229,12 @@ class HMTripDetailViewController: UIViewController {
                 dispatchGroup.leave()
             })
             
-            // Reload trip detail
+            // Tasks all returned
             dispatchGroup.notify(queue: .main) {
+                // Stop spinner
+                self.spinner.hide()
+                
+                // Reload trip detail
                 self.loadData()
             }
         }
@@ -229,6 +243,9 @@ class HMTripDetailViewController: UIViewController {
         actionTitle = "Send Customer On Board"
         actionDescription = "You will\nconfirm customer on board\n&\nnavigate to customer dropoff location\n&\ntext customer COB notice"
         actions![HMTripDetailType.arrived] = {
+            // Start spinner
+            self.spinner.show()
+            
             // Dispatch group
             let dispatchGroup = DispatchGroup()
             
@@ -279,8 +296,12 @@ class HMTripDetailViewController: UIViewController {
                 TDSwiftMapTools.showAddressOptions(onViewController: self, withAddress: dropoffAddressString, completion: nil)
             }
             
-            // Reload trip detail
+            // Tasks all returned
             dispatchGroup.notify(queue: .main) {
+                // Stop spinner
+                self.spinner.hide()
+                
+                // Reload trip detail
                 self.loadData()
             }
         }
@@ -289,6 +310,9 @@ class HMTripDetailViewController: UIViewController {
         actionTitle = "Send Customer Arrive Destination"
         actionDescription = "You will\nconfirm customer arrived at destination\n&\nstop sharing location\n&\ntext customer CAD notice"
         actions![HMTripDetailType.cob] = {
+            // Start spinner
+            self.spinner.show()
+            
             // Dispatch group
             let dispatchGroup = DispatchGroup()
             
@@ -330,8 +354,12 @@ class HMTripDetailViewController: UIViewController {
                 dispatchGroup.leave()
             })
             
-            // Reload trip detail
+            // Tasks all returned
             dispatchGroup.notify(queue: .main) {
+                // Stop spinner
+                self.spinner.hide()
+                
+                // Reload trip detail
                 self.loadData()
             }
         }
@@ -342,6 +370,9 @@ class HMTripDetailViewController: UIViewController {
             actionTitle = "Collect Cash Payment"
             actionDescription = "Confirm cash payment of $\(amountString)"
             actions![HMTripDetailType.cad] = {
+                // Start spinner
+                self.spinner.show()
+                
                 // Dispatch group
                 let dispatchGroup = DispatchGroup()
                 
@@ -365,8 +396,12 @@ class HMTripDetailViewController: UIViewController {
                     dispatchGroup.leave()
                 })
                 
-                // Reload trip detail
+                // Tasks all returned
                 dispatchGroup.notify(queue: .main) {
+                    // Stop spinner
+                    self.spinner.hide()
+                    
+                    // Reload trip detail
                     self.loadData()
                 }
             }
@@ -445,7 +480,6 @@ extension HMTripDetailViewController: TDSwiftData {
             }
             return
         }
-        
         
         // VC title date
         if let pickupTimeString = self.basicInfo?["pickup_time"] as? String {
@@ -544,15 +578,19 @@ extension HMTripDetailViewController: TDSwiftData {
         // Action button title
         switch currentTripDetailType {
         case .dispatched:
+            actionBtn.changeButtonState(to: .enabled)
             actionBtn.setTitle("Go To Pickup Location", for: .normal)
         case .onTheWay:
+            actionBtn.changeButtonState(to: .enabled)
             actionBtn.setTitle("Send Arrival", for: .normal)
         case .arrived:
+            actionBtn.changeButtonState(to: .enabled)
             actionBtn.setTitle("Customer On Board", for: .normal)
         case .cob:
+            actionBtn.changeButtonState(to: .enabled)
             actionBtn.setTitle("Customer Arrival Destination", for: .normal)
         case .cad:
-            actionBtn.setTitle("Pay", for: .normal)
+            setActionBtnPaymentState()
         }
         
         // From, to address
@@ -572,6 +610,25 @@ extension HMTripDetailViewController: TDSwiftData {
         
         // Hide spinner
         self.spinner.hide()
+    }
+    
+    private func setActionBtnPaymentState() {
+        // Payment type
+        guard let paymentType = self.basicInfo?["type"] as? Int else {
+            actionBtn.changeButtonState(to: .disabled)
+            actionBtn.setTitle(CONST.UI.NOT_AVAILABLE_PLACEHOLDER, for: .normal)
+            return
+        }
+        
+        // Button state for different payment types
+        switch paymentType {
+        case 3:
+            actionBtn.changeButtonState(to: .enabled)
+            actionBtn.setTitle("Pay With Cash", for: .normal)
+        default:
+            actionBtn.changeButtonState(to: .disabled)
+            actionBtn.setTitle("Payment Method Not Supported", for: .normal)
+        }
     }
     
     private func displayRouteInfo(withInfo info: TDSwiftRouteDetailMapViewResult) {
