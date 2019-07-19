@@ -341,16 +341,17 @@
             </objects>
             <point key="canvasLocation" x="4132" y="487.6847290640394"/>
         </scene>
-        <!--Customer Messaging View Controller-->
+        <!--Messages-->
         <scene sceneID="qhW-xZ-k0r">
             <objects>
-                <viewController storyboardIdentifier="HMCustomerMessagingViewController" id="pJh-eZ-WfW" customClass="HMCustomerMessagingViewController" customModule="hm_driver_ios" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="HMCustomerMessagingViewController" title="Messages" id="pJh-eZ-WfW" customClass="HMCustomerMessagingViewController" customModule="hm_driver_ios" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="sRs-lM-lZM">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="729"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="mKD-NO-1GS"/>
                     </view>
+                    <navigationItem key="navigationItem" title="Messages" id="pZv-er-E21"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="q7o-Be-VaX" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -454,6 +455,7 @@
                         <outlet property="routeDetailView" destination="Cg3-aq-a6j" id="46O-sj-ttP"/>
                         <outlet property="routeInfoLabel" destination="ac0-Vj-7Zn" id="AVV-mS-7k7"/>
                         <outlet property="specialInstructionBtn" destination="2bO-fW-goc" id="Rxf-uv-n6a"/>
+                        <segue destination="pJh-eZ-WfW" kind="show" identifier="HMCustomerMessagingViewController" id="pXJ-KA-dyc"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wjB-A1-odf" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -737,7 +739,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="729"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <view key="tableFooterView" contentMode="scaleToFill" id="bQr-KT-lBk">
+                        <view key="tableFooterView" contentMode="scaleToFill" misplaced="YES" id="bQr-KT-lBk">
                             <rect key="frame" x="0.0" y="378" width="375" height="44"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

@@ -89,7 +89,7 @@ class HMCustomerMessagingViewController: MessagesViewController {
         loadData()
     }
     
-    private func configUI() {
+    private func configUI() {        
         // Spinner
         spinner = TDSwiftSpinner(viewController: self)
         
