@@ -410,12 +410,19 @@
                                                     <action selector="specialInstructionBtnClicked:" destination="hPU-Qa-Oif" eventType="touchUpInside" id="O6E-50-28J"/>
                                                 </connections>
                                             </button>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Flight number AA110" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JPV-g2-P4l">
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KWZ-p2-1ET">
                                                 <rect key="frame" x="167.66666666666663" y="0.0" width="157.33333333333337" height="27"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                                <nil key="textColor"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
+                                                <state key="normal" title="Flight number AA110">
+                                                    <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                </state>
+                                                <state key="disabled">
+                                                    <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="flightInfoBtnClicked:" destination="hPU-Qa-Oif" eventType="touchUpInside" id="SgR-Je-e3V"/>
+                                                </connections>
+                                            </button>
                                         </subviews>
                                     </stackView>
                                 </subviews>
@@ -451,6 +458,7 @@
                     </view>
                     <connections>
                         <outlet property="actionBtn" destination="hYc-oy-hCc" id="MCs-fd-fjL"/>
+                        <outlet property="flightInfoBtn" destination="KWZ-p2-1ET" id="XRE-vd-Gl2"/>
                         <outlet property="mapView" destination="AMI-Ex-N2p" id="vV2-JD-69A"/>
                         <outlet property="routeDetailView" destination="Cg3-aq-a6j" id="46O-sj-ttP"/>
                         <outlet property="routeInfoLabel" destination="ac0-Vj-7Zn" id="AVV-mS-7k7"/>
@@ -739,7 +747,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="729"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <view key="tableFooterView" contentMode="scaleToFill" misplaced="YES" id="bQr-KT-lBk">
+                        <view key="tableFooterView" contentMode="scaleToFill" id="bQr-KT-lBk">
                             <rect key="frame" x="0.0" y="378" width="375" height="44"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

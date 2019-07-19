@@ -41,6 +41,11 @@ class HMTripDetailViewController: UIViewController {
     @IBOutlet weak var specialInstructionBtn: UIButton!
     @IBOutlet weak var routeInfoLabel: UILabel!
     @IBOutlet weak var actionBtn: HMBasicButton!
+    @IBOutlet weak var flightInfoBtn: UIButton!
+    
+    @IBAction func flightInfoBtnClicked(_ sender: UIButton) {
+        print(sender.titleLabel?.text)
+    }
     
     @IBAction func specialInstructionBtnClicked(_ sender: UIButton) {
         // Show note if available
@@ -443,6 +448,23 @@ extension HMTripDetailViewController: TDSwiftData {
         self.fromAddressInfo = data["from_address_info"] as? [String : Any]
         self.toAddressInfo = data["to_address_info"] as? [String : Any]
         self.flightInfo = data["flight_info"] as? [String : Any]
+        
+        // Flight info button
+        if self.flightInfo != nil && self.flightInfo!.count > 0 {
+            // Enable flight info btn
+            self.flightInfoBtn.isEnabled = true
+            
+            // Set flight info btn title
+            if let carrierCode = self.flightInfo?["carrier_code"] as? String, let flightNum = self.flightInfo?["flight_num"] as? String {
+                self.flightInfoBtn.setTitle("\(carrierCode) \(flightNum)", for: .normal)
+            } else {
+                self.flightInfoBtn.setTitle(CONST.UI.NOT_AVAILABLE_PLACEHOLDER, for: .normal)
+            }
+        } else {
+            // Disable flight info btn
+            self.flightInfoBtn.isEnabled = false
+            self.flightInfoBtn.setTitle(CONST.UI.NOT_AVAILABLE_PLACEHOLDER, for: .disabled)
+        }
         
         // Trip detail type
         if let status = self.basicInfo?["status"] as? Int {
