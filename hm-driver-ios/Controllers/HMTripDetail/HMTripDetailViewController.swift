@@ -36,6 +36,8 @@ class HMTripDetailViewController: UIViewController {
     var popover: TDSwiftPopover!
     var spinner: TDSwiftSpinner!
     
+    let currentLocationManager = CLLocationManager()
+    
     @IBOutlet weak var mapView: TDSwiftRouteDetailMapView!
     @IBOutlet weak var routeDetailView: HMRouteDetailView!
     @IBOutlet weak var specialInstructionBtn: UIButton!
@@ -190,7 +192,7 @@ class HMTripDetailViewController: UIViewController {
         
         // On the way
         actionInfo![HMTripDetailType.onTheWay] = HMActionInfo(title: "Send Arrival",
-                                                                description: "You will\nconfirm arrival for pickup\n&\ntext customer arrival notice")
+                                                              description: "You will\nconfirm arrival for pickup\n&\ntext customer arrival notice")
         actions![HMTripDetailType.onTheWay] = {
             // Start spinner
             self.spinner.show()
@@ -241,7 +243,7 @@ class HMTripDetailViewController: UIViewController {
         
         // Arrived
         actionInfo![HMTripDetailType.arrived] = HMActionInfo(title: "Send Customer On Board",
-                                                                description: "You will\nconfirm customer on board\n&\nnavigate to customer dropoff location\n&\ntext customer COB notice")
+                                                             description: "You will\nconfirm customer on board\n&\nnavigate to customer dropoff location\n&\ntext customer COB notice")
         actions![HMTripDetailType.arrived] = {
             // Start spinner
             self.spinner.show()
@@ -254,7 +256,7 @@ class HMTripDetailViewController: UIViewController {
                 TDSwiftAlert.showSingleButtonAlert(title: "Update Trip Failed", message: "Trip info incomplete", actionBtnTitle: "OK", presentVC: self, btnAction: nil)
                 return
             }
-
+            
             // COB time
             let cobTime = TDSwiftDate.getCurrentUTCTimeString(withFormat: "yyyy-MM-dd'T'HH:mm:ss.SSSZ")
             
@@ -302,7 +304,7 @@ class HMTripDetailViewController: UIViewController {
         
         // COB
         actionInfo![HMTripDetailType.cob] = HMActionInfo(title: "Send Customer Arrive Destination",
-                                                                description: "You will\nconfirm customer arrived at destination\n&\nstop sharing location\n&\ntext customer CAD notice")
+                                                         description: "You will\nconfirm customer arrived at destination\n&\nstop sharing location\n&\ntext customer CAD notice")
         actions![HMTripDetailType.cob] = {
             // Start spinner
             self.spinner.show()
@@ -357,7 +359,7 @@ class HMTripDetailViewController: UIViewController {
         if let amount = self.basicInfo?["amount"] as? Int {
             let amountString = TDSwiftUnitConverter.centToDollar(amountInCent: amount)
             actionInfo![HMTripDetailType.cad] = HMActionInfo(title: "Collect Cash Payment",
-                                                                    description: "Confirm cash payment of $\(amountString)")
+                                                             description: "Confirm cash payment of $\(amountString)")
             actions![HMTripDetailType.cad] = {
                 // Start spinner
                 self.spinner.show()
@@ -391,7 +393,7 @@ class HMTripDetailViewController: UIViewController {
             }
         } else {
             actionInfo![HMTripDetailType.cad] = HMActionInfo(title: "Unable to process payment",
-                                                                    description: "Trip total not provided")
+                                                             description: "Trip total not provided")
             actions![HMTripDetailType.cad] = {}
         }
     }
@@ -499,28 +501,9 @@ extension HMTripDetailViewController: TDSwiftData {
             let pickupTimeString = TDSwiftDate.utcTimeStringToLocalTimeString(timeString: utcPickupTimeString, withFormat: "yyyy-MM-dd'T'HH:mm:ss.SSSZ", outputFormat: "h:mm a") {
             switch currentTripDetailType {
             case .dispatched, .onTheWay:
-                // Current location
-                let currentCoordinate = HMLocationManager.shared.locationManager.location?.coordinate
-                if currentCoordinate == nil {
-                    TDSwiftAlert.showSingleButtonAlert(title: "Map Error", message: "Your location is temporarily unavailable", actionBtnTitle: "OK", presentVC: self, btnAction: nil)
-                    return
-                }
-                let currentLocation = CLLocation(latitude: currentCoordinate!.latitude, longitude: currentCoordinate!.longitude)
-                
-                // Config mapview
-                mapView.showsUserLocation = true
-                mapView.config(config: TDSwiftRouteDetailMapView.defaultConfig,
-                               info: TDSwiftRouteDetailMapViewInfo(sourceTitle: "Driver Location",
-                                                                   destinationTitle: "Pickup \(pickupTimeString)",
-                                sourceLocation: currentLocation,
-                                destinationLocation: CLLocation(latitude: pickupLat, longitude: pickupLng)))
-                mapView.drawRoute(removeOldRoute: true) { (info, error) in
-                    if let error = error { TDSwiftAlert.showSingleButtonAlert(title: "Map Error", message: "Render map with error: \(error)", actionBtnTitle: "OK", presentVC: self, btnAction: nil) }
-                    if let info = info {
-                        self.routeInfo = info
-                        self.displayRouteInfo(withInfo: info)
-                    }
-                }
+                // Request current location
+                currentLocationManager.delegate = self
+                currentLocationManager.requestLocation()
             case .arrived:
                 // ConfigM mapview
                 mapView.showsUserLocation = false
@@ -610,7 +593,9 @@ extension HMTripDetailViewController: TDSwiftData {
         }
         
         // Hide spinner
-        self.spinner.hide()
+        if currentTripDetailType != .dispatched && currentTripDetailType != .onTheWay {
+            self.spinner.hide()
+        }
     }
     
     private func setActionBtnPaymentState() {
@@ -683,5 +668,59 @@ extension HMTripDetailViewController: TDSwiftPopoverDelegate {
 extension HMTripDetailViewController: TDSwiftRouteDetailViewDelegate {
     func didSelectAddressBtn(atLocation location: TDSwiftRouteDetailViewAddressButtonLocation, button: UIButton) {
         TDSwiftMapTools.showAddressOptions(onViewController: self, withAddress: button.titleLabel?.text ?? "", completion: nil)
+    }
+}
+
+extension HMTripDetailViewController: CLLocationManagerDelegate {
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        // If is rendering dispatched or on the way map
+        if let currentTripDetailType = self.currentTripDetailType, (currentTripDetailType == .dispatched || currentTripDetailType == .onTheWay) {
+            // Hide spinner
+            self.spinner.hide()
+            
+            // Pickup location
+            guard let pickupLat = self.fromAddressInfo?["lat"] as? Double,
+                let pickupLng = self.fromAddressInfo?["lng"] as? Double,
+                let utcPickupTimeString = self.basicInfo?["pickup_time"] as? String,
+                let pickupTimeString = TDSwiftDate.utcTimeStringToLocalTimeString(timeString: utcPickupTimeString, withFormat: "yyyy-MM-dd'T'HH:mm:ss.SSSZ", outputFormat: "h:mm a") else {
+                    TDSwiftAlert.showSingleButtonAlert(title: "Map Error", message: "Pickup location unavailable", actionBtnTitle: "OK", presentVC: self, btnAction: nil)
+                    return
+            }
+            
+            // Current location
+            let currentCoordinate = locations.last?.coordinate
+            if currentCoordinate == nil {
+                TDSwiftAlert.showSingleButtonAlert(title: "Map Error", message: "Your location is temporarily unavailable", actionBtnTitle: "OK", presentVC: self, btnAction: nil)
+                return
+            }
+            let currentLocation = CLLocation(latitude: currentCoordinate!.latitude, longitude: currentCoordinate!.longitude)
+            
+            // Config mapview
+            mapView.showsUserLocation = true
+            mapView.config(config: TDSwiftRouteDetailMapView.defaultConfig,
+                           info: TDSwiftRouteDetailMapViewInfo(sourceTitle: "Driver Location",
+                                                               destinationTitle: "Pickup \(pickupTimeString)",
+                            sourceLocation: currentLocation,
+                            destinationLocation: CLLocation(latitude: pickupLat, longitude: pickupLng)))
+            mapView.drawRoute(removeOldRoute: true) { (info, error) in
+                if let error = error { TDSwiftAlert.showSingleButtonAlert(title: "Map Error", message: "Render map with error: \(error)", actionBtnTitle: "OK", presentVC: self, btnAction: nil) }
+                if let info = info {
+                    self.routeInfo = info
+                    self.displayRouteInfo(withInfo: info)
+                }
+            }
+            
+        }
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+        // If is rendering dispatched or on the way map
+        if let currentTripDetailType = self.currentTripDetailType, (currentTripDetailType == .dispatched || currentTripDetailType == .onTheWay) {
+            // Hide spinner
+            self.spinner.hide()
+            
+            // Failed to get current location
+            TDSwiftAlert.showSingleButtonAlert(title: "Map Error", message: "Your location is temporarily unavailable", actionBtnTitle: "OK", presentVC: self, btnAction: nil)
+        }
     }
 }
