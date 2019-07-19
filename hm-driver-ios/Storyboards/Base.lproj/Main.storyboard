@@ -355,7 +355,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="q7o-Be-VaX" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5033" y="-205"/>
+            <point key="canvasLocation" x="6033" y="117"/>
         </scene>
         <!--Trip Detail View Controller-->
         <scene sceneID="Wye-1r-vSQ">
@@ -413,7 +413,7 @@
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KWZ-p2-1ET">
                                                 <rect key="frame" x="167.66666666666663" y="0.0" width="157.33333333333337" height="27"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                                <state key="normal" title="Flight number AA110">
+                                                <state key="normal" title="-">
                                                     <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
                                                 </state>
                                                 <state key="disabled">
@@ -464,6 +464,7 @@
                         <outlet property="routeInfoLabel" destination="ac0-Vj-7Zn" id="AVV-mS-7k7"/>
                         <outlet property="specialInstructionBtn" destination="2bO-fW-goc" id="Rxf-uv-n6a"/>
                         <segue destination="pJh-eZ-WfW" kind="show" identifier="HMCustomerMessagingViewController" id="pXJ-KA-dyc"/>
+                        <segue destination="FdU-Qd-C0t" kind="presentation" identifier="HMFlightInfoViewController" id="qIv-tZ-ruE"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wjB-A1-odf" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1129,7 +1130,7 @@
         <!--Reset Password View Controller-->
         <scene sceneID="rSA-aX-ZU8">
             <objects>
-                <viewController storyboardIdentifier="ANResetPasswordViewController" modalPresentationStyle="overFullScreen" id="c6N-zx-eyC" customClass="HMResetPasswordViewController" customModule="hm_driver_ios" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController modalPresentationStyle="overFullScreen" id="c6N-zx-eyC" customClass="HMResetPasswordViewController" customModule="hm_driver_ios" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="h7N-4B-sRG">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1200,7 +1201,71 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="z7n-Lz-Ifo" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5156" y="2523"/>
+            <point key="canvasLocation" x="5156" y="2547"/>
+        </scene>
+        <!--Flight Info View Controller-->
+        <scene sceneID="ar3-wE-nmQ">
+            <objects>
+                <viewController storyboardIdentifier="HMFlightInfoViewController" modalPresentationStyle="overFullScreen" id="FdU-Qd-C0t" customClass="HMFlightInfoViewController" customModule="hm_driver_ios" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="TBH-v4-CHt">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kxM-Zd-fsS" customClass="TDSwiftRoundedCornerView" customModule="hm_driver_ios" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="81" width="375" height="731"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zOl-ig-nZ3">
+                                        <rect key="frame" x="327" y="32" width="22" height="22"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="22" id="8Ub-lA-utP"/>
+                                            <constraint firstAttribute="height" constant="22" id="ZSV-C7-8Pf"/>
+                                        </constraints>
+                                        <state key="normal" title="X" image="card_dismiss_btn"/>
+                                        <connections>
+                                            <action selector="dismissBtnClicked:" destination="FdU-Qd-C0t" eventType="touchUpInside" id="H1D-3p-oMb"/>
+                                        </connections>
+                                    </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Flight Info" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Sbm-Cv-Y8u">
+                                        <rect key="frame" x="25" y="25" width="127" height="36"/>
+                                        <fontDescription key="fontDescription" style="UICTFontTextStyleTitle0"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="LQq-Fq-DVH">
+                                        <rect key="frame" x="0.0" y="77" width="375" height="654"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </tableView>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="LQq-Fq-DVH" firstAttribute="top" secondItem="kxM-Zd-fsS" secondAttribute="top" constant="77" id="2Rt-93-Mxy"/>
+                                    <constraint firstAttribute="bottom" secondItem="LQq-Fq-DVH" secondAttribute="bottom" id="7ZF-jK-JF4"/>
+                                    <constraint firstItem="Sbm-Cv-Y8u" firstAttribute="leading" secondItem="kxM-Zd-fsS" secondAttribute="leading" constant="25" id="7uq-43-HJA"/>
+                                    <constraint firstItem="zOl-ig-nZ3" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="Sbm-Cv-Y8u" secondAttribute="trailing" id="Bmy-dK-Eok"/>
+                                    <constraint firstItem="zOl-ig-nZ3" firstAttribute="top" secondItem="kxM-Zd-fsS" secondAttribute="top" constant="32" id="CXc-ia-SxW"/>
+                                    <constraint firstAttribute="trailing" secondItem="zOl-ig-nZ3" secondAttribute="trailing" constant="26" id="MNI-yn-Yic"/>
+                                    <constraint firstItem="LQq-Fq-DVH" firstAttribute="leading" secondItem="kxM-Zd-fsS" secondAttribute="leading" id="jvU-Zp-4cA"/>
+                                    <constraint firstItem="Sbm-Cv-Y8u" firstAttribute="top" secondItem="kxM-Zd-fsS" secondAttribute="top" constant="25" id="tF9-Kb-O2T"/>
+                                    <constraint firstAttribute="trailing" secondItem="LQq-Fq-DVH" secondAttribute="trailing" id="wtC-Ko-Ftb"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="kxM-Zd-fsS" firstAttribute="top" secondItem="fUJ-Df-c2q" secondAttribute="top" constant="37" id="40z-Vh-b5c"/>
+                            <constraint firstItem="kxM-Zd-fsS" firstAttribute="leading" secondItem="fUJ-Df-c2q" secondAttribute="leading" id="SGd-J6-wK6"/>
+                            <constraint firstAttribute="bottom" secondItem="kxM-Zd-fsS" secondAttribute="bottom" id="XiC-tX-F0J"/>
+                            <constraint firstItem="kxM-Zd-fsS" firstAttribute="trailing" secondItem="fUJ-Df-c2q" secondAttribute="trailing" id="b4q-bF-xdK"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="fUJ-Df-c2q"/>
+                    </view>
+                    <connections>
+                        <outlet property="bgView" destination="kxM-Zd-fsS" id="l5x-pc-1Us"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="GXY-b0-Wnw" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="6032.8000000000002" y="852.70935960591135"/>
         </scene>
     </scenes>
     <resources>

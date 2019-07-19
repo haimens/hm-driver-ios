@@ -46,7 +46,7 @@ class HMTripDetailViewController: UIViewController {
     @IBOutlet weak var flightInfoBtn: UIButton!
     
     @IBAction func flightInfoBtnClicked(_ sender: UIButton) {
-        print(sender.titleLabel?.text)
+        performSegue(withIdentifier: String(describing: HMFlightInfoViewController.self), sender: self)
     }
     
     @IBAction func specialInstructionBtnClicked(_ sender: UIButton) {

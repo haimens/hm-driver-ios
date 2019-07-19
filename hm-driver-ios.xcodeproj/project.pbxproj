@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -83,6 +83,7 @@
 		55F9A2B922B59F3300788FC5 /* CONST.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55F9A2B822B59F3300788FC5 /* CONST.swift */; };
 		55F9A2BC22B5A04400788FC5 /* TDSwiftBasicButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55F9A2BB22B5A04400788FC5 /* TDSwiftBasicButton.swift */; };
 		55F9A2BF22B5A09300788FC5 /* HMBasicButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55F9A2BE22B5A09300788FC5 /* HMBasicButton.swift */; };
+		55FAC70722E215ED00D9AD3A /* HMFlightInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55FAC70622E215ED00D9AD3A /* HMFlightInfoViewController.swift */; };
 		D9D7B8D17787DEAE3B5C7AF8 /* Pods_hm_driver_iosTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DFB5D9BDDE84910D8BF5B78 /* Pods_hm_driver_iosTests.framework */; };
 /* End PBXBuildFile section */
 
@@ -186,6 +187,7 @@
 		55F9A2B822B59F3300788FC5 /* CONST.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CONST.swift; sourceTree = "<group>"; };
 		55F9A2BB22B5A04400788FC5 /* TDSwiftBasicButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TDSwiftBasicButton.swift; sourceTree = "<group>"; };
 		55F9A2BE22B5A09300788FC5 /* HMBasicButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HMBasicButton.swift; sourceTree = "<group>"; };
+		55FAC70622E215ED00D9AD3A /* HMFlightInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HMFlightInfoViewController.swift; sourceTree = "<group>"; };
 		5A9BE3494D813F9298D4233A /* Pods-hm-driver-iosTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-hm-driver-iosTests.debug.xcconfig"; path = "Target Support Files/Pods-hm-driver-iosTests/Pods-hm-driver-iosTests.debug.xcconfig"; sourceTree = "<group>"; };
 		6BEB7107D3F564C36D11E300 /* Pods_hm_driver_ios.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_hm_driver_ios.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7E0B281FA37A382C40C47F71 /* Pods-hm-driver-ios.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-hm-driver-ios.debug.xcconfig"; path = "Target Support Files/Pods-hm-driver-ios/Pods-hm-driver-ios.debug.xcconfig"; sourceTree = "<group>"; };
@@ -453,6 +455,7 @@
 		557B82D622B4ADA0002D4774 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				55FAC70522E215D800D9AD3A /* HMFlightInfo */,
 				55005C2022E0124300C66DA9 /* HMCustomerMessaging */,
 				551B13C422D82E280079C696 /* HMResetPassword */,
 				551B13C122D6C9C60079C696 /* HMLocationServicePermission */,
@@ -778,6 +781,14 @@
 			path = HMBasicButton;
 			sourceTree = "<group>";
 		};
+		55FAC70522E215D800D9AD3A /* HMFlightInfo */ = {
+			isa = PBXGroup;
+			children = (
+				55FAC70622E215ED00D9AD3A /* HMFlightInfoViewController.swift */,
+			);
+			path = HMFlightInfo;
+			sourceTree = "<group>";
+		};
 		724916B2440F45EF5037D170 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -788,7 +799,6 @@
 				3C48B6931DC8C2FC366E493B /* Pods-hm-driver-iosUITests.debug.xcconfig */,
 				B218927035FC340ECB410272 /* Pods-hm-driver-iosUITests.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -1019,6 +1029,7 @@
 				55F9A2A522B4B92F00788FC5 /* TDSwiftHavana.swift in Sources */,
 				55F9A2BF22B5A09300788FC5 /* HMBasicButton.swift in Sources */,
 				5504A79F22D194AF00081C10 /* TDSwiftPopover+UIGestureRecognizer.swift in Sources */,
+				55FAC70722E215ED00D9AD3A /* HMFlightInfoViewController.swift in Sources */,
 				55005C2222E012AA00C66DA9 /* HMCustomerMessagingViewController.swift in Sources */,
 				55EA8D4D22B6F38100A57BF1 /* HMTripDetailViewController.swift in Sources */,
 				55F73AE122D5A87D00880212 /* TDSwiftInfiniteTableView.swift in Sources */,
