@@ -1,4 +1,5 @@
 import UIKit
+import OneSignal
 
 class HMAuthViewController: UIViewController {
     @IBAction func logoutBtnClicked(_ sender: UIButton) {
@@ -12,7 +13,7 @@ class HMAuthViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-                
+        
         // If current location service permission is not desired, popup location permission vc
         if HMLocationManager.shared.getServiceAuthorizationStatus() == .authorizedAlways {
             verifyAuthInfo()
@@ -30,6 +31,9 @@ class HMAuthViewController: UIViewController {
                         // Update global data
                         HMGlobal.shared.makeGlobalRequest()
                         
+                        // Update one signal player key
+                        self.updatePlayerKey()
+                        
                         // Present main view
                         self.performSegue(withIdentifier: String(describing: HMMainTabBarController.self), sender: self)
                     }
@@ -43,6 +47,13 @@ class HMAuthViewController: UIViewController {
         } else {
             // Present login vc, request user info
             self.performSegue(withIdentifier: String(describing: HMLoginViewController.self), sender: self)
+        }
+    }
+    
+    private func updatePlayerKey() {
+        // Update driver player key if player id available
+        if let playerKey = OneSignal.getPermissionSubscriptionState()?.subscriptionStatus.userId {
+            HMDriver.modifyDriverDetail(body: ["player_key": playerKey], completion: nil)
         }
     }
 }

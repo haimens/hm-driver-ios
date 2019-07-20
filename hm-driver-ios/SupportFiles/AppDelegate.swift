@@ -17,11 +17,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         OneSignal.inFocusDisplayType = OSNotificationDisplayType.notification;
         
-        // Update driver player key if player id available
-        if let playerKey = OneSignal.getPermissionSubscriptionState()?.subscriptionStatus.userId {
-            HMDriver.modifyDriverDetail(body: ["player_key": playerKey], completion: nil)
-        }
-        
         // Recommend moving the below line to prompt for push after informing the user about
         //   how your app will use them.
         OneSignal.promptForPushNotifications(userResponse: { accepted in
