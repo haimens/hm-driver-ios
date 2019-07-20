@@ -157,13 +157,27 @@ extension HMCustomerMessagingViewController: TDSwiftData {
         // Parse each record
         if messages == nil { messages = [] }
         recordList.forEach { (record) in
-            if let smsToken = record["sms_token"] as? String,
+            // Parse img path
+            var imgPath = ""
+            if let type = record["type"] as? Int {
+                if type == 1 {
+                    imgPath = record["lord_img_path"] as? String ?? ""
+                } else if type == 2 {
+                    imgPath = record["driver_img_path"] as? String ?? ""
+                } else if type == 3 {
+                    imgPath = TDSwiftHavana.shared.auth?.icon_path ?? ""
+                } else if type == 4 {
+                    imgPath = record["img_path"] as? String ?? ""
+                }
+            }
+            
+            // Parse othe info
+            if let type = record["type"] as? Int,
+                let smsToken = record["sms_token"] as? String,
                 let dateString = record["udate"] as? String,
                 let date = TDSwiftDate.utcTimeStringToDate(timeString: dateString, withFormat: "yyyy-MM-dd'T'HH:mm:ss.SSSZ"),
-                let message = record["message"] as? String,
-                let type = record["type"] as? Int,
-                let imagePath = record["img_path"] as? String {
-                messages.insert(.init(sender: HMCustomerMessagingMember(senderId: "\(type)", imagePath: imagePath), sentDate: date, messageId: smsToken, text: message), at: 0)
+                let message = record["message"] as? String {
+                messages.insert(.init(sender: HMCustomerMessagingMember(senderId: "\(type)", imagePath: imgPath), sentDate: date, messageId: smsToken, text: message), at: 0)
             }
         }
         
