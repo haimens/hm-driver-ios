@@ -41,6 +41,11 @@
 	<string>We need your permission to be able to report your status to the dispatch center</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>We need your permission to be able to report your status to the dispatch center</string>
+	<key>UIBackgroundModes</key>
+	<array>
+		<string>location</string>
+		<string>remote-notification</string>
+	</array>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>

@@ -84,6 +84,9 @@
 		55F9A2BC22B5A04400788FC5 /* TDSwiftBasicButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55F9A2BB22B5A04400788FC5 /* TDSwiftBasicButton.swift */; };
 		55F9A2BF22B5A09300788FC5 /* HMBasicButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55F9A2BE22B5A09300788FC5 /* HMBasicButton.swift */; };
 		55FAC70722E215ED00D9AD3A /* HMFlightInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55FAC70622E215ED00D9AD3A /* HMFlightInfoViewController.swift */; };
+		55FAC70F22E2C59C00D9AD3A /* NotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55FAC70E22E2C59C00D9AD3A /* NotificationService.swift */; };
+		55FAC71322E2C59C00D9AD3A /* OneSignalNotificationServiceExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 55FAC70C22E2C59C00D9AD3A /* OneSignalNotificationServiceExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		CD079AE267A76230477EA11C /* Pods_hm_driver_ios_OneSignalNotificationServiceExtension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 20B6F6864B0F732619482EC8 /* Pods_hm_driver_ios_OneSignalNotificationServiceExtension.framework */; };
 		D9D7B8D17787DEAE3B5C7AF8 /* Pods_hm_driver_iosTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DFB5D9BDDE84910D8BF5B78 /* Pods_hm_driver_iosTests.framework */; };
 /* End PBXBuildFile section */
 
@@ -102,9 +105,31 @@
 			remoteGlobalIDString = 557B82A222B47531002D4774;
 			remoteInfo = "hm-driver-ios";
 		};
+		55FAC71122E2C59C00D9AD3A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 557B829B22B47531002D4774 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 55FAC70B22E2C59C00D9AD3A;
+			remoteInfo = OneSignalNotificationServiceExtension;
+		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		55FAC71722E2C59C00D9AD3A /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				55FAC71322E2C59C00D9AD3A /* OneSignalNotificationServiceExtension.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
+		20B6F6864B0F732619482EC8 /* Pods_hm_driver_ios_OneSignalNotificationServiceExtension.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_hm_driver_ios_OneSignalNotificationServiceExtension.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2CEBF42A5BE5B86A3272ED97 /* Pods-hm-driver-iosTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-hm-driver-iosTests.release.xcconfig"; path = "Target Support Files/Pods-hm-driver-iosTests/Pods-hm-driver-iosTests.release.xcconfig"; sourceTree = "<group>"; };
 		3C48B6931DC8C2FC366E493B /* Pods-hm-driver-iosUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-hm-driver-iosUITests.debug.xcconfig"; path = "Target Support Files/Pods-hm-driver-iosUITests/Pods-hm-driver-iosUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		55005C2122E012AA00C66DA9 /* HMCustomerMessagingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HMCustomerMessagingViewController.swift; sourceTree = "<group>"; };
@@ -188,12 +213,18 @@
 		55F9A2BB22B5A04400788FC5 /* TDSwiftBasicButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TDSwiftBasicButton.swift; sourceTree = "<group>"; };
 		55F9A2BE22B5A09300788FC5 /* HMBasicButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HMBasicButton.swift; sourceTree = "<group>"; };
 		55FAC70622E215ED00D9AD3A /* HMFlightInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HMFlightInfoViewController.swift; sourceTree = "<group>"; };
+		55FAC70C22E2C59C00D9AD3A /* OneSignalNotificationServiceExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = OneSignalNotificationServiceExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		55FAC70E22E2C59C00D9AD3A /* NotificationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationService.swift; sourceTree = "<group>"; };
+		55FAC71022E2C59C00D9AD3A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		55FAC71822E2C82C00D9AD3A /* hm-driver-ios.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "hm-driver-ios.entitlements"; sourceTree = "<group>"; };
 		5A9BE3494D813F9298D4233A /* Pods-hm-driver-iosTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-hm-driver-iosTests.debug.xcconfig"; path = "Target Support Files/Pods-hm-driver-iosTests/Pods-hm-driver-iosTests.debug.xcconfig"; sourceTree = "<group>"; };
 		6BEB7107D3F564C36D11E300 /* Pods_hm_driver_ios.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_hm_driver_ios.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7E0B281FA37A382C40C47F71 /* Pods-hm-driver-ios.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-hm-driver-ios.debug.xcconfig"; path = "Target Support Files/Pods-hm-driver-ios/Pods-hm-driver-ios.debug.xcconfig"; sourceTree = "<group>"; };
 		8DFB5D9BDDE84910D8BF5B78 /* Pods_hm_driver_iosTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_hm_driver_iosTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		944433BD704B14DE511D6B24 /* Pods_hm_driver_iosUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_hm_driver_iosUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B218927035FC340ECB410272 /* Pods-hm-driver-iosUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-hm-driver-iosUITests.release.xcconfig"; path = "Target Support Files/Pods-hm-driver-iosUITests/Pods-hm-driver-iosUITests.release.xcconfig"; sourceTree = "<group>"; };
+		BCC2DBF26234DA30569CDD11 /* Pods-hm-driver-ios-OneSignalNotificationServiceExtension.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-hm-driver-ios-OneSignalNotificationServiceExtension.release.xcconfig"; path = "Target Support Files/Pods-hm-driver-ios-OneSignalNotificationServiceExtension/Pods-hm-driver-ios-OneSignalNotificationServiceExtension.release.xcconfig"; sourceTree = "<group>"; };
+		C6DD16778C92B209B34F85F5 /* Pods-hm-driver-ios-OneSignalNotificationServiceExtension.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-hm-driver-ios-OneSignalNotificationServiceExtension.debug.xcconfig"; path = "Target Support Files/Pods-hm-driver-ios-OneSignalNotificationServiceExtension/Pods-hm-driver-ios-OneSignalNotificationServiceExtension.debug.xcconfig"; sourceTree = "<group>"; };
 		CE7ED5008D8E87A7666425D4 /* Pods-hm-driver-ios.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-hm-driver-ios.release.xcconfig"; path = "Target Support Files/Pods-hm-driver-ios/Pods-hm-driver-ios.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -220,6 +251,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				0766753410A8ECB68A09EED2 /* Pods_hm_driver_iosUITests.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		55FAC70922E2C59C00D9AD3A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CD079AE267A76230477EA11C /* Pods_hm_driver_ios_OneSignalNotificationServiceExtension.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -374,6 +413,7 @@
 				6BEB7107D3F564C36D11E300 /* Pods_hm_driver_ios.framework */,
 				8DFB5D9BDDE84910D8BF5B78 /* Pods_hm_driver_iosTests.framework */,
 				944433BD704B14DE511D6B24 /* Pods_hm_driver_iosUITests.framework */,
+				20B6F6864B0F732619482EC8 /* Pods_hm_driver_ios_OneSignalNotificationServiceExtension.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -384,6 +424,7 @@
 				557B82A522B47531002D4774 /* hm-driver-ios */,
 				557B82BA22B47532002D4774 /* hm-driver-iosTests */,
 				557B82C522B47532002D4774 /* hm-driver-iosUITests */,
+				55FAC70D22E2C59C00D9AD3A /* OneSignalNotificationServiceExtension */,
 				557B82A422B47531002D4774 /* Products */,
 				551B13CA22D832050079C696 /* Frameworks */,
 				724916B2440F45EF5037D170 /* Pods */,
@@ -396,6 +437,7 @@
 				557B82A322B47531002D4774 /* hm-driver-ios.app */,
 				557B82B722B47532002D4774 /* hm-driver-iosTests.xctest */,
 				557B82C222B47532002D4774 /* hm-driver-iosUITests.xctest */,
+				55FAC70C22E2C59C00D9AD3A /* OneSignalNotificationServiceExtension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -403,6 +445,7 @@
 		557B82A522B47531002D4774 /* hm-driver-ios */ = {
 			isa = PBXGroup;
 			children = (
+				55FAC71822E2C82C00D9AD3A /* hm-driver-ios.entitlements */,
 				557B82D722B4ADA9002D4774 /* Models */,
 				557B82D622B4ADA0002D4774 /* Controllers */,
 				557B82D922B4ADBC002D4774 /* UI */,
@@ -789,6 +832,15 @@
 			path = HMFlightInfo;
 			sourceTree = "<group>";
 		};
+		55FAC70D22E2C59C00D9AD3A /* OneSignalNotificationServiceExtension */ = {
+			isa = PBXGroup;
+			children = (
+				55FAC70E22E2C59C00D9AD3A /* NotificationService.swift */,
+				55FAC71022E2C59C00D9AD3A /* Info.plist */,
+			);
+			path = OneSignalNotificationServiceExtension;
+			sourceTree = "<group>";
+		};
 		724916B2440F45EF5037D170 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -798,6 +850,8 @@
 				2CEBF42A5BE5B86A3272ED97 /* Pods-hm-driver-iosTests.release.xcconfig */,
 				3C48B6931DC8C2FC366E493B /* Pods-hm-driver-iosUITests.debug.xcconfig */,
 				B218927035FC340ECB410272 /* Pods-hm-driver-iosUITests.release.xcconfig */,
+				C6DD16778C92B209B34F85F5 /* Pods-hm-driver-ios-OneSignalNotificationServiceExtension.debug.xcconfig */,
+				BCC2DBF26234DA30569CDD11 /* Pods-hm-driver-ios-OneSignalNotificationServiceExtension.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -814,10 +868,12 @@
 				557B82A022B47531002D4774 /* Frameworks */,
 				557B82A122B47531002D4774 /* Resources */,
 				A63381DA7F49953EA32AC491 /* [CP] Embed Pods Frameworks */,
+				55FAC71722E2C59C00D9AD3A /* Embed App Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				55FAC71222E2C59C00D9AD3A /* PBXTargetDependency */,
 			);
 			name = "hm-driver-ios";
 			productName = "hm-driver-ios";
@@ -862,6 +918,24 @@
 			productReference = 557B82C222B47532002D4774 /* hm-driver-iosUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
+		55FAC70B22E2C59C00D9AD3A /* OneSignalNotificationServiceExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 55FAC71422E2C59C00D9AD3A /* Build configuration list for PBXNativeTarget "OneSignalNotificationServiceExtension" */;
+			buildPhases = (
+				37319E1B922E1FF389FA4D39 /* [CP] Check Pods Manifest.lock */,
+				55FAC70822E2C59C00D9AD3A /* Sources */,
+				55FAC70922E2C59C00D9AD3A /* Frameworks */,
+				55FAC70A22E2C59C00D9AD3A /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = OneSignalNotificationServiceExtension;
+			productName = OneSignalNotificationServiceExtension;
+			productReference = 55FAC70C22E2C59C00D9AD3A /* OneSignalNotificationServiceExtension.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -874,6 +948,14 @@
 				TargetAttributes = {
 					557B82A222B47531002D4774 = {
 						CreatedOnToolsVersion = 10.2.1;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+							com.apple.Push = {
+								enabled = 1;
+							};
+						};
 					};
 					557B82B622B47532002D4774 = {
 						CreatedOnToolsVersion = 10.2.1;
@@ -882,6 +964,9 @@
 					557B82C122B47532002D4774 = {
 						CreatedOnToolsVersion = 10.2.1;
 						TestTargetID = 557B82A222B47531002D4774;
+					};
+					55FAC70B22E2C59C00D9AD3A = {
+						CreatedOnToolsVersion = 10.2.1;
 					};
 				};
 			};
@@ -901,6 +986,7 @@
 				557B82A222B47531002D4774 /* hm-driver-ios */,
 				557B82B622B47532002D4774 /* hm-driver-iosTests */,
 				557B82C122B47532002D4774 /* hm-driver-iosUITests */,
+				55FAC70B22E2C59C00D9AD3A /* OneSignalNotificationServiceExtension */,
 			);
 		};
 /* End PBXProject section */
@@ -930,9 +1016,38 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		55FAC70A22E2C59C00D9AD3A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		37319E1B922E1FF389FA4D39 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-hm-driver-ios-OneSignalNotificationServiceExtension-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
 		3AEDC8EBC5D304EC87FD2B26 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -1111,6 +1226,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		55FAC70822E2C59C00D9AD3A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				55FAC70F22E2C59C00D9AD3A /* NotificationService.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -1123,6 +1246,11 @@
 			isa = PBXTargetDependency;
 			target = 557B82A222B47531002D4774 /* hm-driver-ios */;
 			targetProxy = 557B82C322B47532002D4774 /* PBXContainerItemProxy */;
+		};
+		55FAC71222E2C59C00D9AD3A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 55FAC70B22E2C59C00D9AD3A /* OneSignalNotificationServiceExtension */;
+			targetProxy = 55FAC71122E2C59C00D9AD3A /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -1266,15 +1394,17 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 7E0B281FA37A382C40C47F71 /* Pods-hm-driver-ios.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "hm-driver-ios/hm-driver-ios.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = E727FEDX2F;
+				DEVELOPMENT_TEAM = V4DA2L93AX;
 				INFOPLIST_FILE = "$(SRCROOT)/hm-driver-ios/SupportFiles/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "haimens.hm-driver-ios";
+				PRODUCT_BUNDLE_IDENTIFIER = "haimens.vn-driver-ios";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -1285,15 +1415,17 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = CE7ED5008D8E87A7666425D4 /* Pods-hm-driver-ios.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "hm-driver-ios/hm-driver-ios.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = E727FEDX2F;
+				DEVELOPMENT_TEAM = V4DA2L93AX;
 				INFOPLIST_FILE = "$(SRCROOT)/hm-driver-ios/SupportFiles/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "haimens.hm-driver-ios";
+				PRODUCT_BUNDLE_IDENTIFIER = "haimens.vn-driver-ios";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -1382,6 +1514,48 @@
 			};
 			name = Release;
 		};
+		55FAC71522E2C59C00D9AD3A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = C6DD16778C92B209B34F85F5 /* Pods-hm-driver-ios-OneSignalNotificationServiceExtension.debug.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = V4DA2L93AX;
+				INFOPLIST_FILE = OneSignalNotificationServiceExtension/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "haimens.vn-driver-ios.OneSignalNotificationServiceExtension";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		55FAC71622E2C59C00D9AD3A /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = BCC2DBF26234DA30569CDD11 /* Pods-hm-driver-ios-OneSignalNotificationServiceExtension.release.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = V4DA2L93AX;
+				INFOPLIST_FILE = OneSignalNotificationServiceExtension/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "haimens.vn-driver-ios.OneSignalNotificationServiceExtension";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -1417,6 +1591,15 @@
 			buildConfigurations = (
 				557B82D222B47532002D4774 /* Debug */,
 				557B82D322B47532002D4774 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		55FAC71422E2C59C00D9AD3A /* Build configuration list for PBXNativeTarget "OneSignalNotificationServiceExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				55FAC71522E2C59C00D9AD3A /* Debug */,
+				55FAC71622E2C59C00D9AD3A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

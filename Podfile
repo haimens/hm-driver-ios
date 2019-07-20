@@ -7,7 +7,12 @@ target 'hm-driver-ios' do
 
   # Pods for hm-driver-ios
   pod 'MessageKit'	
+  pod 'OneSignal', '>= 2.6.2', '< 3.0'
  
+  target 'OneSignalNotificationServiceExtension' do
+    pod 'OneSignal', '>= 2.6.2', '< 3.0'
+  end
+
   target 'hm-driver-iosTests' do
     inherit! :search_paths
     # Pods for testing
