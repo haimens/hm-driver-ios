@@ -10,13 +10,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         let onesignalInitSettings = [kOSSettingsKeyAutoPrompt: false]
         
-        // Replace 'YOUR_APP_ID' with your OneSignal App ID.
         OneSignal.initWithLaunchOptions(launchOptions,
                                         appId: ENV.ONE_SIGNAL.APP_ID,
                                         handleNotificationAction: nil,
                                         settings: onesignalInitSettings)
         
         OneSignal.inFocusDisplayType = OSNotificationDisplayType.notification;
+        
+        // Update driver player key if player id available
+        if let playerKey = OneSignal.getPermissionSubscriptionState()?.subscriptionStatus.userId {
+            HMDriver.modifyDriverDetail(body: ["player_key": playerKey], completion: nil)
+        }
         
         // Recommend moving the below line to prompt for push after informing the user about
         //   how your app will use them.
@@ -48,7 +52,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationWillTerminate(_ application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
-
-
+    
+    func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any], fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
+        print("Hello there~~~~~~")
+    }
 }
 
