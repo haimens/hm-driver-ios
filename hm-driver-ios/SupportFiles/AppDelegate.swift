@@ -88,7 +88,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
                     HMPushActionManager.shared.startLocationSharing()
                 }
             case 2: // Fetch SMS
-                print("I M HERE (2, 2)")
+                // Trip token
+                guard let tripToken = customData?["trip_token"] as? String else { return }
+                
+                // Handle fetch messaging
+                if let _ = HMViewControllerManager.shared.presentingViewController as? HMAuthViewController {
+                    HMPushActionManager.shared.initAction = .fetchSMS(tripToken: tripToken)
+                } else {
+                    HMPushActionManager.shared.presentMessagingVC(withTripToken: tripToken)
+                }
             default:
                 return
             }
@@ -97,7 +105,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
             case 1: // Sharing location
                 HMPushActionManager.shared.startLocationSharing()
             case 2: // Fetch SMS
-                print("I M HERE (2, 2)")
+                // Trip token
+                guard let tripToken = customData?["trip_token"] as? String else { return }
+                
+                // If presenting messaging vc, fetch.
+                if let _ = HMViewControllerManager.shared.presentingViewController as? HMCustomerMessagingViewController {
+                    HMPushActionManager.shared.fetchMessage(withTripToken: tripToken)
+                } else {
+                    // Prompt new message alert
+                    HMPushActionManager.shared.newMessageAlert(withTripToken: tripToken)
+                }
             default:
                 return
             }

@@ -56,6 +56,7 @@ struct HMCustomerMessagingMessage: MessageType {
 
 class HMCustomerMessagingViewController: MessagesViewController {
     var customerToken: String!
+    var tripToken: String!
     
     // UI elements
     var spinner: TDSwiftSpinner!
@@ -139,7 +140,7 @@ extension HMCustomerMessagingViewController: TDSwiftData {
         
         // Show spinner
         spinner.show()
-        
+                
         // All message request
         HMSms.getAllSMS(withCustomerToken: self.customerToken, query: ["order_key": "udate", "order_direction": "DESC", "start": messagesEnd ?? 0]) { (result, error) in
             DispatchQueue.main.async {

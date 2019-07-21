@@ -641,8 +641,9 @@ extension HMTripDetailViewController: TDSwiftData {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == String(describing: HMCustomerMessagingNavigationController.self) {
             let messagingNavigationVC = segue.destination as! HMCustomerMessagingNavigationController
-            let messageingVC = messagingNavigationVC.viewControllers.first as! HMCustomerMessagingViewController
-            messageingVC.customerToken = self.customerInfo?["customer_token"] as? String
+            let messagingVC = messagingNavigationVC.viewControllers.first as! HMCustomerMessagingViewController
+            messagingVC.customerToken = self.customerInfo?["customer_token"] as? String
+            messagingVC.tripToken = self.tripToken
         }
         
         if segue.identifier == String(describing: HMFlightInfoViewController.self) {

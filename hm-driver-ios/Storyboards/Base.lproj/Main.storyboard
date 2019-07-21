@@ -352,9 +352,9 @@
                         <viewLayoutGuide key="safeArea" id="mKD-NO-1GS"/>
                     </view>
                     <navigationItem key="navigationItem" title="Messages" id="pZv-er-E21">
-                        <barButtonItem key="rightBarButtonItem" style="plain" id="SQN-3z-Tj4">
-                            <button key="customView" opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="qIM-lJ-3Au">
-                                <rect key="frame" x="276" y="10.666666666666664" width="83" height="23"/>
+                        <barButtonItem key="rightBarButtonItem" style="done" id="SQN-3z-Tj4">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="qIM-lJ-3Au">
+                                <rect key="frame" x="276" y="5" width="83" height="34"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Dismiss">
                                     <color key="titleColor" red="0.36862745099999999" green="0.44705882349999998" blue="0.89411764709999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -761,7 +761,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="729"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <view key="tableFooterView" contentMode="scaleToFill" misplaced="YES" id="bQr-KT-lBk">
+                        <view key="tableFooterView" contentMode="scaleToFill" id="bQr-KT-lBk">
                             <rect key="frame" x="0.0" y="378" width="375" height="44"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
