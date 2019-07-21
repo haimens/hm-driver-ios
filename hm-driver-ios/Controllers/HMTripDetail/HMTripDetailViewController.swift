@@ -639,9 +639,10 @@ extension HMTripDetailViewController: TDSwiftData {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == String(describing: HMCustomerMessagingViewController.self) {
-            let messagingVC = segue.destination as! HMCustomerMessagingViewController
-            messagingVC.customerToken = self.customerInfo?["customer_token"] as? String
+        if segue.identifier == String(describing: HMCustomerMessagingNavigationController.self) {
+            let messagingNavigationVC = segue.destination as! HMCustomerMessagingNavigationController
+            let messageingVC = messagingNavigationVC.viewControllers.first as! HMCustomerMessagingViewController
+            messageingVC.customerToken = self.customerInfo?["customer_token"] as? String
         }
         
         if segue.identifier == String(describing: HMFlightInfoViewController.self) {
@@ -655,7 +656,7 @@ extension HMTripDetailViewController: TDSwiftPopoverDelegate {
     func didSelect(item: TDSwiftPopoverItem, atIndex index: Int) {
         switch index {
         case 0: // Text customer
-            performSegue(withIdentifier: String(describing: HMCustomerMessagingViewController.self), sender: self)
+            performSegue(withIdentifier: String(describing: HMCustomerMessagingNavigationController.self), sender: self)
         case 1: // Call customer
             if let customerCell = self.customerInfo?["cell"] as? String, let callURL = URL(string: "telprompt://\(customerCell)"), UIApplication.shared.canOpenURL(callURL) {
                 UIApplication.shared.open(callURL, options: [:], completionHandler: nil)

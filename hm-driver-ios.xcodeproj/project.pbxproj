@@ -88,6 +88,7 @@
 		55FAC71322E2C59C00D9AD3A /* OneSignalNotificationServiceExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 55FAC70C22E2C59C00D9AD3A /* OneSignalNotificationServiceExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		55FDC74822E3ED14008BF23A /* HMPushActionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55FDC74722E3ED14008BF23A /* HMPushActionManager.swift */; };
 		55FDC74B22E41DEF008BF23A /* HMViewControllerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55FDC74A22E41DEF008BF23A /* HMViewControllerManager.swift */; };
+		55FDC74D22E42F21008BF23A /* HMCustomerMessagingNavigation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55FDC74C22E42F21008BF23A /* HMCustomerMessagingNavigation.swift */; };
 		CD079AE267A76230477EA11C /* Pods_hm_driver_ios_OneSignalNotificationServiceExtension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 20B6F6864B0F732619482EC8 /* Pods_hm_driver_ios_OneSignalNotificationServiceExtension.framework */; };
 		D9D7B8D17787DEAE3B5C7AF8 /* Pods_hm_driver_iosTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DFB5D9BDDE84910D8BF5B78 /* Pods_hm_driver_iosTests.framework */; };
 /* End PBXBuildFile section */
@@ -221,6 +222,7 @@
 		55FAC71822E2C82C00D9AD3A /* hm-driver-ios.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "hm-driver-ios.entitlements"; sourceTree = "<group>"; };
 		55FDC74722E3ED14008BF23A /* HMPushActionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HMPushActionManager.swift; sourceTree = "<group>"; };
 		55FDC74A22E41DEF008BF23A /* HMViewControllerManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HMViewControllerManager.swift; sourceTree = "<group>"; };
+		55FDC74C22E42F21008BF23A /* HMCustomerMessagingNavigation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HMCustomerMessagingNavigation.swift; sourceTree = "<group>"; };
 		5A9BE3494D813F9298D4233A /* Pods-hm-driver-iosTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-hm-driver-iosTests.debug.xcconfig"; path = "Target Support Files/Pods-hm-driver-iosTests/Pods-hm-driver-iosTests.debug.xcconfig"; sourceTree = "<group>"; };
 		6BEB7107D3F564C36D11E300 /* Pods_hm_driver_ios.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_hm_driver_ios.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7E0B281FA37A382C40C47F71 /* Pods-hm-driver-ios.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-hm-driver-ios.debug.xcconfig"; path = "Target Support Files/Pods-hm-driver-ios/Pods-hm-driver-ios.debug.xcconfig"; sourceTree = "<group>"; };
@@ -273,6 +275,7 @@
 			isa = PBXGroup;
 			children = (
 				55005C2122E012AA00C66DA9 /* HMCustomerMessagingViewController.swift */,
+				55FDC74C22E42F21008BF23A /* HMCustomerMessagingNavigation.swift */,
 			);
 			path = HMCustomerMessaging;
 			sourceTree = "<group>";
@@ -1187,6 +1190,7 @@
 				5582606E22DAD2D4003EDCCA /* HMSms.swift in Sources */,
 				55F73ADA22D4CB8A00880212 /* TDSwiftDate.swift in Sources */,
 				551B13C322D6C9ED0079C696 /* HMLocationServicePermissionViewController.swift in Sources */,
+				55FDC74D22E42F21008BF23A /* HMCustomerMessagingNavigation.swift in Sources */,
 				55ABB63322B629E500F569AF /* TDSwiftSegmentedControl.swift in Sources */,
 				5504A79E22D194AF00081C10 /* TDSwiftPopover+UITableView.swift in Sources */,
 				55EA8D5322B705D100A57BF1 /* HMEarningViewController.swift in Sources */,

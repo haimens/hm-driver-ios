@@ -67,6 +67,8 @@ class HMCustomerMessagingViewController: MessagesViewController {
     var messagesCount: Int!
     var member: HMCustomerMessagingMember!
     
+    @IBAction func dismissBtnClicked(_ sender: UIButton) { self.dismiss(animated: true, completion: nil) }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         

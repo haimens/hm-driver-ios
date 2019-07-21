@@ -51,7 +51,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any], fetchCompletionHandler completionHandler:
         @escaping (UIBackgroundFetchResult) -> Void) {
         // Remove received notification
-        UNUserNotificationCenter.current().removeAllDeliveredNotifications()
+        UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
         
         // Notification type
         let customData = (userInfo["custom"] as? NSDictionary)?["a"] as? NSDictionary

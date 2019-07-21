@@ -346,16 +346,29 @@
             <objects>
                 <viewController storyboardIdentifier="HMCustomerMessagingViewController" title="Messages" id="pJh-eZ-WfW" customClass="HMCustomerMessagingViewController" customModule="hm_driver_ios" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="sRs-lM-lZM">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="729"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="mKD-NO-1GS"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Messages" id="pZv-er-E21"/>
+                    <navigationItem key="navigationItem" title="Messages" id="pZv-er-E21">
+                        <barButtonItem key="rightBarButtonItem" style="plain" id="SQN-3z-Tj4">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="qIM-lJ-3Au">
+                                <rect key="frame" x="276" y="10.666666666666664" width="83" height="23"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Dismiss">
+                                    <color key="titleColor" red="0.36862745099999999" green="0.44705882349999998" blue="0.89411764709999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="dismissBtnClicked:" destination="pJh-eZ-WfW" eventType="touchUpInside" id="Q2H-nQ-qnK"/>
+                                </connections>
+                            </button>
+                        </barButtonItem>
+                    </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="q7o-Be-VaX" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="6033" y="117"/>
+            <point key="canvasLocation" x="6975.1999999999998" y="116.74876847290641"/>
         </scene>
         <!--Trip Detail View Controller-->
         <scene sceneID="Wye-1r-vSQ">
@@ -463,7 +476,7 @@
                         <outlet property="routeDetailView" destination="Cg3-aq-a6j" id="46O-sj-ttP"/>
                         <outlet property="routeInfoLabel" destination="ac0-Vj-7Zn" id="AVV-mS-7k7"/>
                         <outlet property="specialInstructionBtn" destination="2bO-fW-goc" id="Rxf-uv-n6a"/>
-                        <segue destination="pJh-eZ-WfW" kind="show" identifier="HMCustomerMessagingViewController" id="pXJ-KA-dyc"/>
+                        <segue destination="POy-Ue-jxJ" kind="presentation" identifier="HMCustomerMessagingNavigationController" id="pXJ-KA-dyc"/>
                         <segue destination="FdU-Qd-C0t" kind="presentation" identifier="HMFlightInfoViewController" id="qIv-tZ-ruE"/>
                     </connections>
                 </viewController>
@@ -1298,6 +1311,24 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GXY-b0-Wnw" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="6032.8000000000002" y="852.70935960591135"/>
+        </scene>
+        <!--Customer Messaging Navigation Controller-->
+        <scene sceneID="jjs-uO-RdX">
+            <objects>
+                <navigationController storyboardIdentifier="HMCustomerMessagingNavigationController" automaticallyAdjustsScrollViewInsets="NO" id="POy-Ue-jxJ" customClass="HMCustomerMessagingNavigationController" customModule="hm_driver_ios" customModuleProvider="target" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="CKl-yp-tOW">
+                        <rect key="frame" x="0.0" y="44" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="pJh-eZ-WfW" kind="relationship" relationship="rootViewController" id="CNt-Vs-DJz"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="KzJ-rz-wc5" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="6032.8000000000002" y="116.74876847290641"/>
         </scene>
     </scenes>
     <resources>
