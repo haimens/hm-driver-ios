@@ -2,10 +2,15 @@ import UIKit
 import OneSignal
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterDelegate {
 
     var window: UIWindow?
 
+    func application(_ application: UIApplication, willFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
+        UNUserNotificationCenter.current().delegate = self
+        
+        return true
+    }
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         let onesignalInitSettings = [kOSSettingsKeyAutoPrompt: false]
@@ -48,27 +53,46 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
     
+    func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
+        if UIApplication.shared.applicationState == .active {
+            // Hide notification if at foreground
+            completionHandler(.init())
+            
+            // Handle notification
+            handleNotification(withUserInfo: notification.request.content.userInfo)
+        }
+    }
+    
     func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any], fetchCompletionHandler completionHandler:
         @escaping (UIBackgroundFetchResult) -> Void) {
         // Remove received notification
-        UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
+        UNUserNotificationCenter.current().removeAllDeliveredNotifications()
         
+        // Handle notification
+        handleNotification(withUserInfo: userInfo)
+    }
+    
+    private func handleNotification(withUserInfo info: [AnyHashable : Any]) {
         // Notification type
-        let customData = (userInfo["custom"] as? NSDictionary)?["a"] as? NSDictionary
+        let customData = (info["custom"] as? NSDictionary)?["a"] as? NSDictionary
         guard let notificationType = customData?["type"] as? Int else {
             return
         }
         
-        if application.applicationState == .background || application.applicationState == .inactive {
+        if UIApplication.shared.applicationState == .inactive {
             switch notificationType {
             case 1: // Sharing location
-                HMPushActionManager.shared.initAction = .locationSharing
+                if let _ = HMViewControllerManager.shared.presentingViewController as? HMAuthViewController {
+                    HMPushActionManager.shared.initAction = .locationSharing
+                } else {
+                    HMPushActionManager.shared.startLocationSharing()
+                }
             case 2: // Fetch SMS
-                print("I M HERE (1, 2)")
+                print("I M HERE (2, 2)")
             default:
                 return
             }
-        } else if application.applicationState == .active {
+        } else if UIApplication.shared.applicationState == .active {
             switch notificationType {
             case 1: // Sharing location
                 HMPushActionManager.shared.startLocationSharing()
@@ -77,7 +101,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             default:
                 return
             }
-
         }
+
     }
 }

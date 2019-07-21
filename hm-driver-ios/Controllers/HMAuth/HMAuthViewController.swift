@@ -53,7 +53,13 @@ class HMAuthViewController: UIViewController {
     private func updatePlayerKey() {
         // Update driver player key if player id available
         if let playerKey = OneSignal.getPermissionSubscriptionState()?.subscriptionStatus.userId {
-            HMDriver.modifyDriverDetail(body: ["player_key": playerKey], completion: nil)
+//            HMDriver.modifyDriverDetail(body: ["player_key": playerKey], completion: nil)
+            HMDriver.modifyDriverDetail(body: ["player_key": playerKey]) { (result, error) in
+                print("Update player key result!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
+                print("result \(result)")
+                print("error \(error)")
+                print("Update player key result!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
+            }
         }
     }
     

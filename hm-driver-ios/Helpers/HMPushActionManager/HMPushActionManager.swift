@@ -24,7 +24,7 @@ class HMPushActionManager {
     var initAction: HMPushActionType?
     
     // Run correspond init action if available
-    func runInitAction() {
+    func runInitAction() {        
         if let initAction = self.initAction {
             switch initAction {
             case .locationSharing:
@@ -37,7 +37,7 @@ class HMPushActionManager {
         }
     }
     
-    func startLocationSharing() {
+    func startLocationSharing() {        
         if let presentingVC = HMViewControllerManager.shared.presentingViewController {
             TDSwiftAlert.showSingleButtonAlertWithCancel(title: "Message From Dispatch", message: "Dispatch center wants to know your status, share now?", actionBtnTitle: "Confirm", cancelBtnTitle: "Cancel", presentVC: presentingVC) {
                 HMHeartBeat.shared.start()
