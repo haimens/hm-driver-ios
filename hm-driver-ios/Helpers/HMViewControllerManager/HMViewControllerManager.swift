@@ -7,11 +7,7 @@ class HMViewControllerManager {
     static let shared = HMViewControllerManager()
     
     // Current presenting view controller
-    weak var presentingViewController: UIViewController? {
-        didSet {
-            print("presentingViewController \(presentingViewController.self)")
-        }
-    }
+    weak var presentingViewController: UIViewController?
     
     func unlinkPresentingViewController(withViewController viewController: UIViewController) {        
         // If presentingViewController available

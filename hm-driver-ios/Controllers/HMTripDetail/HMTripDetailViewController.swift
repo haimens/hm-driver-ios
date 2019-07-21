@@ -415,6 +415,11 @@ class HMTripDetailViewController: UIViewController {
     }
     
     @objc private func showOptionsMenu(_ sender: UIBarButtonItem) {
+        // Customer info not available, do not present options menu
+        if customerInfo == nil {
+            return
+        }
+        
         // Calculate popover origin
         let buttonItemView = self.navigationItem.rightBarButtonItem!.value(forKey: "view") as! UIView
         let buttonItemViewCenter = buttonItemView.convert(buttonItemView.center, to: self.view)
@@ -449,7 +454,10 @@ extension HMTripDetailViewController: TDSwiftData {
         HMTrip.getTripDetail(withTripToken: tripToken) { (result, error) in
             DispatchQueue.main.async {
                 // Hand request error
-                if let error = error { TDSwiftAlert.showSingleButtonAlert(title: "Request Failed", message: DriverConn.getErrorMessage(error: error), actionBtnTitle: "OK", presentVC: self, btnAction: nil) }
+                if let error = error {
+                    // Present error message
+                    TDSwiftAlert.showSingleButtonAlert(title: "Request Failed", message: DriverConn.getErrorMessage(error: error), actionBtnTitle: "OK", presentVC: self, btnAction: nil)
+                }
                 
                 // Parse request response
                 if let result = result { self.parseData(data: result) }
