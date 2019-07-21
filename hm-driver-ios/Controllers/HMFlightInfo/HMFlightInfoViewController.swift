@@ -38,6 +38,9 @@ class HMFlightInfoViewController: TDSwiftAnimateBackgroundViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
+        // Add presenting vc reference
+        HMViewControllerManager.shared.presentingViewController = self
+        
         parseFlightInfo()
     }
     
@@ -120,5 +123,12 @@ extension HMFlightInfoViewController: UITableViewDataSource, UITableViewDelegate
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)        
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        // Remove presenting vc reference
+        HMViewControllerManager.shared.presentingViewController = nil
     }
 }

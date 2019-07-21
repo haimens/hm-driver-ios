@@ -80,6 +80,9 @@ class HMPersonalInfoViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
+        // Add presenting vc reference
+        HMViewControllerManager.shared.presentingViewController = self
+        
         configNavigationAppearance()
     }
     
@@ -111,5 +114,12 @@ class HMPersonalInfoViewController: UIViewController {
                 if let data = data { self.profileImageView.image = UIImage(data: data) }
             }
         }
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        // Remove presenting vc reference
+        HMViewControllerManager.shared.presentingViewController = nil
     }
 }

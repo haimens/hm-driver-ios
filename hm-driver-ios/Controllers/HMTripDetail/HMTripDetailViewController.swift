@@ -92,9 +92,19 @@ class HMTripDetailViewController: UIViewController {
         loadData()
     }
     
-    override func viewWillAppear(_ animated: Bool) { configNavigationAppearance() }
+    override func viewWillAppear(_ animated: Bool) {
+        // Add presenting vc reference
+        HMViewControllerManager.shared.presentingViewController = self
+        
+        configNavigationAppearance()
+    }
     
-    override func viewWillDisappear(_ animated: Bool) { popover.dismiss() }
+    override func viewWillDisappear(_ animated: Bool) {
+        popover.dismiss()
+        
+        // Remove presenting vc reference
+        HMViewControllerManager.shared.presentingViewController = nil
+    }
     
     private func setupUI() {
         // Navigation appearance

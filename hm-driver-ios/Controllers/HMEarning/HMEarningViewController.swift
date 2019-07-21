@@ -112,6 +112,9 @@ class HMEarningViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
+        // Add presenting vc reference
+        HMViewControllerManager.shared.presentingViewController = self
+        
         // Navigation bar appearance
         navigationController?.navigationBar.prefersLargeTitles = true
     }
@@ -168,6 +171,13 @@ class HMEarningViewController: UIViewController {
                 self.tableView.refreshControl!.endRefreshing()
             }
         }
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        // Remove presenting vc reference
+        HMViewControllerManager.shared.presentingViewController = nil
     }
 }
 

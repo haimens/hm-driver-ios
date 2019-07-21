@@ -36,6 +36,8 @@ class HMAuthViewController: UIViewController {
                         
                         // Present main view
                         self.performSegue(withIdentifier: String(describing: HMMainTabBarController.self), sender: self)
+                        
+                        HMPushActionManager.shared.startLocationSharing(promptAtVC: self)
                     }
                 } else {
                     // Handle login error
@@ -55,5 +57,19 @@ class HMAuthViewController: UIViewController {
         if let playerKey = OneSignal.getPermissionSubscriptionState()?.subscriptionStatus.userId {
             HMDriver.modifyDriverDetail(body: ["player_key": playerKey], completion: nil)
         }
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        // Add presenting vc reference
+        HMViewControllerManager.shared.presentingViewController = self
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        // Remove presenting vc reference
+        HMViewControllerManager.shared.presentingViewController = nil
     }
 }

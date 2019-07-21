@@ -83,6 +83,20 @@ class HMLocationServicePermissionViewController: UIViewController {
         actionBtn.setTitle(state.actionTitle, for: .normal)
         self.currentAction = state.action
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        // Add presenting vc reference
+        HMViewControllerManager.shared.presentingViewController = self
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        // Remove presenting vc reference
+        HMViewControllerManager.shared.presentingViewController = nil
+    }
 }
 
 extension HMLocationServicePermissionViewController: CLLocationManagerDelegate {

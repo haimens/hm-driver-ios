@@ -12,6 +12,9 @@ class HMAccountViewController: UITableViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
+        // Add presenting vc reference
+        HMViewControllerManager.shared.presentingViewController = self
+        
         configNavigationAppearance()
         sharingLocationLabel.text = HMHeartBeat.shared.getSharingButtonTitle()    }
     
@@ -49,5 +52,12 @@ class HMAccountViewController: UITableViewController {
         default:
             fatalError("Account VC index not implemented")
         }
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        // Remove presenting vc reference
+        HMViewControllerManager.shared.presentingViewController = nil
     }
 }

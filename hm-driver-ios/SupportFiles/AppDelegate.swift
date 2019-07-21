@@ -48,8 +48,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
     
-    func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any], fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
-        print("Hello there~~~~~~")
+    func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any], fetchCompletionHandler completionHandler:
+        @escaping (UIBackgroundFetchResult) -> Void) {
+        
+        print("**************************************")
+        print(self.window?.rootViewController.self)
+        print("**************************************")
+        
+        if application.applicationState == .background || application.applicationState == .inactive {
+            print("Application inactive")
+        } else if application.applicationState == .active {
+            print("Application active")
+        }
     }
 }
-

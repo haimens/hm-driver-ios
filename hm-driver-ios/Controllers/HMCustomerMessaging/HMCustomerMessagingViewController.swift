@@ -78,6 +78,9 @@ class HMCustomerMessagingViewController: MessagesViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
+        // Add presenting vc reference
+        HMViewControllerManager.shared.presentingViewController = self
+        
         // Validate customer token
         if customerToken == nil {
             TDSwiftAlert.showSingleButtonAlert(title: "Load Conversation Failed", message: "Customer info missing", actionBtnTitle: "Dismiss", presentVC: self) {
@@ -112,6 +115,13 @@ class HMCustomerMessagingViewController: MessagesViewController {
         self.messageInputBar.tintColor = CONST.UI.THEME_COLOR
         self.messageInputBar.sendButton.setTitleColor(CONST.UI.THEME_COLOR, for: .normal)
         self.scrollsToBottomOnKeyboardBeginsEditing = true
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        // Remove presenting vc reference
+        HMViewControllerManager.shared.presentingViewController = nil
     }
 }
 
