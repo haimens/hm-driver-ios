@@ -471,10 +471,10 @@
             </objects>
             <point key="canvasLocation" x="5032.8000000000002" y="487.6847290640394"/>
         </scene>
-        <!--Tab Bar Controller-->
+        <!--Main Tab Bar Controller-->
         <scene sceneID="oKN-17-3tm">
             <objects>
-                <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="i7n-uR-xlQ" sceneMemberID="viewController">
+                <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="i7n-uR-xlQ" customClass="HMMainTabBarController" customModule="hm_driver_ios" customModuleProvider="target" sceneMemberID="viewController">
                     <toolbarItems/>
                     <tabBar key="tabBar" contentMode="scaleAspectFit" insetsLayoutMarginsFromSafeArea="NO" translucent="NO" id="jcl-Qg-ele">
                         <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
@@ -748,7 +748,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="729"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <view key="tableFooterView" contentMode="scaleToFill" id="bQr-KT-lBk">
+                        <view key="tableFooterView" contentMode="scaleToFill" misplaced="YES" id="bQr-KT-lBk">
                             <rect key="frame" x="0.0" y="378" width="375" height="44"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

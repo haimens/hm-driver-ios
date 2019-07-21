@@ -50,15 +50,34 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any], fetchCompletionHandler completionHandler:
         @escaping (UIBackgroundFetchResult) -> Void) {
+        // Remove received notification
+        UNUserNotificationCenter.current().removeAllDeliveredNotifications()
         
-        print("**************************************")
-        print(self.window?.rootViewController.self)
-        print("**************************************")
+        // Notification type
+        let customData = (userInfo["custom"] as? NSDictionary)?["a"] as? NSDictionary
+        guard let notificationType = customData?["type"] as? Int else {
+            return
+        }
         
         if application.applicationState == .background || application.applicationState == .inactive {
-            print("Application inactive")
+            switch notificationType {
+            case 1: // Sharing location
+                HMPushActionManager.shared.initAction = .locationSharing
+            case 2: // Fetch SMS
+                print("I M HERE (1, 2)")
+            default:
+                return
+            }
         } else if application.applicationState == .active {
-            print("Application active")
+            switch notificationType {
+            case 1: // Sharing location
+                HMPushActionManager.shared.startLocationSharing()
+            case 2: // Fetch SMS
+                print("I M HERE (2, 2)")
+            default:
+                return
+            }
+
         }
     }
 }

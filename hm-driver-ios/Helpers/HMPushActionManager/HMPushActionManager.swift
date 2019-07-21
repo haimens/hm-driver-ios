@@ -24,11 +24,11 @@ class HMPushActionManager {
     var initAction: HMPushActionType?
     
     // Run correspond init action if available
-    func runInitAction(currentVC vc: UIViewController) {
+    func runInitAction() {
         if let initAction = self.initAction {
             switch initAction {
             case .locationSharing:
-                startLocationSharing(promptAtVC: vc)
+                startLocationSharing()
             case .fetchSMS:
                 if let tripToken = initAction.getTripToken() {
                     fetchSMS(withTripToken: tripToken)
@@ -37,8 +37,12 @@ class HMPushActionManager {
         }
     }
     
-    func startLocationSharing(promptAtVC vc: UIViewController) {
-        TDSwiftAlert.showSingleButtonAlert(title: "Hi", message: "Hi", actionBtnTitle: "OK", presentVC: vc, btnAction: nil)
+    func startLocationSharing() {
+        if let presentingVC = HMViewControllerManager.shared.presentingViewController {
+            TDSwiftAlert.showSingleButtonAlertWithCancel(title: "Message From Dispatch", message: "Dispatch center wants to know your status, share now?", actionBtnTitle: "Confirm", cancelBtnTitle: "Cancel", presentVC: presentingVC) {
+                HMHeartBeat.shared.start()
+            }
+        }
     }
     
     func fetchSMS(withTripToken tripToken: String) {

@@ -36,8 +36,6 @@ class HMAuthViewController: UIViewController {
                         
                         // Present main view
                         self.performSegue(withIdentifier: String(describing: HMMainTabBarController.self), sender: self)
-                        
-                        HMPushActionManager.shared.startLocationSharing(promptAtVC: self)
                     }
                 } else {
                     // Handle login error
