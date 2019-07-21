@@ -45,9 +45,9 @@ class HMResetPasswordViewController: TDSwiftAnimateBackgroundViewController {
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        
-        // Remove presenting vc reference
-        HMViewControllerManager.shared.presentingViewController = nil
+    
+        // Add presenting vc reference
+        HMViewControllerManager.shared.presentingViewController = self.presentingViewController
     }
 }
 

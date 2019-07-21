@@ -7,7 +7,21 @@ class HMViewControllerManager {
     static let shared = HMViewControllerManager()
     
     // Current presenting view controller
-    weak var presentingViewController: UIViewController?
+    weak var presentingViewController: UIViewController? {
+        didSet {
+            print("presentingViewController \(presentingViewController.self)")
+        }
+    }
+    
+    func unlinkPresentingViewController(withViewController viewController: UIViewController) {        
+        // If presentingViewController available
+        if let presentingViewController = self.presentingViewController {
+            // If type different, return
+            if presentingViewController.self == viewController.self {
+                self.presentingViewController = nil
+            }
+        }
+    }
     
     // Find presentable view controller
     func getPresentableViewController() -> UIViewController? {

@@ -81,7 +81,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         
         if UIApplication.shared.applicationState == .inactive {
             switch notificationType {
-            case 1: // Sharing location
+            case 1: // Sharing location                
                 if let _ = HMViewControllerManager.shared.presentingViewController as? HMAuthViewController {
                     HMPushActionManager.shared.initAction = .locationSharing
                 } else {

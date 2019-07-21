@@ -100,10 +100,16 @@ class HMTripDetailViewController: UIViewController {
     }
     
     override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
         popover.dismiss()
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
         
         // Remove presenting vc reference
-        HMViewControllerManager.shared.presentingViewController = nil
+        HMViewControllerManager.shared.unlinkPresentingViewController(withViewController: self)
     }
     
     private func setupUI() {

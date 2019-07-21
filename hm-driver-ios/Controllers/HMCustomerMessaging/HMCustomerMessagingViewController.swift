@@ -120,12 +120,11 @@ class HMCustomerMessagingViewController: MessagesViewController {
         self.scrollsToBottomOnKeyboardBeginsEditing = true
     }
     
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
         
         // Remove presenting vc reference
-        HMViewControllerManager.shared.presentingViewController = nil
-    }
+        HMViewControllerManager.shared.unlinkPresentingViewController(withViewController: self)    }
 }
 
 extension HMCustomerMessagingViewController: TDSwiftData {
@@ -140,7 +139,7 @@ extension HMCustomerMessagingViewController: TDSwiftData {
         
         // Show spinner
         spinner.show()
-                
+        
         // All message request
         HMSms.getAllSMS(withCustomerToken: self.customerToken, query: ["order_key": "udate", "order_direction": "DESC", "start": messagesEnd ?? 0]) { (result, error) in
             DispatchQueue.main.async {
