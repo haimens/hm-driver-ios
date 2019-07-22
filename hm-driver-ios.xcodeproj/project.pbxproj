@@ -33,6 +33,7 @@
 		551B13C622D82E5B0079C696 /* HMResetPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 551B13C522D82E5B0079C696 /* HMResetPasswordViewController.swift */; };
 		551B13C922D82F640079C696 /* TDSwiftAnimateBackgroundViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 551B13C822D82F640079C696 /* TDSwiftAnimateBackgroundViewController.swift */; };
 		551B13CC22D832050079C696 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 551B13CB22D832050079C696 /* WebKit.framework */; };
+		556C82DB22E611D6006769D7 /* TDSwiftSpinnerImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 556C82DA22E611D6006769D7 /* TDSwiftSpinnerImageView.swift */; };
 		557B82A722B47531002D4774 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 557B82A622B47531002D4774 /* AppDelegate.swift */; };
 		557B82A922B47531002D4774 /* HMAuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 557B82A822B47531002D4774 /* HMAuthViewController.swift */; };
 		557B82AC22B47531002D4774 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 557B82AA22B47531002D4774 /* Main.storyboard */; };
@@ -159,6 +160,7 @@
 		551B13C522D82E5B0079C696 /* HMResetPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HMResetPasswordViewController.swift; sourceTree = "<group>"; };
 		551B13C822D82F640079C696 /* TDSwiftAnimateBackgroundViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TDSwiftAnimateBackgroundViewController.swift; sourceTree = "<group>"; };
 		551B13CB22D832050079C696 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
+		556C82DA22E611D6006769D7 /* TDSwiftSpinnerImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TDSwiftSpinnerImageView.swift; sourceTree = "<group>"; };
 		557B82A322B47531002D4774 /* hm-driver-ios.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "hm-driver-ios.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		557B82A622B47531002D4774 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		557B82A822B47531002D4774 /* HMAuthViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HMAuthViewController.swift; sourceTree = "<group>"; };
@@ -318,6 +320,7 @@
 		5504A7A222D1D2DF00081C10 /* TDSwift */ = {
 			isa = PBXGroup;
 			children = (
+				556C82D922E611CF006769D7 /* TDSwiftSpinnerImageView */,
 				5582607C22DB76BA003EDCCA /* TDSwiftGradientView */,
 				551B13C722D82F4F0079C696 /* TDSwiftAnimateBackgroundViewController */,
 				55F73ADF22D5A86C00880212 /* TDSwiftInfiniteTableView */,
@@ -423,6 +426,14 @@
 				20B6F6864B0F732619482EC8 /* Pods_hm_driver_ios_OneSignalNotificationServiceExtension.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		556C82D922E611CF006769D7 /* TDSwiftSpinnerImageView */ = {
+			isa = PBXGroup;
+			children = (
+				556C82DA22E611D6006769D7 /* TDSwiftSpinnerImageView.swift */,
+			);
+			path = TDSwiftSpinnerImageView;
 			sourceTree = "<group>";
 		};
 		557B829A22B47531002D4774 = {
@@ -1209,6 +1220,7 @@
 				557B82DD22B4B0CA002D4774 /* ENV.swift in Sources */,
 				55FDC74B22E41DEF008BF23A /* HMViewControllerManager.swift in Sources */,
 				5599D6BA22D9945A008E5381 /* HMWage.swift in Sources */,
+				556C82DB22E611D6006769D7 /* TDSwiftSpinnerImageView.swift in Sources */,
 				55F9A2AA22B5677D00788FC5 /* DriverConn.swift in Sources */,
 				5589A97822C03E23003353C9 /* HMTripDetailBGView.swift in Sources */,
 				5504A79722D02AC900081C10 /* TDSwiftRouteDetailMapView.swift in Sources */,

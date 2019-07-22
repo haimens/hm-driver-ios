@@ -1,7 +1,7 @@
 import UIKit
 
 class HMPersonalInfoViewController: UIViewController {
-    @IBOutlet weak var profileImageView: UIImageView!
+    @IBOutlet weak var profileImageView: TDSwiftSpinnerImageView!
     @IBOutlet weak var nameTextField: UITextField!
     @IBOutlet weak var phoneTextField: UITextField!
     @IBOutlet weak var emailTextField: UITextField!
@@ -107,9 +107,15 @@ class HMPersonalInfoViewController: UIViewController {
         phoneTextField.text = auth.cell
         emailTextField.text = auth.email
         
+        // ImageView spinner
+        profileImageView.showSpinner()
+        
         // Profile image
         TDSwiftImageManager.getImage(imageURLString: auth.img_path, imageType: .TDSwiftCacheImage) { (data, error) in
             DispatchQueue.main.async {
+                // Hide imageview spinner
+                self.profileImageView.hideSpinner()
+                
                 if let error = error { TDSwiftAlert.showSingleButtonAlert(title: "Load Image Failed", message: TDSwiftRequest.getErrorMessage(error: error, response: nil), actionBtnTitle: "OK", presentVC: self, btnAction: nil) }
                 if let data = data { self.profileImageView.image = UIImage(data: data) }
             }
