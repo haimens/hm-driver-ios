@@ -207,7 +207,6 @@ extension HMCustomerMessagingViewController: TDSwiftData {
     }
     
     func purgeData() {
-        messages = nil
         messagesEnd = nil
         messagesCount = nil    }
 }
@@ -221,7 +220,7 @@ extension HMCustomerMessagingViewController: MessagesDataSource, MessagesLayoutD
         return messages[indexPath.section]
     }
     
-    func numberOfSections(in messagesCollectionView: MessagesCollectionView) -> Int {
+    func numberOfSections(in messagesCollectionView: MessagesCollectionView) -> Int {        
         return messages == nil ? 0 : messages.count
     }
     
