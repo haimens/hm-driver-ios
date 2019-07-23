@@ -88,14 +88,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
                     HMPushActionManager.shared.startLocationSharing()
                 }
             case 2: // Fetch SMS
-                // Trip token
-                guard let tripToken = customData?["trip_token"] as? String else { return }
+                // Customer Token
+                guard let customerToken = customData?["customer_token"] as? String else { return }
                 
                 // Handle fetch messaging
                 if let _ = HMViewControllerManager.shared.presentingViewController as? HMAuthViewController {
-                    HMPushActionManager.shared.initAction = .fetchSMS(tripToken: tripToken)
+                    HMPushActionManager.shared.initAction = .fetchSMS(customerToken: customerToken)
                 } else {
-                    HMPushActionManager.shared.presentMessagingVC(withTripToken: tripToken)
+                    HMPushActionManager.shared.presentMessagingVC(withCustomerToken: customerToken)
                 }
             default:
                 return
@@ -105,15 +105,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
             case 1: // Sharing location
                 HMPushActionManager.shared.startLocationSharing()
             case 2: // Fetch SMS
-                // Trip token
-                guard let tripToken = customData?["trip_token"] as? String else { return }
+                // Customer Token
+                guard let customerToken = customData?["customer_token"] as? String else { return }
                 
                 // If presenting messaging vc, fetch.
                 if let _ = HMViewControllerManager.shared.presentingViewController as? HMCustomerMessagingViewController {
-                    HMPushActionManager.shared.fetchMessage(withTripToken: tripToken)
+                    HMPushActionManager.shared.fetchMessage(withCustomerToken: customerToken)
                 } else {
                     // Prompt new message alert
-                    HMPushActionManager.shared.newMessageAlert(withTripToken: tripToken)
+                    HMPushActionManager.shared.newMessageAlert(withCustomerToken: customerToken)
                 }
             default:
                 return

@@ -657,7 +657,6 @@ extension HMTripDetailViewController: TDSwiftData {
             let messagingNavigationVC = segue.destination as! HMCustomerMessagingNavigationController
             let messagingVC = messagingNavigationVC.viewControllers.first as! HMCustomerMessagingViewController
             messagingVC.customerToken = self.customerInfo?["customer_token"] as? String
-            messagingVC.tripToken = self.tripToken
         }
         
         if segue.identifier == String(describing: HMFlightInfoViewController.self) {

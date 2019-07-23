@@ -3,11 +3,11 @@ import UIKit
 
 enum HMPushActionType {
     case locationSharing
-    case fetchSMS(tripToken: String)
+    case fetchSMS(customerToken: String)
     
-    func getTripToken() -> String? {
+    func getCustomerToken() -> String? {
         switch self {
-        case let .fetchSMS(tripToken: token):
+        case let .fetchSMS(customerToken: token):
             return token
         default:
             return nil
@@ -33,8 +33,8 @@ class HMPushActionManager {
             case .locationSharing:
                 startLocationSharing()
             case .fetchSMS:
-                if let tripToken = initAction.getTripToken() {
-                    presentMessagingVC(withTripToken: tripToken)
+                if let customerToken = initAction.getCustomerToken() {
+                    presentMessagingVC(withCustomerToken: customerToken)
                 }
             }
         }
@@ -48,46 +48,35 @@ class HMPushActionManager {
         }
     }
     
-    func newMessageAlert(withTripToken tripToken: String) {
+    func newMessageAlert(withCustomerToken customerToken: String) {
         if let presentingVC = HMViewControllerManager.shared.presentingViewController {
             TDSwiftAlert.showSingleButtonAlertWithCancel(title: "Message Center", message: "You've received a new message, view now?", actionBtnTitle: "View", cancelBtnTitle: "Cancel", presentVC: presentingVC) {
-                self.presentMessagingVC(withTripToken: tripToken)
+                self.presentMessagingVC(withCustomerToken: customerToken)
             }
         }
     }
     
-    func fetchMessage(withTripToken tripToken: String) {
+    func fetchMessage(withCustomerToken customerToken: String) {
         // If presenting messaging vc
         if let messagingVC = HMViewControllerManager.shared.presentingViewController as? HMCustomerMessagingViewController {
-            if messagingVC.tripToken == tripToken {
+            if messagingVC.customerToken == customerToken {
                 messagingVC.purgeData()
                 messagingVC.loadData()
             } else {
-                newMessageAlert(withTripToken: tripToken)
+                newMessageAlert(withCustomerToken: customerToken)
             }
         }
     }
     
-    func presentMessagingVC(withTripToken tripToken: String) {
+    func presentMessagingVC(withCustomerToken customerToken: String) {
         // Presentable vc
         guard let presentableVC = HMViewControllerManager.shared.getPresentableViewController() else { return }
         
-        // Customer token
-        HMTrip.getTripDetail(withTripToken: tripToken) { (result, error) in
-            DispatchQueue.main.async {
-                if let result = result,
-                    let customerInfo = result["customer_info"] as? [String : Any],
-                    let customerToken = customerInfo["customer_token"] as? String {
-                    
-                    // Present messaging vc
-                    if let messagingNavigationVC = HMViewControllerManager.shared.presentingViewController?.storyboard?.instantiateViewController(withIdentifier: String(describing: HMCustomerMessagingNavigationController.self)) as? HMCustomerMessagingNavigationController {
-                        let messagingVC = messagingNavigationVC.viewControllers.first as! HMCustomerMessagingViewController
-                        messagingVC.customerToken = customerToken
-                        messagingVC.tripToken = tripToken
-                        presentableVC.present(messagingNavigationVC, animated: true, completion: nil)
-                    }
-                }
-            }
+        // Present messaging vc
+        if let messagingNavigationVC = HMViewControllerManager.shared.presentingViewController?.storyboard?.instantiateViewController(withIdentifier: String(describing: HMCustomerMessagingNavigationController.self)) as? HMCustomerMessagingNavigationController {
+            let messagingVC = messagingNavigationVC.viewControllers.first as! HMCustomerMessagingViewController
+            messagingVC.customerToken = customerToken
+            presentableVC.present(messagingNavigationVC, animated: true, completion: nil)
         }
     }
 }

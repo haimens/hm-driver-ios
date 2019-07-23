@@ -56,7 +56,6 @@ struct HMCustomerMessagingMessage: MessageType {
 
 class HMCustomerMessagingViewController: MessagesViewController {
     var customerToken: String!
-    var tripToken: String!
     
     // UI elements
     var spinner: TDSwiftSpinner!
