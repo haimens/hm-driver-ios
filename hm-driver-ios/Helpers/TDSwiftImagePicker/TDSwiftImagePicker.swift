@@ -1,9 +1,9 @@
 import Foundation
 import UIKit
 
-public protocol TDSwiftImagePickerDelegate: class {
+@objc public protocol TDSwiftImagePickerDelegate: class {
     func didSelect(mediaInfo: [UIImagePickerController.InfoKey : Any])
-    func didCancel()
+    @objc optional func didCancel()
 }
 
 public enum TDSwiftImagePickerMediaType: String {
@@ -51,7 +51,7 @@ public class TDSwiftImagePicker: NSObject {
         if let action = self.action(for: .camera, title: "Take photo") { actionSheet.addAction(action) }
         if let action = self.action(for: .savedPhotosAlbum, title: "Camera roll") { actionSheet.addAction(action) }
         if let action = self.action(for: .photoLibrary, title: "Photo library") { actionSheet.addAction(action) }
-        actionSheet.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        actionSheet.addAction(UIAlertAction(title: "Cancel", style: .cancel) { (action) in self.delegate?.didCancel?() })
         
         // Present action sheet
         self.presentVC?.present(actionSheet, animated: true, completion: nil)
@@ -78,7 +78,7 @@ extension TDSwiftImagePicker: UIImagePickerControllerDelegate, UINavigationContr
         picker.dismiss(animated: true, completion: nil)
         
         // Delegate method
-        self.delegate?.didCancel()
+        self.delegate?.didCancel?()
     }
     
     public func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {

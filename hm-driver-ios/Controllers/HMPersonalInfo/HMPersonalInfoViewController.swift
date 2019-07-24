@@ -9,8 +9,11 @@ class HMPersonalInfoViewController: UIViewController {
     
     // UI component
     var spinner: TDSwiftSpinner!
+    var imagePicker: TDSwiftImagePicker!
     
     @IBAction func uploadImageBtnClicked(_ sender: UIButton) {
+        profileImageView.showSpinner()
+        imagePicker.present()
     }
     
     @IBAction func saveChangesBtnClicked(_ sender: HMBasicButton) {
@@ -73,8 +76,13 @@ class HMPersonalInfoViewController: UIViewController {
         // Navigation bar
         configNavigationAppearance()
         
+        // Init picker
+        self.imagePicker = TDSwiftImagePicker(presentOn: self, rectCropping: true, mediaTypes: [.publicImage, .publicMovie])
+        self.imagePicker.delegate = self
+        
         // Upload image button appearance
         uploadImageBtn.layer.cornerRadius = uploadImageBtn.frame.width / 2
+        uploadImageBtn.isHidden = true
         
         // Profile image appearance
         profileImageView.clipsToBounds = true
@@ -123,6 +131,9 @@ class HMPersonalInfoViewController: UIViewController {
                 // Hide imageview spinner
                 self.profileImageView.hideSpinner()
                 
+                // Show upload image button
+                self.uploadImageBtn.isHidden = false
+                
                 if let error = error { TDSwiftAlert.showSingleButtonAlert(title: "Load Image Failed", message: TDSwiftRequest.getErrorMessage(error: error, response: nil), actionBtnTitle: "OK", presentVC: self, btnAction: nil) }
                 if let data = data { self.profileImageView.image = UIImage(data: data) }
             }
@@ -134,5 +145,57 @@ class HMPersonalInfoViewController: UIViewController {
         
         // Remove presenting vc reference
         HMViewControllerManager.shared.unlinkPresentingViewController(withViewController: self)
+    }
+}
+
+extension HMPersonalInfoViewController: TDSwiftImagePickerDelegate {
+    func didSelect(mediaInfo: [UIImagePickerController.InfoKey : Any]) {
+        if let editedImage = mediaInfo[.editedImage] as? UIImage {
+            // Upload image
+            TDSwiftHavanaImageUploader.shared.upload(image: editedImage, imageType: .avatar) { (response, error) in
+                DispatchQueue.main.async {
+                    // Parse result
+                    let result = TDSwiftHavanaImageUploader.handleResponse(responseData: response, error: error)
+                    
+                    // Handle upload error
+                    if let errorMessage = result.errorMessage {
+                        TDSwiftAlert.showSingleButtonAlert(title: "Upload Failed", message: errorMessage, actionBtnTitle: "OK", presentVC: self, btnAction: nil)
+                    }
+                    
+                    // Patch driver detail
+                    if let imagePath = result.imagePath {
+                        // Show spinner
+                        self.profileImageView.showSpinner()
+
+                        HMDriver.modifyDriverDetail(body: ["img_path": imagePath], completion: { (response, error) in
+                            DispatchQueue.main.async {
+                                // Hide spinner
+                                self.profileImageView.hideSpinner()
+                                
+                                // Hand request error
+                                if let error = error {
+                                    TDSwiftAlert.showSingleButtonAlert(title: "Request Failed", message: DriverConn.getErrorMessage(error: error), actionBtnTitle: "OK", presentVC: self, btnAction: nil)
+                                    self.profileImageView.hideSpinner()
+                                    return
+                                }
+                                
+                                // Driver info updated
+                                if let _ = response {
+                                    self.spinner.show()
+                                    self.renewAuthAndReloadData()
+                                }
+                            }
+                        })
+                    }
+                    
+                    // Hide spinner
+                    self.profileImageView.hideSpinner()
+                }
+            }
+        }
+    }
+    
+    func didCancel() {
+        profileImageView.hideSpinner()
     }
 }
