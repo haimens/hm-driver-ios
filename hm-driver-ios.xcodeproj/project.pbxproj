@@ -34,6 +34,8 @@
 		551B13C922D82F640079C696 /* TDSwiftAnimateBackgroundViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 551B13C822D82F640079C696 /* TDSwiftAnimateBackgroundViewController.swift */; };
 		551B13CC22D832050079C696 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 551B13CB22D832050079C696 /* WebKit.framework */; };
 		556C82DB22E611D6006769D7 /* TDSwiftSpinnerImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 556C82DA22E611D6006769D7 /* TDSwiftSpinnerImageView.swift */; };
+		556C82DE22E72D6E006769D7 /* TDSwiftHavanaImageUploader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 556C82DD22E72D6E006769D7 /* TDSwiftHavanaImageUploader.swift */; };
+		556C832B22E84B61006769D7 /* TDSwiftImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 556C832A22E84B61006769D7 /* TDSwiftImagePicker.swift */; };
 		557B82A722B47531002D4774 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 557B82A622B47531002D4774 /* AppDelegate.swift */; };
 		557B82A922B47531002D4774 /* HMAuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 557B82A822B47531002D4774 /* HMAuthViewController.swift */; };
 		557B82AC22B47531002D4774 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 557B82AA22B47531002D4774 /* Main.storyboard */; };
@@ -161,6 +163,8 @@
 		551B13C822D82F640079C696 /* TDSwiftAnimateBackgroundViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TDSwiftAnimateBackgroundViewController.swift; sourceTree = "<group>"; };
 		551B13CB22D832050079C696 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
 		556C82DA22E611D6006769D7 /* TDSwiftSpinnerImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TDSwiftSpinnerImageView.swift; sourceTree = "<group>"; };
+		556C82DD22E72D6E006769D7 /* TDSwiftHavanaImageUploader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TDSwiftHavanaImageUploader.swift; sourceTree = "<group>"; };
+		556C832A22E84B61006769D7 /* TDSwiftImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TDSwiftImagePicker.swift; sourceTree = "<group>"; };
 		557B82A322B47531002D4774 /* hm-driver-ios.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "hm-driver-ios.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		557B82A622B47531002D4774 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		557B82A822B47531002D4774 /* HMAuthViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HMAuthViewController.swift; sourceTree = "<group>"; };
@@ -436,6 +440,22 @@
 			path = TDSwiftSpinnerImageView;
 			sourceTree = "<group>";
 		};
+		556C82DC22E72D14006769D7 /* TDSwiftHavanaImageUploader */ = {
+			isa = PBXGroup;
+			children = (
+				556C82DD22E72D6E006769D7 /* TDSwiftHavanaImageUploader.swift */,
+			);
+			path = TDSwiftHavanaImageUploader;
+			sourceTree = "<group>";
+		};
+		556C832922E84B51006769D7 /* TDSwiftImagePicker */ = {
+			isa = PBXGroup;
+			children = (
+				556C832A22E84B61006769D7 /* TDSwiftImagePicker.swift */,
+			);
+			path = TDSwiftImagePicker;
+			sourceTree = "<group>";
+		};
 		557B829A22B47531002D4774 = {
 			isa = PBXGroup;
 			children = (
@@ -558,6 +578,8 @@
 		557B82DE22B4B565002D4774 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				556C832922E84B51006769D7 /* TDSwiftImagePicker */,
+				556C82DC22E72D14006769D7 /* TDSwiftHavanaImageUploader */,
 				55FDC74922E41D99008BF23A /* HMViewControllerManager */,
 				55FDC74622E3ECFA008BF23A /* HMPushActionManager */,
 				55F2318522DD6E330005DEA4 /* HMGlobal */,
@@ -1193,6 +1215,7 @@
 				5504A79422D02AC900081C10 /* TDSwiftRouteDetailMapViewInfo.swift in Sources */,
 				55EA8D4A22B6EEF500A57BF1 /* HMRouteDetailView.swift in Sources */,
 				5582607122DADB19003EDCCA /* TDSwiftFileManager.swift in Sources */,
+				556C832B22E84B61006769D7 /* TDSwiftImagePicker.swift in Sources */,
 				5582607422DADBBF003EDCCA /* TDSwiftHash.swift in Sources */,
 				5599D6BC22D99478008E5381 /* HMSalary.swift in Sources */,
 				557B82A922B47531002D4774 /* HMAuthViewController.swift in Sources */,
@@ -1208,6 +1231,7 @@
 				557B82E222B4B5DC002D4774 /* TDSwiftRequest.swift in Sources */,
 				55061A2322B6C040003CDEAB /* TDSwiftShape.swift in Sources */,
 				55F9A2A822B4BC1000788FC5 /* KeychainPasswordItem.swift in Sources */,
+				556C82DE22E72D6E006769D7 /* TDSwiftHavanaImageUploader.swift in Sources */,
 				55BCFB6322CCE8F30080C39E /* HMAuth.swift in Sources */,
 				55F2318922DD6F080005DEA4 /* HMSetting.swift in Sources */,
 				55F9A2AE22B58FAE00788FC5 /* TDSwiftAlert.swift in Sources */,
