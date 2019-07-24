@@ -5,9 +5,13 @@ class HMPersonalInfoViewController: UIViewController {
     @IBOutlet weak var nameTextField: UITextField!
     @IBOutlet weak var phoneTextField: UITextField!
     @IBOutlet weak var emailTextField: UITextField!
+    @IBOutlet weak var uploadImageBtn: UIButton!
     
     // UI component
     var spinner: TDSwiftSpinner!
+    
+    @IBAction func uploadImageBtnClicked(_ sender: UIButton) {
+    }
     
     @IBAction func saveChangesBtnClicked(_ sender: HMBasicButton) {
         // Info to modify
@@ -68,6 +72,9 @@ class HMPersonalInfoViewController: UIViewController {
     private func setupUI() {
         // Navigation bar
         configNavigationAppearance()
+        
+        // Upload image button appearance
+        uploadImageBtn.layer.cornerRadius = uploadImageBtn.frame.width / 2
         
         // Profile image appearance
         profileImageView.clipsToBounds = true

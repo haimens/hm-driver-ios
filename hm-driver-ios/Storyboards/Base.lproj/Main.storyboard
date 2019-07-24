@@ -761,7 +761,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="729"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <view key="tableFooterView" contentMode="scaleToFill" misplaced="YES" id="bQr-KT-lBk">
+                        <view key="tableFooterView" contentMode="scaleToFill" id="bQr-KT-lBk">
                             <rect key="frame" x="0.0" y="378" width="375" height="44"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -1059,6 +1059,21 @@
                                     <action selector="saveChangesBtnClicked:" destination="gGs-75-20R" eventType="touchUpInside" id="4Me-0t-Aam"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UOC-O8-fQg">
+                                <rect key="frame" x="212.66666666666666" y="246" width="30" height="30"/>
+                                <color key="backgroundColor" red="0.36862745099999999" green="0.44705882349999998" blue="0.89411764709999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="6Ga-yB-q1C"/>
+                                    <constraint firstAttribute="width" constant="30" id="Tqd-p8-CvI"/>
+                                </constraints>
+                                <inset key="titleEdgeInsets" minX="0.0" minY="-2" maxX="0.0" maxY="0.0"/>
+                                <state key="normal" title="+">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="uploadImageBtnClicked:" destination="gGs-75-20R" eventType="touchUpInside" id="IVS-Fm-fOb"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
@@ -1066,6 +1081,7 @@
                             <constraint firstItem="kID-cf-dyc" firstAttribute="top" secondItem="irv-vU-7Bm" secondAttribute="bottom" constant="30" id="4gl-bF-qnS"/>
                             <constraint firstItem="lG5-zP-a3k" firstAttribute="trailing" secondItem="kID-cf-dyc" secondAttribute="trailing" constant="24" id="4mp-k7-T14"/>
                             <constraint firstAttribute="bottom" secondItem="7Kp-fo-wLY" secondAttribute="bottom" constant="34" id="7rr-dj-iEQ"/>
+                            <constraint firstItem="UOC-O8-fQg" firstAttribute="top" secondItem="HfK-tP-Gy1" secondAttribute="bottom" constant="-25" id="836-e0-vlj"/>
                             <constraint firstItem="irv-vU-7Bm" firstAttribute="leading" secondItem="lG5-zP-a3k" secondAttribute="leading" constant="24" id="Ccp-ya-iZR"/>
                             <constraint firstItem="lG5-zP-a3k" firstAttribute="trailing" secondItem="irv-vU-7Bm" secondAttribute="trailing" constant="24" id="Jzn-2z-c2D"/>
                             <constraint firstItem="lG5-zP-a3k" firstAttribute="trailing" secondItem="7Kp-fo-wLY" secondAttribute="trailing" constant="25" id="VNm-4b-zTk"/>
@@ -1076,6 +1092,7 @@
                             <constraint firstItem="mex-DS-QJU" firstAttribute="top" secondItem="HfK-tP-Gy1" secondAttribute="bottom" constant="30" id="h8r-A9-nHg"/>
                             <constraint firstItem="lG5-zP-a3k" firstAttribute="trailing" secondItem="mex-DS-QJU" secondAttribute="trailing" constant="24" id="iVv-pP-thh"/>
                             <constraint firstItem="irv-vU-7Bm" firstAttribute="top" secondItem="mex-DS-QJU" secondAttribute="bottom" constant="30" id="sBH-Aw-cpC"/>
+                            <constraint firstItem="UOC-O8-fQg" firstAttribute="leading" secondItem="HfK-tP-Gy1" secondAttribute="trailing" constant="-25" id="vDu-M5-9zr"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="lG5-zP-a3k"/>
                     </view>
@@ -1084,6 +1101,7 @@
                         <outlet property="nameTextField" destination="D1f-iS-RuU" id="hfP-bm-x2d"/>
                         <outlet property="phoneTextField" destination="zuH-EZ-P2Z" id="m86-pl-Z3N"/>
                         <outlet property="profileImageView" destination="HfK-tP-Gy1" id="uko-b5-cGB"/>
+                        <outlet property="uploadImageBtn" destination="UOC-O8-fQg" id="ams-DP-i0k"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1Rh-jy-9lQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
