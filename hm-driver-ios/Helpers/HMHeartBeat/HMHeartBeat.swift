@@ -23,6 +23,9 @@ public class HMHeartBeat {
     
     public func start() {
         _ = TDSwiftHeartBeat.shared.start()
+        
+        // Update ui if needed
+        updateUI()
     }
     
     public func stop() {
@@ -35,6 +38,13 @@ public class HMHeartBeat {
             return "Sharing Location(Activated)"
         case .terminated:
             return "Sharing Location"
+        }
+    }
+    
+    private func updateUI() {
+        // Update account vc start sharing button
+        if let accountVC = HMViewControllerManager.shared.presentingViewController as? HMAccountViewController {
+            accountVC.updateSharingLocationLabel()
         }
     }
 }

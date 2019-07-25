@@ -60,4 +60,8 @@ class HMAccountViewController: UITableViewController {
         // Remove presenting vc reference
         HMViewControllerManager.shared.unlinkPresentingViewController(withViewController: self)
     }
+    
+    func updateSharingLocationLabel() {
+        sharingLocationLabel.text = HMHeartBeat.shared.getSharingButtonTitle()
+    }
 }
