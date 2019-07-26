@@ -167,6 +167,18 @@ class HMTripDetailViewController: UIViewController {
         actionInfo![HMTripDetailType.dispatched] = HMActionInfo(title: "Go To Pickup Location",
                                                                 description: "You will\nstart sharing location\n&\nnavigate to pickup location\n&\ntext customer ETA notice")
         actions![HMTripDetailType.dispatched] = {
+            // Start time, eta time string
+            let startTime = TDSwiftDate.getCurrentUTCTimeString(withFormat: "yyyy-MM-dd'T'HH:mm:ss.SSSZ")
+            var etaTime: String? = nil
+            if let routeInfo = self.routeInfo {
+                var currentDate = TDSwiftDate.getCurrentDate()
+                currentDate.addTimeInterval(routeInfo.expectedTravelTime)
+                etaTime = TDSwiftDate.formatDateToDateString(forDate: currentDate, withFormat: "yyyy-MM-dd'T'HH:mm:ss.SSSZ", withTimeZone: TimeZone(identifier: "UTC")!)
+            } else {
+                TDSwiftAlert.showSingleButtonAlert(title: "Calculating ETA Time", message: "Map rendering, please try again later", actionBtnTitle: "OK", presentVC: self, btnAction: nil)
+                return
+            }
+            
             // Start spinner
             self.spinner.show()
             
@@ -181,15 +193,6 @@ class HMTripDetailViewController: UIViewController {
             
             // Start location sharing
             HMHeartBeat.shared.start()
-            
-            // Start time, eta time string
-            let startTime = TDSwiftDate.getCurrentUTCTimeString(withFormat: "yyyy-MM-dd'T'HH:mm:ss.SSSZ")
-            var etaTime: String? = nil
-            if let routeInfo = self.routeInfo {
-                var currentDate = TDSwiftDate.getCurrentDate()
-                currentDate.addTimeInterval(routeInfo.expectedTravelTime)
-                etaTime = TDSwiftDate.formatDateToDateString(forDate: currentDate, withFormat: "yyyy-MM-dd'T'HH:mm:ss.SSSZ", withTimeZone: TimeZone(identifier: "UTC")!)
-            }
             
             // Modify trip
             dispatchGroup.enter()

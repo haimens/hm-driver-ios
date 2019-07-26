@@ -258,7 +258,7 @@
             </objects>
             <point key="canvasLocation" x="1925.5999999999999" y="-316.25615763546801"/>
         </scene>
-        <!--Trip List-->
+        <!--Trips-->
         <scene sceneID="GA3-Ul-cpn">
             <objects>
                 <viewController id="6Km-F4-fb5" customClass="HMTripListViewController" customModule="hm_driver_ios" customModuleProvider="target" sceneMemberID="viewController">
@@ -330,7 +330,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="nVl-u2-waa"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Trip List" largeTitleDisplayMode="always" id="CWv-r6-nd0"/>
+                    <navigationItem key="navigationItem" title="Trips" largeTitleDisplayMode="always" id="CWv-r6-nd0"/>
                     <connections>
                         <outlet property="segmentedControl" destination="j1C-uZ-xLu" id="n3G-NY-xM3"/>
                         <outlet property="tableView" destination="X8x-XG-jNE" id="7aX-DT-pb1"/>
@@ -354,9 +354,9 @@
                     <navigationItem key="navigationItem" title="Messages" id="pZv-er-E21">
                         <barButtonItem key="rightBarButtonItem" style="done" id="SQN-3z-Tj4">
                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="qIM-lJ-3Au">
-                                <rect key="frame" x="276" y="5" width="83" height="34"/>
+                                <rect key="frame" x="335" y="10" width="24" height="24"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Dismiss">
+                                <state key="normal" image="card_dismiss_btn">
                                     <color key="titleColor" red="0.36862745099999999" green="0.44705882349999998" blue="0.89411764709999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                                 <connections>
@@ -498,7 +498,7 @@
                         <color key="selectedImageTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="color" keyPath="unselectedItemTintColor">
-                                <color key="value" red="0.070588235294117646" green="0.80000000000000004" blue="0.93725490196078431" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="value" red="0.10196078431372549" green="0.10588235294117647" blue="0.30196078431372547" alpha="1" colorSpace="calibratedRGB"/>
                             </userDefinedRuntimeAttribute>
                         </userDefinedRuntimeAttributes>
                     </tabBar>
@@ -761,7 +761,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="729"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <view key="tableFooterView" contentMode="scaleToFill" id="bQr-KT-lBk">
+                        <view key="tableFooterView" contentMode="scaleToFill" misplaced="YES" id="bQr-KT-lBk">
                             <rect key="frame" x="0.0" y="378" width="375" height="44"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -1359,7 +1359,7 @@
         <image name="my-icon" width="25" height="29"/>
         <image name="place-icon" width="23" height="23"/>
         <image name="protection-icon" width="23" height="26"/>
-        <image name="route-icon" width="27" height="30"/>
+        <image name="route-icon" width="30" height="30"/>
         <image name="stop-icon" width="23" height="23"/>
         <image name="support-icon" width="23" height="23"/>
     </resources>
