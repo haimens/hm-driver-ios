@@ -57,13 +57,40 @@ class HMTripDetailViewController: UIViewController {
     }
     
     @IBAction func actionBtnClicked(_ sender: HMBasicButton) {
+        // If action type is on the way or cob, config actions first
+        let dispatchGroup = DispatchGroup()
+        dispatchGroup.enter()
+        self.spinner.show()
         if let currentTripDetailType = currentTripDetailType,
-            let actionTitle = actionInfo?[currentTripDetailType]?.title,
-            let actionDescription = actionInfo?[currentTripDetailType]?.description,
-            let action = actions?[currentTripDetailType] {
-            TDSwiftAlert.showSingleButtonAlertWithCancel(title: actionTitle, message: actionDescription, actionBtnTitle: "Confirm", cancelBtnTitle: "Cancel", presentVC: self) { action() }
+            currentTripDetailType == .onTheWay || currentTripDetailType == .cob {
+            // Request for current location
+            TDSwiftLocationManager.shared.requestCurrentLocation { (location, error) in
+                if error != nil { TDSwiftAlert.showSingleButtonAlert(title: "Request Failed", message: "Current location not available", actionBtnTitle: "OK", presentVC: self, btnAction: nil); return }
+                if let location = location {
+                    // Setup action
+                    if currentTripDetailType == .onTheWay {
+                        self.setupOnTheWayAction(withCurrentLocation: location)
+                    } else if currentTripDetailType == .cob {
+                        self.setupCOBAction(withCurrentLocation: location)
+                    }
+                }
+                dispatchGroup.leave()
+            }
         } else {
-            TDSwiftAlert.showSingleButtonAlert(title: "Update Trip Failed", message: "Action missing", actionBtnTitle: "OK", presentVC: self, btnAction: nil)
+            dispatchGroup.leave()
+        }
+        
+        // Run action
+        dispatchGroup.notify(queue: .main) {
+            self.spinner.hide()
+            if let currentTripDetailType = self.currentTripDetailType,
+                let actionTitle = self.actionInfo?[currentTripDetailType]?.title,
+                let actionDescription = self.actionInfo?[currentTripDetailType]?.description,
+                let action = self.actions?[currentTripDetailType] {
+                TDSwiftAlert.showSingleButtonAlertWithCancel(title: actionTitle, message: actionDescription, actionBtnTitle: "Confirm", cancelBtnTitle: "Cancel", presentVC: self) { action() }
+            } else {
+                TDSwiftAlert.showSingleButtonAlert(title: "Update Trip Failed", message: "Action missing", actionBtnTitle: "OK", presentVC: self, btnAction: nil)
+            }
         }
     }
     
@@ -206,57 +233,6 @@ class HMTripDetailViewController: UIViewController {
             }
         }
         
-        // On the way
-        actionInfo![HMTripDetailType.onTheWay] = HMActionInfo(title: "Send Arrival",
-                                                              description: "You will\nconfirm arrival for pickup\n&\ntext customer arrival notice")
-        actions![HMTripDetailType.onTheWay] = {
-            // Start spinner
-            self.spinner.show()
-            
-            // Dispatch group
-            let dispatchGroup = DispatchGroup()
-            
-            // Trip token, customer token
-            guard let tripToken = self.tripToken, let customerToken = self.customerToken else {
-                TDSwiftAlert.showSingleButtonAlert(title: "Update Trip Failed", message: "Trip info incomplete", actionBtnTitle: "OK", presentVC: self, btnAction: nil)
-                return
-            }
-            
-            // Arrive time
-            let arriveTime = TDSwiftDate.getCurrentUTCTimeString(withFormat: "yyyy-MM-dd'T'HH:mm:ss.SSSZ")
-            
-            // Modify trip
-            dispatchGroup.enter()
-            var body: [String:Any] = [:]
-            body["status"] = 5
-            body["arrive_time"] = arriveTime
-            HMTrip.modifyTripDetail(withTripToken: tripToken, body: body, completion: { (result, error) in
-                if let error = error { TDSwiftAlert.showSingleButtonAlert(title: "Update Trip Failed", message: "\(DriverConn.getErrorMessage(error: error))", actionBtnTitle: "OK", presentVC: self, btnAction: nil) }
-                dispatchGroup.leave()
-            })
-            
-            // SMS Message
-            let fromAddressString = self.fromAddressInfo?["addr_str"] as? String ?? "N/A"
-            let smsTitle = "\(TDSwiftHavana.shared.auth?.company_name ?? "N/A") Arrival Notice"
-            let smsMessage = "Your driver just arrived pickup location: \(fromAddressString). Please get ready for your trip.\nThank you!"
-            
-            // Send customer SMS
-            dispatchGroup.enter()
-            HMSms.sendSMS(withCustomerToken: customerToken, body: ["title": smsTitle, "message": smsMessage], completion: { (result, error) in
-                if let error = error { TDSwiftAlert.showSingleButtonAlert(title: "Send SMS Failed", message: "\(DriverConn.getErrorMessage(error: error))", actionBtnTitle: "OK", presentVC: self, btnAction: nil) }
-                dispatchGroup.leave()
-            })
-            
-            // Tasks all returned
-            dispatchGroup.notify(queue: .main) {
-                // Stop spinner
-                self.spinner.hide()
-                
-                // Reload trip detail
-                self.loadData()
-            }
-        }
-        
         // Arrived
         actionInfo![HMTripDetailType.arrived] = HMActionInfo(title: "Send Customer On Board",
                                                              description: "You will\nconfirm customer on board\n&\nnavigate to customer dropoff location\n&\ntext customer COB notice")
@@ -318,59 +294,6 @@ class HMTripDetailViewController: UIViewController {
             }
         }
         
-        // COB
-        actionInfo![HMTripDetailType.cob] = HMActionInfo(title: "Send Customer Arrive Destination",
-                                                         description: "You will\nconfirm customer arrived at destination\n&\nstop sharing location\n&\ntext customer CAD notice")
-        actions![HMTripDetailType.cob] = {
-            // Start spinner
-            self.spinner.show()
-            
-            // Dispatch group
-            let dispatchGroup = DispatchGroup()
-            
-            // Trip token, customer token
-            guard let tripToken = self.tripToken, let customerToken = self.customerToken else {
-                TDSwiftAlert.showSingleButtonAlert(title: "Update Trip Failed", message: "Trip info incomplete", actionBtnTitle: "OK", presentVC: self, btnAction: nil)
-                return
-            }
-            
-            // Stop location sharing
-            HMHeartBeat.shared.stop()
-            
-            // CAD time
-            let cadTime = TDSwiftDate.getCurrentUTCTimeString(withFormat: "yyyy-MM-dd'T'HH:mm:ss.SSSZ")
-            
-            // Modify trip
-            dispatchGroup.enter()
-            var body: [String:Any] = [:]
-            body["status"] = 7
-            body["cad_time"] = cadTime
-            HMTrip.modifyTripDetail(withTripToken: tripToken, body: body, completion: { (result, error) in
-                if let error = error { TDSwiftAlert.showSingleButtonAlert(title: "Update Trip Failed", message: "\(DriverConn.getErrorMessage(error: error))", actionBtnTitle: "OK", presentVC: self, btnAction: nil) }
-                dispatchGroup.leave()
-            })
-            
-            // SMS Message
-            let smsTitle = "\(TDSwiftHavana.shared.auth?.company_name ?? "N/A") CAD Notice"
-            let smsMessage = "Thank your so much for using our service. See you next time."
-            
-            // Send customer SMS
-            dispatchGroup.enter()
-            HMSms.sendSMS(withCustomerToken: customerToken, body: ["title": smsTitle, "message": smsMessage], completion: { (result, error) in
-                if let error = error { TDSwiftAlert.showSingleButtonAlert(title: "Send SMS Failed", message: "\(DriverConn.getErrorMessage(error: error))", actionBtnTitle: "OK", presentVC: self, btnAction: nil) }
-                dispatchGroup.leave()
-            })
-            
-            // Tasks all returned
-            dispatchGroup.notify(queue: .main) {
-                // Stop spinner
-                self.spinner.hide()
-                
-                // Reload trip detail
-                self.loadData()
-            }
-        }
-        
         // CAD
         if let amount = self.basicInfo?["amount"] as? Int {
             let amountString = TDSwiftUnitConverter.centToDollar(amountInCent: amount)
@@ -411,6 +334,182 @@ class HMTripDetailViewController: UIViewController {
             actionInfo![HMTripDetailType.cad] = HMActionInfo(title: "Unable to process payment",
                                                              description: "Trip total not provided")
             actions![HMTripDetailType.cad] = {}
+        }
+    }
+    
+    private func setupOnTheWayAction(withCurrentLocation currentLocation: CLLocation) {
+        // Pickup location
+        guard let pickupLat = self.fromAddressInfo?["lat"] as? Double,
+            let pickupLng = self.fromAddressInfo?["lng"] as? Double else {
+                actionInfo![HMTripDetailType.onTheWay] = HMActionInfo(title: "Request Failed", description: "Pick up location not available")
+                actions![HMTripDetailType.onTheWay] = {}
+                return
+        }
+        let pickupLocation = CLLocation(latitude: pickupLat, longitude: pickupLng)
+        
+        // Distance between current and pickup location in meters
+        let distance = currentLocation.distance(from: pickupLocation)
+        
+        // Distance too far
+        var distanceTooFar = false
+        if distance > 50.0 { distanceTooFar = true }
+        
+        // Info
+        if distanceTooFar {
+            actionInfo![HMTripDetailType.onTheWay] = HMActionInfo(title: "Send Arrival",
+                                                                  description: "You will\nconfirm arrival for pickup\n&\ntext customer arrival notice\n&\nWarning: your current location is too far away from registered customer pick up location, an alert will be sent to dispatch if continue")
+        } else {
+            actionInfo![HMTripDetailType.onTheWay] = HMActionInfo(title: "Send Arrival",
+                                                                  description: "You will\nconfirm arrival for pickup\n&\ntext customer arrival notice")
+        }
+        
+        actions![HMTripDetailType.onTheWay] = {
+            // Start spinner
+            self.spinner.show()
+            
+            // Dispatch group
+            let dispatchGroup = DispatchGroup()
+            
+            // Trip token, customer token
+            guard let tripToken = self.tripToken, let customerToken = self.customerToken else {
+                TDSwiftAlert.showSingleButtonAlert(title: "Update Trip Failed", message: "Trip info incomplete", actionBtnTitle: "OK", presentVC: self, btnAction: nil)
+                return
+            }
+            
+            // Arrive time
+            let arriveTime = TDSwiftDate.getCurrentUTCTimeString(withFormat: "yyyy-MM-dd'T'HH:mm:ss.SSSZ")
+            
+            // SMS warning
+            if distanceTooFar {
+                dispatchGroup.enter()
+                let driverName = self.driverInfo?["name"] as? String ?? "N/A"
+                let warningTitle = "Driver Arrival Distance Warning"
+                let warningMessage = "Driver \(driverName) is confirming arrival, but driver current location does not match customer requested pick up location."
+                HMSms.sendSMSToDispatch(withCustomerToken: customerToken, body: ["title": warningTitle, "message": warningMessage], completion: { (result, error) in
+                    if let error = error { TDSwiftAlert.showSingleButtonAlert(title: "Send Warning Failed", message: "\(DriverConn.getErrorMessage(error: error))", actionBtnTitle: "OK", presentVC: self, btnAction: nil) }
+                    dispatchGroup.leave()
+                })
+            }
+            
+            // Modify trip
+            dispatchGroup.enter()
+            var body: [String:Any] = [:]
+            body["status"] = 5
+            body["arrive_time"] = arriveTime
+            HMTrip.modifyTripDetail(withTripToken: tripToken, body: body, completion: { (result, error) in
+                if let error = error { TDSwiftAlert.showSingleButtonAlert(title: "Update Trip Failed", message: "\(DriverConn.getErrorMessage(error: error))", actionBtnTitle: "OK", presentVC: self, btnAction: nil) }
+                dispatchGroup.leave()
+            })
+            
+            // SMS Message
+            let fromAddressString = self.fromAddressInfo?["addr_str"] as? String ?? "N/A"
+            let smsTitle = "\(TDSwiftHavana.shared.auth?.company_name ?? "N/A") Arrival Notice"
+            let smsMessage = "Your driver just arrived pickup location: \(fromAddressString). Please get ready for your trip.\nThank you!"
+            
+            // Send customer SMS
+            dispatchGroup.enter()
+            HMSms.sendSMS(withCustomerToken: customerToken, body: ["title": smsTitle, "message": smsMessage], completion: { (result, error) in
+                if let error = error { TDSwiftAlert.showSingleButtonAlert(title: "Send SMS Failed", message: "\(DriverConn.getErrorMessage(error: error))", actionBtnTitle: "OK", presentVC: self, btnAction: nil) }
+                dispatchGroup.leave()
+            })
+            
+            // Tasks all returned
+            dispatchGroup.notify(queue: .main) {
+                // Stop spinner
+                self.spinner.hide()
+                
+                // Reload trip detail
+                self.loadData()
+            }
+        }
+    }
+    
+    private func setupCOBAction(withCurrentLocation currentLocation: CLLocation) {
+        // Pickup location
+        guard let dropoffLat = self.toAddressInfo?["lat"] as? Double,
+            let dropoffLng = self.toAddressInfo?["lng"] as? Double else {
+                actionInfo![HMTripDetailType.onTheWay] = HMActionInfo(title: "Request Failed", description: "Drop off location not available")
+                actions![HMTripDetailType.onTheWay] = {}
+                return
+        }
+        let dropoffLocation = CLLocation(latitude: dropoffLat, longitude: dropoffLng)
+        
+        // Distance between current and pickup location in meters
+        let distance = currentLocation.distance(from: dropoffLocation)
+        
+        // Distance too far
+        var distanceTooFar = false
+        if distance > 50.0 { distanceTooFar = true }
+
+        // Info
+        if distanceTooFar {
+            actionInfo![HMTripDetailType.cob] = HMActionInfo(title: "Send Customer Arrive Destination",
+                                                             description: "You will\nconfirm customer arrived at destination\n&\nstop sharing location\n&\ntext customer CAD notice\n&\nWarning: your current location is too far away from registered customer dropoff location, an alert will be sent to dispatch if continue")
+        } else {
+            actionInfo![HMTripDetailType.cob] = HMActionInfo(title: "Send Customer Arrive Destination",
+                                                             description: "You will\nconfirm customer arrived at destination\n&\nstop sharing location\n&\ntext customer CAD notice")
+        }
+        
+        actions![HMTripDetailType.cob] = {
+            // Start spinner
+            self.spinner.show()
+            
+            // Dispatch group
+            let dispatchGroup = DispatchGroup()
+            
+            // Trip token, customer token
+            guard let tripToken = self.tripToken, let customerToken = self.customerToken else {
+                TDSwiftAlert.showSingleButtonAlert(title: "Update Trip Failed", message: "Trip info incomplete", actionBtnTitle: "OK", presentVC: self, btnAction: nil)
+                return
+            }
+            
+            // Stop location sharing
+            HMHeartBeat.shared.stop()
+            
+            // CAD time
+            let cadTime = TDSwiftDate.getCurrentUTCTimeString(withFormat: "yyyy-MM-dd'T'HH:mm:ss.SSSZ")
+            
+            // SMS warning
+            if distanceTooFar {
+                dispatchGroup.enter()
+                let driverName = self.driverInfo?["name"] as? String ?? "N/A"
+                let warningTitle = "Driver Drop Off Distance Warning"
+                let warningMessage = "Driver \(driverName) is confirming CAD, but driver current location does not match customer requested drop off location."
+                HMSms.sendSMSToDispatch(withCustomerToken: customerToken, body: ["title": warningTitle, "message": warningMessage], completion: { (result, error) in
+                    if let error = error { TDSwiftAlert.showSingleButtonAlert(title: "Send Warning Failed", message: "\(DriverConn.getErrorMessage(error: error))", actionBtnTitle: "OK", presentVC: self, btnAction: nil) }
+                    dispatchGroup.leave()
+                })
+            }
+            
+            // Modify trip
+            dispatchGroup.enter()
+            var body: [String:Any] = [:]
+            body["status"] = 7
+            body["cad_time"] = cadTime
+            HMTrip.modifyTripDetail(withTripToken: tripToken, body: body, completion: { (result, error) in
+                if let error = error { TDSwiftAlert.showSingleButtonAlert(title: "Update Trip Failed", message: "\(DriverConn.getErrorMessage(error: error))", actionBtnTitle: "OK", presentVC: self, btnAction: nil) }
+                dispatchGroup.leave()
+            })
+            
+            // SMS Message
+            let smsTitle = "\(TDSwiftHavana.shared.auth?.company_name ?? "N/A") CAD Notice"
+            let smsMessage = "Thank your so much for using our service. See you next time."
+            
+            // Send customer SMS
+            dispatchGroup.enter()
+            HMSms.sendSMS(withCustomerToken: customerToken, body: ["title": smsTitle, "message": smsMessage], completion: { (result, error) in
+                if let error = error { TDSwiftAlert.showSingleButtonAlert(title: "Send SMS Failed", message: "\(DriverConn.getErrorMessage(error: error))", actionBtnTitle: "OK", presentVC: self, btnAction: nil) }
+                dispatchGroup.leave()
+            })
+            
+            // Tasks all returned
+            dispatchGroup.notify(queue: .main) {
+                // Stop spinner
+                self.spinner.hide()
+                
+                // Reload trip detail
+                self.loadData()
+            }
         }
     }
     
