@@ -440,11 +440,11 @@ class HMTripDetailViewController: UIViewController {
         // Distance too far
         var distanceTooFar = false
         if distance > 50.0 { distanceTooFar = true }
-
+        
         // Info
         if distanceTooFar {
             actionInfo![HMTripDetailType.cob] = HMActionInfo(title: "Send Customer Arrive Destination",
-                                                             description: "You will\nconfirm customer arrived at destination\n&\nstop sharing location\n&\ntext customer CAD notice\n&\nWarning: your current location is too far away from registered customer dropoff location, an alert will be sent to dispatch if continue")
+                                                             description: "You will\nconfirm customer arrived at destination\n&\nstop sharing location\n&\ntext customer CAD notice\n&\nWarning: your current location is too far away from registered customer drop off location, an alert will be sent to dispatch if continue")
         } else {
             actionInfo![HMTripDetailType.cob] = HMActionInfo(title: "Send Customer Arrive Destination",
                                                              description: "You will\nconfirm customer arrived at destination\n&\nstop sharing location\n&\ntext customer CAD notice")
