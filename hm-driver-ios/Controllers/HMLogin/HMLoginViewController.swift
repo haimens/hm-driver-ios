@@ -53,6 +53,9 @@ class HMLoginViewController: UIViewController {
                 
                 // Handle login result
                 if result {
+                    // Update one signal external user id
+                    HMOneSignalManager.setExternalUserId()
+                    
                     // Present main vc
                     self.performSegue(withIdentifier: String(describing: HMMainTabBarController.self), sender: self)
                 } else if let error = error {

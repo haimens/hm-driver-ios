@@ -29,6 +29,7 @@
 		55061A2322B6C040003CDEAB /* TDSwiftShape.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55061A2222B6C040003CDEAB /* TDSwiftShape.swift */; };
 		55061A2622B6C067003CDEAB /* TDSwiftRouteDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55061A2522B6C067003CDEAB /* TDSwiftRouteDetailView.swift */; };
 		5509DBC722E9578E00C376C8 /* TDSwiftLocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5509DBC622E9578E00C376C8 /* TDSwiftLocationManager.swift */; };
+		5509DBEB22ECABE600C376C8 /* HMOneSignalManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5509DBEA22ECABE600C376C8 /* HMOneSignalManager.swift */; };
 		551B13C022D6C6570079C696 /* HMLocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 551B13BF22D6C6570079C696 /* HMLocationManager.swift */; };
 		551B13C322D6C9ED0079C696 /* HMLocationServicePermissionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 551B13C222D6C9ED0079C696 /* HMLocationServicePermissionViewController.swift */; };
 		551B13C622D82E5B0079C696 /* HMResetPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 551B13C522D82E5B0079C696 /* HMResetPasswordViewController.swift */; };
@@ -159,6 +160,7 @@
 		55061A2222B6C040003CDEAB /* TDSwiftShape.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TDSwiftShape.swift; sourceTree = "<group>"; };
 		55061A2522B6C067003CDEAB /* TDSwiftRouteDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TDSwiftRouteDetailView.swift; sourceTree = "<group>"; };
 		5509DBC622E9578E00C376C8 /* TDSwiftLocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TDSwiftLocationManager.swift; sourceTree = "<group>"; };
+		5509DBEA22ECABE600C376C8 /* HMOneSignalManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HMOneSignalManager.swift; sourceTree = "<group>"; };
 		551B13BF22D6C6570079C696 /* HMLocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HMLocationManager.swift; sourceTree = "<group>"; };
 		551B13C222D6C9ED0079C696 /* HMLocationServicePermissionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HMLocationServicePermissionViewController.swift; sourceTree = "<group>"; };
 		551B13C522D82E5B0079C696 /* HMResetPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HMResetPasswordViewController.swift; sourceTree = "<group>"; };
@@ -398,6 +400,14 @@
 			path = TDSwiftLocationManager;
 			sourceTree = "<group>";
 		};
+		5509DBE922ECABD700C376C8 /* HMOneSignalManager */ = {
+			isa = PBXGroup;
+			children = (
+				5509DBEA22ECABE600C376C8 /* HMOneSignalManager.swift */,
+			);
+			path = HMOneSignalManager;
+			sourceTree = "<group>";
+		};
 		551B13BE22D6C62F0079C696 /* HMLocationManager */ = {
 			isa = PBXGroup;
 			children = (
@@ -588,6 +598,7 @@
 		557B82DE22B4B565002D4774 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				5509DBE922ECABD700C376C8 /* HMOneSignalManager */,
 				5509DBC522E9570700C376C8 /* TDSwiftLocationManager */,
 				556C832922E84B51006769D7 /* TDSwiftImagePicker */,
 				556C82DC22E72D14006769D7 /* TDSwiftHavanaImageUploader */,
@@ -1229,6 +1240,7 @@
 				5582607122DADB19003EDCCA /* TDSwiftFileManager.swift in Sources */,
 				556C832B22E84B61006769D7 /* TDSwiftImagePicker.swift in Sources */,
 				5582607422DADBBF003EDCCA /* TDSwiftHash.swift in Sources */,
+				5509DBEB22ECABE600C376C8 /* HMOneSignalManager.swift in Sources */,
 				5599D6BC22D99478008E5381 /* HMSalary.swift in Sources */,
 				557B82A922B47531002D4774 /* HMAuthViewController.swift in Sources */,
 				5504A7A522D1DA4500081C10 /* HMThreeDotsBarButtonItem.swift in Sources */,
