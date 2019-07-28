@@ -741,8 +741,18 @@ extension HMTripDetailViewController: TDSwiftData {
         // Button state for different payment types
         switch paymentType {
         case 3: // Cash
-            actionBtn.changeButtonState(to: .enabled)
-            actionBtn.setTitle("Pay With Cash", for: .normal)
+            guard let isPaid = self.basicInfo?["is_paid"] as? Bool else {
+                actionBtn.setTitle(CONST.UI.NOT_AVAILABLE_PLACEHOLDER, for: .normal)
+                return
+            }
+                        
+            if isPaid {
+                actionBtn.changeButtonState(to: .disabled)
+                actionBtn.setTitle("Paid", for: .normal)
+            } else {
+                actionBtn.changeButtonState(to: .enabled)
+                actionBtn.setTitle("Pay With Cash", for: .normal)
+            }
         default:
             actionBtn.changeButtonState(to: .disabled)
             actionBtn.setTitle("Payment Method Not Supported", for: .normal)
