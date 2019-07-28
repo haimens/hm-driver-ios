@@ -324,9 +324,11 @@ extension HMCustomerMessagingViewController: MessageInputBarDelegate {
                 // Handle error
                 if let error = error { TDSwiftAlert.showSingleButtonAlert(title: "Send SMS Failed", message: "\(DriverConn.getErrorMessage(error: error))", actionBtnTitle: "OK", presentVC: self, btnAction: nil); return }
                 
-                // Reload messaging view
-                self.purgeData()
-                self.loadData()
+                // Reload messaging view with delay
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.5, execute: {
+                    self.purgeData()
+                    self.loadData()
+                })
             }
         }
     }

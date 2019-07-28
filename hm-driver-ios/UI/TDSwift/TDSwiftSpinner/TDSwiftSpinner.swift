@@ -36,6 +36,9 @@ public class TDSwiftSpinner {
         
         // Add spinner to vc
         viewController.view.addSubview(blockingView)
+        
+        // Bring subview to front
+        viewController.view.bringSubviewToFront(blockingView)
     }
     
     // Hide spinner
