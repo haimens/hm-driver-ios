@@ -2,14 +2,10 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-    <key>NSCameraUsageDescription</key>
-    <string>This app requires camera permissions for profile editing purposes.</string>
-    <key>NSPhotoLibraryUsageDescription</key>
-    <string>This app requires photo library permissions for profile editing purposes.</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleDisplayName</key>
-	<string>Haimens Driver</string>
+	<string>EZ Driver</string>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>
@@ -41,10 +37,14 @@
 			</dict>
 		</dict>
 	</dict>
+	<key>NSCameraUsageDescription</key>
+	<string>This app requires camera permissions for profile editing purposes.</string>
 	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
 	<string>We need your permission to be able to report your status to the dispatch center</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>We need your permission to be able to report your status to the dispatch center</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>This app requires photo library permissions for profile editing purposes.</string>
 	<key>UIBackgroundModes</key>
 	<array>
 		<string>location</string>
