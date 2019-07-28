@@ -41,6 +41,16 @@ public class HMHeartBeat {
         }
     }
     
+    public func getSharingButtonColor() -> UIColor {
+        switch TDSwiftHeartBeat.shared.getHeartBeatStatus() {
+        case .activated:
+            return UIColor(red:0.18, green:0.81, blue:0.54, alpha:1.0)
+        case .terminated:
+            return UIColor.darkText
+        }
+    }
+
+    
     private func updateUI() {
         // Update account vc start sharing button
         if let accountVC = HMViewControllerManager.shared.presentingViewController as? HMAccountViewController {

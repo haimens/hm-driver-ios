@@ -17,7 +17,9 @@ class HMAccountViewController: UITableViewController {
         HMViewControllerManager.shared.presentingViewController = self
         
         configNavigationAppearance()
-        sharingLocationLabel.text = HMHeartBeat.shared.getSharingButtonTitle()    }
+        
+        updateSharingLocationLabel()
+    }
     
     private func configNavigationAppearance() { navigationController?.navigationBar.prefersLargeTitles = true }
     
@@ -39,11 +41,11 @@ class HMAccountViewController: UITableViewController {
         case 3: // Sharing Location
             HMHeartBeat.shared.start()
             TDSwiftAlert.showSingleButtonAlert(title: "Location Sharing", message: "Service Started", actionBtnTitle: "OK", presentVC: self, btnAction: nil)
-            sharingLocationLabel.text = HMHeartBeat.shared.getSharingButtonTitle()
+            updateSharingLocationLabel()
         case 4: // Stop Sharing Location
             HMHeartBeat.shared.stop()
             TDSwiftAlert.showSingleButtonAlert(title: "Location Sharing", message: "Service Terminated", actionBtnTitle: "OK", presentVC: self, btnAction: nil)
-            sharingLocationLabel.text = HMHeartBeat.shared.getSharingButtonTitle()
+            updateSharingLocationLabel()
         case 5: // Logout
             // Remove current auth and user info
             TDSwiftHavana.shared.removeAuthInfo()
@@ -69,5 +71,6 @@ class HMAccountViewController: UITableViewController {
     
     func updateSharingLocationLabel() {
         sharingLocationLabel.text = HMHeartBeat.shared.getSharingButtonTitle()
+        sharingLocationLabel.textColor = HMHeartBeat.shared.getSharingButtonColor()
     }
 }
