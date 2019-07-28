@@ -76,6 +76,10 @@ class HMTripDetailViewController: UIViewController {
                 }
                 dispatchGroup.leave()
             }
+        } else if let currentTripDetailType = currentTripDetailType,
+            currentTripDetailType == .cad {
+            setupCADAction()
+            dispatchGroup.leave()
         } else {
             dispatchGroup.leave()
         }
@@ -296,48 +300,6 @@ class HMTripDetailViewController: UIViewController {
                 self.loadData()
             }
         }
-        
-        // CAD
-        if let amount = self.basicInfo?["amount"] as? Int {
-            let amountString = TDSwiftUnitConverter.centToDollar(amountInCent: amount)
-            actionInfo![HMTripDetailType.cad] = HMActionInfo(title: "Collect Cash Payment",
-                                                             description: "Confirm cash payment of $\(amountString)")
-            actions![HMTripDetailType.cad] = {
-                // Start spinner
-                self.spinner.show()
-                
-                // Dispatch group
-                let dispatchGroup = DispatchGroup()
-                
-                // Trip token, customer token
-                guard let tripToken = self.tripToken else {
-                    TDSwiftAlert.showSingleButtonAlert(title: "Update Trip Failed", message: "Trip info incomplete", actionBtnTitle: "OK", presentVC: self, btnAction: nil)
-                    return
-                }
-                
-                // Modify trip
-                dispatchGroup.enter()
-                var body: [String:Any] = [:]
-                body["is_paid"] = true
-                HMTrip.modifyTripDetail(withTripToken: tripToken, body: body, completion: { (result, error) in
-                    if let error = error { TDSwiftAlert.showSingleButtonAlert(title: "Update Trip Failed", message: "\(DriverConn.getErrorMessage(error: error))", actionBtnTitle: "OK", presentVC: self, btnAction: nil) }
-                    dispatchGroup.leave()
-                })
-                
-                // Tasks all returned
-                dispatchGroup.notify(queue: .main) {
-                    // Stop spinner
-                    self.spinner.hide()
-                    
-                    // Reload trip detail
-                    self.loadData()
-                }
-            }
-        } else {
-            actionInfo![HMTripDetailType.cad] = HMActionInfo(title: "Unable to process payment",
-                                                             description: "Trip total not provided")
-            actions![HMTripDetailType.cad] = {}
-        }
     }
     
     private func setupOnTheWayAction(withCurrentLocation currentLocation: CLLocation) {
@@ -513,6 +475,50 @@ class HMTripDetailViewController: UIViewController {
                 // Reload trip detail
                 self.loadData()
             }
+        }
+    }
+    
+    func setupCADAction() {
+        // CAD
+        if let amount = self.basicInfo?["amount"] as? Int {
+            let amountString = TDSwiftUnitConverter.centToDollar(amountInCent: amount)
+            actionInfo![HMTripDetailType.cad] = HMActionInfo(title: "Collect Cash Payment",
+                                                             description: "Confirm cash payment of $\(amountString)")
+            actions![HMTripDetailType.cad] = {
+                // Start spinner
+                self.spinner.show()
+                
+                // Dispatch group
+                let dispatchGroup = DispatchGroup()
+                
+                // Trip token, customer token
+                guard let tripToken = self.tripToken else {
+                    TDSwiftAlert.showSingleButtonAlert(title: "Update Trip Failed", message: "Trip info incomplete", actionBtnTitle: "OK", presentVC: self, btnAction: nil)
+                    return
+                }
+                
+                // Modify trip
+                dispatchGroup.enter()
+                var body: [String:Any] = [:]
+                body["is_paid"] = 1
+                HMTrip.modifyTripDetail(withTripToken: tripToken, body: body, completion: { (result, error) in
+                    if let error = error { TDSwiftAlert.showSingleButtonAlert(title: "Update Trip Failed", message: "\(DriverConn.getErrorMessage(error: error))", actionBtnTitle: "OK", presentVC: self, btnAction: nil) }
+                    dispatchGroup.leave()
+                })
+                
+                // Tasks all returned
+                dispatchGroup.notify(queue: .main) {
+                    // Stop spinner
+                    self.spinner.hide()
+                    
+                    // Reload trip detail
+                    self.loadData()
+                }
+            }
+        } else {
+            actionInfo![HMTripDetailType.cad] = HMActionInfo(title: "Unable to process payment",
+                                                             description: "Trip total not provided")
+            actions![HMTripDetailType.cad] = {}
         }
     }
     
@@ -734,7 +740,7 @@ extension HMTripDetailViewController: TDSwiftData {
         
         // Button state for different payment types
         switch paymentType {
-        case 3:
+        case 3: // Cash
             actionBtn.changeButtonState(to: .enabled)
             actionBtn.setTitle("Pay With Cash", for: .normal)
         default:

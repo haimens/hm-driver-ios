@@ -58,7 +58,14 @@ class DriverConn {
             }
             
             // Handle request error
-            if (error != nil) { completion?(nil, error); return }
+            if (error != nil) {
+                print("################################################################")
+                print("REQUEST WITH ERROR, ERROR: \(String(describing: error)), MESSAGE: \(String(describing: json?["message"] as? String))")
+                print("################################################################")
+
+                
+                completion?(nil, error); return
+            }
             
             // Parse response json
             guard let json = json else { completion?(nil, DriverConnError.responseEmpty); return }
@@ -67,6 +74,11 @@ class DriverConn {
             guard let status = json["status"] as? Bool else { completion?(nil, DriverConnError.responseFormatInvalid); return }
             if (!status) {
                 guard let message = json["message"] as? String else { completion?(nil, DriverConnError.responseFormatInvalid); return }
+                
+                print("################################################################")
+                print("REQUEST STATUS FALSE WITH MESSAGE: \(message)")
+                print("################################################################")
+                
                 completion?(nil, DriverConnError.responseWithErrorMessage(message: message)); return
             }
             
