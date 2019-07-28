@@ -57,6 +57,10 @@ class HMTripDetailViewController: UIViewController {
         }
     }
     
+    @IBAction func messagingBtnClicked(_ sender: TDSwiftIconCircleButton) {
+        performSegue(withIdentifier: String(describing: HMCustomerMessagingNavigationController.self), sender: self)
+    }
+    
     @IBAction func actionBtnClicked(_ sender: HMBasicButton) {
         // If action type is on the way or cob, config actions first
         let dispatchGroup = DispatchGroup()

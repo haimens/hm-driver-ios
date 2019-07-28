@@ -466,6 +466,9 @@
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="image" keyPath="iconImage" value="message-icon"/>
                                 </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="messagingBtnClicked:" destination="hPU-Qa-Oif" eventType="touchUpInside" id="cLh-Hh-Git"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KOQ-WP-YTo" customClass="HMSharingLocationCircleButton" customModule="hm_driver_ios" customModuleProvider="target">
                                 <rect key="frame" x="314" y="414" width="46" height="46"/>
