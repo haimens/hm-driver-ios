@@ -456,14 +456,27 @@
                                     <constraint firstAttribute="trailing" secondItem="uTs-i6-10s" secondAttribute="trailing" constant="25" id="p8n-eA-g2f"/>
                                 </constraints>
                             </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bSn-ZZ-TvA" customClass="TDSwiftIconCircleButton" customModule="hm_driver_ios" customModuleProvider="target">
+                                <rect key="frame" x="314" y="470" width="46" height="46"/>
+                                <color key="backgroundColor" red="0.18039215689999999" green="0.80784313730000001" blue="0.53725490200000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="46" id="9SO-H3-SNK"/>
+                                    <constraint firstAttribute="height" constant="46" id="zMd-tb-GZZ"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="image" keyPath="iconImage" value="message-icon"/>
+                                </userDefinedRuntimeAttributes>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="6Yw-7K-UDh" firstAttribute="leading" secondItem="FRm-jH-Nhg" secondAttribute="leading" id="63W-SQ-GJg"/>
                             <constraint firstItem="6Yw-7K-UDh" firstAttribute="top" secondItem="AMI-Ex-N2p" secondAttribute="bottom" constant="-7" id="8jq-5i-RCC"/>
                             <constraint firstItem="AMI-Ex-N2p" firstAttribute="leading" secondItem="FRm-jH-Nhg" secondAttribute="leading" id="AeB-zF-1HG"/>
+                            <constraint firstItem="6Yw-7K-UDh" firstAttribute="top" secondItem="bSn-ZZ-TvA" secondAttribute="bottom" constant="20" id="EYm-k3-iFx"/>
                             <constraint firstAttribute="trailing" secondItem="AMI-Ex-N2p" secondAttribute="trailing" id="WTX-3Y-evH"/>
                             <constraint firstAttribute="bottom" secondItem="6Yw-7K-UDh" secondAttribute="bottom" id="bRF-Hn-Yvs"/>
+                            <constraint firstItem="FRm-jH-Nhg" firstAttribute="trailing" secondItem="bSn-ZZ-TvA" secondAttribute="trailing" constant="15" id="h3w-zT-xQX"/>
                             <constraint firstItem="6Yw-7K-UDh" firstAttribute="trailing" secondItem="FRm-jH-Nhg" secondAttribute="trailing" id="if1-Zu-NZk"/>
                             <constraint firstItem="AMI-Ex-N2p" firstAttribute="top" secondItem="FRm-jH-Nhg" secondAttribute="top" id="uMR-Ed-LJK"/>
                         </constraints>
@@ -1355,6 +1368,7 @@
         <image name="card_dismiss_btn" width="22" height="22"/>
         <image name="exit-icon" width="22" height="23"/>
         <image name="haimens-logo" width="101" height="120"/>
+        <image name="message-icon" width="16" height="14"/>
         <image name="money-icon" width="26" height="30"/>
         <image name="my-icon" width="25" height="29"/>
         <image name="place-icon" width="23" height="23"/>
@@ -1364,6 +1378,6 @@
         <image name="support-icon" width="23" height="23"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="a0r-L2-v76"/>
+        <segue reference="XkE-lh-rPd"/>
     </inferredMetricsTieBreakers>
 </document>
