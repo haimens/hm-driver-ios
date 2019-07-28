@@ -89,7 +89,7 @@ class HMCustomerMessagingViewController: MessagesViewController {
                 self.dismiss(animated: true, completion: nil)
             }
         }
-        
+    
         // Conversation data
         loadData()
     }
@@ -166,7 +166,7 @@ extension HMCustomerMessagingViewController: TDSwiftData {
         self.messagesCount = count
         
         // Parse each record
-        if messages == nil { messages = [] }
+        if messages == nil || self.messagesEnd <= 30 { messages = [] }
         recordList.forEach { (record) in
             // Parse img path
             var imgPath = ""
@@ -182,7 +182,7 @@ extension HMCustomerMessagingViewController: TDSwiftData {
                 }
             }
             
-            // Parse othe info
+            // Parse other info
             if let type = record["type"] as? Int,
                 let smsToken = record["sms_token"] as? String,
                 let dateString = record["udate"] as? String,
@@ -193,7 +193,11 @@ extension HMCustomerMessagingViewController: TDSwiftData {
         }
         
         // Reload collection view
-        self.messagesCollectionView.reloadDataAndKeepOffset()
+        if self.messagesEnd <= 30 {
+            self.messagesCollectionView.reloadData()
+        } else {
+            self.messagesCollectionView.reloadDataAndKeepOffset()
+        }
         
         // Scroll to bottom if loading first page
         if !self.refreshControl.isRefreshing {
@@ -207,7 +211,8 @@ extension HMCustomerMessagingViewController: TDSwiftData {
     
     func purgeData() {
         messagesEnd = nil
-        messagesCount = nil    }
+        messagesCount = nil
+    }
 }
 
 extension HMCustomerMessagingViewController: MessagesDataSource, MessagesLayoutDelegate, MessagesDisplayDelegate {
@@ -307,12 +312,12 @@ extension HMCustomerMessagingViewController: MessageInputBarDelegate {
         // Show spinner
         spinner.show()
         
+        // Clear input
+        inputBar.inputTextView.text = ""
+        
         // Send SMS
         HMSms.sendSMS(withCustomerToken: customerToken, body: ["title": "From Driver - \(TDSwiftHavana.shared.auth?.name ?? CONST.UI.NOT_AVAILABLE_PLACEHOLDER)", "message": text]) { (result, error) in
             DispatchQueue.main.async {
-                // Clear input
-                inputBar.inputTextView.text = ""
-                
                 // Hide spinner
                 self.spinner.show()
                 
