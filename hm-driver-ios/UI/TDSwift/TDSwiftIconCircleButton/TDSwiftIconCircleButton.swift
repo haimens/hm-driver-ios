@@ -11,6 +11,9 @@ public class TDSwiftIconCircleButton: UIButton {
     }
     
     public func updateAppearance() {
+        // Remove old sublayers
+        self.layer.sublayers?.removeAll()
+        
         // Shape layer
         let roundedCornerMaskPath = UIBezierPath(roundedRect: self.bounds, byRoundingCorners: .allCorners, cornerRadii: CGSize(width: self.frame.width / 2, height: self.frame.width / 2))
         let shape = CAShapeLayer()
@@ -35,6 +38,8 @@ public class TDSwiftIconCircleButton: UIButton {
         iconImageView.image = iconImage
         iconImageView.contentMode = .scaleAspectFit
         iconImageView.center = CGPoint(x: self.bounds.midX, y: self.bounds.midY)
-        self.addSubview(iconImageView)
+        if iconImageView.superview == nil {
+            self.addSubview(iconImageView)
+        }
     }
 }

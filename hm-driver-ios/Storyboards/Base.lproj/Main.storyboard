@@ -467,6 +467,17 @@
                                     <userDefinedRuntimeAttribute type="image" keyPath="iconImage" value="message-icon"/>
                                 </userDefinedRuntimeAttributes>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KOQ-WP-YTo" customClass="HMSharingLocationCircleButton" customModule="hm_driver_ios" customModuleProvider="target">
+                                <rect key="frame" x="314" y="414" width="46" height="46"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="46" id="Af8-qM-0pu"/>
+                                    <constraint firstAttribute="height" constant="46" id="FNP-c5-aKu"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="image" keyPath="iconImage" value="navigation-icon"/>
+                                </userDefinedRuntimeAttributes>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
@@ -474,8 +485,10 @@
                             <constraint firstItem="6Yw-7K-UDh" firstAttribute="top" secondItem="AMI-Ex-N2p" secondAttribute="bottom" constant="-7" id="8jq-5i-RCC"/>
                             <constraint firstItem="AMI-Ex-N2p" firstAttribute="leading" secondItem="FRm-jH-Nhg" secondAttribute="leading" id="AeB-zF-1HG"/>
                             <constraint firstItem="6Yw-7K-UDh" firstAttribute="top" secondItem="bSn-ZZ-TvA" secondAttribute="bottom" constant="20" id="EYm-k3-iFx"/>
+                            <constraint firstItem="KOQ-WP-YTo" firstAttribute="trailing" secondItem="AMI-Ex-N2p" secondAttribute="trailing" constant="-15" id="Gp7-Ac-b1d"/>
                             <constraint firstAttribute="trailing" secondItem="AMI-Ex-N2p" secondAttribute="trailing" id="WTX-3Y-evH"/>
                             <constraint firstAttribute="bottom" secondItem="6Yw-7K-UDh" secondAttribute="bottom" id="bRF-Hn-Yvs"/>
+                            <constraint firstItem="bSn-ZZ-TvA" firstAttribute="top" secondItem="KOQ-WP-YTo" secondAttribute="bottom" constant="10" id="c4I-wu-nOE"/>
                             <constraint firstItem="FRm-jH-Nhg" firstAttribute="trailing" secondItem="bSn-ZZ-TvA" secondAttribute="trailing" constant="15" id="h3w-zT-xQX"/>
                             <constraint firstItem="6Yw-7K-UDh" firstAttribute="trailing" secondItem="FRm-jH-Nhg" secondAttribute="trailing" id="if1-Zu-NZk"/>
                             <constraint firstItem="AMI-Ex-N2p" firstAttribute="top" secondItem="FRm-jH-Nhg" secondAttribute="top" id="uMR-Ed-LJK"/>
@@ -485,6 +498,7 @@
                     <connections>
                         <outlet property="actionBtn" destination="hYc-oy-hCc" id="MCs-fd-fjL"/>
                         <outlet property="flightInfoBtn" destination="KWZ-p2-1ET" id="XRE-vd-Gl2"/>
+                        <outlet property="locationSharingBtn" destination="KOQ-WP-YTo" id="bvD-Tg-o9r"/>
                         <outlet property="mapView" destination="AMI-Ex-N2p" id="vV2-JD-69A"/>
                         <outlet property="routeDetailView" destination="Cg3-aq-a6j" id="46O-sj-ttP"/>
                         <outlet property="routeInfoLabel" destination="ac0-Vj-7Zn" id="AVV-mS-7k7"/>
@@ -1371,6 +1385,7 @@
         <image name="message-icon" width="16" height="14"/>
         <image name="money-icon" width="26" height="30"/>
         <image name="my-icon" width="25" height="29"/>
+        <image name="navigation-icon" width="16" height="16"/>
         <image name="place-icon" width="23" height="23"/>
         <image name="protection-icon" width="23" height="26"/>
         <image name="route-icon" width="30" height="30"/>

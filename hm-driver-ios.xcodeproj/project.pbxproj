@@ -32,6 +32,7 @@
 		5509DBEB22ECABE600C376C8 /* HMOneSignalManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5509DBEA22ECABE600C376C8 /* HMOneSignalManager.swift */; };
 		5509DBEE22EE392100C376C8 /* TDSwiftMutableParagraphStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5509DBED22EE392100C376C8 /* TDSwiftMutableParagraphStyle.swift */; };
 		5509DBF122EE48B000C376C8 /* TDSwiftIconCircleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5509DBF022EE48B000C376C8 /* TDSwiftIconCircleButton.swift */; };
+		5509DBF422EE51C300C376C8 /* HMSharingLocationCircleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5509DBF322EE51C300C376C8 /* HMSharingLocationCircleButton.swift */; };
 		551B13C022D6C6570079C696 /* HMLocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 551B13BF22D6C6570079C696 /* HMLocationManager.swift */; };
 		551B13C322D6C9ED0079C696 /* HMLocationServicePermissionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 551B13C222D6C9ED0079C696 /* HMLocationServicePermissionViewController.swift */; };
 		551B13C622D82E5B0079C696 /* HMResetPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 551B13C522D82E5B0079C696 /* HMResetPasswordViewController.swift */; };
@@ -165,6 +166,7 @@
 		5509DBEA22ECABE600C376C8 /* HMOneSignalManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HMOneSignalManager.swift; sourceTree = "<group>"; };
 		5509DBED22EE392100C376C8 /* TDSwiftMutableParagraphStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TDSwiftMutableParagraphStyle.swift; sourceTree = "<group>"; };
 		5509DBF022EE48B000C376C8 /* TDSwiftIconCircleButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TDSwiftIconCircleButton.swift; sourceTree = "<group>"; };
+		5509DBF322EE51C300C376C8 /* HMSharingLocationCircleButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HMSharingLocationCircleButton.swift; sourceTree = "<group>"; };
 		551B13BF22D6C6570079C696 /* HMLocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HMLocationManager.swift; sourceTree = "<group>"; };
 		551B13C222D6C9ED0079C696 /* HMLocationServicePermissionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HMLocationServicePermissionViewController.swift; sourceTree = "<group>"; };
 		551B13C522D82E5B0079C696 /* HMResetPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HMResetPasswordViewController.swift; sourceTree = "<group>"; };
@@ -320,6 +322,7 @@
 		5504A7A122D1D2D800081C10 /* Haimens */ = {
 			isa = PBXGroup;
 			children = (
+				5509DBF222EE51AB00C376C8 /* HMSharingLocationCircleButton */,
 				5504A7A622D1DD2300081C10 /* HMTripDetailPopover */,
 				5504A7A322D1D9FB00081C10 /* HMThreeDotsBarButtonItem */,
 				55F9A2BD22B5A07500788FC5 /* HMBasicButton */,
@@ -427,6 +430,14 @@
 				5509DBF022EE48B000C376C8 /* TDSwiftIconCircleButton.swift */,
 			);
 			path = TDSwiftIconCircleButton;
+			sourceTree = "<group>";
+		};
+		5509DBF222EE51AB00C376C8 /* HMSharingLocationCircleButton */ = {
+			isa = PBXGroup;
+			children = (
+				5509DBF322EE51C300C376C8 /* HMSharingLocationCircleButton.swift */,
+			);
+			path = HMSharingLocationCircleButton;
 			sourceTree = "<group>";
 		};
 		551B13BE22D6C62F0079C696 /* HMLocationManager */ = {
@@ -1262,6 +1273,7 @@
 				5582607122DADB19003EDCCA /* TDSwiftFileManager.swift in Sources */,
 				556C832B22E84B61006769D7 /* TDSwiftImagePicker.swift in Sources */,
 				5582607422DADBBF003EDCCA /* TDSwiftHash.swift in Sources */,
+				5509DBF422EE51C300C376C8 /* HMSharingLocationCircleButton.swift in Sources */,
 				5509DBEB22ECABE600C376C8 /* HMOneSignalManager.swift in Sources */,
 				5599D6BC22D99478008E5381 /* HMSalary.swift in Sources */,
 				557B82A922B47531002D4774 /* HMAuthViewController.swift in Sources */,

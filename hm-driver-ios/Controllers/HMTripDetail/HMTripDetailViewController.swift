@@ -44,6 +44,7 @@ class HMTripDetailViewController: UIViewController {
     @IBOutlet weak var routeInfoLabel: UILabel!
     @IBOutlet weak var actionBtn: HMBasicButton!
     @IBOutlet weak var flightInfoBtn: UIButton!
+    @IBOutlet weak var locationSharingBtn: HMSharingLocationCircleButton!
     
     @IBAction func flightInfoBtnClicked(_ sender: UIButton) {
         performSegue(withIdentifier: String(describing: HMFlightInfoViewController.self), sender: self)
@@ -156,6 +157,9 @@ class HMTripDetailViewController: UIViewController {
         
         // Spinner
         spinner = TDSwiftSpinner(viewController: self)
+        
+        // Location sharing button
+        locationSharingBtn.presentingViewController = self
     }
     
     private func setupDelegate() {
