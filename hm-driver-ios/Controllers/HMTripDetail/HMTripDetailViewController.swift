@@ -350,8 +350,9 @@ class HMTripDetailViewController: UIViewController {
             if distanceTooFar {
                 dispatchGroup.enter()
                 let driverName = self.driverInfo?["name"] as? String ?? "N/A"
+                let driverCell = self.driverInfo?["cell"] as? String ?? "N/A"
                 let warningTitle = "Driver Arrival Distance Warning"
-                let warningMessage = "Driver \(driverName) is confirming arrival, but driver current location does not match customer requested pick up location."
+                let warningMessage = "Driver \(driverName) is confirming arrival, but driver's current location does not match the customer requested pick up location. Contact driver with number: \(driverCell)"
                 HMSms.sendSMSToDispatch(withCustomerToken: customerToken, body: ["title": warningTitle, "message": warningMessage], completion: { (result, error) in
                     if let error = error { TDSwiftAlert.showSingleButtonAlert(title: "Send Warning Failed", message: "\(DriverConn.getErrorMessage(error: error))", actionBtnTitle: "OK", presentVC: self, btnAction: nil) }
                     dispatchGroup.leave()
@@ -442,8 +443,9 @@ class HMTripDetailViewController: UIViewController {
             if distanceTooFar {
                 dispatchGroup.enter()
                 let driverName = self.driverInfo?["name"] as? String ?? "N/A"
+                let driverCell = self.driverInfo?["cell"] as? String ?? "N/A"
                 let warningTitle = "Driver Drop Off Distance Warning"
-                let warningMessage = "Driver \(driverName) is confirming CAD, but driver current location does not match customer requested drop off location."
+                let warningMessage = "Driver \(driverName) is confirming CAD, but driver's current location does not match the customer requested drop off location. Contact driver with number: \(driverCell)"
                 HMSms.sendSMSToDispatch(withCustomerToken: customerToken, body: ["title": warningTitle, "message": warningMessage], completion: { (result, error) in
                     if let error = error { TDSwiftAlert.showSingleButtonAlert(title: "Send Warning Failed", message: "\(DriverConn.getErrorMessage(error: error))", actionBtnTitle: "OK", presentVC: self, btnAction: nil) }
                     dispatchGroup.leave()
