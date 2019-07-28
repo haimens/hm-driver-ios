@@ -39,7 +39,7 @@ class TDSwiftAlert {
         presentVC.present(alert, animated: true, completion: nil)
     }
     
-    static func showSingleButtonAlertWithCancelWithAttributedMessage(title: String, message: NSAttributedString, messageAlignment: NSTextAlignment, actionBtnTitle: String, cancelBtnTitle: String, presentVC: UIViewController, btnAction: (() -> Void)? ) {
+    static func showSingleButtonAlertWithCancelWithAttributedMessage(title: String, message: NSAttributedString, actionBtnTitle: String, cancelBtnTitle: String, presentVC: UIViewController, btnAction: (() -> Void)? ) {
         
         // Alert instance
         let alert = UIAlertController(title: title, message: "", preferredStyle: .alert)

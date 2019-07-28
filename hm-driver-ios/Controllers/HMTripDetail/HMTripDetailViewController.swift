@@ -3,7 +3,7 @@ import MapKit
 
 struct HMActionInfo {
     let title: String
-    let description: String
+    let description: NSAttributedString
 }
 
 enum HMTripDetailType: Int {
@@ -91,7 +91,7 @@ class HMTripDetailViewController: UIViewController {
                 let actionTitle = self.actionInfo?[currentTripDetailType]?.title,
                 let actionDescription = self.actionInfo?[currentTripDetailType]?.description,
                 let action = self.actions?[currentTripDetailType] {
-                TDSwiftAlert.showSingleButtonAlertWithCancel(title: actionTitle, message: actionDescription, actionBtnTitle: "Confirm", cancelBtnTitle: "Cancel", presentVC: self) { action() }
+                TDSwiftAlert.showSingleButtonAlertWithCancelWithAttributedMessage(title: actionTitle, message: actionDescription, actionBtnTitle: "Confirm", cancelBtnTitle: "Cancel", presentVC: self, btnAction: { action() })
             } else {
                 TDSwiftAlert.showSingleButtonAlert(title: "Update Trip Failed", message: "Action missing", actionBtnTitle: "OK", presentVC: self, btnAction: nil)
             }
@@ -169,7 +169,7 @@ class HMTripDetailViewController: UIViewController {
         
         // Dispatched
         actionInfo![HMTripDetailType.dispatched] = HMActionInfo(title: "Go To Pickup Location",
-                                                                description: "You will\nstart sharing location\n&\nnavigate to pickup location\n&\ntext customer ETA notice")
+                                                                description: NSAttributedString(string: "You will\n○Start sharing location\n○Navigate to pickup location\n○Text customer ETA notice", attributes: CONST.UI.STRING_ATTRIBUTES_LEFT_PARAGRAPH))
         actions![HMTripDetailType.dispatched] = {
             // Start time, eta time string
             let startTime = TDSwiftDate.getCurrentUTCTimeString(withFormat: "yyyy-MM-dd'T'HH:mm:ss.SSSZ")
@@ -242,7 +242,7 @@ class HMTripDetailViewController: UIViewController {
         
         // Arrived
         actionInfo![HMTripDetailType.arrived] = HMActionInfo(title: "Send Customer On Board",
-                                                             description: "You will\nconfirm customer on board\n&\nnavigate to customer dropoff location\n&\ntext customer COB notice")
+                                                             description: NSAttributedString(string: "You will\n○Confirm customer on board\n○Navigate to customer dropoff location\n○Text customer COB notice", attributes: CONST.UI.STRING_ATTRIBUTES_LEFT_PARAGRAPH))
         actions![HMTripDetailType.arrived] = {
             // Start spinner
             self.spinner.show()
@@ -306,7 +306,7 @@ class HMTripDetailViewController: UIViewController {
         // Pickup location
         guard let pickupLat = self.fromAddressInfo?["lat"] as? Double,
             let pickupLng = self.fromAddressInfo?["lng"] as? Double else {
-                actionInfo![HMTripDetailType.onTheWay] = HMActionInfo(title: "Request Failed", description: "Pick up location not available")
+                actionInfo![HMTripDetailType.onTheWay] = HMActionInfo(title: "Request Failed", description: NSAttributedString(string: "Pick up location not available", attributes: CONST.UI.STRING_ATTRIBUTES_CENTER_PARAGRAPH))
                 actions![HMTripDetailType.onTheWay] = {}
                 return
         }
@@ -320,12 +320,14 @@ class HMTripDetailViewController: UIViewController {
         if distance > 50.0 { distanceTooFar = true }
         
         // Info
+        let actionDescription = NSMutableAttributedString(string: "You will\n○Confirm arrival for pickup\n○Text customer arrival notice\n", attributes: CONST.UI.STRING_ATTRIBUTES_LEFT_PARAGRAPH)
+        actionDescription.append(NSAttributedString(string: "Warning: your current location is too far away from the registered customer pick up location, an alert will be sent to dispatch if continue", attributes: CONST.UI.STRING_ATTRIBUTES_LEFT_PARAGRAPH_ALARM))
         if distanceTooFar {
             actionInfo![HMTripDetailType.onTheWay] = HMActionInfo(title: "Send Arrival",
-                                                                  description: "You will\nconfirm arrival for pickup\n&\ntext customer arrival notice\n&\nWarning: your current location is too far away from registered customer pick up location, an alert will be sent to dispatch if continue")
+                                                                  description: actionDescription)
         } else {
             actionInfo![HMTripDetailType.onTheWay] = HMActionInfo(title: "Send Arrival",
-                                                                  description: "You will\nconfirm arrival for pickup\n&\ntext customer arrival notice")
+                                                                  description: NSAttributedString(string: "You will\n○Confirm arrival for pickup\n○Text customer arrival notice", attributes: CONST.UI.STRING_ATTRIBUTES_LEFT_PARAGRAPH))
         }
         
         actions![HMTripDetailType.onTheWay] = {
@@ -393,7 +395,7 @@ class HMTripDetailViewController: UIViewController {
         // Pickup location
         guard let dropoffLat = self.toAddressInfo?["lat"] as? Double,
             let dropoffLng = self.toAddressInfo?["lng"] as? Double else {
-                actionInfo![HMTripDetailType.onTheWay] = HMActionInfo(title: "Request Failed", description: "Drop off location not available")
+                actionInfo![HMTripDetailType.onTheWay] = HMActionInfo(title: "Request Failed", description: NSAttributedString(string: "Drop off location not available", attributes: CONST.UI.STRING_ATTRIBUTES_CENTER_PARAGRAPH))
                 actions![HMTripDetailType.onTheWay] = {}
                 return
         }
@@ -407,12 +409,14 @@ class HMTripDetailViewController: UIViewController {
         if distance > 50.0 { distanceTooFar = true }
         
         // Info
+        let actionDescription = NSMutableAttributedString(string: "You will\n○Confirm customer arrived at destination\n○Stop sharing location\n○Text customer CAD notice\n", attributes: CONST.UI.STRING_ATTRIBUTES_LEFT_PARAGRAPH)
+        actionDescription.append(NSAttributedString(string: "Warning: your current location is too far away from the registered customer drop off location, an alert will be sent to dispatch if continue", attributes: CONST.UI.STRING_ATTRIBUTES_LEFT_PARAGRAPH_ALARM))
         if distanceTooFar {
             actionInfo![HMTripDetailType.cob] = HMActionInfo(title: "Send Customer Arrive Destination",
-                                                             description: "You will\nconfirm customer arrived at destination\n&\nstop sharing location\n&\ntext customer CAD notice\n&\nWarning: your current location is too far away from registered customer drop off location, an alert will be sent to dispatch if continue")
+                                                             description: actionDescription)
         } else {
             actionInfo![HMTripDetailType.cob] = HMActionInfo(title: "Send Customer Arrive Destination",
-                                                             description: "You will\nconfirm customer arrived at destination\n&\nstop sharing location\n&\ntext customer CAD notice")
+                                                             description: NSAttributedString(string: "You will\n○Confirm customer arrived at destination\n○Stop sharing location\n○Text customer CAD notice", attributes: CONST.UI.STRING_ATTRIBUTES_LEFT_PARAGRAPH))
         }
         
         actions![HMTripDetailType.cob] = {
@@ -483,7 +487,7 @@ class HMTripDetailViewController: UIViewController {
         if let amount = self.basicInfo?["amount"] as? Int {
             let amountString = TDSwiftUnitConverter.centToDollar(amountInCent: amount)
             actionInfo![HMTripDetailType.cad] = HMActionInfo(title: "Collect Cash Payment",
-                                                             description: "Confirm cash payment of $\(amountString)")
+                                                             description: NSAttributedString(string: "Confirm cash payment of $\(amountString)", attributes: CONST.UI.STRING_ATTRIBUTES_CENTER_PARAGRAPH))
             actions![HMTripDetailType.cad] = {
                 // Start spinner
                 self.spinner.show()
@@ -517,7 +521,7 @@ class HMTripDetailViewController: UIViewController {
             }
         } else {
             actionInfo![HMTripDetailType.cad] = HMActionInfo(title: "Unable to process payment",
-                                                             description: "Trip total not provided")
+                                                             description: NSAttributedString(string: "Trip total not provided", attributes: CONST.UI.STRING_ATTRIBUTES_CENTER_PARAGRAPH))
             actions![HMTripDetailType.cad] = {}
         }
     }

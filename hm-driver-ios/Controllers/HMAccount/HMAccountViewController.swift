@@ -19,8 +19,6 @@ class HMAccountViewController: UITableViewController {
         configNavigationAppearance()
         
         updateSharingLocationLabel()
-        
-//        TDSwiftAlert.showSingleButtonAlertWithCancelWithTextAlignment(title: "Hi", message: "HiHiHIHIHIHIHIHUIHIUHIUHIUHUIHIUHIUHIUHUI", messageAlignment: .right, actionBtnTitle: "OK", cancelBtnTitle: "Cancel", presentVC: self, btnAction: nil)
     }
     
     private func configNavigationAppearance() { navigationController?.navigationBar.prefersLargeTitles = true }
