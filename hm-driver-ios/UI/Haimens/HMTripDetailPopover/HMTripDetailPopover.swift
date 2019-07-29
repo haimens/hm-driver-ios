@@ -28,9 +28,9 @@ struct HMTripDetailPopoverPosition {
 }
 
 public struct HMTripDetailPopoverInfo {
-    public let customerImageURLString: String
-    public let customerName: String
-    public let customerCell: String
+    public let customerImageURLString: String?
+    public let customerName: String?
+    public let customerCell: String?
 }
 
 public class HMTripDetailPopover: NSObject {
@@ -113,24 +113,27 @@ public class HMTripDetailPopover: NSObject {
         let customerImageView = TDSwiftSpinnerImageView(frame: CGRect(origin: .zero, size: CGSize(width: 48.0, height: 48.0)))
         customerImageView.layer.cornerRadius = customerImageView.frame.width / 2
         customerImageView.clipsToBounds = true
-        customerImageView.center = CGPoint(x: popoverBaseView.bounds.midX, y: 20 + 20)
+        customerImageView.center = CGPoint(x: popoverBaseView.bounds.midX, y: 20 + 20 + 10)
         customerImageView.contentMode = .scaleAspectFill
         popoverBaseView.addSubview(customerImageView)
-        customerImageView.showSpinner()
-        TDSwiftImageManager.getImage(imageURLString: info.customerImageURLString, imageType: .TDSwiftCacheImage, completion: { (data, error) in
-            DispatchQueue.main.async {
-                if let data = data { customerImageView.image = UIImage(data: data) }
-                customerImageView.hideSpinner()
-            }
-        })
+        // Render image
+        if let customerImageURLString = info.customerImageURLString {
+            customerImageView.showSpinner()
+            TDSwiftImageManager.getImage(imageURLString: customerImageURLString, imageType: .TDSwiftCacheImage, completion: { (data, error) in
+                DispatchQueue.main.async {
+                    if let data = data { customerImageView.image = UIImage(data: data) }
+                    customerImageView.hideSpinner()
+                }
+            })
+        }
         
         // Customer name label
         let customerNameLabel = UILabel(frame: CGRect(origin: .zero, size: CGSize(width: 280.0, height: 15.0)))
         customerNameLabel.font = UIFont.systemFont(ofSize: 12.0, weight: .bold)
-        customerNameLabel.text = info.customerName
+        customerNameLabel.text = info.customerName ?? "N/A"
         customerNameLabel.textAlignment = .center
         customerNameLabel.textColor = UIColor(red:0.20, green:0.20, blue:0.36, alpha:1.0)
-        customerNameLabel.center = CGPoint(x: popoverBaseView.frame.width / 2, y: customerImageView.frame.maxY + 15)
+        customerNameLabel.center = CGPoint(x: popoverBaseView.frame.width / 2, y: customerImageView.frame.maxY + 25)
         popoverBaseView.addSubview(customerNameLabel)
         
         // Call customer button
@@ -138,6 +141,24 @@ public class HMTripDetailPopover: NSObject {
         callCustomerBtn.setTitle("Call Customer", for: .normal)
         callCustomerBtn.center = CGPoint(x: popoverBaseView.frame.width / 2, y: customerNameLabel.frame.maxY + 50)
         popoverBaseView.addSubview(callCustomerBtn)
+        if let customerCell = info.customerCell {
+            self.customerCell = customerCell
+            callCustomerBtn.changeButtonState(to: .enabled)
+        } else {
+            callCustomerBtn.changeButtonState(to: .disabled)
+        }
+        
+        // Call dispatch button
+        let callDispatchBtn = HMBasicButton(frame: CGRect(origin: .zero, size: CGSize(width: 250.0, height: 46)), iconImage: #imageLiteral(resourceName: "support-icon-1"))
+        callDispatchBtn.backgroundColor = UIColor(red:0.99, green:0.49, blue:0.37, alpha:1.0)
+        callDispatchBtn.setTitle("Call Dispatch Center", for: .normal)
+        callDispatchBtn.center = CGPoint(x: popoverBaseView.frame.width / 2, y: callCustomerBtn.frame.maxY + 20 + 23)
+        popoverBaseView.addSubview(callDispatchBtn)
+        if HMGlobal.shared.isDispatchCellAvailable() {
+            callDispatchBtn.changeButtonState(to: .enabled)
+        } else {
+            callDispatchBtn.changeButtonState(to: .disabled)
+        }
         
         // Animate popover
         animatePopover(animationType: .show)

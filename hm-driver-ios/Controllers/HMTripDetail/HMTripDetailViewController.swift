@@ -557,9 +557,9 @@ class HMTripDetailViewController: UIViewController {
 //        popover.items[3] = TDSwiftPopoverItem(iconImage: popover.items[3].iconImage, titleText: sharingLocationButtonTitle)
         
         // Present popover
-        let popoverInfo = HMTripDetailPopoverInfo(customerImageURLString: self.customerInfo?["img_path"] as? String ?? "",
-                                                  customerName: self.customerInfo?["name"] as? String ?? "N/A",
-                                                  customerCell: self.customerInfo?["cell"] as? String ?? "")
+        let popoverInfo = HMTripDetailPopoverInfo(customerImageURLString: self.customerInfo?["img_path"] as? String,
+                                                  customerName: self.customerInfo?["name"] as? String,
+                                                  customerCell: self.customerInfo?["cell"] as? String)
             popover.present(onView: self.navigationController!.view, atPoint: popoverOrigin, withInfo: popoverInfo)
     }
     
