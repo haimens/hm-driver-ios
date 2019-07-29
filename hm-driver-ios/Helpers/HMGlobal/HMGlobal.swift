@@ -17,7 +17,9 @@ class HMGlobal {
         HMSetting.getSettingDetail(withKey: "contact_cell") { (result, error) in
             DispatchQueue.main.async {
                 // Parse dispatch cell
-                if let dispatch_cell = result?["value"] as? String {
+                if var dispatch_cell = result?["value"] as? String {
+                    dispatch_cell = dispatch_cell.trimmingCharacters(in: .whitespacesAndNewlines)
+                    dispatch_cell = dispatch_cell.replacingOccurrences(of: " ", with: "")
                     self.dispatchCell = dispatch_cell
                 }
             }
