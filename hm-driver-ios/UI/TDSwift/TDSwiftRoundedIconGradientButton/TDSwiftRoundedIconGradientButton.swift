@@ -69,7 +69,6 @@ public class TDSwiftRoundedIconGradientButton: UIButton {
     
     public init(frame: CGRect, config: TDSwiftRoundedIconGradientButtonConfig) {
         super.init(frame: frame)
-        updateButtonAppearance()
         
         // Init property
         self.iconImage = config.iconImage
@@ -82,6 +81,8 @@ public class TDSwiftRoundedIconGradientButton: UIButton {
         self.text = config.text
         self.textColor = config.textColor
         self.action = config.action
+        
+        updateButtonAppearance()
     }
     
     required init?(coder aDecoder: NSCoder) {

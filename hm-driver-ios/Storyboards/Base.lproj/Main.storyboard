@@ -556,11 +556,13 @@
                     <connections>
                         <outlet property="actionBtn" destination="hYc-oy-hCc" id="MCs-fd-fjL"/>
                         <outlet property="flightInfoBtn" destination="KWZ-p2-1ET" id="CSw-FD-0hx"/>
+                        <outlet property="infoBtnStackView" destination="uTs-i6-10s" id="lhx-93-2po"/>
                         <outlet property="locationSharingBtn" destination="KOQ-WP-YTo" id="bvD-Tg-o9r"/>
                         <outlet property="mapView" destination="AMI-Ex-N2p" id="vV2-JD-69A"/>
                         <outlet property="routeDetailView" destination="Cg3-aq-a6j" id="46O-sj-ttP"/>
                         <outlet property="routeInfoLabel" destination="ac0-Vj-7Zn" id="AVV-mS-7k7"/>
                         <outlet property="specialInstructionBtn" destination="2bO-fW-goc" id="TQ8-Uv-bbe"/>
+                        <outlet property="tripDetailBGView" destination="6Yw-7K-UDh" id="H6r-tV-NwP"/>
                         <segue destination="POy-Ue-jxJ" kind="presentation" identifier="HMCustomerMessagingNavigationController" id="pXJ-KA-dyc"/>
                         <segue destination="FdU-Qd-C0t" kind="presentation" identifier="HMFlightInfoViewController" id="qIv-tZ-ruE"/>
                     </connections>

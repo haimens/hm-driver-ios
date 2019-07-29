@@ -35,6 +35,7 @@
 		5509DBF422EE51C300C376C8 /* HMSharingLocationCircleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5509DBF322EE51C300C376C8 /* HMSharingLocationCircleButton.swift */; };
 		5509DBF622EE5D2E00C376C8 /* HMTripDetailPopover+UIGestureRecognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5509DBF522EE5D2E00C376C8 /* HMTripDetailPopover+UIGestureRecognizer.swift */; };
 		5509DC1C22EF4B3D00C376C8 /* TDSwiftRoundedIconGradientButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5509DC1B22EF4B3D00C376C8 /* TDSwiftRoundedIconGradientButton.swift */; };
+		5509DC1F22EF562600C376C8 /* HMAmountButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5509DC1E22EF562600C376C8 /* HMAmountButton.swift */; };
 		551B13C022D6C6570079C696 /* HMLocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 551B13BF22D6C6570079C696 /* HMLocationManager.swift */; };
 		551B13C322D6C9ED0079C696 /* HMLocationServicePermissionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 551B13C222D6C9ED0079C696 /* HMLocationServicePermissionViewController.swift */; };
 		551B13C622D82E5B0079C696 /* HMResetPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 551B13C522D82E5B0079C696 /* HMResetPasswordViewController.swift */; };
@@ -171,6 +172,7 @@
 		5509DBF322EE51C300C376C8 /* HMSharingLocationCircleButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HMSharingLocationCircleButton.swift; sourceTree = "<group>"; };
 		5509DBF522EE5D2E00C376C8 /* HMTripDetailPopover+UIGestureRecognizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HMTripDetailPopover+UIGestureRecognizer.swift"; sourceTree = "<group>"; };
 		5509DC1B22EF4B3D00C376C8 /* TDSwiftRoundedIconGradientButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TDSwiftRoundedIconGradientButton.swift; sourceTree = "<group>"; };
+		5509DC1E22EF562600C376C8 /* HMAmountButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HMAmountButton.swift; sourceTree = "<group>"; };
 		551B13BF22D6C6570079C696 /* HMLocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HMLocationManager.swift; sourceTree = "<group>"; };
 		551B13C222D6C9ED0079C696 /* HMLocationServicePermissionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HMLocationServicePermissionViewController.swift; sourceTree = "<group>"; };
 		551B13C522D82E5B0079C696 /* HMResetPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HMResetPasswordViewController.swift; sourceTree = "<group>"; };
@@ -326,6 +328,7 @@
 		5504A7A122D1D2D800081C10 /* Haimens */ = {
 			isa = PBXGroup;
 			children = (
+				5509DC1D22EF560500C376C8 /* HMAmountButton.swift */,
 				5509DBF222EE51AB00C376C8 /* HMSharingLocationCircleButton */,
 				5504A7A622D1DD2300081C10 /* HMTripDetailPopover */,
 				5504A7A322D1D9FB00081C10 /* HMThreeDotsBarButtonItem */,
@@ -452,6 +455,14 @@
 				5509DC1B22EF4B3D00C376C8 /* TDSwiftRoundedIconGradientButton.swift */,
 			);
 			path = TDSwiftRoundedIconGradientButton;
+			sourceTree = "<group>";
+		};
+		5509DC1D22EF560500C376C8 /* HMAmountButton.swift */ = {
+			isa = PBXGroup;
+			children = (
+				5509DC1E22EF562600C376C8 /* HMAmountButton.swift */,
+			);
+			path = HMAmountButton.swift;
 			sourceTree = "<group>";
 		};
 		551B13BE22D6C62F0079C696 /* HMLocationManager */ = {
@@ -1299,6 +1310,7 @@
 				55F73ADA22D4CB8A00880212 /* TDSwiftDate.swift in Sources */,
 				551B13C322D6C9ED0079C696 /* HMLocationServicePermissionViewController.swift in Sources */,
 				55FDC74D22E42F21008BF23A /* HMCustomerMessagingNavigation.swift in Sources */,
+				5509DC1F22EF562600C376C8 /* HMAmountButton.swift in Sources */,
 				55ABB63322B629E500F569AF /* TDSwiftSegmentedControl.swift in Sources */,
 				5504A79E22D194AF00081C10 /* TDSwiftPopover+UITableView.swift in Sources */,
 				55EA8D5322B705D100A57BF1 /* HMEarningViewController.swift in Sources */,

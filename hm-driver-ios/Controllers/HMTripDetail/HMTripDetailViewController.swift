@@ -45,6 +45,8 @@ class HMTripDetailViewController: UIViewController {
     @IBOutlet weak var actionBtn: HMBasicButton!
     @IBOutlet weak var flightInfoBtn: TDSwiftRoundedIconGradientButton!
     @IBOutlet weak var locationSharingBtn: HMSharingLocationCircleButton!
+    @IBOutlet weak var infoBtnStackView: UIStackView!
+    @IBOutlet weak var tripDetailBGView: HMTripDetailBGView!
     
     @IBAction func flightInfoBtnClicked(_ sender: TDSwiftRoundedIconGradientButton) {
         performSegue(withIdentifier: String(describing: HMFlightInfoViewController.self), sender: self)
@@ -753,6 +755,16 @@ extension HMTripDetailViewController: TDSwiftData {
             guard let isPaid = self.basicInfo?["is_paid"] as? Bool else {
                 actionBtn.setTitle(CONST.UI.NOT_AVAILABLE_PLACEHOLDER, for: .normal)
                 return
+            }
+            
+            // If amount available, show amount button
+            if let amount = self.basicInfo?["amount"] as? Int {
+                // Formatted amount string
+                let amountString = TDSwiftUnitConverter.centToDollar(amountInCent: amount)
+                
+                // Amount button
+                let amountBtn = HMAmountButton(frame: self.infoBtnStackView.frame)
+                self.tripDetailBGView.addSubview(amountBtn)
             }
             
             if isPaid {
