@@ -140,6 +140,7 @@ public class HMTripDetailPopover: NSObject {
         let callCustomerBtn = HMBasicButton(frame: CGRect(origin: .zero, size: CGSize(width: 250.0, height: 46)), iconImage: #imageLiteral(resourceName: "call-icon"))
         callCustomerBtn.setTitle("Call Customer", for: .normal)
         callCustomerBtn.center = CGPoint(x: popoverBaseView.frame.width / 2, y: customerNameLabel.frame.maxY + 50)
+        callCustomerBtn.addTarget(self, action: #selector(self.callCustomerBtnClicked(_:)), for: .touchUpInside)
         popoverBaseView.addSubview(callCustomerBtn)
         if let customerCell = info.customerCell {
             self.customerCell = customerCell
@@ -153,6 +154,7 @@ public class HMTripDetailPopover: NSObject {
         callDispatchBtn.backgroundColor = UIColor(red:0.99, green:0.49, blue:0.37, alpha:1.0)
         callDispatchBtn.setTitle("Call Dispatch Center", for: .normal)
         callDispatchBtn.center = CGPoint(x: popoverBaseView.frame.width / 2, y: callCustomerBtn.frame.maxY + 20 + 23)
+        callDispatchBtn.addTarget(self, action: #selector(self.callDispatchBtnClicked(_:)), for: .touchUpInside)
         popoverBaseView.addSubview(callDispatchBtn)
         if HMGlobal.shared.isDispatchCellAvailable() {
             callDispatchBtn.changeButtonState(to: .enabled)
@@ -162,6 +164,20 @@ public class HMTripDetailPopover: NSObject {
         
         // Animate popover
         animatePopover(animationType: .show)
+    }
+    
+    @objc private func callCustomerBtnClicked(_ sender: UIButton) {
+        if let customerCell = self.customerCell {
+            if let callURL = URL(string: "telprompt://\(customerCell)"), UIApplication.shared.canOpenURL(callURL) {
+                UIApplication.shared.open(callURL, options: [:], completionHandler: nil)
+            }
+        }
+    }
+    
+    @objc private func callDispatchBtnClicked(_ sender: UIButton) {
+        if HMGlobal.shared.isDispatchCellAvailable() {
+            HMGlobal.shared.callDispatchCenter()
+        }
     }
     
     public func dismiss() {
