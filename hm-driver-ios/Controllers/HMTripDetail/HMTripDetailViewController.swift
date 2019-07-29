@@ -40,17 +40,17 @@ class HMTripDetailViewController: UIViewController {
     
     @IBOutlet weak var mapView: TDSwiftRouteDetailMapView!
     @IBOutlet weak var routeDetailView: HMRouteDetailView!
-    @IBOutlet weak var specialInstructionBtn: UIButton!
+    @IBOutlet weak var specialInstructionBtn: TDSwiftRoundedIconGradientButton!
     @IBOutlet weak var routeInfoLabel: UILabel!
     @IBOutlet weak var actionBtn: HMBasicButton!
-    @IBOutlet weak var flightInfoBtn: UIButton!
+    @IBOutlet weak var flightInfoBtn: TDSwiftRoundedIconGradientButton!
     @IBOutlet weak var locationSharingBtn: HMSharingLocationCircleButton!
     
-    @IBAction func flightInfoBtnClicked(_ sender: UIButton) {
+    @IBAction func flightInfoBtnClicked(_ sender: TDSwiftRoundedIconGradientButton) {
         performSegue(withIdentifier: String(describing: HMFlightInfoViewController.self), sender: self)
     }
     
-    @IBAction func specialInstructionBtnClicked(_ sender: UIButton) {
+    @IBAction func specialInstructionBtnClicked(_ sender: TDSwiftRoundedIconGradientButton) {
         // Show note if available
         if let note = self.basicInfo?["note"] as? String {
             TDSwiftAlert.showSingleButtonAlert(title: "Special Instruction", message: note, actionBtnTitle: "OK", presentVC: self, btnAction: nil)
@@ -592,18 +592,18 @@ extension HMTripDetailViewController: TDSwiftData {
         // Flight info button
         if self.flightInfo != nil && self.flightInfo!.count > 0 {
             // Enable flight info btn
-            self.flightInfoBtn.isEnabled = true
+            self.flightInfoBtn.enable()
             
             // Set flight info btn title
             if let carrierCode = self.flightInfo?["carrier_code"] as? String, let flightNum = self.flightInfo?["flight_num"] as? String {
-                self.flightInfoBtn.setTitle("\(carrierCode) \(flightNum)", for: .normal)
+                self.flightInfoBtn.text = "\(carrierCode) \(flightNum)"
             } else {
-                self.flightInfoBtn.setTitle(CONST.UI.NOT_AVAILABLE_PLACEHOLDER, for: .normal)
+                self.flightInfoBtn.text = CONST.UI.NOT_AVAILABLE_PLACEHOLDER
             }
         } else {
             // Disable flight info btn
-            self.flightInfoBtn.isEnabled = false
-            self.flightInfoBtn.setTitle(CONST.UI.NOT_AVAILABLE_PLACEHOLDER, for: .disabled)
+            self.flightInfoBtn.disable()
+            self.flightInfoBtn.text = CONST.UI.NOT_AVAILABLE_PLACEHOLDER
         }
         
         // Trip detail type
@@ -725,9 +725,9 @@ extension HMTripDetailViewController: TDSwiftData {
         
         // Special instruction
         if (data["basic_info"] as? [String : Any])?["note"] as? String != nil {
-            specialInstructionBtn.isEnabled = true
+            specialInstructionBtn.enable()
         } else {
-            specialInstructionBtn.isEnabled = false
+            specialInstructionBtn.disable()
         }
         
         // Hide spinner

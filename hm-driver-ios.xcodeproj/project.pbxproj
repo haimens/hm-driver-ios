@@ -34,6 +34,7 @@
 		5509DBF122EE48B000C376C8 /* TDSwiftIconCircleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5509DBF022EE48B000C376C8 /* TDSwiftIconCircleButton.swift */; };
 		5509DBF422EE51C300C376C8 /* HMSharingLocationCircleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5509DBF322EE51C300C376C8 /* HMSharingLocationCircleButton.swift */; };
 		5509DBF622EE5D2E00C376C8 /* HMTripDetailPopover+UIGestureRecognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5509DBF522EE5D2E00C376C8 /* HMTripDetailPopover+UIGestureRecognizer.swift */; };
+		5509DC1C22EF4B3D00C376C8 /* TDSwiftRoundedIconGradientButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5509DC1B22EF4B3D00C376C8 /* TDSwiftRoundedIconGradientButton.swift */; };
 		551B13C022D6C6570079C696 /* HMLocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 551B13BF22D6C6570079C696 /* HMLocationManager.swift */; };
 		551B13C322D6C9ED0079C696 /* HMLocationServicePermissionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 551B13C222D6C9ED0079C696 /* HMLocationServicePermissionViewController.swift */; };
 		551B13C622D82E5B0079C696 /* HMResetPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 551B13C522D82E5B0079C696 /* HMResetPasswordViewController.swift */; };
@@ -169,6 +170,7 @@
 		5509DBF022EE48B000C376C8 /* TDSwiftIconCircleButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TDSwiftIconCircleButton.swift; sourceTree = "<group>"; };
 		5509DBF322EE51C300C376C8 /* HMSharingLocationCircleButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HMSharingLocationCircleButton.swift; sourceTree = "<group>"; };
 		5509DBF522EE5D2E00C376C8 /* HMTripDetailPopover+UIGestureRecognizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HMTripDetailPopover+UIGestureRecognizer.swift"; sourceTree = "<group>"; };
+		5509DC1B22EF4B3D00C376C8 /* TDSwiftRoundedIconGradientButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TDSwiftRoundedIconGradientButton.swift; sourceTree = "<group>"; };
 		551B13BF22D6C6570079C696 /* HMLocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HMLocationManager.swift; sourceTree = "<group>"; };
 		551B13C222D6C9ED0079C696 /* HMLocationServicePermissionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HMLocationServicePermissionViewController.swift; sourceTree = "<group>"; };
 		551B13C522D82E5B0079C696 /* HMResetPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HMResetPasswordViewController.swift; sourceTree = "<group>"; };
@@ -337,6 +339,7 @@
 		5504A7A222D1D2DF00081C10 /* TDSwift */ = {
 			isa = PBXGroup;
 			children = (
+				5509DC1A22EF4B3300C376C8 /* TDSwiftRoundedIconGradientButton */,
 				5509DBEF22EE486800C376C8 /* TDSwiftIconCircleButton */,
 				556C82D922E611CF006769D7 /* TDSwiftSpinnerImageView */,
 				5582607C22DB76BA003EDCCA /* TDSwiftGradientView */,
@@ -441,6 +444,14 @@
 				5509DBF322EE51C300C376C8 /* HMSharingLocationCircleButton.swift */,
 			);
 			path = HMSharingLocationCircleButton;
+			sourceTree = "<group>";
+		};
+		5509DC1A22EF4B3300C376C8 /* TDSwiftRoundedIconGradientButton */ = {
+			isa = PBXGroup;
+			children = (
+				5509DC1B22EF4B3D00C376C8 /* TDSwiftRoundedIconGradientButton.swift */,
+			);
+			path = TDSwiftRoundedIconGradientButton;
 			sourceTree = "<group>";
 		};
 		551B13BE22D6C62F0079C696 /* HMLocationManager */ = {
@@ -1284,6 +1295,7 @@
 				55F9A2B922B59F3300788FC5 /* CONST.swift in Sources */,
 				5582606E22DAD2D4003EDCCA /* HMSms.swift in Sources */,
 				5509DBF622EE5D2E00C376C8 /* HMTripDetailPopover+UIGestureRecognizer.swift in Sources */,
+				5509DC1C22EF4B3D00C376C8 /* TDSwiftRoundedIconGradientButton.swift in Sources */,
 				55F73ADA22D4CB8A00880212 /* TDSwiftDate.swift in Sources */,
 				551B13C322D6C9ED0079C696 /* HMLocationServicePermissionViewController.swift in Sources */,
 				55FDC74D22E42F21008BF23A /* HMCustomerMessagingNavigation.swift in Sources */,
