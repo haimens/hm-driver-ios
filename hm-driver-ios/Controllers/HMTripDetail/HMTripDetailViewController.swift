@@ -582,6 +582,9 @@ extension HMTripDetailViewController: TDSwiftData {
     }
     
     func parseData(data: [String : Any]) {
+        // Location sharing status
+        locationSharingBtn.updateButtonStatus()
+        
         // Data
         self.customerToken = (data["customer_info"] as? [String : Any])?["customer_token"] as? String
         self.driverInfo = data["driver_info"] as? [String : Any]
