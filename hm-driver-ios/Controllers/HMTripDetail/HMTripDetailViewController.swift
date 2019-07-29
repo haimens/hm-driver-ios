@@ -546,16 +546,6 @@ class HMTripDetailViewController: UIViewController {
         let buttonItemViewCenter = buttonItemView.convert(buttonItemView.center, to: self.view)
         let popoverOrigin = CGPoint(x: buttonItemViewCenter.x - 5, y: buttonItemViewCenter.y + 10)
         
-        // Current sharing location button title
-//        var sharingLocationButtonTitle = ""
-//        switch TDSwiftHeartBeat.shared.getHeartBeatStatus() {
-//        case .activated:
-//            sharingLocationButtonTitle = "Sharing Location (ON)"
-//        case .terminated:
-//            sharingLocationButtonTitle = "Sharing Location"
-//        }
-//        popover.items[3] = TDSwiftPopoverItem(iconImage: popover.items[3].iconImage, titleText: sharingLocationButtonTitle)
-        
         // Present popover
         let popoverInfo = HMTripDetailPopoverInfo(customerImageURLString: self.customerInfo?["img_path"] as? String,
                                                   customerName: self.customerInfo?["name"] as? String,
@@ -801,39 +791,6 @@ extension HMTripDetailViewController: TDSwiftData {
             flightInfoVC.flightInfo = self.flightInfo
         }
     }
-}
-
-extension HMTripDetailViewController {
-    func didSelect(atIndex index: Int) {
-        print("index \(index)")
-    }
-    
-//    func didSelect(item: TDSwiftPopoverItem, atIndex index: Int) {
-//        switch index {
-//        case 0: // Text customer
-//            performSegue(withIdentifier: String(describing: HMCustomerMessagingNavigationController.self), sender: self)
-//        case 1: // Call customer
-//            if let customerCell = self.customerInfo?["cell"] as? String, let callURL = URL(string: "telprompt://\(customerCell)"), UIApplication.shared.canOpenURL(callURL) {
-//                UIApplication.shared.open(callURL, options: [:], completionHandler: nil)
-//            } else {
-//                TDSwiftAlert.showSingleButtonAlert(title: "Failed", message: "Customer contact info not provided", actionBtnTitle: "OK", presentVC: self, btnAction: nil)
-//            }
-//        case 2: // Call Dispatch Center
-//            if (HMGlobal.shared.isDispatchCellAvailable()) {
-//                HMGlobal.shared.callDispatchCenter()
-//            } else {
-//                TDSwiftAlert.showSingleButtonAlert(title: "Failed", message: "Dispatch center info missing", actionBtnTitle: "OK", presentVC: self, btnAction: nil)
-//            }
-//        case 3: // Sharing Location
-//            HMHeartBeat.shared.start()
-//            TDSwiftAlert.showSingleButtonAlert(title: "Location Sharing", message: "Service Started", actionBtnTitle: "OK", presentVC: self, btnAction: nil)
-//        case 4: // Stop Sharing Location
-//            HMHeartBeat.shared.stop()
-//            TDSwiftAlert.showSingleButtonAlert(title: "Location Sharing", message: "Service Terminated", actionBtnTitle: "OK", presentVC: self, btnAction: nil)
-//        default:
-//            fatalError("TRIP DETAIL POPOVER INDEX INVALID")
-//        }
-//    }
 }
 
 extension HMTripDetailViewController: TDSwiftRouteDetailViewDelegate {
