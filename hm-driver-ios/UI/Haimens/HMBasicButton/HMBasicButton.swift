@@ -7,19 +7,28 @@ public enum HMBasicButtonState {
 }
 
 class HMBasicButton: TDSwiftBasicButton {
-    public override init(frame: CGRect) {
+    public init(frame: CGRect, iconImage icon: UIImage?) {
         super.init(frame: frame)
-        setupHMBasicAppearance()
+        setupHMBasicAppearance(iconImage: icon)
     }
     
     public required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-        setupHMBasicAppearance()
+        setupHMBasicAppearance(iconImage: nil)
     }
 
-    private func setupHMBasicAppearance() {
+    private func setupHMBasicAppearance(iconImage icon: UIImage?) {
         self.backgroundColor = CONST.UI.THEME_COLOR
         self.titleLabel?.font = UIFont.systemFont(ofSize: 14.0, weight: .bold)
+        
+        // Setup icon if available
+        if let icon = icon {
+            let iconImageView = UIImageView(frame: CGRect(origin: .zero, size: CGSize(width: 14.0, height: 14.0)))
+            iconImageView.contentMode = .scaleAspectFit
+            iconImageView.image = icon
+            iconImageView.center = CGPoint(x: 22.0, y: self.bounds.midY)
+            self.addSubview(iconImageView)
+        }
     }
     
     public func changeButtonState(to state: HMBasicButtonState) {

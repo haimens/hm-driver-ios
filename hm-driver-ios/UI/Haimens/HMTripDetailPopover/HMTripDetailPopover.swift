@@ -27,13 +27,15 @@ struct HMTripDetailPopoverPosition {
     let horizontal: HMTripDetailPopoverHorizontalPosition
 }
 
-public protocol HMTripDetailPopoverDelegate: class {
-    func didSelect(atIndex index: Int)
+public struct HMTripDetailPopoverInfo {
+    public let customerImageURLString: String
+    public let customerName: String
+    public let customerCell: String
 }
 
 public class HMTripDetailPopover: NSObject {
-    // delegate
-    weak var delegate: HMTripDetailPopoverDelegate?
+    // Info
+    var customerCell: String?
     
     // Static values
     static private let defaultPopoverPadding: CGFloat = 10.0
@@ -61,7 +63,7 @@ public class HMTripDetailPopover: NSObject {
         self.size = CGSize(width: 300, height: 265)
     }
     
-    public func present(onView view: UIView, atPoint point: CGPoint) {
+    public func present(onView view: UIView, atPoint point: CGPoint, withInfo info: HMTripDetailPopoverInfo) {
         // Popover frame
         let popoverFrame = getPopoverFrame(baseView: view, presentingPoint: point)
         
@@ -106,6 +108,34 @@ public class HMTripDetailPopover: NSObject {
         // Stack views
         view.addSubview(bgView)
         bgView.addSubview(popoverBaseView)
+        
+        // Customer image view
+        let customerImageView = TDSwiftSpinnerImageView(frame: CGRect(origin: .zero, size: CGSize(width: 48.0, height: 48.0)))
+        customerImageView.layer.cornerRadius = customerImageView.frame.width / 2
+        customerImageView.clipsToBounds = true
+        customerImageView.center = CGPoint(x: popoverBaseView.bounds.midX, y: 20 + 20)
+        customerImageView.contentMode = .scaleAspectFill
+        customerImageView.showSpinner()
+        TDSwiftImageManager.getImage(imageURLString: info.customerImageURLString, imageType: .TDSwiftCacheImage, completion: { (data, error) in
+            if let data = data { customerImageView.image = UIImage(data: data) }
+            customerImageView.hideSpinner()
+        })
+        popoverBaseView.addSubview(customerImageView)
+        
+        // Customer name label
+        let customerNameLabel = UILabel(frame: CGRect(origin: .zero, size: CGSize(width: 280.0, height: 15.0)))
+        customerNameLabel.font = UIFont.systemFont(ofSize: 12.0, weight: .bold)
+        customerNameLabel.text = info.customerName
+        customerNameLabel.textAlignment = .center
+        customerNameLabel.textColor = UIColor(red:0.20, green:0.20, blue:0.36, alpha:1.0)
+        customerNameLabel.center = CGPoint(x: popoverBaseView.frame.width / 2, y: customerImageView.frame.maxY + 15)
+        popoverBaseView.addSubview(customerNameLabel)
+        
+        // Call customer button
+        let callCustomerBtn = HMBasicButton(frame: CGRect(origin: .zero, size: CGSize(width: 250.0, height: 46)), iconImage: #imageLiteral(resourceName: "call-icon"))
+        callCustomerBtn.setTitle("Call Customer", for: .normal)
+        callCustomerBtn.center = CGPoint(x: popoverBaseView.frame.width / 2, y: customerNameLabel.frame.maxY + 50)
+        popoverBaseView.addSubview(callCustomerBtn)
         
         // Animate popover
         animatePopover(animationType: .show)

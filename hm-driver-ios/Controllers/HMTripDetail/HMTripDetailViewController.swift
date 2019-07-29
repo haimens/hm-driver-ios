@@ -157,7 +157,6 @@ class HMTripDetailViewController: UIViewController {
         
         // Popover menu
         popover = HMTripDetailPopover()
-        popover.delegate = self
         
         // Spinner
         spinner = TDSwiftSpinner(viewController: self)
@@ -558,7 +557,10 @@ class HMTripDetailViewController: UIViewController {
 //        popover.items[3] = TDSwiftPopoverItem(iconImage: popover.items[3].iconImage, titleText: sharingLocationButtonTitle)
         
         // Present popover
-        popover.present(onView: self.navigationController!.view, atPoint: popoverOrigin)
+        let popoverInfo = HMTripDetailPopoverInfo(customerImageURLString: self.customerInfo?["img_path"] as? String ?? "",
+                                                  customerName: self.customerInfo?["name"] as? String ?? "N/A",
+                                                  customerCell: self.customerInfo?["cell"] as? String ?? "")
+            popover.present(onView: self.navigationController!.view, atPoint: popoverOrigin, withInfo: popoverInfo)
     }
     
     private func configNavigationAppearance() { navigationController?.navigationBar.prefersLargeTitles = false }
@@ -801,7 +803,7 @@ extension HMTripDetailViewController: TDSwiftData {
     }
 }
 
-extension HMTripDetailViewController: HMTripDetailPopoverDelegate {
+extension HMTripDetailViewController {
     func didSelect(atIndex index: Int) {
         print("index \(index)")
     }
