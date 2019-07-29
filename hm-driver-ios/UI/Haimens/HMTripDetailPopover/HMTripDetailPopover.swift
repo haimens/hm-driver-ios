@@ -167,9 +167,15 @@ public class HMTripDetailPopover: NSObject {
     }
     
     @objc private func callCustomerBtnClicked(_ sender: UIButton) {
-        if let customerCell = self.customerCell {
-            if let callURL = URL(string: "telprompt://\(customerCell)"), UIApplication.shared.canOpenURL(callURL) {
-                UIApplication.shared.open(callURL, options: [:], completionHandler: nil)
+        // Process cell
+        self.customerCell = self.customerCell?.trimmingCharacters(in: .whitespacesAndNewlines)
+        self.customerCell = self.customerCell?.replacingOccurrences(of: " ", with: "")
+        
+        if let customerCell = self.customerCell, let callURL = URL(string: "telprompt://\(customerCell)"), UIApplication.shared.canOpenURL(callURL) {
+            UIApplication.shared.open(callURL, options: [:], completionHandler: nil)
+        } else {
+            if let presentingViewController = HMViewControllerManager.shared.presentingViewController {
+                TDSwiftAlert.showSingleButtonAlert(title: "Make Call Failed", message: "Customer Number Invalid", actionBtnTitle: "OK", presentVC: presentingViewController, btnAction: nil)
             }
         }
     }

@@ -764,6 +764,7 @@ extension HMTripDetailViewController: TDSwiftData {
                 
                 // Amount button
                 let amountBtn = HMAmountButton(frame: self.infoBtnStackView.frame)
+                amountBtn.amountLabel.text = "$ \(amountString)"
                 self.tripDetailBGView.addSubview(amountBtn)
             }
             
