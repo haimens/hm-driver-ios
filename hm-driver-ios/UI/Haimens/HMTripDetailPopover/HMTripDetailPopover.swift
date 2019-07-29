@@ -115,12 +115,14 @@ public class HMTripDetailPopover: NSObject {
         customerImageView.clipsToBounds = true
         customerImageView.center = CGPoint(x: popoverBaseView.bounds.midX, y: 20 + 20)
         customerImageView.contentMode = .scaleAspectFill
+        popoverBaseView.addSubview(customerImageView)
         customerImageView.showSpinner()
         TDSwiftImageManager.getImage(imageURLString: info.customerImageURLString, imageType: .TDSwiftCacheImage, completion: { (data, error) in
-            if let data = data { customerImageView.image = UIImage(data: data) }
-            customerImageView.hideSpinner()
+            DispatchQueue.main.async {
+                if let data = data { customerImageView.image = UIImage(data: data) }
+                customerImageView.hideSpinner()
+            }
         })
-        popoverBaseView.addSubview(customerImageView)
         
         // Customer name label
         let customerNameLabel = UILabel(frame: CGRect(origin: .zero, size: CGSize(width: 280.0, height: 15.0)))
