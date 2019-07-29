@@ -729,7 +729,8 @@ extension HMTripDetailViewController: TDSwiftData {
         }
         
         // Special instruction
-        if (data["basic_info"] as? [String : Any])?["note"] as? String != nil {
+        let instruction = (data["basic_info"] as? [String : Any])?["note"] as? String
+        if instruction != nil && !instruction!.isEmpty {
             specialInstructionBtn.enable()
         } else {
             specialInstructionBtn.disable()
