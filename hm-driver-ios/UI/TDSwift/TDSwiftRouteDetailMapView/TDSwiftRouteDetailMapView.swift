@@ -16,9 +16,9 @@ public class TDSwiftRouteDetailMapView: MKMapView, MKMapViewDelegate {
     public static let defaultConfig = TDSwiftRouteDetailMapViewConfig(sourceTintColor: UIColor(red:0.84, green:0.65, blue:0.28, alpha:1.0),
                                                                       destinationTintColor: UIColor(red:0.06, green:0.03, blue:0.42, alpha:1.0),
                                                                       routeTintColor: UIColor(red:0.06, green:0.03, blue:0.42, alpha:1.0),
-                                                                      routeLineWidth: 5.0,
+                                                                      routeLineWidth: 2.0,
                                                                       routeDashPhase: 2.0,
-                                                                      routeDashPattern: [12, 8])
+                                                                      routeDashPattern: [10, 5])
     
     // Default map info
     public static let defaultInfo = TDSwiftRouteDetailMapViewInfo(sourceTitle: "Location A",
