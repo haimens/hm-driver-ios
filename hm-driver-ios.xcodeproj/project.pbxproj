@@ -100,7 +100,6 @@
 		55FDC74822E3ED14008BF23A /* HMPushActionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55FDC74722E3ED14008BF23A /* HMPushActionManager.swift */; };
 		55FDC74B22E41DEF008BF23A /* HMViewControllerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55FDC74A22E41DEF008BF23A /* HMViewControllerManager.swift */; };
 		55FDC74D22E42F21008BF23A /* HMCustomerMessagingNavigation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55FDC74C22E42F21008BF23A /* HMCustomerMessagingNavigation.swift */; };
-		CD079AE267A76230477EA11C /* Pods_hm_driver_ios_OneSignalNotificationServiceExtension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 20B6F6864B0F732619482EC8 /* Pods_hm_driver_ios_OneSignalNotificationServiceExtension.framework */; };
 		D9D7B8D17787DEAE3B5C7AF8 /* Pods_hm_driver_iosTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DFB5D9BDDE84910D8BF5B78 /* Pods_hm_driver_iosTests.framework */; };
 /* End PBXBuildFile section */
 
@@ -286,7 +285,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CD079AE267A76230477EA11C /* Pods_hm_driver_ios_OneSignalNotificationServiceExtension.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

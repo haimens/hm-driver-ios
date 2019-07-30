@@ -53,9 +53,12 @@ class HMPersonalInfoViewController: UIViewController {
                     TDSwiftAlert.showSingleButtonAlert(title: "Request Failed", message: "Retrieve updated driver info failed: \(TDSwiftHavana.getErrorMessage(error: error))", actionBtnTitle: "OK", presentVC: self, btnAction: nil)
                 }
                 
-                // Retrieve updated driver info succeed
+                // Renew info succeed, prompt success and dismiss vc
                 if result {
-                    self.loadData()
+                    self.navigationController?.popViewController(animated: true)
+                    if let presentingViewController = HMViewControllerManager.shared.presentingViewController {
+                        TDSwiftAlert.showSingleButtonAlert(title: "Success", message: "Changes saved", actionBtnTitle: "OK", presentVC: presentingViewController, btnAction: nil)
+                    }
                 }
                 
                 // Hide spinner

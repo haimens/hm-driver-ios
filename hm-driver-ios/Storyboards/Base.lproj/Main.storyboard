@@ -1146,7 +1146,7 @@
                                     <action selector="saveChangesBtnClicked:" destination="gGs-75-20R" eventType="touchUpInside" id="4Me-0t-Aam"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UOC-O8-fQg">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UOC-O8-fQg">
                                 <rect key="frame" x="212.66666666666666" y="246" width="30" height="30"/>
                                 <color key="backgroundColor" red="0.36862745099999999" green="0.44705882349999998" blue="0.89411764709999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
@@ -1154,7 +1154,7 @@
                                     <constraint firstAttribute="width" constant="30" id="Tqd-p8-CvI"/>
                                 </constraints>
                                 <inset key="titleEdgeInsets" minX="0.0" minY="-2" maxX="0.0" maxY="0.0"/>
-                                <state key="normal" title="+">
+                                <state key="normal" image="edit-icon">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <connections>
@@ -1441,6 +1441,7 @@
         <image name="auth-background" width="375" height="812"/>
         <image name="card-icon" width="24" height="16"/>
         <image name="card_dismiss_btn" width="22" height="22"/>
+        <image name="edit-icon" width="11" height="11"/>
         <image name="exit-icon" width="22" height="23"/>
         <image name="haimens-logo" width="101" height="120"/>
         <image name="message-icon" width="16" height="14"/>
