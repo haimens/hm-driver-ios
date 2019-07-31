@@ -8,6 +8,7 @@ enum HMEarningListType {
 class HMEarningViewController: UIViewController {
     @IBOutlet weak var segmentedControl: TDSwiftSegmentedControl!
     @IBOutlet weak var tableView: TDSwiftInfiniteTableView!
+    @IBOutlet weak var balanceLabel: UILabel!
     
     // UI Components
     var spinner: TDSwiftSpinner!
@@ -177,7 +178,18 @@ class HMEarningViewController: UIViewController {
         super.viewDidDisappear(animated)
         
         // Remove presenting vc reference
-        HMViewControllerManager.shared.unlinkPresentingViewController(withViewController: self)    }
+        HMViewControllerManager.shared.unlinkPresentingViewController(withViewController: self)
+    }
+    
+    private func renderBalance() {
+        // If balance info avaliable
+        if let balance = balance {
+            let balanceInDollarString = TDSwiftUnitConverter.centToDollar(amountInCent: balance)
+            self.balanceLabel.text = "$" + balanceInDollarString
+        } else {
+            self.balanceLabel.text = CONST.UI.NOT_AVAILABLE_PLACEHOLDER
+        }
+    }
 }
 
 // Data
@@ -290,7 +302,7 @@ extension HMEarningViewController: TDSwiftData {
         // All requests returned
         dispatchGroup.notify(queue: .main) {
             if self.balance != nil {
-                self.tableView.reloadData()
+                self.renderBalance()
             }
         }
     }
@@ -420,25 +432,5 @@ extension HMEarningViewController: UITableViewDataSource, UITableViewDelegate {
                 loadData()
             }
         }
-    }
-    
-    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        // Balance header cell instance
-        let balanceHeaderCell = tableView.dequeueReusableCell(withIdentifier: String(describing: HMEarningBalanceTableViewCell.self)) as! HMEarningBalanceTableViewCell
-        
-        // If balance info avaliable
-        if let balance = balance {
-            let balanceInDollarString = TDSwiftUnitConverter.centToDollar(amountInCent: balance)
-            balanceHeaderCell.balanceLabel.text = "$" + balanceInDollarString
-        } else {
-            balanceHeaderCell.balanceLabel.text = CONST.UI.NOT_AVAILABLE_PLACEHOLDER
-        }
-        
-        // Header view instance
-        return balanceHeaderCell
-    }
-    
-    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 70.0
     }
 }
