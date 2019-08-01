@@ -53,6 +53,9 @@ class HMLoginViewController: UIViewController {
                 
                 // Handle login result
                 if result {
+                    // Update global data
+                    HMGlobal.shared.makeGlobalRequest()
+                    
                     // Update one signal external user id
                     HMOneSignalManager.setExternalUserId()
                     
