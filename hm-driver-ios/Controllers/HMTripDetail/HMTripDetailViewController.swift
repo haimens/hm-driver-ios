@@ -325,10 +325,6 @@ class HMTripDetailViewController: UIViewController {
         }
         let pickupLocation = CLLocation(latitude: pickupLat, longitude: pickupLng)
         
-        print("210239810298301298309128309128038120938012")
-        print("pickupLocation \(pickupLocation)")
-        print("210239810298301298309128309128038120938012")
-        
         // Distance between current and pickup location in meters
         let distance = currentLocation.distance(from: pickupLocation)
         
@@ -421,10 +417,6 @@ class HMTripDetailViewController: UIViewController {
                 return
         }
         let dropoffLocation = CLLocation(latitude: dropoffLat, longitude: dropoffLng)
-        
-        print("31840123092183012893098120398019830129830912830981209381029")
-        print("dropoffLocation \(dropoffLocation)")
-        print("31840123092183012893098120398019830129830912830981209381029")
         
         // Distance between current and pickup location in meters
         let distance = currentLocation.distance(from: dropoffLocation)
