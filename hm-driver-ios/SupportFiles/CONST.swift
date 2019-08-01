@@ -24,9 +24,15 @@ struct CONST {
         static let STRING_ATTRIBUTES_LEFT_PARAGRAPH_ALARM: [NSAttributedString.Key:Any] =
             [
                 NSAttributedString.Key.font: UIFont.preferredFont(forTextStyle: UIFont.TextStyle.body),
-                NSAttributedString.Key.foregroundColor: UIColor.red,
+                NSAttributedString.Key.foregroundColor: UIColor(red:0.97, green:0.34, blue:0.46, alpha:1.0),
                 NSAttributedString.Key.paragraphStyle: TDSwiftMutableParagraphStyle.getStyle(WithAlignment: .left)
             ]
+        static let STRING_ATTRIBUTES_LEFT_PARAGRAPH_BODY: [NSAttributedString.Key:Any] =
+            [
+                NSAttributedString.Key.font: UIFont.preferredFont(forTextStyle: UIFont.TextStyle.body),
+                NSAttributedString.Key.foregroundColor: UIColor(red:0.37, green:0.45, blue:0.89, alpha:1.0),
+                NSAttributedString.Key.paragraphStyle: TDSwiftMutableParagraphStyle.getStyle(WithAlignment: .left)
+        ]
     }
     
     struct LOCATION {
