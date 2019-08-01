@@ -221,6 +221,15 @@ extension HMTripListViewController: TDSwiftData {
         self.currentTripListCount = nil
     }
     
+    func purgeAll() {
+        self.activeTripList = nil
+        self.historyTripList = nil
+        self.activeTripListEnd = nil
+        self.historyTripListEnd = nil
+        self.activeTripListCount = nil
+        self.historyTripListCount = nil
+    }
+    
     func alertParseDataFailed() {
         TDSwiftAlert.showSingleButtonAlert(title: "Request Failed", message: "Server response invalid", actionBtnTitle: "OK", presentVC: self, btnAction: nil)
     }

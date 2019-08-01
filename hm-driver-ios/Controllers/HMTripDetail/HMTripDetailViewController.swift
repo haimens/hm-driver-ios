@@ -36,6 +36,8 @@ class HMTripDetailViewController: UIViewController {
     var popover: HMTripDetailPopover!
     var spinner: TDSwiftSpinner!
     
+    var shouldReloadList = false
+    
     let currentLocationManager = CLLocationManager()
     
     @IBOutlet weak var mapView: TDSwiftRouteDetailMapView!
@@ -148,6 +150,12 @@ class HMTripDetailViewController: UIViewController {
         
         // Remove presenting vc reference
         HMViewControllerManager.shared.unlinkPresentingViewController(withViewController: self)
+        
+        // Reload data if needed
+        if shouldReloadList, let tripListVC = HMViewControllerManager.shared.presentingViewController as? HMTripListViewController {
+            tripListVC.purgeAll()
+            tripListVC.loadData()
+        }
     }
     
     private func setupUI() {
@@ -442,6 +450,9 @@ class HMTripDetailViewController: UIViewController {
         actions![HMTripDetailType.cob] = {
             // Start spinner
             self.spinner.show()
+            
+            // Reload trip list
+            self.shouldReloadList = true
             
             // Dispatch group
             let dispatchGroup = DispatchGroup()
