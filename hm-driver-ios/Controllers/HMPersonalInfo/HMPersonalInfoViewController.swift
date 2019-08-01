@@ -55,9 +55,10 @@ class HMPersonalInfoViewController: UIViewController {
                 
                 // Renew info succeed, prompt success and dismiss vc
                 if result {
-                    self.navigationController?.popViewController(animated: true)
                     if let presentingViewController = HMViewControllerManager.shared.presentingViewController {
-                        TDSwiftAlert.showSingleButtonAlert(title: "Success", message: "Changes saved", actionBtnTitle: "OK", presentVC: presentingViewController, btnAction: nil)
+                        TDSwiftAlert.showSingleButtonAlert(title: "Success", message: "Changes saved", actionBtnTitle: "OK", presentVC: presentingViewController, btnAction: {
+                            self.navigationController?.popViewController(animated: true)
+                        })
                     }
                 }
                 
