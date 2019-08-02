@@ -66,6 +66,9 @@ class HMTripDetailViewController: UIViewController {
     }
     
     @IBAction func actionBtnClicked(_ sender: HMBasicButton) {
+        // Reload trip list
+        self.shouldReloadList = true
+        
         // If action type is on the way or cob, config actions first
         let dispatchGroup = DispatchGroup()
         dispatchGroup.enter()
@@ -150,6 +153,16 @@ class HMTripDetailViewController: UIViewController {
         
         // Remove presenting vc reference
         HMViewControllerManager.shared.unlinkPresentingViewController(withViewController: self)
+        
+        if let tripListVC = HMViewControllerManager.shared.presentingViewController as? HMTripListViewController {
+            print("*********************************************************************")
+            print("GREAT!!!!!!!")
+            print("*********************************************************************")
+        } else {
+            print("*********************************************************************")
+            print("FAILED!!!!!!!")
+            print("*********************************************************************")
+        }
         
         // Reload data if needed
         if shouldReloadList, let tripListVC = HMViewControllerManager.shared.presentingViewController as? HMTripListViewController {
@@ -450,9 +463,6 @@ class HMTripDetailViewController: UIViewController {
         actions![HMTripDetailType.cob] = {
             // Start spinner
             self.spinner.show()
-            
-            // Reload trip list
-            self.shouldReloadList = true
             
             // Dispatch group
             let dispatchGroup = DispatchGroup()
