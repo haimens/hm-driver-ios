@@ -9,7 +9,14 @@ class HMGlobal {
     static let shared = HMGlobal()
     
     // Data
-    private var dispatchCell: String?
+    private var dispatchCell: String? {
+        get {
+            return UserDefaults.standard.value(forKey: CONST.GLOBAL.GLOBAL_INFO_CONTACT_CELL_KEY) as? String
+        }
+        set {
+            UserDefaults.standard.set(newValue, forKey: CONST.GLOBAL.GLOBAL_INFO_CONTACT_CELL_KEY)
+        }
+    }
     
     // Request for global data
     func makeGlobalRequest() {

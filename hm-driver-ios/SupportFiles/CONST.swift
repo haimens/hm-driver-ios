@@ -38,4 +38,8 @@ struct CONST {
     struct LOCATION {
         static let LAST_LOCATION_CACHE_KEY = "LAST_LOCATION_CACHE_KEY"
     }
+    
+    struct GLOBAL {
+        static let GLOBAL_INFO_CONTACT_CELL_KEY = "GLOBAL_INFO_CONTACT_CELL_KEY"
+    }
 }
