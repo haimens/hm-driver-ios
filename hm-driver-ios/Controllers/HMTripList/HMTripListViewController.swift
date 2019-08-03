@@ -161,6 +161,14 @@ class HMTripListViewController: UIViewController {
         // Remove presenting vc reference
         HMViewControllerManager.shared.unlinkPresentingViewController(withViewController: self)
     }
+    
+    private func shouldShowTripDetail() -> (Bool, String?) {
+        if HMLocationManager.shared.getServiceAuthorizationStatus() == .authorizedAlways {
+            return (true, nil)
+        } else {
+            return (false, "Location service not authorized")
+        }
+    }
 }
 
 // Data
@@ -281,10 +289,18 @@ extension HMTripListViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         
-        // Show trip detail
-        let tripDetailVC = storyboard?.instantiateViewController(withIdentifier: String(describing: HMTripDetailViewController.self)) as! HMTripDetailViewController
-        tripDetailVC.tripToken = currentTripList?[indexPath.row]["trip_token"] as? String
-        self.navigationController?.pushViewController(tripDetailVC, animated: true)
+        // Present trip detail if allowed
+        let (shouldPresent, errorMessage) = self.shouldShowTripDetail()
+        if shouldPresent {
+            // Show trip detail
+            let tripDetailVC = storyboard?.instantiateViewController(withIdentifier: String(describing: HMTripDetailViewController.self)) as! HMTripDetailViewController
+            tripDetailVC.tripToken = currentTripList?[indexPath.row]["trip_token"] as? String
+            self.navigationController?.pushViewController(tripDetailVC, animated: true)
+        } else {
+            if let errorMessage = errorMessage {
+                TDSwiftAlert.showSingleButtonAlert(title: "Present Trip Failed", message: errorMessage, actionBtnTitle: "OK", presentVC: self, btnAction: nil)
+            }
+        }
     }
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
