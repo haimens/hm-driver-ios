@@ -36,19 +36,25 @@ class HMSharingLocationCircleButton: TDSwiftIconCircleButton {
     }
     
     @objc private func btnClicked(_ sender:UIButton) {
-        switch TDSwiftHeartBeat.shared.getHeartBeatStatus() {
-        case .activated:
-            HMHeartBeat.shared.stop()
-            if let presentingViewController = presentingViewController {
-                TDSwiftAlert.showSingleButtonAlert(title: "Location Sharing", message: "Service Terminated", actionBtnTitle: "OK", presentVC: presentingViewController, btnAction: nil)
+        if HMLocationManager.shared.getServiceAuthorizationStatus() == .authorizedAlways {
+            switch TDSwiftHeartBeat.shared.getHeartBeatStatus() {
+            case .activated:
+                HMHeartBeat.shared.stop()
+                if let presentingViewController = presentingViewController {
+                    TDSwiftAlert.showSingleButtonAlert(title: "Location Sharing", message: "Service Terminated", actionBtnTitle: "OK", presentVC: presentingViewController, btnAction: nil)
+                }
+                updateButtonStatus()
+            case .terminated:
+                HMHeartBeat.shared.start()
+                if let presentingViewController = presentingViewController {
+                    TDSwiftAlert.showSingleButtonAlert(title: "Location Sharing", message: "Service Started", actionBtnTitle: "OK", presentVC: presentingViewController, btnAction: nil)
+                }
+                updateButtonStatus()
             }
-            updateButtonStatus()
-        case .terminated:
-            HMHeartBeat.shared.start()
+        } else {
             if let presentingViewController = presentingViewController {
-                TDSwiftAlert.showSingleButtonAlert(title: "Location Sharing", message: "Service Started", actionBtnTitle: "OK", presentVC: presentingViewController, btnAction: nil)
+                TDSwiftAlert.showSingleButtonAlert(title: "Action Failed", message: "Location service not authorized", actionBtnTitle: "OK", presentVC: presentingViewController, btnAction: nil)
             }
-            updateButtonStatus()
         }
     }
 }

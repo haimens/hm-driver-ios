@@ -154,16 +154,6 @@ class HMTripDetailViewController: UIViewController {
         // Remove presenting vc reference
         HMViewControllerManager.shared.unlinkPresentingViewController(withViewController: self)
         
-        if let tripListVC = HMViewControllerManager.shared.presentingViewController as? HMTripListViewController {
-            print("*********************************************************************")
-            print("GREAT!!!!!!!")
-            print("*********************************************************************")
-        } else {
-            print("*********************************************************************")
-            print("FAILED!!!!!!!")
-            print("*********************************************************************")
-        }
-        
         // Reload data if needed
         if shouldReloadList, let tripListVC = HMViewControllerManager.shared.presentingViewController as? HMTripListViewController {
             tripListVC.purgeAll()
