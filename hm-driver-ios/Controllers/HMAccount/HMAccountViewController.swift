@@ -23,6 +23,14 @@ class HMAccountViewController: UITableViewController {
     
     private func configNavigationAppearance() { navigationController?.navigationBar.prefersLargeTitles = true }
     
+    private func shouldChangeSharingLocationServiceStatus() -> (Bool, (() -> Void)?) {
+        if HMLocationManager.shared.getServiceAuthorizationStatus() == .authorizedAlways {
+            return (true, nil)
+        } else {
+            return (false, { TDSwiftAlert.showSingleButtonAlert(title: "Action Failed", message: "Location service not authorized", actionBtnTitle: "OK", presentVC: self, btnAction: nil) })
+        }
+    }
+    
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         // Deselect tableview cell
         tableView.deselectRow(at: indexPath, animated: true)
@@ -39,13 +47,25 @@ class HMAccountViewController: UITableViewController {
                 TDSwiftAlert.showSingleButtonAlert(title: "Failed", message: "Dispatch center info missing", actionBtnTitle: "OK", presentVC: self, btnAction: nil)
             }
         case 3: // Sharing Location
-            HMHeartBeat.shared.start()
-            TDSwiftAlert.showSingleButtonAlert(title: "Location Sharing", message: "Service Started", actionBtnTitle: "OK", presentVC: self, btnAction: nil)
-            updateSharingLocationLabel()
+            let (shouldAct, showAlert) = self.shouldChangeSharingLocationServiceStatus()
+            
+            if shouldAct {
+                HMHeartBeat.shared.start()
+                TDSwiftAlert.showSingleButtonAlert(title: "Location Sharing", message: "Service Started", actionBtnTitle: "OK", presentVC: self, btnAction: nil)
+                updateSharingLocationLabel()
+            } else {
+                showAlert?()
+            }
         case 4: // Stop Sharing Location
-            HMHeartBeat.shared.stop()
-            TDSwiftAlert.showSingleButtonAlert(title: "Location Sharing", message: "Service Terminated", actionBtnTitle: "OK", presentVC: self, btnAction: nil)
-            updateSharingLocationLabel()
+            let (shouldAct, showAlert) = self.shouldChangeSharingLocationServiceStatus()
+            
+            if shouldAct {
+                HMHeartBeat.shared.stop()
+                TDSwiftAlert.showSingleButtonAlert(title: "Location Sharing", message: "Service Terminated", actionBtnTitle: "OK", presentVC: self, btnAction: nil)
+                updateSharingLocationLabel()
+            } else {
+                showAlert?()
+            }
         case 5: // Logout
             // Remove current auth and user info
             TDSwiftHavana.shared.removeAuthInfo()
