@@ -104,8 +104,32 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="justified" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rtt-8F-1vN">
+                                <rect key="frame" x="25" y="135.33333333333331" width="325" height="521.66666666666674"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <string key="text">The location services on this device is denied or only authorized when in use. Please authorize the App to use the location services all the time in settings then verify service status again.</string>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Yo2-rb-eI0">
+                                <rect key="frame" x="145" y="748" width="85" height="30"/>
+                                <state key="normal" title="Skip for now">
+                                    <attributedString key="attributedTitle">
+                                        <fragment content="Skip for now">
+                                            <attributes>
+                                                <color key="NSColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                <font key="NSFont" metaFont="system" size="15"/>
+                                                <integer key="NSUnderline" value="1"/>
+                                            </attributes>
+                                        </fragment>
+                                    </attributedString>
+                                </state>
+                                <connections>
+                                    <action selector="skipBtnClicked:" destination="pGP-ba-onz" eventType="touchUpInside" id="I2I-du-ls9"/>
+                                </connections>
+                            </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fLk-3l-TIE" customClass="HMBasicButton" customModule="hm_driver_ios" customModuleProvider="target">
-                                <rect key="frame" x="25" y="732" width="325" height="46"/>
+                                <rect key="frame" x="25" y="687" width="325" height="46"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="46" id="Mce-Gm-o29"/>
                                 </constraints>
@@ -114,13 +138,6 @@
                                     <action selector="actionBtnClicked:" destination="pGP-ba-onz" eventType="touchUpInside" id="v76-mz-l3W"/>
                                 </connections>
                             </button>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="justified" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rtt-8F-1vN">
-                                <rect key="frame" x="25" y="135.33333333333331" width="325" height="566.66666666666674"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <string key="text">The location services on this device is denied or only authorized when in use. Please authorize the App to use the location services all the time in settings then verify service status again.</string>
-                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                            </textView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
@@ -128,11 +145,13 @@
                             <constraint firstItem="Rtt-8F-1vN" firstAttribute="top" secondItem="s8a-gH-XVt" secondAttribute="bottom" constant="30" id="Dwr-re-WIi"/>
                             <constraint firstItem="QID-lX-O2I" firstAttribute="trailing" secondItem="s8a-gH-XVt" secondAttribute="trailing" constant="25" id="F7V-eb-DeR"/>
                             <constraint firstItem="fLk-3l-TIE" firstAttribute="leading" secondItem="QID-lX-O2I" secondAttribute="leading" constant="25" id="Kiy-WP-ObT"/>
-                            <constraint firstAttribute="bottom" secondItem="fLk-3l-TIE" secondAttribute="bottom" constant="34" id="Nyv-Ga-oLK"/>
                             <constraint firstItem="QID-lX-O2I" firstAttribute="trailing" secondItem="Rtt-8F-1vN" secondAttribute="trailing" constant="25" id="Pec-Dc-Qyg"/>
+                            <constraint firstAttribute="bottom" secondItem="Yo2-rb-eI0" secondAttribute="bottom" constant="34" id="YsS-sa-Id1"/>
                             <constraint firstItem="s8a-gH-XVt" firstAttribute="top" secondItem="QID-lX-O2I" secondAttribute="top" constant="30" id="Z2u-K1-p4A"/>
+                            <constraint firstItem="Yo2-rb-eI0" firstAttribute="centerX" secondItem="5Gg-xY-SAc" secondAttribute="centerX" id="Zav-g3-GcR"/>
                             <constraint firstItem="QID-lX-O2I" firstAttribute="trailing" secondItem="fLk-3l-TIE" secondAttribute="trailing" constant="25" id="a3n-pH-dQG"/>
                             <constraint firstItem="s8a-gH-XVt" firstAttribute="leading" secondItem="QID-lX-O2I" secondAttribute="leading" constant="25" id="kaf-NG-MyA"/>
+                            <constraint firstItem="Yo2-rb-eI0" firstAttribute="top" secondItem="fLk-3l-TIE" secondAttribute="bottom" constant="15" id="mwZ-xf-SuF"/>
                             <constraint firstItem="fLk-3l-TIE" firstAttribute="top" secondItem="Rtt-8F-1vN" secondAttribute="bottom" constant="30" id="qft-v6-XDU"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="QID-lX-O2I"/>
@@ -140,6 +159,7 @@
                     <connections>
                         <outlet property="actionBtn" destination="fLk-3l-TIE" id="IF5-Av-l1z"/>
                         <outlet property="descriptionTextView" destination="Rtt-8F-1vN" id="zUV-Gw-324"/>
+                        <outlet property="skipBtn" destination="Yo2-rb-eI0" id="tNK-Zj-cW9"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qJK-i7-Zg5" userLabel="First Responder" sceneMemberID="firstResponder"/>

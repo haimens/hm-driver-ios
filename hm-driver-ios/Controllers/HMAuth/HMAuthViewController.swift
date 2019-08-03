@@ -2,6 +2,8 @@ import UIKit
 import OneSignal
 
 class HMAuthViewController: UIViewController {
+    var shouldVerifyPermission = true
+    
     @IBAction func logoutBtnClicked(_ sender: UIButton) {
         // Remove auth and login info
         TDSwiftHavana.shared.removeAuthInfo()
@@ -15,7 +17,7 @@ class HMAuthViewController: UIViewController {
         super.viewDidAppear(animated)
         
         // If current location service permission is not desired, popup location permission vc
-        if HMLocationManager.shared.getServiceAuthorizationStatus() == .authorizedAlways {
+        if HMLocationManager.shared.getServiceAuthorizationStatus() == .authorizedAlways || !shouldVerifyPermission {
             verifyAuthInfo()
         } else {
             self.present(storyboard!.instantiateViewController(withIdentifier: String(describing: HMLocationServicePermissionViewController.self)), animated: true, completion: nil)
